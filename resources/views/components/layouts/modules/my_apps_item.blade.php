@@ -3,7 +3,7 @@
         @if ($module->payment_type)
             @if ($module->payment_type == 'yearly')
                 @php
-                    $color = 'bg-purple-100'; 
+                    $color = 'bg-purple-100';
                     $text = trans('general.yearly');
                 @endphp
             @else

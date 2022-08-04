@@ -186,7 +186,7 @@ class EmptyPage extends Component
             default:
                 $docs_path = 'app-manual/' . $this->docsCategory . '/' . $this->alias;
         }
-
+        return "https://digitalhub.mk/";
         return 'https://akaunting.com/docs/' . $docs_path;
     }
 

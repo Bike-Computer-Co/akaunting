@@ -95,7 +95,7 @@
             </x-tooltip>
 
             <x-tooltip id="tooltip-support" placement="right" message="{{ trans('general.help') }}">
-                <a href="{{ url(trans('header.support_link')) }}" target="_blank" class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles">
+                <a href="https://digitalhub.mk" target="_blank" class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles">
                     <span id="menu-support-icon" class="material-icons-outlined text-purple text-2xl">support</span>
                 </a>
             </x-tooltip>

@@ -39,10 +39,10 @@ class ShowInSettings
             $menu->route('settings.default.edit', $title, [], 40, ['icon' => 'tune', 'search_keywords' => trans('settings.default.search_keywords')]);
         }
 
-        $title = trim(trans_choice('general.email_services', 1));
-        if ($this->canAccessMenuItem($title, 'read-settings-email')) {
-            $menu->route('settings.email.edit', $title, [], 50, ['icon' => 'email', 'search_keywords' => trans('settings.email_services.search_keywords')]);
-        }
+//        $title = trim(trans_choice('general.email_services', 1));
+//        if ($this->canAccessMenuItem($title, 'read-settings-email')) {
+//            $menu->route('settings.email.edit', $title, [], 50, ['icon' => 'email', 'search_keywords' => trans('settings.email_services.search_keywords')]);
+//        }
 
         $title = trim(trans_choice('general.email_templates', 2));
         if ($this->canAccessMenuItem($title, 'read-settings-email-templates')) {

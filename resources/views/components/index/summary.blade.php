@@ -40,7 +40,7 @@
             <div class="w-1/2 sm:w-1/3 text-center">
                 @if ($first->attributes->has('tooltip'))
                     <x-tooltip id="tooltip-summary-first" placement="top" message="{!! $first->attributes->get('tooltip') !!}">
-                    
+
                         @if ($first->attributes->has('href'))
                         <a href="{{ $first->attributes->get('href') }}" class="group">
                         @endif

@@ -3,15 +3,15 @@
         {{ trans_choice('general.modules', 2) }}
     </x-slot>
 
-    <x-slot name="buttons">
-        <x-link href="{{ route('apps.api-key.create') }}">
-            {{ trans('modules.api_key') }}
-        </x-link>
+{{--    <x-slot name="buttons">--}}
+{{--        <x-link href="{{ route('apps.api-key.create') }}">--}}
+{{--            {{ trans('modules.api_key') }}--}}
+{{--        </x-link>--}}
 
-        <x-link href="{{ route('apps.my.index') }}">
-            {{ trans('modules.my_apps') }}
-        </x-link>
-    </x-slot>
+{{--        <x-link href="{{ route('apps.my.index') }}">--}}
+{{--            {{ trans('modules.my_apps') }}--}}
+{{--        </x-link>--}}
+{{--    </x-slot>--}}
 
     <x-slot name="content">
         <div class="flex flex-col gap-16 py-4">
@@ -20,7 +20,7 @@
                     @foreach ($module->files as $file)
                         @if ($loop->first)
                             <div class="relative w-full">
-                                <img src="{{ $file->path_string }}" class="w-full h-auto rounded-xl" /> 
+                                <img src="{{ $file->path_string }}" class="w-full h-auto rounded-xl" />
                                     @if ($module->video)
                                     @php
                                         if (strpos($module->video->link, '=') !== false) {
@@ -166,7 +166,7 @@
                 </div>
             </div>
         </div>
-        
+
         @if ($module->purchase_faq)
             <akaunting-modal :show="faq" modal-dialog-class="max-w-screen-md">
                 <template #modal-content>

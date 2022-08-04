@@ -42,23 +42,6 @@
                 @endif
             @endforeach
 
-            @if (! empty($suggestion))
-                <li class="border-b p-2  hover:bg-gray-100">
-                    <a href="{{ url($suggestion->action_url) . '?' . http_build_query((array) $suggestion->action_parameters) }}" class="flex items-center justify-between text-xs">
-                        <div class="truncate">
-                            <h2>
-                                {{ $suggestion->name }}
-                            </h2>
-
-                            <div class="h-4 overflow-hidden text-black-400 truncate">
-                                {{ $suggestion->description ?? '' }}
-                            </div>
-                        </div>
-
-                        <span class="material-icons text-gray-500">chevron_right</span>
-                    </a>
-                </li>
-            @endif
         </ul>
     </div>
 
