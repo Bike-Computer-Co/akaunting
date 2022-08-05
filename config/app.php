@@ -192,7 +192,7 @@ return [
         App\Providers\Route::class,
         App\Providers\Validation::class,
         App\Providers\ViewComposer::class,
-
+        App\Providers\TenancyServiceProvider::class,
     ],
 
     /*

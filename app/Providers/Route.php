@@ -122,157 +122,36 @@ class Route extends Provider
     {
         $this->configureRateLimiting();
 
-        $this->mapInstallRoutes();
-
-        $this->mapApiRoutes();
-
-        $this->mapCommonRoutes();
-
-        $this->mapGuestRoutes();
-
-        $this->mapWizardRoutes();
-
-        $this->mapAdminRoutes();
-
-        $this->mapPreviewRoutes();
-
-        $this->mapPortalRoutes();
-
-        $this->mapSignedRoutes();
+        foreach ($this->centralDomains() as $domain) {
+            $this->mapWebRoutes();
+            $this->mapApiRoutes();
+        }
     }
 
-    /**
-     * Define the "install" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapInstallRoutes()
+    protected function mapWebRoutes()
     {
-        Facade::prefix('install')
-            ->middleware('install')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/install.php'));
+        foreach ($this->centralDomains() as $domain) {
+            Facade::middleware('web')
+                ->domain($domain)
+                ->namespace($this->namespace)
+                ->group(base_path('routes/central/web.php'));
+        }
     }
 
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
     protected function mapApiRoutes()
     {
-        Facade::prefix(config('api.prefix'))
-            ->domain(config('api.domain'))
-            ->middleware(config('api.middleware'))
-            ->namespace($this->namespace . '\Api')
-            ->group(base_path('routes/api.php'));
+        foreach ($this->centralDomains() as $domain) {
+            Facade::prefix('api')
+                ->domain($domain)
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/central/api.php'));
+        }
     }
 
-    /**
-     * Define the "common" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapCommonRoutes()
+    protected function centralDomains(): array
     {
-        Facade::prefix('{company_id}')
-            ->middleware('common')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/common.php'));
-    }
-
-    /**
-     * Define the "guest" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapGuestRoutes()
-    {
-        Facade::middleware('guest')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/guest.php'));
-    }
-
-    /**
-     * Define the "wizard" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWizardRoutes()
-    {
-        Facade::prefix('{company_id}/wizard')
-            ->middleware('wizard')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/wizard.php'));
-    }
-
-    /**
-     * Define the "admin" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapAdminRoutes()
-    {
-        Facade::prefix('{company_id}')
-            ->middleware('admin')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/admin.php'));
-    }
-    /**
-     * Define the "preview" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapPreviewRoutes()
-    {
-        Facade::prefix('{company_id}/preview')
-            ->middleware('preview')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/preview.php'));
-    }
-
-    /**
-     * Define the "portal" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapPortalRoutes()
-    {
-        Facade::prefix('{company_id}/portal')
-            ->middleware('portal')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/portal.php'));
-    }
-
-    /**
-     * Define the "signed" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapSignedRoutes()
-    {
-        Facade::prefix('{company_id}/signed')
-            ->middleware('signed')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/signed.php'));
+        return config('tenancy.central_domains');
     }
 
     /**
