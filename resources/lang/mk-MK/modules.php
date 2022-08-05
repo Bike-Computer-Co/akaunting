@@ -2,81 +2,82 @@
 
 return [
 
-    'title'                 => 'АПИ Токен',
-    'api_token'             => 'Токен',
-    'my_apps'               => 'Мои апликации',
-    'top_paid'              => 'Топ платени',
+    'api_key'               => 'Апликациски интерфејс клуч',
+    'my_apps'               => 'Моја апликација',
+    'pre_sale'              => 'Претпродажба',
+    'top_paid'              => 'Најмногу платен',
     'new'                   => 'Ново',
-    'top_free'              => 'Топ бесплатни',
+    'top_free'              => 'Најголем попуст',
     'free'                  => 'Бесплатно',
-    'search'                => 'Пребарување',
     'install'               => 'Инсталирај',
     'buy_now'               => 'Купи сега',
-    'token_link'            => '<a href="https://akaunting.com/tokens" target="_blank">Кликнете овде</a>за превземање на вашиот API токен.',
-    'no_apps'               => 'Нема апликации во оваа категориај сеуште.',
-    'developer'             => 'Дали сте програмер?<a href="https://akaunting.com/blog/akaunting-app-store" target="_blank">Овде</a> можете да научите како да програмирање и да заработите уште денес!
- 
-',
+    'get_api_key'           => '<a href=":url" target="_blank">Кликни тука</a> за да го добиеш твојот клуч за интерфејсот.',
+    'no_apps'               => 'Во оваа категорија нема апликации сеуште.',
+    'become_developer'      => 'Дали си програмер? <a href=":url" target="_blank">Тука</a> Можеш да научиш како се прави апликација и да почнеш да продаваш денес!',
+    'recommended_apps'      => 'Предложени апликации',
 
-    'recommended_apps'      => 'Recommended Apps',
+    'about'                 => 'За нас',
 
-    'about'                 => 'За апликацијата',
-
-    'added'                 => 'Додадено',
-    'updated'               => 'Ажурирано',
+    'added'                 => 'Додадени',
+    'updated'               => 'Ажурирани',
     'compatibility'         => 'Компатибилност',
+    'documentation'         => 'Документација',
+    'view'                  => 'Поглед',
+    'back'                  => 'Назад',
 
-    'installed'             => ':module инсталирано',
-    'uninstalled'           => ':module деинсталирано',
+    'installed'             => ':module installed',
+    'uninstalled'           => ':module uninstalled',
     //'updated'               => ':module updated',
-    'enabled'               => ':module овозможено',
-    'disabled'              => ':module оневозможено',
+    'enabled'               => ':module enabled',
+    'disabled'              => ':module disabled',
 
     'tab' => [
         'installation'      => 'Инсталација',
-        'faq'               => 'ЧПП',
-        'changelog'         => 'Лог на промени',
-        'reviews'            => 'Reviews',
+        'faq'               => 'Најмногу поставувани прашања',
+        'changelog'         => 'Промена',
+        'reviews'           => 'Осврти',
     ],
 
     'installation' => [
-        'header'            => 'Инсталација',
-        'download'          => 'Превземање :module file.',
-        'unzip'             => 'Отпакување :module files.',
-        'file_copy'         => 'Copying :module files.',
-        'migrate'           => 'Applying :module updates.',
-        'finish'            => 'The update was successfully installed. You will be redirect Update Center.',
-        'install'           => 'Инсталирање :module files.',
+        'header'            => 'Наслов',
+        'download'          => 'Downloading :module',
+        'unzip'             => 'Extracting :module files',
+        'file_copy'         => 'Copying :module files',
+        'finish'            => 'Finalizing :module installation',
+        'redirect'          => ':module installed, redirecting to updates page',
+        'install'           => 'Installing :module',
     ],
 
     'errors' => [
-        'download' => ':module can not download!',
-        'upload' => 'Downloaded :module can not saved!',
-        'unzip' => ':module can not unzip!',
-        'file_copy' => ':module files can not copy!',
-        'migrate' => ':module migrate broken!',
-        'migrate core' => ':module already latest version so then yon can not update.',
+        'download'          => 'Not able to download :module',
+        'zip'               => 'Not able to create :module zip file',
+        'unzip'             => 'Not able to unzip :module',
+        'file_copy'         => 'Not able to copy :module files',
+        'finish'            => 'Not able to finalize :module installation',
     ],
 
     'badge' => [
-        'installed' => 'Инсталирано',
+        'installed'         => 'Инсталирано',
+        'pre_sale'          => 'Претпродажба',
     ],
 
     'button' => [
-        'uninstall'         => 'Деинсталирај',
-        'disable'           => 'Исклучи',
+        'uninstall'         => 'Избриши',
+        'disable'           => 'Оневозможи',
         'enable'            => 'Овозможи',
     ],
 
     'my' => [
-        'purchased' => 'Купено',
-        'installed' => 'Инсталирано',
+        'purchased'         => 'Купено',
+        'installed'         => 'Инсталирано',
     ],
 
     'reviews' => [
         'button' => [
-            'add' => 'Add a Review'
+            'add'           => 'Додади осврт'
         ],
-        'na' => 'There are no reviews.'
-    ]
+
+        'na'                => 'Нема осврти.'
+    ],
+
 ];

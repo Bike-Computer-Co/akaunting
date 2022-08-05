@@ -3,16 +3,16 @@
 return [
 
     'code'                  => 'Код',
-    'rate'                  => 'Стапка',
-    'default'               => 'Основна валута',
-    'decimal_mark'          => 'Децимален знак',
-    'thousands_separator'   => 'Сепаратор за илјада',
+    'rate'                  => 'Оцени',
+    'default'               => 'Стандардна валута',
+    'decimal_mark'          => 'Децимално место',
+    'thousands_separator'   => 'Илјадници сепаратори',
     'precision'             => 'Прецизност',
     'symbol' => [
         'symbol'            => 'Симбол',
-        'position'          => 'Позиција на симболот',
+        'position'          => 'Место за симбол',
         'before'            => 'Пред износ',
-        'after'             => 'После износ',
+        'after'             => 'По износ',
     ]
 
 ];

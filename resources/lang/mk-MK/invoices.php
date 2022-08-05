@@ -2,58 +2,57 @@
 
 return [
 
-    'invoice_number'        => 'Број на Фактура',
-    'invoice_date'          => 'Датум на Фактура',
-    'invoice_amount'        => 'Сума на Фактурата',
+    'invoice_number'        => 'Број на фактура',
+    'invoice_date'          => 'Датум на фактура',
     'total_price'           => 'Вкупна цена',
-    'due_date'              => 'Доспева на',
+    'due_date'              => 'Краен рок',
     'order_number'          => 'Број на нарачка',
-    'bill_to'               => 'Фактурирај на',
+    'bill_to'               => 'Сметка за',
 
-    'quantity'              => 'Количина',
+    'quantity'              => 'Квантитет',
     'price'                 => 'Цена',
-    'sub_total'             => 'Меѓузбир',
+    'sub_total'             => 'Вкупно', 		??????????
     'discount'              => 'Попуст',
     'item_discount'         => 'Попуст на линија',
-    'tax_total'             => 'Вкупно данок',
+    'tax_total'             => 'Вкупен данок',
     'total'                 => 'Вкупно',
 
-    'item_name'             => 'Име на ставка|Име на ставките',
+    'item_name'             => 'Име на ставка|Имиња на ставки',
 
-    'show_discount'         => ':discount% Попуст',
-    'add_discount'          => 'Додади попуст',
-    'discount_desc'         => 'од меѓузбир',
+    'show_discount'         => ':discount% Discount',
+    'add_discount'          => 'Додадете попуст',
+    'discount_desc'         => 'of subtotal',		????????????
 
-    'payment_due'           => 'Доспева за плаќање',
+    'payment_due'           => 'Доспеано плаќање',
     'paid'                  => 'Платено',
-    'histories'             => 'Историја',
+    'histories'             => 'Истории',		???????????
     'payments'              => 'Плаќања',
-    'add_payment'           => 'Додади плаќање',
+    'add_payment'           => 'Додадете плаќање',
     'mark_paid'             => 'Означи платено',
-    'mark_sent'             => 'Означи испратено',
-    'mark_viewed'           => 'Означи како Видено',
-    'mark_cancelled'        => 'Означи како Откажано',
-    'download_pdf'          => 'Превземи PDF',
-    'send_mail'             => 'Прати е-маил',
+    'mark_sent'             => 'Означи платено',
+    'mark_viewed'           => 'Означи прегледано',
+    'mark_cancelled'        => 'Означи откажано',
+    'download_pdf'          => 'Симни PDF',
+    'send_mail'             => 'Прати маил',
     'all_invoices'          => 'Најавете се за да ги видите сите фактури',
-    'create_invoice'        => 'Нова Фактура',
-    'send_invoice'          => 'Прати ја Фактурата',
-    'get_paid'              => 'Плати се',
-    'accept_payments'       => 'Прифатете плаќање преку Интернет',
+    'create_invoice'        => 'Креирај фактура',
+    'send_invoice'          => 'Прати фактура',
+    'get_paid'              => 'Земи средства',		?????????
+    'accept_payments'       => 'Прифатете онлајн плаќања',
 
     'messages' => [
-        'email_required'    => 'Не постои е-маил адреса за овој клиент!',
-        'draft'             => 'Ова е <b>НАЦРТ</b> фактура и ќе се рефлектира на графиконите откако ќе биде испратена.',
+        'email_required'    => 'Нема адреса на е-пошта за овој клиент!',
+        'draft'             => 'Ова е <b>НАЦРТ</b> фактура и ќе се одрази на графиконите откако ќе биде испратена.',
 
         'status' => [
-            'created'       => 'Создадена на :date',
+            'created'       => 'Создаден на :date',
             'viewed'        => 'Прегледано',
             'send' => [
-                'draft'     => 'Не е испратена',
-                'sent'      => 'Испратена на :date',
+                'draft'     => 'Не е испратено',
+                'sent'      => 'Испратено на :date',
             ],
             'paid' => [
-                'await'     => 'Чекам на плаќање',
+                'await'     => 'Чекај исплата',
             ],
         ],
     ],

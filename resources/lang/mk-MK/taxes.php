@@ -2,7 +2,11 @@
 
 return [
 
-    'rate'                  => 'Стапка',
-    'rate_percent'          => 'Стапка (%)',
-
+    'rate'                  => 'Рата',
+    'rate_percent'          => 'Рата (%)',
+    'normal'                => 'Нормално',
+    'inclusive'             => 'Вклучително',
+    'compound'              => 'Формирано',
+    'fixed'                 => 'Поправено',
+    'withholding'           => 'Задржување',
 ];

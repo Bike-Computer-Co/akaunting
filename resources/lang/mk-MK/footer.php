@@ -3,8 +3,8 @@
 return [
 
     'version'               => 'Верзија',
-    'powered'               => 'Овозможенo од Akaunting',
+    'powered'               => 'Овозможено од Akaunting',
     'link'                  => 'https://akaunting.com',
-    'software'              => 'Бесплатен сметководствен софтвер',
+    'software'              => 'Бесплатен софтвер за сметководство',
 
 ];

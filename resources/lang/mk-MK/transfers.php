@@ -3,10 +3,10 @@
 return [
 
     'from_account'          => 'Од Сметка',
-    'to_account'            => 'На сметка',
+    'to_account'            => 'До Сметка',
 
     'messages' => [
-        'delete'            => ':од на :на (:износ)',
+        'delete'            => ':from до :to (:amount)',
     ],
 
 ];

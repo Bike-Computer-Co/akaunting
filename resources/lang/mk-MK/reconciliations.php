@@ -2,13 +2,17 @@
 
 return [
 
-    'reconcile'             => 'Reconcile',
-    'reconciled'            => 'Reconciled',
-    'closing_balance'       => 'Closing Balance',
-    'unreconciled'          => 'Unreconciled',
-    'list_transactions'     => 'List Transactions',
-    'start_date'            => 'Start Date',
-    'end_date'              => 'End Date',
-    'cleared_amount'        => 'Cleared Amount',
+    'reconcile'             => 'Помирува',
+    'unreconcile'           => 'Непомирува',
+    'reconciled'            => 'Помирено',
+    'opening_balance'       => 'Отворена сметка',
+    'closing_balance'       => 'Затворена сметка',
+    'unreconciled'          => 'Непомирено',
+    'transactions'          => 'Трансакции',
+    'start_date'            => 'Почетен датум',
+    'end_date'              => 'Краен датум',
+    'cleared_amount'        => 'Чиста сметка',
+    'deposit'               => 'Депозит',
+    'withdrawal'            => 'Подигање',
 
 ];
