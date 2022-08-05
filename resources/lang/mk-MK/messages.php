@@ -7,8 +7,8 @@ return [
         'updated'           => ':type ажурирано!',
         'deleted'           => ':type избришано!',
         'duplicated'        => ':type дуплицирано!',
-        'imported'          => ':type увезено!', 	???????
-        'exported'          => ':type извезено!',	???????
+        'imported'          => ':type увезено!',
+        'exported'          => ':type извезено!',
         'enabled'           => ':type овозможено!',
         'disabled'          => ':type оневозможено!',
     ],

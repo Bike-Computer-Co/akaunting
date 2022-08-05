@@ -2,6 +2,7 @@
 
 return [
 
+    // TODO:
     'whoops'              => 'Упс!',
     'hello'               => 'Здраво!',
     'salutation'          => 'Regards,<br> :company_name',

@@ -14,5 +14,9 @@ return [
     'cleared_amount'        => 'Чиста сметка',
     'deposit'               => 'Депозит',
     'withdrawal'            => 'Подигање',
+    'reconciled_amount'     => 'Помирен',
+    'in_progress'           => 'Во процес',
+    'save_draft'            => 'Зачувај како нацрт',
+    'irreconcilable'        => 'Непомирливо',
 
 ];

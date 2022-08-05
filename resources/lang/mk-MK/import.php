@@ -4,6 +4,7 @@ return [
 
     'import'                => 'Вклучи',
     'title'                 => 'Вклучи :type',
-    'message'               => 'Дозволени типови на датотеки: XLS, XLSX. Ве молиме <a target="_blank" href=":link"><strong>превземете</strong></a> ја пример датотеката.',
+    'limitations'           => 'Дозволени типови на датотеки: :extensions<br>Дозволени максимум редови: :row_limit',
+    'sample_file'           => 'Можете да ја <a target="_blank" href=":download_link"><strong>симнете</strong></a> пример датотеката и да ја пополните со вашите податоци.',
 
 ];

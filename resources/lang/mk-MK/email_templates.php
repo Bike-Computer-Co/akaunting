@@ -47,4 +47,13 @@ return [
         'body'          => 'Здраво,<br /><br />Базирано на {vendor_name} периодичен круг, <strong>{bill_number}</strong> сметка беше автоматски создадена.<br /><br />Можете да ги погледнете деталите за сметката на следниот линк: <a href="{bill_admin_link}">{bill_number}</a>.<br /><br />Со почит,<br />{company_name}',
     ],
 
+    'payment_received_customer' => [
+        'subject'       => 'Вашата сметка од {company_name}',
+        'body'          => 'Драг\а {contact_name},<br /><br />Ви благодариме на вашето плаќање. <br /><br />Деталите за плаќањето можете да ги видите на следниот линк: <a href="{payment_guest_link}">{payment_date}</a>.<br /><br />Слободно контактирајте не за било какви прашања.<br /><br />Со почит,<br />{company_name}',
+    ],
+
+    'payment_made_vendor' => [
+        'subject'       => 'Payment made by {company_name}',
+        'body'          => 'Драг\а {contact_name},<br /><br />Ја направивме следнава наплата. <br /><br />Деталите за плаќањето можете да ги видите на следниот линк: <a href="{payment_guest_link}">{payment_date}</a>.<br /><br />Слободно контактирајте не за било какви прашања.<br /><br />Со почит,<br />{company_name}',
+    ],
 ];

@@ -11,7 +11,7 @@ return [
 
     'quantity'              => 'Квантитет',
     'price'                 => 'Цена',
-    'sub_total'             => 'Вкупно', 		??????????
+    'sub_total'             => 'Вкупно',
     'discount'              => 'Попуст',
     'item_discount'         => 'Попуст на линија',
     'tax_total'             => 'Вкупен данок',
@@ -21,11 +21,11 @@ return [
 
     'show_discount'         => ':discount% Discount',
     'add_discount'          => 'Додадете попуст',
-    'discount_desc'         => 'of subtotal',		????????????
+    'discount_desc'         => 'of вкупно',
 
     'payment_due'           => 'Доспеано плаќање',
     'paid'                  => 'Платено',
-    'histories'             => 'Истории',		???????????
+    'histories'             => 'Истории',
     'payments'              => 'Плаќања',
     'add_payment'           => 'Додадете плаќање',
     'mark_paid'             => 'Означи платено',
@@ -37,7 +37,7 @@ return [
     'all_invoices'          => 'Најавете се за да ги видите сите фактури',
     'create_invoice'        => 'Креирај фактура',
     'send_invoice'          => 'Прати фактура',
-    'get_paid'              => 'Земи средства',		?????????
+    'get_paid'              => 'Земи средства',
     'accept_payments'       => 'Прифатете онлајн плаќања',
 
     'messages' => [
