@@ -36,42 +36,26 @@ class ShowInAdmin
             $menu->route('items.index', $title, [], 20, ['icon' => 'inventory_2']);
         }
 
-        // Sales
-        $title = trim(trans_choice('general.sales', 2));
-        if ($this->canAccessMenuItem($title, ['read-sales-invoices', 'read-sales-customers'])) {
-            $menu->dropdown($title, function ($sub) use ($attr) {
-                $title = trim(trans_choice('general.invoices', 2));
-                if ($this->canAccessMenuItem($title, 'read-sales-invoices')) {
-                    $sub->route('invoices.index', $title, [], 10, $attr);
-                }
+        //Sales
+        $title = trim(trans_choice('general.invoices', 2));
+        if ($this->canAccessMenuItem($title, 'read-sales-invoices')) {
+            $menu->route('invoices.index', $title, [], 30, ['icon' => 'receipt']);
+        }
 
-                $title = trim(trans_choice('general.customers', 2));
-                if ($this->canAccessMenuItem($title, 'read-sales-customers')) {
-                    $sub->route('customers.index', $title, [], 20, $attr);
-                }
-            }, 30, [
-                'title' => $title,
-                'icon' => 'payments',
-            ]);
+        $title = trim(trans_choice('general.customers', 2));
+        if ($this->canAccessMenuItem($title, 'read-sales-customers')) {
+            $menu->route('customers.index', $title, [], 40, ['icon' => 'people']);
         }
 
         // Purchases
-        $title = trim(trans_choice('general.purchases', 2));
-        if ($this->canAccessMenuItem($title, ['read-purchases-bills', 'read-purchases-vendors'])) {
-            $menu->dropdown($title, function ($sub) use ($attr) {
-                $title = trim(trans_choice('general.bills', 2));
-                if ($this->canAccessMenuItem($title, 'read-purchases-bills')) {
-                    $sub->route('bills.index', $title, [], 10, $attr);
-                }
+        $title = trim(trans_choice('general.bills', 2));
+        if ($this->canAccessMenuItem($title, 'read-purchases-bills')) {
+            $menu->route('bills.index', $title, [], 50, ['icon' => 'redeem']);
+        }
 
-                $title = trim(trans_choice('general.vendors', 2));
-                if ($this->canAccessMenuItem($title, 'read-purchases-vendors')) {
-                    $sub->route('vendors.index', $title, [], 20, $attr);
-                }
-            }, 40, [
-                'title' => $title,
-                'icon' => 'shopping_cart',
-            ]);
+        $title = trim(trans_choice('general.vendors', 2));
+        if ($this->canAccessMenuItem($title, 'read-purchases-vendors')) {
+            $menu->route('vendors.index', $title, [], 60, ['icon' =>'storefront']);
         }
 
         // Banking
@@ -97,7 +81,7 @@ class ShowInAdmin
                 if ($this->canAccessMenuItem($title, 'read-banking-reconciliations')) {
                     $sub->route('reconciliations.index', $title, [], 40, $attr);
                 }
-            }, 50, [
+            }, 70, [
                 'title' => $title,
                 'icon' => 'account_balance',
             ]);
@@ -106,7 +90,7 @@ class ShowInAdmin
         // Reports
         $title = trim(trans_choice('general.reports', 2));
         if ($this->canAccessMenuItem($title, 'read-common-reports')) {
-            $menu->route('reports.index', $title, [], 60, ['icon' => 'donut_small']);
+            $menu->route('reports.index', $title, [], 80, ['icon' => 'donut_small']);
         }
 
         // Apps
