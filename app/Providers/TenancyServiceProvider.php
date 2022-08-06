@@ -123,11 +123,7 @@ class TenancyServiceProvider extends ServiceProvider
 
     protected function mapRoutes()
     {
-        Route::middleware([
-            'web',
-            InitializeTenancyByDomain::class,
-            PreventAccessFromCentralDomains::class,
-        ])->group(function () {
+        Route::middleware('tenant')->group(function () {
 
             $this->mapApiRoutes();
 

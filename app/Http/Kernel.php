@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 class Kernel extends HttpKernel
 {
@@ -134,6 +136,10 @@ class Kernel extends HttpKernel
         'import' => [
             'throttle:import',
         ],
+        'tenant' => [
+            InitializeTenancyByDomain::class,
+            PreventAccessFromCentralDomains::class,
+        ]
     ];
 
     /**

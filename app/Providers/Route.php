@@ -39,7 +39,7 @@ class Route extends Provider
 
         Facade::macro('module', function ($alias, $routes, $attrs) {
             $attributes = [
-                'middleware' => $attrs['middleware'],
+                'middleware' => [$attrs['middleware'], 'tenant'],
             ];
 
             if (isset($attrs['namespace'])) {
