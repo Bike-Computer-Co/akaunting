@@ -23,6 +23,6 @@ class RedirectIfNoApiKey
             return $next($request);
         }
 
-        return 'no api key';
+        return redirect()->route('apps.api-key.create');
     }
 }

@@ -82,8 +82,13 @@ return [
             ],
         ],
 
+
         'mail' => [
             'transport' => 'mail',
+        ],
+
+        'mailjet' => [
+            'transport' => 'mailjet',
         ],
     ],
 

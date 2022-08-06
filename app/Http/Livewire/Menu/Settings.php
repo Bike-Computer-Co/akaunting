@@ -29,7 +29,7 @@ class Settings extends Component
 
             event(new SettingsCreated($menu));
 
-//            $this->addSettingsOfModulesFromJsonFile($menu);
+            $this->addSettingsOfModulesFromJsonFile($menu);
             foreach($menu->getItems() as $item) {
                 if ($item->isActive()) {
                     $this->active_menu = 1;
