@@ -2,9 +2,12 @@
 
 return [
 
-    'version'               => '製品版',
-    'powered'               => 'Akauntingによって供給',
-    'link'                  => 'https://akaunting.com',
-    'software'              => '無料会計ソフトウェア',
+    'version'               => 'Version',
+    'powered'               => 'Powered By DigitalHub',
+    'link'                  => 'https://digitalhub.mk',
+    'software'              => 'Accounting Software',
+    'powered_by'            => 'Powered by',
+    'tag_line'              => 'Send invoices, track expenses, and automate accounting with DigitalHub. :get_started_url',
+    'get_started'           => 'Get Started',
 
 ];

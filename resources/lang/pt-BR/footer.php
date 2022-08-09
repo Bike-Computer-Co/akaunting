@@ -2,12 +2,12 @@
 
 return [
 
-    'version'               => 'Versão',
-    'powered'               => 'Desenvolvido por Akaunting',
-    'link'                  => 'https://akaunting.com',
-    'software'              => 'Software de contabilidade gratuito',
-    'powered_by'            => 'Desenvolvido por',
-    'tag_line'              => 'Envie faturas, acompanhe despesas e automatize a contabilidade com o Akaunting. :get_started_url',
-    'get_started'           => 'Comece agora',
+    'version'               => 'Version',
+    'powered'               => 'Powered By DigitalHub',
+    'link'                  => 'https://digitalhub.mk',
+    'software'              => 'Accounting Software',
+    'powered_by'            => 'Powered by',
+    'tag_line'              => 'Send invoices, track expenses, and automate accounting with DigitalHub. :get_started_url',
+    'get_started'           => 'Get Started',
 
 ];

@@ -2,12 +2,12 @@
 
 return [
 
-    'version'               => 'Versió',
-    'powered'               => 'Powered by Akaunting',
-    'link'                  => 'https://akaunting.com',
-    'software'              => 'Programari lliure de Facturació/Comptabilitat',
-    'powered_by'            => 'Creat per',
-    'tag_line'              => 'Envia factures, fes un seguiment de les despeses i automatitza la comptabilitat amb Akaunting. :get_started_url',
-    'get_started'           => 'Comença',
+    'version'               => 'Version',
+    'powered'               => 'Powered By DigitalHub',
+    'link'                  => 'https://digitalhub.mk',
+    'software'              => 'Accounting Software',
+    'powered_by'            => 'Powered by',
+    'tag_line'              => 'Send invoices, track expenses, and automate accounting with DigitalHub. :get_started_url',
+    'get_started'           => 'Get Started',
 
 ];

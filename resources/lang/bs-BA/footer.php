@@ -2,12 +2,12 @@
 
 return [
 
-    'version'               => 'Verzija',
-    'powered'               => 'Omogućeno od Akaunting',
-    'link'                  => 'https://akaunting.com',
-    'software'              => 'Besplatan web finansijski softver',
-    'powered_by'            => 'Autor',
-    'tag_line'              => 'Šaljite fakture, pratite troškove i automatizujte računovodstvo uz Akaunting. :get_started_url',
-    'get_started'           => 'Početak',
+    'version'               => 'Version',
+    'powered'               => 'Powered By DigitalHub',
+    'link'                  => 'https://digitalhub.mk',
+    'software'              => 'Accounting Software',
+    'powered_by'            => 'Powered by',
+    'tag_line'              => 'Send invoices, track expenses, and automate accounting with DigitalHub. :get_started_url',
+    'get_started'           => 'Get Started',
 
 ];

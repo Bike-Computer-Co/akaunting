@@ -2,9 +2,12 @@
 
 return [
 
-    'version'               => 'সংস্করণ',
-    'powered'               => 'অ্যাকাউন্টিং(Akaunting) দ্বারা চালিত',
-    'link'                  => 'https://akaunting.com',
-    'software'              => 'মুক্ত হিসাবরক্ষণ সফটওয়্যার',
+    'version'               => 'Version',
+    'powered'               => 'Powered By DigitalHub',
+    'link'                  => 'https://digitalhub.mk',
+    'software'              => 'Accounting Software',
+    'powered_by'            => 'Powered by',
+    'tag_line'              => 'Send invoices, track expenses, and automate accounting with DigitalHub. :get_started_url',
+    'get_started'           => 'Get Started',
 
 ];
