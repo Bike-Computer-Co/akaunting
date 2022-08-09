@@ -55,6 +55,11 @@ class ShowInAdmin
         if ($this->canAccessMenuItem($title, 'read-sales-invoices')) {
             $menu->route('recurring-invoices.index', $title, [], 60, ['icon' => 'receipt']);
         }
+
+        $title = trim(trans('general.title.new', ['type' => trans_choice('general.incomes', 1)]));
+        if ($this->canAccessMenuItem($title, 'read-sales-invoices')) {
+            $menu->route('transactions.create', $title, ['type' => 'income'], 61, ['icon' => 'control_point']);
+        }
         $menu->addDivider(70);
 
 
