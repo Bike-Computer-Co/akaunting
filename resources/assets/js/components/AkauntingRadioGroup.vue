@@ -4,7 +4,7 @@
 
         <div class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="-component-tab">
             <div class="btn-group btn-group-toggle radio-yes-no" data-toggle="buttons" v-on:click="onClick">
-                <label class="btn disabled:bg-green-100"
+                <label class="btn disabled:bg-blue-100"
                        :class="[{'active': value === 1}]">
                     <input type="radio"
                            :name="name"

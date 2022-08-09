@@ -26,11 +26,11 @@
                         type="submit"
                         id="next-button"
                         ::disabled="loading"
-                        class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 sm:col-span-6"
+                        class="relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100 sm:col-span-6"
                         override="class"
                         data-loading-text="{{ trans('general.loading') }}"
                     >
-                        <i v-if="loading" class="submit-spin absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto"></i> 
+                        <i v-if="loading" class="submit-spin absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto"></i>
                         <span :class="[{'opacity-0': loading}]">
                             {{ trans('install.next') }}
                         </span>

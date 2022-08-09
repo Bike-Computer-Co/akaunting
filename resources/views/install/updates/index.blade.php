@@ -31,7 +31,7 @@
 
                             <x-table.td kind="right" class="w-6/12" kind="cursor-none">
                                 <x-slot name="first" class="text-right" override="class">
-                                    <x-link href="{{ route('updates.run', ['alias' => 'core', 'version' => $core]) }}" class="px-3 py-1.5 rounded-xl text-sm font-medium leading-6 ltr:mr-2 rtl:ml-2 bg-green text-white hover:bg-green-700 disabled:bg-green-100" override="class">
+                                    <x-link href="{{ route('updates.run', ['alias' => 'core', 'version' => $core]) }}" class="px-3 py-1.5 rounded-xl text-sm font-medium leading-6 ltr:mr-2 rtl:ml-2 bg-blue text-white hover:bg-blue-700 disabled:bg-blue-100" override="class">
                                         {{ trans('updates.update', ['version' => $core]) }}
                                     </x-link>
 

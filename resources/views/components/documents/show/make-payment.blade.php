@@ -15,7 +15,7 @@
                     <x-button
                         @click="onPayment"
                         id="button-payment"
-                        class="px-3 py-1.5 mb-3 sm:mb-0 rounded-lg text-xs font-medium leading-6 bg-green hover:bg-green-700 text-white disabled:bg-green-100"
+                        class="px-3 py-1.5 mb-3 sm:mb-0 rounded-lg text-xs font-medium leading-6 bg-blue hover:bg-blue-700 text-white disabled:bg-blue-100"
                         override="class"
                     >
                         {{ trans('invoices.add_payment') }}

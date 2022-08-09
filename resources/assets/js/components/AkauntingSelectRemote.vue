@@ -102,7 +102,7 @@
 
         <component v-bind:is="add_new_html" @submit="onSubmit" @cancel="onCancel"></component>
 
-        <span slot="infoBlock" class="absolute right-8 top-3 bg-green text-white px-2 py-1 rounded-md text-xs" v-if="new_options[selected]">{{ addNew.new_text }}</span>
+        <span slot="infoBlock" class="absolute right-8 top-3 bg-blue text-white px-2 py-1 rounded-md text-xs" v-if="new_options[selected]">{{ addNew.new_text }}</span>
 
         <select :name="name"  :id="name" v-model="selected" class="d-none">
             <option v-for="option in sortedOptions" :key="option.key" :value="option.key">{{ option.value }}</option>
@@ -202,7 +202,7 @@
 
         <component v-bind:is="add_new_html" @submit="onSubmit" @cancel="onCancel"></component>
 
-        <span slot="infoBlock" class="absolute right-8 top-3 bg-green text-white px-2 py-1 rounded-md text-xs" v-if="new_options[selected]">{{ addNew.new_text }}</span>
+        <span slot="infoBlock" class="absolute right-8 top-3 bg-blue text-white px-2 py-1 rounded-md text-xs" v-if="new_options[selected]">{{ addNew.new_text }}</span>
 
         <select :name="name"  :id="name" v-model="selected" class="d-none">
             <option v-for="option in sortedOptions" :key="option.key" :value="option.key">{{ option.value }}</option>
@@ -514,7 +514,7 @@ export default {
         },
 
         setSortedOptions() {
-            // Reset sorted_options 
+            // Reset sorted_options
             this.sorted_options = [];
 
             let created_options = (this.dynamicOptions) ? this.dynamicOptions : this.options;
@@ -590,7 +590,7 @@ export default {
         },
 
         setFullOptions() {
-            // Reset full_options 
+            // Reset full_options
             this.full_options = [];
 
             let created_options = (this.dynamicOptions) ? this.dynamicOptions : this.fullOptions;

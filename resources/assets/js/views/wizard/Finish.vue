@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="lg:hidden">
-                        <base-button class="btn flex items-center justify-center text-base disabled:opacity-50 relative mt-5 mx-auto bg-green hover:bg-gray-100 text-white rounded-md py-3 px-5 font-semibold" @click="finish()">
+                        <base-button class="btn flex items-center justify-center text-base disabled:opacity-50 relative mt-5 mx-auto bg-blue hover:bg-gray-100 text-white rounded-md py-3 px-5 font-semibold" @click="finish()">
                             {{ translations.finish.create_first_invoice }}
                         </base-button>
                     </div>

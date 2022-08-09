@@ -6,7 +6,7 @@
 
         <x-slot name="buttons">
             @stack('button_pdf_start')
-            <x-link href="{{ $pdf_action }}" class="bg-green text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-lg text-sm font-medium leading-6 hover:bg-green-700">
+            <x-link href="{{ $pdf_action }}" class="bg-blue text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-lg text-sm font-medium leading-6 hover:bg-blue-700">
                 {{ trans('general.download') }}
             </x-link>
             @stack('button_pdf_end')
@@ -17,7 +17,7 @@
             </x-link>
             @stack('button_print_end')
 
-        
+
             @stack('button_dashboard_start')
             @if (! user())
                 <x-link href="{{ route('portal.dashboard') }}" class="px-3 py-1.5 mb-3 sm:mb-0 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium leading-6">

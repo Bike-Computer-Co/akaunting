@@ -31,9 +31,9 @@ class TransactionEmails extends Controller
      * @return Response
      */
     public function create(Transaction $transaction)
-    {     
+    {
         $email_template = config('type.transaction.' . $transaction->type . '.email_template');
-   
+
         if (request()->get('email_template')) {
             $email_template = request()->get('email_template');
         }
@@ -42,7 +42,7 @@ class TransactionEmails extends Controller
             case 'invoice_payment_customer':
                 $notification = new PaymentReceivedNotification($transaction->document, $transaction, $email_template, true);
                 break;
-            
+
             default:
                 $notification = new TransactionNotification($transaction, $email_template, true);
                 break;
@@ -66,7 +66,7 @@ class TransactionEmails extends Controller
                     ],
                     'confirm' => [
                         'text' => trans('general.send'),
-                        'class' => 'disabled:bg-green-100',
+                        'class' => 'disabled:bg-blue-100',
                     ]
                 ]
             ]

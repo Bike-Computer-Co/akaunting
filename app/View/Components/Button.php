@@ -51,7 +51,7 @@ class Button extends Component
 
         switch ($this->kind) {
             case 'primary':
-                $default .= ' bg-green hover:bg-green-700 text-white disabled:bg-green-100';
+                $default .= ' bg-blue hover:bg-blue-700 text-white disabled:bg-blue-100';
                 break;
             case 'secondary':
                 $default .= ' bg-purple hover:bg-purple-700 text-white disabled:bg-purple-100';

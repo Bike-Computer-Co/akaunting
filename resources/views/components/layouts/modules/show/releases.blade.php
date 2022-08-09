@@ -19,7 +19,7 @@
             id="releases-load-more"
             :disabled="loadMoreLoading"
             @click="onModuleLoadMore('releases')"
-            class="relative w-48 bg-green m-auto block whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white text-center js-learn-more js-button-modal-submit hover:bg-green-700 disabled:bg-green-300"
+            class="relative w-48 bg-blue m-auto block whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white text-center js-learn-more js-button-modal-submit hover:bg-blue-700 disabled:bg-blue-300"
         >
             <x-button.loading action="loadMoreLoading">
                 {{ trans('modules.see_more') }}

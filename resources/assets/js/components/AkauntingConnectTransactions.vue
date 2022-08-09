@@ -256,7 +256,7 @@
 
                                     <button type="button"
                                         :disabled="differenceAmount != 0 || (differenceAmount == 0 && form.loading)"
-                                        class="relative px-6 py-1.5 bg-green hover:bg-green-700 text-white rounded-lg disabled:bg-green-100"
+                                        class="relative px-6 py-1.5 bg-blue hover:bg-blue-700 text-white rounded-lg disabled:bg-blue-100"
                                         @click="onConfirm"
                                     >
                                         <i
@@ -361,7 +361,7 @@ export default {
 
     mounted() {
         window.addEventListener('keyup',(e) => {
-            if (e.key === 'Escape') { 
+            if (e.key === 'Escape') {
                 this.onCancel();
             }
         });

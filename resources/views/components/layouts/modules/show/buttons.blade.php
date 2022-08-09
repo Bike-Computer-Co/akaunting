@@ -5,7 +5,7 @@
         <x-link
             href="{{ $module->action_url }}"
             target="_blank"
-            class="bg-green hover:bg-green-700 rounded-md text-white text-sm text-center w-full flex items-center justify-center px-3 py-2 truncate"
+            class="bg-blue hover:bg-blue-700 rounded-md text-white text-sm text-center w-full flex items-center justify-center px-3 py-2 truncate"
             override="class"
         >
             {{ trans('modules.switch_to_cloud') }}
@@ -39,7 +39,7 @@
             @else
                 <x-link
                     href="{{ route('apps.app.enable', $module->slug) }}"
-                    class="bg-green rounded-md text-white text-sm text-center w-1/2 py-2 truncate"
+                    class="bg-blue rounded-md text-white text-sm text-center w-1/2 py-2 truncate"
                     override="class"
                 >
                     <x-link.loading>
@@ -60,7 +60,7 @@
                 @else
                     <button type="button"
                         @click="onInstall('{{ $module->action_url }}', '{{ $module->slug }}', '{!! str_replace("'", "\'", $module->name) !!}', '{{ $module->version }}')"
-                        class="bg-green hover:bg-green-700 disabled:bg-green-100 rounded-md text-white text-sm text-center w-full py-2 truncate"
+                        class="bg-blue hover:bg-blue-700 disabled:bg-blue-100 rounded-md text-white text-sm text-center w-full py-2 truncate"
                         id="install-module"
                         :disabled="installation.show"
                     >
@@ -73,7 +73,7 @@
                 <x-link
                     href="{{ $module->action_url }}"
                     target="_blank"
-                    class="bg-green hover:bg-green-700 rounded-md text-white text-sm text-center w-full py-2 truncate"
+                    class="bg-blue hover:bg-blue-700 rounded-md text-white text-sm text-center w-full py-2 truncate"
                     override="class"
                 >
                     {{ trans('modules.use_app') }}
@@ -87,7 +87,7 @@
             <x-link
                 href="{{ $module->action_url }}"
                 target="_blank"
-                class="bg-green hover:bg-green-700 rounded-md text-white text-sm text-center w-full flex items-center justify-center px-3 py-2 truncate"
+                class="bg-blue hover:bg-blue-700 rounded-md text-white text-sm text-center w-full flex items-center justify-center px-3 py-2 truncate"
                 override="class"
             >
                 {{ trans('modules.switch_to_cloud') }}
@@ -98,7 +98,7 @@
             <x-link
                 href="{{ $module->action_url }}"
                 target="_blank"
-                class="bg-green hover:bg-green-700 rounded-md text-white text-sm text-center w-full flex items-center justify-center px-3 py-2 truncate"
+                class="bg-blue hover:bg-blue-700 rounded-md text-white text-sm text-center w-full flex items-center justify-center px-3 py-2 truncate"
                 override="class"
             >
                 {{ trans('modules.switch_to_cloud') }}

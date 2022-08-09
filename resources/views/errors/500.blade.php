@@ -21,7 +21,7 @@
                 @endif
 
                 @php $landing_page = user() ? user()->getLandingPageOfUser() : route('login'); @endphp
-                <a href="{{ $landing_page }}" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 mt-3">
+                <a href="{{ $landing_page }}" class="relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100 mt-3">
                     {{ trans('general.go_to_dashboard') }}
                 </a>
             </div>

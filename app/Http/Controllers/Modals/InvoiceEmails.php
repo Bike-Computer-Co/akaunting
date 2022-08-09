@@ -51,7 +51,7 @@ class InvoiceEmails extends Controller
                     ],
                     'confirm' => [
                         'text' => trans('general.send'),
-                        'class' => 'disabled:bg-green-100',
+                        'class' => 'disabled:bg-blue-100',
                     ]
                 ]
             ]

@@ -37,7 +37,7 @@
                     type="button"
                     :id="'card-'+ key + '-' + id"
                     @click="onSelectedCard(key)"
-                    class="relative flex items-center justify-center px-6 py-1.5 my-2 bg-green hover:bg-green-700 text-white rounded-lg"
+                    class="relative flex items-center justify-center px-6 py-1.5 my-2 bg-blue hover:bg-blue-700 text-white rounded-lg"
                     :disabled="loading"
                 >
                     <i
@@ -173,7 +173,7 @@
                             </label>
                         </div>
 
-                        <button class="relative flex items-center justify-center px-6 py-1.5 bg-green hover:bg-green-700 text-white rounded-lg" v-on:click="invaildCard" :disabled="loading">
+                        <button class="relative flex items-center justify-center px-6 py-1.5 bg-blue hover:bg-blue-700 text-white rounded-lg" v-on:click="invaildCard" :disabled="loading">
                             <i
                                 v-if="loading"
                                 class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"
@@ -312,7 +312,7 @@
                         </label>
                     </div>
 
-                    <button v-if="! hideButton" class="relative flex items-center justify-center px-6 py-1.5 bg-green hover:bg-green-700 text-white rounded-lg" v-on:click="invaildCard" :disabled="loading">
+                    <button v-if="! hideButton" class="relative flex items-center justify-center px-6 py-1.5 bg-blue hover:bg-blue-700 text-white rounded-lg" v-on:click="invaildCard" :disabled="loading">
                         <i
                             v-if="loading"
                             class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"

@@ -29,10 +29,10 @@
                         <tbody data-table-body>
                             <tr v-for="(item, index) in currencies" :key="index" data-table-list class="relative flex items-center border-b hover:bg-gray-100 px-1 flex-wrap group">
                                 <td :class="current_tab == index ? 'hidden' : ''" class="w-4/12 ltr:pr-6 rtl:pl-6 py-4 ltr:text-left rtl:text-right whitespace-nowrap text-sm font-medium text-black">
-                                    {{ item.name }} 
+                                    {{ item.name }}
                                 </td>
                                 <td :class="current_tab == index ? 'hidden' : ''" class="w-4/12 ltr:pr-6 rtl:pl-6 py-4 text-center whitespace-nowrap text-sm font-medium text-black">
-                                    {{ item.code }} 
+                                    {{ item.code }}
                                 </td>
                                 <td :class="current_tab == index ? 'hidden' : ''" class="w-4/12 relative ltr:pr-6 rtl:pl-6 py-4 ltr:text-right rtl:text-left whitespace-nowrap text-sm font-medium text-black">
                                     {{ item.rate }}
@@ -92,10 +92,10 @@
                                             <button
                                                 type="submit"
                                                 :disabled="button_loading"
-                                                class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100"
+                                                class="relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100"
                                                 @click="onEditForm(item, $event)"
                                             >
-                                                <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i> 
+                                                <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i>
                                                 <span :class="[{'opacity-0': button_loading}]">
                                                     {{ translations.currencies.save }}
                                                 </span>
@@ -124,7 +124,7 @@
                             </button>
                         </div>
 
-                        <button v-else type="button" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 mt-3" @click="onAddItem()">
+                        <button v-else type="button" class="relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100 mt-3" @click="onAddItem()">
                             {{ translations.currencies.new_currency }}
                         </button>
 
@@ -158,8 +158,8 @@
                                     {{ translations.currencies.cancel }}
                                 </base-button>
 
-                                <button type="submit" :disabled="button_loading" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100" @click="onSubmitForm($event)">
-                                    <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i> 
+                                <button type="submit" :disabled="button_loading" class="relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100" @click="onSubmitForm($event)">
+                                    <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i>
                                     <span :class="[{'opacity-0': button_loading}]">
                                         {{ translations.currencies.save }}
                                     </span>
@@ -175,7 +175,7 @@
                 {{ translations.currencies.previous }}
             </base-button>
 
-            <base-button class="w-1/2 relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100" @click="next()">
+            <base-button class="w-1/2 relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100" @click="next()">
                 {{translations.currencies.next}}
             </base-button>
             </div>

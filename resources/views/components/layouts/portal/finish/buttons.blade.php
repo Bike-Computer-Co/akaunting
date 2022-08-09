@@ -1,7 +1,7 @@
 @props(['invoice'])
 
 @stack('button_pdf_start')
-<x-link href="{{ route('portal.invoices.pdf', $invoice->id) }}" class="bg-green text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-lg text-sm font-medium leading-6 hover:bg-green-700">
+<x-link href="{{ route('portal.invoices.pdf', $invoice->id) }}" class="bg-blue text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-lg text-sm font-medium leading-6 hover:bg-blue-700">
     {{ trans('general.download_pdf') }}
 </x-link>
 @stack('button_pdf_end')

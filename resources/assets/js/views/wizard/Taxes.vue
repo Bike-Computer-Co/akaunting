@@ -6,7 +6,7 @@
             <div v-if="pageLoad" class="absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-white rounded-lg flex items-center justify-center z-50">
                 <span class="material-icons form-spin animate-spin text-9xl">data_usage</span>
             </div>
-            
+
             <div class="overflow-x-visible menu-scroll mt-1">
                 <form ref="form" class="py-2 align-middle inline-block min-w-full">
                     <table id="tbl-taxes" v-if="taxes.length" class="min-w-full divide-y divide-gray-200">
@@ -24,7 +24,7 @@
                         <tbody data-table-body>
                             <tr v-for="(item, index) in taxes" :key="index" data-table-list class="relative flex items-center border-b hover:bg-gray-100 px-1 flex-wrap group">
                                 <td :class="current_tab == index ? 'hidden' : ''" class="w-6/12 ltr:pr-6 rtl:pl-6 py-4 ltr:text-left rtl:text-right whitespace-nowrap text-sm font-medium text-black">
-                                    {{ item.name }} 
+                                    {{ item.name }}
                                 </td>
                                 <td :class="current_tab == index ? 'hidden' : ''" class="w-6/12 relative ltr:pr-6 rtl:pl-6 py-4 ltr:text-right rtl:text-left whitespace-nowrap text-sm font-medium text-black">
                                     {{ item.rate }}
@@ -74,10 +74,10 @@
                                             <button
                                                 type="submit"
                                                 :disabled="button_loading"
-                                                class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100"
+                                                class="relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100"
                                                 @click="onEditForm(item, $event)"
                                             >
-                                                <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i> 
+                                                <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i>
                                                 <span :class="[{'opacity-0': button_loading}]">
                                                     {{ translations.taxes.save }}
                                                 </span>
@@ -106,11 +106,11 @@
                             </button>
                         </div>
 
-                       <button v-else type="button" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 mt-3" @click="onAddItem()">
+                       <button v-else type="button" class="relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100 mt-3" @click="onAddItem()">
                             {{ translations.taxes.new_tax }}
                         </button>
                     </div>
-                    
+
                     <div v-if="new_datas" class="grid sm:grid-cols-4 gap-x-8 gap-y-6 my-3.5 w-full">
                         <base-input :label="translations.taxes.name" name="name" data-name="name" :placeholder="translations.taxes.name"
                         class="sm:col-span-2"
@@ -130,8 +130,8 @@
                                 {{ translations.taxes.cancel }}
                             </base-button>
 
-                            <button type="submit" :disabled="button_loading" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100" @click="onSubmitForm($event)">
-                                <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i> 
+                            <button type="submit" :disabled="button_loading" class="relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100" @click="onSubmitForm($event)">
+                                <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i>
                                 <span :class="[{'opacity-0': button_loading}]">
                                     {{ translations.taxes.save }}
                                 </span>
@@ -140,13 +140,13 @@
                     </div>
                 </form>
             </div>
- 
+
             <div class="flex items-center justify-center mt-5 gap-x-10">
                 <base-button class="w-1/2 flex items-center justify-center px-6 py-1.5 text-base rounded-lg bg-transparent hover:bg-gray-100" @click="prev()">
                     {{ translations.taxes.previous }}
                 </base-button>
 
-                <base-button class="w-1/2 relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100" @click="next()">
+                <base-button class="w-1/2 relative flex items-center justify-center bg-blue hover:bg-blue-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-blue-100" @click="next()">
                     {{ translations.taxes.next }}
                 </base-button>
             </div>
@@ -250,7 +250,7 @@ export default {
 
         onSubmitForm(event) {
             event.preventDefault();
-            
+
             this.onSubmitEvent("POST", url + "/wizard/taxes", "type", this.taxes);
 
         },

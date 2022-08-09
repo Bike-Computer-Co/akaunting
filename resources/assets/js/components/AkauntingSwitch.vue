@@ -4,7 +4,7 @@
         <input type="radio" :name="name" v-show="selected == '1'" @click="enabled = 0" value="0" id="enabled-0" v-model="selected" class="w-full h-full absolute left-0 z-20 opacity-0 cursor-pointer">
 
         <div class="absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition transform" :class="selected == '1' ? 'translate-x-full' : 'translate-x-0'"></div>
-        <div class="block w-full h-7 rounded-full transition transition-color" :class="selected == '1' ? 'bg-green' : 'bg-green-200'"></div>
+        <div class="block w-full h-7 rounded-full transition transition-color" :class="selected == '1' ? 'bg-blue' : 'bg-blue-200'"></div>
     </div>
 </template>
 

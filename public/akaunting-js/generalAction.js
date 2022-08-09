@@ -328,7 +328,7 @@ if (navigator.userAgent.search("Firefox") >= 0) {
     '           </div>' +
     '           <div class="p-5 bg-body rounded-bl-lg rounded-br-lg border-gray-300">' +
     '               <div class="flex items-center justify-end">' +
-    '                   <button type="button" onClick="delete_cookie()" class="relative px-6 py-1.5 bg-green hover:bg-green-700 text-white rounded-lg disabled:bg-green-100">' +
+    '                   <button type="button" onClick="delete_cookie()" class="relative px-6 py-1.5 bg-blue hover:bg-blue-700 text-white rounded-lg disabled:bg-blue-100">' +
     '                       <span class="">OK</span>' +
     '                   </button>' +
     '               </div>' +

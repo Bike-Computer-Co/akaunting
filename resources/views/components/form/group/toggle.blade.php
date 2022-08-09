@@ -11,12 +11,12 @@
 
         <div class="flex items-center mt-1">
             @if (empty($attributes['disabled']))
-            <label class="relative w-10 rounded-tl-lg rounded-bl-lg py-2 px-1 text-sm text-center transition-all cursor-pointer" @click="form.{{ $name }}=1" v-bind:class="[form.{{ $name }} == 1 ? ['bg-green-500','text-white'] : 'bg-black-100']">
+            <label class="relative w-10 rounded-tl-lg rounded-bl-lg py-2 px-1 text-sm text-center transition-all cursor-pointer" @click="form.{{ $name }}=1" v-bind:class="[form.{{ $name }} == 1 ? ['bg-blue-500','text-white'] : 'bg-black-100']">
                 {{ empty($enable) ? trans('general.yes') : $enable }}
                 <input type="radio" name="{{ $name }}" id="{{ $name }}-1" class="absolute left-0 opacity-0">
             </label>
             @else
-            <label class="relative w-10 rounded-tl-lg rounded-bl-lg py-2 px-1 text-sm text-center transition-all cursor-not-allowed{{ ($value) ? ' bg-green-500 text-white opacity-20 disabled' : ' disabled' }}">
+            <label class="relative w-10 rounded-tl-lg rounded-bl-lg py-2 px-1 text-sm text-center transition-all cursor-not-allowed{{ ($value) ? ' bg-blue-500 text-white opacity-20 disabled' : ' disabled' }}">
                 {{ empty($enable) ? trans('general.yes') : $enable }}
                 <input type="radio" name="{{ $name }}" id="{{ $name }}-1" class="absolute left-0 opacity-0" disabled>
             </label>

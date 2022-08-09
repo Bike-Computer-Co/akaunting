@@ -6,7 +6,7 @@
 
         <x-slot name="buttons">
             @stack('button_pdf_start')
-            <x-link href="{{ $pdf_action }}" class="bg-green text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-lg text-sm font-medium leading-6 hover:bg-green-700">
+            <x-link href="{{ $pdf_action }}" class="bg-blue text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-lg text-sm font-medium leading-6 hover:bg-blue-700">
                 {{ trans('general.download') }}
             </x-link>
             @stack('button_pdf_end')
@@ -94,13 +94,13 @@
                                     description=""
                                 />
                             </x-slot>
-    
+
                             <x-slot name="body" class="block" override="class">
                                 <div class="text-xs mt-1" style="margin-left: 0 !important;">
                                     <span class="font-medium">
                                         {{ trans('invoices.payment_received') }} :
                                     </span>
-    
+
                                     @if ($invoice->transactions->count())
                                         @foreach ($invoice->transactions as $transaction)
                                             <div class="my-2">

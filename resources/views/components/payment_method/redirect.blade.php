@@ -13,7 +13,7 @@
     <div class="buttons">
         <div class="pull-right">
             <x-form id="redirect-form" :url="$confirm_url">
-                <button @click="onRedirectConfirm" type="button" id="button-confirm" class="btn disabled:bg-green-100">
+                <button @click="onRedirectConfirm" type="button" id="button-confirm" class="btn disabled:bg-blue-100">
                     {{ trans('general.confirm') }}
                 </button>
             </x-form>

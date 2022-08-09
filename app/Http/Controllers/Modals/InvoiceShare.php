@@ -72,7 +72,7 @@ class InvoiceShare extends Controller
                     ],
                     'confirm' => [
                         'text' => trans('general.copy_link'),
-                        'class' => 'disabled:bg-green-100',
+                        'class' => 'disabled:bg-blue-100',
                     ],
                 ]
             ]

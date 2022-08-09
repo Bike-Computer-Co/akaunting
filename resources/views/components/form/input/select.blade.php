@@ -103,7 +103,7 @@
             ],
             'confirm' => [
                 'text' => trans('general.save'),
-                'class' => 'disabled:bg-green-100'
+                'class' => 'disabled:bg-blue-100'
             ]
         ]
     ])}}"

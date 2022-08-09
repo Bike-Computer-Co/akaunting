@@ -11,7 +11,7 @@
                 {{ trans('modules.no_apps') }}
             </p>
 
-            <a href="{{ route('apps.home.index') }}" class="px-3 py-1 bg-green rounded-md text-white">
+            <a href="{{ route('apps.home.index') }}" class="px-3 py-1 bg-blue rounded-md text-white">
                 {{ trans('modules.see_all') }}
             </a>
         </div>
@@ -21,7 +21,7 @@
         @foreach ($modules as $item)
             <div>
                 <div class="relative right-10 bottom-4">
-                    <i class="absolute material-icons text-purple transform rotate-180 text-7xl">format_quote</i> 
+                    <i class="absolute material-icons text-purple transform rotate-180 text-7xl">format_quote</i>
                 </div>
 
                 <div class="flex flex-col gap-y-6">
