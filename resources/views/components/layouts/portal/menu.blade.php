@@ -13,7 +13,7 @@
 
 <div data-real-menu class="w-70 h-screen flex hidden fixed top-0 js-menu z-20 xl:z-10 transition-all ltr:-left-80 rtl:-right-80 xl:ltr:left-0 xl:rtl:right-0">
     <div class="w-14 py-7 px-1 bg-lilac-900 z-10 menu-scroll overflow-y-auto overflow-x-hidden">
-        <div 
+        <div
             data-tooltip-target="tooltip-profile"
             data-tooltip-placement="right"
             class="flex flex-col items-center justify-center mb-5 cursor-pointer menu-button"
@@ -22,6 +22,7 @@
             <span name="account_circle" class="material-icons-outlined w-8 h-8 flex items-center justify-center text-purple text-2xl hidden">
                 account_circle
             </span>
+            <img src="{{ asset('public/img/akaunting-logo-green.svg') }}" class="w-8 m-auto" alt="Akaunting" />
 
             @if (setting('default.use_gravatar', '0') == '1')
                 <img src="{{ user()->picture }}" alt="{{ user()->name }}" class="w-8 h-8 m-auto rounded-full" alt="{{ user()->name }}" title="{{ user()->name }}">
@@ -58,13 +59,13 @@
                 </button>
             </x-tooltip>
             @endcan
-            
+
             <x-tooltip id="tooltip-search" placement="right" message="{{ trans('general.search') }}">
                 <button type="button" class="flex items-center menu-button justify-center w-8 h-8 mb-2.5 relative cursor-pointer">
                     <span name="search" class="material-icons-outlined text-purple text-2xl">search</span>
                 </button>
             </x-tooltip>
-            
+
             <x-tooltip id="tooltip-support" placement="right" message="{{ trans('general.help') }}">
                 <a href="{{ url(trans('header.support_link')) }}" target="_blank" class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles">
                     <span class="material-icons-outlined text-purple text-2xl">support</span>
@@ -98,7 +99,7 @@
                     @endcan
                 </div>
             </button>
-            
+
             @can('read-common-companies')
                 <div id="dropdown-menu-company" class="absolute right-0 mt-3 py-2 bg-white rounded-md shadow-xl z-20 hidden" style="left: auto; min-width: 10rem;">
                     @foreach($companies as $com)
