@@ -155,6 +155,12 @@
             "composer dump-autoload"
         ]
     },
+    "repositories": [
+        {
+            "url": "packages/PHPPaymentGateway",
+            "type": "path"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
