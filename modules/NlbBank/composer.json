@@ -1,17 +1,13 @@
 {
+    "name": "digitalhub/nlb-bank",
+    "version": "1.0.0",
     "require": {
-        "omnipay/paypal": "3.0.*"
-    },
-    "replace": {
-        "guzzlehttp/guzzle": "*",
-        "guzzlehttp/psr7": "*",
-        "laravel/framework": "*",
-        "omnipay/common": "*",
-        "symfony/http-foundation": "*"
     },
     "scripts": {
         "test": [
             "composer install --prefer-dist --no-interaction --no-scripts --no-suggest --no-progress --no-ansi"
         ]
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
