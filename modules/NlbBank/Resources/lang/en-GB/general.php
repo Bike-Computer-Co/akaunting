@@ -9,5 +9,7 @@ return [
     "public_integration_key" => 'Public integration key',
     "api_username" => 'API Username',
     "api_password" => 'API Password',
+    "customer" => 'Enabled for customer',
+    "order" => 'Order',
 
 ];

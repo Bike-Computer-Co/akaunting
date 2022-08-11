@@ -16,11 +16,18 @@
         {
             "type": "text",
             "name": "name",
-            "title": "nlb-bank::general.name",
+            "title": "general.name",
             "attributes": {
                 "required": "required"
             },
             "rules": "required|string"
+        },
+        {
+            "type": "text",
+            "name": "order",
+            "title": "nlb-bank::general.order",
+            "attributes": {},
+            "rules": "nullable|integer"
         },
         {
             "type": "text",
@@ -66,7 +73,14 @@
                 "required": "required"
             },
             "rules": "required|string"
+        },
+        {
+            "type": "toggle",
+            "name": "customer",
+            "title": "nlb-bank::general.customer",
+            "attributes": {}
         }
+
     ],
     "extra-modules": {},
     "name": "nlb-bank",
