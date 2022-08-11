@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\PhpPaymentGateway\Providers;
+namespace Modules\NlbBank\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
@@ -38,7 +38,7 @@ class Main extends Provider
      */
     public function loadViews()
     {
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'php-payment-gateway');
+        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'nlb-bank');
     }
 
     /**
@@ -48,7 +48,7 @@ class Main extends Provider
      */
     public function loadViewComponents()
     {
-        Blade::componentNamespace('Modules\PhpPaymentGateway\View\Components', 'php-payment-gateway');
+        Blade::componentNamespace('Modules\NlbBank\View\Components', 'nlb-bank');
     }
 
     /**
@@ -58,7 +58,7 @@ class Main extends Provider
      */
     public function loadTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'php-payment-gateway');
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'nlb-bank');
     }
 
     /**
@@ -78,7 +78,7 @@ class Main extends Provider
      */
     public function loadConfig()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'php-payment-gateway');
+        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'nlb-bank');
     }
 
     /**
@@ -93,7 +93,7 @@ class Main extends Provider
         }
 
         $routes = [
-            'admin.php',
+            'signed.php',
             'portal.php',
         ];
 

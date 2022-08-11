@@ -1,0 +1,68 @@
+{
+    "alias": "nlb-bank",
+    "icon": "fa fa-cog",
+    "version": "1.0.0",
+    "active": 1,
+    "providers": [
+        "Modules\\NlbBank\\Providers\\Event",
+        "Modules\\NlbBank\\Providers\\Main"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [],
+    "settings": [
+        {
+            "type": "text",
+            "name": "api_key",
+            "title": "general.api_key",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|string"
+        },
+        {
+            "type": "text",
+            "name": "shared_secret",
+            "title": "general.shared_secret",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|string"
+        },
+        {
+            "type": "text",
+            "name": "public_integration_key",
+            "title": "general.public_integration_key",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|string"
+        },
+        {
+            "type": "text",
+            "name": "api_username",
+            "title": "general.api_username",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|string"
+        },
+        {
+            "type": "password",
+            "name": "api_password",
+            "title": "general.api_password",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|string"
+        }
+    ],
+    "extra-modules": {},
+    "name": "nlb-bank",
+    "description": "Payment for nlb bank",
+    "minimumCoreVersion": "",
+    "title": "Nlb Bank",
+    "author": ""
+}

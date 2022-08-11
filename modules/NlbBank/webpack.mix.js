@@ -16,5 +16,5 @@ mix.options({
             extractComments: false,
         }
     })
-    .js('Resources/assets/js/php-payment-gateway.js', 'Resources/assets/js/php-payment-gateway.min.js')
+    .js('Resources/assets/js/nlb-bank.js', 'Resources/assets/js/nlb-bank.min.js')
     .vue();

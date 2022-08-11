@@ -2,7 +2,7 @@
 
 return [
 
-    'name'              => 'PhpPaymentGateway',
+    'name'              => 'NlbBank',
     'description'       => 'This is my awesome module',
 
 ];

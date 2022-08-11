@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\PhpPaymentGateway\Providers;
+namespace Modules\NlbBank\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as Provider;
 

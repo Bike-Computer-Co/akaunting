@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\PhpPaymentGateway\Listeners;
+namespace Modules\NlbBank\Listeners;
 
 use App\Events\Module\Installed as Event;
 use App\Traits\Permissions;
@@ -10,7 +10,7 @@ class FinishInstallation
 {
     use Permissions;
 
-    public $alias = 'php-payment-gateway';
+    public $alias = 'nlb-bank';
 
     /**
      * Handle the event.
@@ -33,7 +33,7 @@ class FinishInstallation
     {
         // c=create, r=read, u=update, d=delete
         $this->attachPermissionsToAdminRoles([
-            $this->alias . '-main' => 'c,r,u,d',
+            $this->alias . '-settings' => 'c,r,u,d',
         ]);
     }
 
@@ -41,7 +41,7 @@ class FinishInstallation
     {
         Artisan::call('company:seed', [
             'company' => company_id(),
-            '--class' => 'Modules\PhpPaymentGateway\Database\Seeds\PhpPaymentGatewayDatabaseSeeder',
+            '--class' => 'Modules\NlbBank\Database\Seeds\NlbBankDatabaseSeeder',
         ]);
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\PhpPaymentGateway\Database\Seeds;
+namespace Modules\NlbBank\Database\Seeds;
 
 use App\Abstracts\Model;
 use Illuminate\Database\Seeder;
 
-class PhpPaymentGatewayDatabaseSeeder extends Seeder
+class NlbBankDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
