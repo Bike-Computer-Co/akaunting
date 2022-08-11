@@ -45,7 +45,6 @@ class Invoices extends Controller
     public function show(Document $invoice, Request $request)
     {
         $payment_methods = Modules::getPaymentMethods();
-
         event(new \App\Events\Document\DocumentViewed($invoice));
 
         return view('portal.invoices.show', compact('invoice', 'payment_methods'));
@@ -137,7 +136,6 @@ class Invoices extends Controller
         $payment_actions = [];
 
         $payment_methods = Modules::getPaymentMethods();
-
         foreach ($payment_methods as $payment_method_key => $payment_method_value) {
             $codes = explode('.', $payment_method_key);
 

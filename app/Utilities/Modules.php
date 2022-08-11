@@ -36,7 +36,6 @@ class Modules
 
         // Fire the event to get the list of payment methods
         event(new PaymentMethodShowing($modules));
-
         foreach ((array) $modules->payment_methods as $method) {
             if (!isset($method['name']) || !isset($method['code'])) {
                 continue;

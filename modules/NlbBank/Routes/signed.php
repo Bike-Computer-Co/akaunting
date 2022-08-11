@@ -13,5 +13,4 @@ Route::signed('nlb-bank', function () {
     Route::post('invoices/{invoice}/confirm', 'Payment@confirm')->name('invoices.confirm');
     Route::get('invoices/{invoice}/return', 'Payment@return')->name('invoices.return');
     Route::get('invoices/{invoice}/cancel', 'Payment@cancel')->name('invoices.cancel');
-
 });

@@ -17,25 +17,25 @@ class Payment extends PaymentController
 
     public function confirm(Document $invoice, Request $request)
     {
-        $this->create('PayPal_Express');
-
-        return $this->purchase($invoice, $request, [
-            'username' => $this->setting['username'],
-            'password' => $this->setting['password'],
-            'signature' => $this->setting['signature'],
-            'testMode' => ($this->setting['mode'] == 'test'),
-        ]);
+//        $this->create('PayPal_Express');
+//
+//        return $this->purchase($invoice, $request, [
+//            'username' => $this->setting['username'],
+//            'password' => $this->setting['password'],
+//            'signature' => $this->setting['signature'],
+//            'testMode' => ($this->setting['mode'] == 'test'),
+//        ]);
     }
 
     public function return(Document $invoice, Request $request)
     {
-        $this->create('PayPal_Express');
-
-        return $this->completePurchase($invoice, $request, [
-            'username' => $this->setting['username'],
-            'password' => $this->setting['password'],
-            'signature' => $this->setting['signature'],
-            'testMode' => ($this->setting['mode'] == 'test'),
-        ]);
+//        $this->create('PayPal_Express');
+//
+//        return $this->completePurchase($invoice, $request, [
+//            'username' => $this->setting['username'],
+//            'password' => $this->setting['password'],
+//            'signature' => $this->setting['signature'],
+//            'testMode' => ($this->setting['mode'] == 'test'),
+//        ]);
     }
 }
