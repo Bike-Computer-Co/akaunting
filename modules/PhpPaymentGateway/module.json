@@ -1,0 +1,17 @@
+{
+    "alias": "php-payment-gateway",
+    "icon": "fa fa-cog",
+    "version": "1.0.0",
+    "active": 1,
+    "providers": [
+        "Modules\\PhpPaymentGateway\\Providers\\Event",
+        "Modules\\PhpPaymentGateway\\Providers\\Main"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [],
+    "settings": [],
+    "extra-modules": {}
+}

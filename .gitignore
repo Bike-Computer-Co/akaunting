@@ -93,5 +93,6 @@ _ide_helper_models.php
 .phpunit.result.cache
 modules/*
 !modules/.gitkeep
+!modules/PhpPaymentGateway
 .laravelstatsrc
 .DS_Store
