@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f688a13b3f0c9e87983cc04984571f6",
+    "content-hash": "431e38edfbf0a0ffcda92bf84ba2f7b0",
     "packages": [
         {
             "name": "akaunting/laravel-apexcharts",
@@ -1042,36 +1042,6 @@
                 "issues": "https://gitlab.com/api/v4/projects/6731265/issues"
             },
             "time": "2020-06-06T16:24:31+00:00"
-        },
-        {
-            "name": "bankart/bankart-php-client",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packages/PHPPaymentGatewayJson",
-                "reference": "26d9eb6e9e1ec5669013d89293a2b0a29eedc11b"
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": "^8.0",
-                "psr/log": "1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PaymentGatewayJson\\Client\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "Bankart Client for PHP",
-            "keywords": [
-                "bankart"
-            ],
-            "transport-options": {
-                "relative": true
-            }
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -7146,6 +7116,33 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2020-10-15T08:29:30+00:00"
+        },
+        {
+            "name": "pgc/pgc-php-client",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/PHPPaymentGateway",
+                "reference": "8f0f32e82a74ff1cbc911d71b355847c79c4a990"
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.6",
+                "psr/log": "1.*"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "PaymentGateway\\Client\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Client for PHP",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "phenx/php-font-lib",

@@ -71,7 +71,7 @@
         "simshaun/recurr": "^5.0",
         "staudenmeir/belongs-to-through": "^2.12",
         "staudenmeir/eloquent-has-many-deep": "^1.15",
-        "bankart/bankart-php-client": "*"
+        "pgc/pgc-php-client": "*"
 
     },
     "require-dev": {
@@ -166,6 +166,10 @@
     "repositories": [
         {
             "url": "packages/PHPPaymentGatewayJson",
+            "type": "path"
+        },
+        {
+            "url": "packages/PHPPaymentGateway",
             "type": "path"
         }
     ],
