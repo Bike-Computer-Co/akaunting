@@ -18,6 +18,11 @@
 
         <ul class="flex flex-col justify-center">
             @foreach ($notifications as $notification)
+
+                @if($notification->type == 'updates')
+                    @continue
+                @endif
+
                 @if (empty($notification->data['title']) && empty($notification->data['description']))
                     @continue
                 @endif
