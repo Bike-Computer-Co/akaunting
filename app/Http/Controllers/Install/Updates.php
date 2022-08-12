@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Cache;
 
 class Updates extends Controller
 {
+    public function __construct()
+    {
+        abort(404);
+    }
+
     /**
      * Display a listing of the resource.
      *

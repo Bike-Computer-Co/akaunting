@@ -44,9 +44,9 @@ class Payment extends PaymentController
         $customer
             ->setFirstName($invoice->contact_name)
             ->setLastName('test')
-            ->setBillingAddress1($invoice->contact_address)
-            ->setBillingPostcode($invoice->contact_zip_code)
-            ->setBillingCity($invoice->contact_city)
+            ->setBillingAddress1($invoice->contact_address??"Partizanski odredi")
+            ->setBillingPostcode($invoice->contact_zip_code??"1000")
+            ->setBillingCity($invoice->contact_city??"Skopje")
             ->setIdentification($invoice->contact_id)
             ->setBillingCountry('MK')
             ->setEmail($invoice->contact_email)
