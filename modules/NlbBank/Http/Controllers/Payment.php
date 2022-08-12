@@ -44,9 +44,9 @@ class Payment extends PaymentController
         $customer
             ->setFirstName($invoice->contact_name)
             ->setLastName('test')
-            ->setBillingAddress1($invoice->contact_address??"Partizanski odredi")
-            ->setBillingPostcode($invoice->contact_zip_code??"1000")
-            ->setBillingCity($invoice->contact_city??"Skopje")
+            ->setBillingAddress1($invoice->contact_address ?? "Partizanski odredi")
+            ->setBillingPostcode($invoice->contact_zip_code ?? "1000")
+            ->setBillingCity($invoice->contact_city ?? "Skopje")
             ->setIdentification($invoice->contact_id)
             ->setBillingCountry('MK')
             ->setEmail($invoice->contact_email)
@@ -127,6 +127,7 @@ class Payment extends PaymentController
 
     public function callback(Document $invoice, Request $request)
     {
+        info('nlb called: ' . $invoice->id);
         $client = new Client(
             $this->setting['api_username'],
             $this->setting['api_password'],
@@ -142,6 +143,7 @@ class Payment extends PaymentController
 
 
         if ($callbackResult->getResult() == \PaymentGateway\Client\Callback\Result::RESULT_OK) {
+            info('nlb success:' . $invoice->id);
             $this->dispatchPaidEvent($invoice, $request);
             $this->forgetReference($invoice);
         }
