@@ -7,6 +7,7 @@ use App\Models\Document\Document;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use PaymentGateway\Client\Client;
 use PaymentGateway\Client\Data\Customer;
@@ -38,7 +39,7 @@ class Payment extends PaymentController
             ->setCancelUrl($this->getCancelUrl($invoice))
             ->setSuccessUrl($this->getModuleUrl($invoice, 'success'))
             ->setErrorUrl($this->getModuleUrl($invoice, 'error'))
-            ->setCallbackUrl(route('portal.'.$this->alias . '.invoices.callback', $invoice->id));
+            ->setCallbackUrl(URL::signedRoute('signed.' . $this->alias . '.invoices.callback', [$invoice->id]));
         $customer = new Customer();
         $customer
             ->setFirstName($invoice->contact_name)
