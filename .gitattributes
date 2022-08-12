@@ -19,6 +19,7 @@
 *.ttf binary
 *.woff binary
 *.woff2 binary
+*.ico binary
 
 *.css linguist-vendored
 *.scss linguist-vendored
