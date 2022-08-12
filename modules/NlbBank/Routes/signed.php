@@ -17,6 +17,4 @@ Route::signed('nlb-bank', function () {
     Route::get('invoices/{invoice}/error', 'Payment@error')->name('invoices.error');
 
     Route::get('invoices/{invoice}/cancel', 'Payment@cancel')->name('invoices.cancel');
-
-    Route::post('invoices/{invoice}/callback', 'Payment@callback')->name('invoices.callback');
 });

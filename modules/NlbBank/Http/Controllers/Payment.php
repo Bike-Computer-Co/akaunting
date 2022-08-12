@@ -38,8 +38,7 @@ class Payment extends PaymentController
             ->setCancelUrl($this->getCancelUrl($invoice))
             ->setSuccessUrl($this->getModuleUrl($invoice, 'success'))
             ->setErrorUrl($this->getModuleUrl($invoice, 'error'))
-            ->setCallbackUrl($this->getModuleUrl($invoice, 'callback'));
-
+            ->setCallbackUrl(route('portal.'.$this->alias . '.invoices.callback', $invoice->id));
         $customer = new Customer();
         $customer
             ->setFirstName($invoice->contact_name)

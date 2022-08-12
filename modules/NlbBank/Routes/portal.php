@@ -21,6 +21,4 @@ Route::portal('nlb-bank', function () {
 
     Route::get('invoices/{invoice}/cancel', 'Payment@cancel')->name('invoices.cancel');
 
-    Route::post('invoices/{invoice}/callback', 'Payment@callback')->name('invoices.callback');
-
 });
