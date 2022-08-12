@@ -127,7 +127,7 @@ class Payment extends PaymentController
 
     public function callback(Document $invoice, Request $request)
     {
-        info('nlb called: ' . $invoice->id);
+        $this->logger->info('nlb called: ' . $invoice->id);
         $client = new Client(
             $this->setting['api_username'],
             $this->setting['api_password'],
@@ -143,7 +143,7 @@ class Payment extends PaymentController
 
 
         if ($callbackResult->getResult() == \PaymentGateway\Client\Callback\Result::RESULT_OK) {
-            info('nlb success:' . $invoice->id);
+            $this->logger->info('nlb success:' . $invoice->id);
             $this->dispatchPaidEvent($invoice, $request);
             $this->forgetReference($invoice);
         }
