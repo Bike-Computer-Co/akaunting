@@ -6,10 +6,10 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" style="text-align: center; padding-top: 5px;">
-                                <a href="{!! $url !!}" style="color: #676ba2; text-decoration: none;">{{ trans('footer.powered_by') }}&nbsp;</a>
+                                <a href="{!! $url !!}" style="color: rgb(0 110 166); text-decoration: none;">{{ trans('footer.powered_by') }}&nbsp;</a>
                             </td>
                             <td align="center" valign="middle" style="text-align: center; padding-top: 5px;">
-                                <a href="{!! $url !!}"><img src="{{ asset('public/img/akaunting-logo-wild-blue.png') }}" style="height:20px;" alt="Akaunting" /></a>
+                                <a href="{!! $url !!}"><img src="{{ asset('public/img/akaunting-logo-wild-blue-horizontal.png') }}" style="height:20px;" alt="Akaunting" /></a>
                             </td>
                         </tr>
                     </tbody>
@@ -18,7 +18,8 @@
         </tr>
         <tr>
             <td style="text-align: center; padding: 5px 0 5px 0; color: #595959;">
-                {!! trans('footer.tag_line', ['get_started_url' => $get_started]) !!}
+
+                {!! trans('footer.tag_line', ['get_started_url' => 'https://digitalhub.mk']) !!}
             </td>
         </tr>
     </tbody>
