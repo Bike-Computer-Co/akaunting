@@ -19,7 +19,10 @@ class Updates extends Controller
 {
     public function __construct()
     {
-        abort(404);
+        if (!app()->runningInConsole()){
+            abort(404);
+
+        }
     }
 
     /**

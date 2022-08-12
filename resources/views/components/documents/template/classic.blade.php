@@ -8,7 +8,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-58">
             <div class="text">
@@ -138,7 +137,7 @@
                     @if (! $hideContactTaxNumber)
                         @if ($document->contact_tax_number)
                             <p>
-                                <span class="text-medium text-default">    
+                                <span class="text-medium text-default">
                                     {{ trans('general.tax_number') }}:
                                 </span>
                                 {{ $document->contact_tax_number }}
@@ -372,7 +371,6 @@
             @endforeach
         </div>
     </div>
-
     @if (! $hideFooter)
         @if ($document->footer)
             <div class="row mt-1">
