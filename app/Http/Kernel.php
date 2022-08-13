@@ -128,7 +128,7 @@ class Kernel extends HttpKernel
             'read.only',
             'header.x',
             'language',
-            'firewall.all',
+//            'firewall.all',
         ],
 
         'import' => [
