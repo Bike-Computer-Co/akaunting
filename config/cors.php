@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => [env('API_PREFIX', 'api') . '/*'],
+    'paths' => [env('API_PREFIX', 'api') . '/*', '/sanctum/csrf-cookie', '/auth/login/', '/auth/full-register'],
 
     'allowed_methods' => ['*'],
 
