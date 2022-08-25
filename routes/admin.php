@@ -13,6 +13,7 @@ Route::group(['as' => 'uploads.', 'prefix' => 'uploads'], function () {
     Route::delete('{id}', 'Common\Uploads@destroy')->name('destroy');
 });
 
+
 Route::group(['prefix' => 'common'], function () {
     Route::get('companies/autocomplete', 'Common\Companies@autocomplete')->name('companies.autocomplete');
     Route::get('companies/{company}/switch', 'Common\Companies@switch')->name('companies.switch');
@@ -50,7 +51,14 @@ Route::group(['prefix' => 'common'], function () {
     Route::get('contacts/index', 'Common\Contacts@index')->name('contacts.index');
 });
 
+Route::get('/billing-portal', function (Request $request) {
+    return auth()->user()->redirectToBillingPortal(route('billing'));
+});
+Route::get('/billing', function () {
+    return 'dsa';
+})->name('billing');
 Route::group(['prefix' => 'auth'], function () {
+
     Route::get('logout', 'Auth\Login@destroy')->name('logout');
 
     Route::get('users/autocomplete', 'Auth\Users@autocomplete')->name('users.autocomplete');

@@ -369,7 +369,7 @@ class User extends Authenticatable implements HasLocalePreference
             }
         }));
         static::created(queueable(function (User $user) {
-            $user->createOrGetStripeCustomer();
+            $user->createAsStripeCustomer();
         }));
     }
 }
