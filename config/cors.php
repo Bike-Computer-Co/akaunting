@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['*.digitalhub.mk', 'digitalhub.mk'],
 
     'allowed_origins_patterns' => [],
 
