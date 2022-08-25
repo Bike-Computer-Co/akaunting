@@ -126,6 +126,8 @@ class Route extends Provider
 
         $this->mapApiRoutes();
 
+        $this->mapApiPublicRoutes();
+
         $this->mapCommonRoutes();
 
         $this->mapGuestRoutes();
@@ -170,6 +172,22 @@ class Route extends Provider
             ->middleware(config('api.middleware'))
             ->namespace($this->namespace . '\Api')
             ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiPublicRoutes()
+    {
+        Facade::prefix(config('api.prefix'))
+            ->domain(config('api.domain'))
+            ->middleware('api_public')
+            ->namespace($this->namespace . '\ApiPublic')
+            ->group(base_path('routes/api_public.php'));
     }
 
     /**
