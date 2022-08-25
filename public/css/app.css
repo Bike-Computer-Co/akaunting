@@ -47515,10 +47515,6 @@ body{
   background-color: rgb(237 240 252 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-transparent:hover{
-  background-color: transparent;
-}
-
 .hover\:bg-gray-50:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -47527,6 +47523,10 @@ body{
 .hover\:bg-red-700:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(153 0 0 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-transparent:hover{
+  background-color: transparent;
 }
 
 .hover\:bg-lilac-900:hover{

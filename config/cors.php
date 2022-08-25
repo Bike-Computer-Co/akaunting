@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => [env('API_PREFIX', 'api') . '/*', '/sanctum/csrf-cookie', '/auth/login/', '/auth/full-register'],
+    'paths' => [env('API_PREFIX', 'api') . '/*', '/sanctum/csrf-cookie', '/auth/login', '/auth/full-register'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*.digitalhub.mk', 'digitalhub.mk'],
+    'allowed_origins' => ['*.digitalhub.mk', 'digitalhub.mk', 'localhost:3000'],
 
     'allowed_origins_patterns' => [],
 
