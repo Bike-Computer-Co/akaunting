@@ -48,7 +48,7 @@ class FullRegister extends Controller
             'country' => ['required', Rule::in($countries)],
         ]);
 
-        DB::transaction(function () use ($validated) {
+        $user = DB::transaction(function () use ($validated) {
             dispatch_sync(new CreateCompany([
                 'name' => $validated['company_name'],
                 'domain' => '',
@@ -59,7 +59,7 @@ class FullRegister extends Controller
                 'enabled' => '1',
             ]));
 
-            dispatch_sync(new CreateUser([
+            return dispatch_sync(new CreateUser([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'password' => $validated['password'],
@@ -70,6 +70,7 @@ class FullRegister extends Controller
                 'register' => true
             ]));
         });
+        auth()->loginUsingId($user->id);
         return JsonResource::make(['success' => true, 'redirect' => route('wizard.edit', company_id())]);
 
     }

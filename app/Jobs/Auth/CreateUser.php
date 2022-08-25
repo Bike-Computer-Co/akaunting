@@ -94,8 +94,7 @@ class CreateUser extends Job implements HasOwner, HasSource, ShouldCreate
         if (request()->isInstall()) {
             return false;
         }
-
-        if (request()->has('register')) {
+        if ($this->request->has('register')) {
             return false;
         }
 

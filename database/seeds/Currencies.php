@@ -32,15 +32,15 @@ class Currencies extends Seeder
         $rows = [
             [
                 'company_id' => $company_id,
-                'name' => trans('demo.currencies.usd'),
-                'code' => 'USD',
+                'name' => 'ден',
+                'code' => 'MKD',
                 'rate' => '1.00',
                 'enabled' => '1',
-                'precision' => config('money.USD.precision'),
-                'symbol' => config('money.USD.symbol'),
-                'symbol_first' => config('money.USD.symbol_first'),
-                'decimal_mark' => config('money.USD.decimal_mark'),
-                'thousands_separator' => config('money.USD.thousands_separator'),
+                'precision' => config('money.MKD.precision'),
+                'symbol' => config('money.MKD.symbol'),
+                'symbol_first' => config('money.MKD.symbol_first'),
+                'decimal_mark' => config('money.MKD.decimal_mark'),
+                'thousands_separator' => config('money.MKD.thousands_separator'),
             ],
         ];
 
