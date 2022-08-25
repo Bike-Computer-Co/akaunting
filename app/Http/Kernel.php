@@ -59,6 +59,10 @@ class Kernel extends HttpKernel
             'firewall.all',
         ],
 
+        'api_public' => [
+            'throttle:api',
+        ],
+
         'common' => [
             'web',
             'company.identify',
