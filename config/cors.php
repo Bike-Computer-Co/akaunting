@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*.digitalhub.mk', 'digitalhub.mk', 'localhost:3000'],
+    'allowed_origins' => ['*.digitalhub.mk', 'digitalhub.mk', 'localho.st:3000'],
 
     'allowed_origins_patterns' => [],
 
