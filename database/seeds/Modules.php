@@ -32,10 +32,5 @@ class Modules extends Seeder
             'locale'    => session('locale', company($company_id)->locale),
         ]);
 
-        Artisan::call('module:install', [
-            'alias'     => 'paypal-standard',
-            'company'   => $company_id,
-            'locale'    => session('locale', company($company_id)->locale),
-        ]);
     }
 }

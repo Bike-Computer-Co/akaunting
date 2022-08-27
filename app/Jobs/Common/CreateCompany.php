@@ -75,7 +75,6 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
                 setting()->set('company.logo', $company_logo->id);
             }
         }
-
         // Create settings
         setting()->set([
             'company.name' => $this->request->get('name'),
@@ -86,9 +85,9 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
             'company.city' => $this->request->get('city'),
             'company.zip_code' => $this->request->get('zip_code'),
             'company.state' => $this->request->get('state'),
-            'company.country' => $this->request->get('country'),
-            'default.currency' => $this->request->get('currency'),
-            'default.locale' => $this->request->get('locale', 'en-GB'),
+            'company.country' => $this->request->get('country', 'MK'),
+            'default.currency' => $this->request->get('currency', 'MKD'),
+            'default.locale' => $this->request->get('locale', 'mk-MK'),
         ]);
 
         if (!empty($this->request->settings)) {
@@ -96,6 +95,8 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
                 setting()->set([$name => $value]);
             }
         }
+
+        info(collect(setting()));
 
         setting()->save();
     }

@@ -45,7 +45,7 @@ class CreateUser extends Job implements HasOwner, HasSource, ShouldCreate
             }
 
             if ($this->request->has('companies')) {
-                if (app()->runningInConsole() || request()->isInstall()) {
+                if (app()->runningInConsole() || request()->isInstall() || $this->request->has('register')) {
                     $this->model->companies()->attach($this->request->get('companies'));
                 } else {
                     $user = user();
@@ -92,6 +92,9 @@ class CreateUser extends Job implements HasOwner, HasSource, ShouldCreate
         }
 
         if (request()->isInstall()) {
+            return false;
+        }
+        if ($this->request->has('register')) {
             return false;
         }
 

@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => [env('API_PREFIX', 'api') . '/*'],
+    'paths' => [env('API_PREFIX', 'api') . '/*', '/sanctum/csrf-cookie', '/auth/login', '/auth/full-register', '/auth/forgot'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ["*"],
 
     'allowed_origins_patterns' => [],
 
@@ -29,6 +29,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];

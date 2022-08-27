@@ -97,3 +97,4 @@ modules/*
 !modules/NlbBank
 .laravelstatsrc
 .DS_Store
+/public/css/app.css

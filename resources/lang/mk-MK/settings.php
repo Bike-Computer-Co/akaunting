@@ -12,6 +12,7 @@ return [
     ],
     'localisation' => [
         'tab'               => 'Локализација',
+        'financial_start'   => 'Годината започнува на',
         'date' => [
             'format'        => 'Формат на датум',
             'separator'     => 'Текст разделник',
