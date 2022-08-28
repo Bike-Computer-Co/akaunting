@@ -236,6 +236,11 @@ Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
     });
 });
 
+Route::group(['prefix' => 'billing'], function () {
+    Route::get('/redirect', 'BillingController@redirect')->name('billing.redirect');
+
+});
+
 Route::group(['prefix' => 'install'], function () {
     Route::get('updates', 'Install\Updates@index')->name('updates.index');
     Route::get('updates/changelog', 'Install\Updates@changelog')->name('updates.changelog');

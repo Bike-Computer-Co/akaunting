@@ -122,6 +122,12 @@ class ShowInAdmin
             $menu->route('reports.index', $title, [], 150, ['icon' => 'donut_small']);
         }
 
+//        // Reports
+//        $title = trim(trans_choice('general.billing', 2));
+//        if ($this->canAccessMenuItem($title, 'read-settings-defaults')) {
+//            $menu->route('billing.redirect', $title, [], 150, ['icon' => 'invoice']);
+//        }
+
         // Apps
 //        $title = trim(trans_choice('general.modules', 2));
 //        if ($this->canAccessMenuItem($title, 'read-modules-home')) {

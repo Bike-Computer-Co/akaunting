@@ -227,6 +227,7 @@ return [
     'preview_mode'          => 'Preview Mode',
     'go_back'               => 'Go back to :type',
     'validation_error'      => 'Validation error',
+    'billing'               => 'Billing',
 
     'card' => [
         'cards'                 => 'Card|Cards',

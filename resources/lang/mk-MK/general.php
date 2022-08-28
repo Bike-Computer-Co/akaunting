@@ -124,6 +124,7 @@ return [
     'end'                   => 'Крај',
     'clear'                 => 'Исчисти',
     'difference'            => 'Разлика',
+    'billing'               => 'Наплата',
 
     'title' => [
         'new'               => 'Нов :type',
