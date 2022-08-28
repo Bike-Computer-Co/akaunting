@@ -20,9 +20,9 @@
                                     {{ translations.currencies.code }}
                                 </th>
 
-                                <th class="w-4/12 ltr:pr-6 rtl:pl-6 py-3 ltr:text-right rtl:text-left text-sm font-bold text-black tracking-wider">
-                                    {{ translations.currencies.rate }}
-                                </th>
+<!--                                <th class="w-4/12 ltr:pr-6 rtl:pl-6 py-3 ltr:text-right rtl:text-left text-sm font-bold text-black tracking-wider">-->
+<!--                                    {{ translations.currencies.rate }}-->
+<!--                                </th>-->
                             </tr>
                         </thead>
 
@@ -35,7 +35,7 @@
                                     {{ item.code }}
                                 </td>
                                 <td :class="current_tab == index ? 'hidden' : ''" class="w-4/12 relative ltr:pr-6 rtl:pl-6 py-4 ltr:text-right rtl:text-left whitespace-nowrap text-sm font-medium text-black">
-                                    {{ item.rate }}
+<!--                                    {{ item.rate }}-->
 
                                     <div class="absolute ltr:right-12 rtl:left-12 -top-4 hidden items-center group-hover:flex">
                                         <button type="button" class="relative bg-white hover:bg-gray-100 border py-0.5 px-1 cursor-pointer index-actions " @click="onEditItem(item, index)">

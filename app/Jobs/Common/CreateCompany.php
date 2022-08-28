@@ -96,8 +96,6 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
             }
         }
 
-        info(collect(setting()));
-
         setting()->save();
     }
 }

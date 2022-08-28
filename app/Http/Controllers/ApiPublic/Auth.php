@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\ApiPublic;
 
-use Akaunting\Module\Routing\Controller;
-use Illuminate\Http\Request;
+use App\Abstracts\Http\Controller;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class User extends Controller
+class Auth extends Controller
 {
 
-    public function loggedRedirect(): JsonResource
+    public function check(): JsonResource
     {
         if (!auth()->check())
-            return JsonResource::make(['status' => false]);
+            return JsonResource::make([
+                'success' => false
+            ]);
 
-        $user = auth();
+        $user = auth()->user();
         $company = $user->withoutEvents(function () use ($user) {
             return $user->companies()->enabled()->first();
         });

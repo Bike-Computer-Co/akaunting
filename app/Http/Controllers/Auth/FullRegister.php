@@ -22,10 +22,10 @@ class FullRegister extends Controller
 
     public function create()
     {
-        $locales = collect(config('language.all'))->map(fn($item) => ['id' => $item['long'], 'name' => $item['english']]);
-        $currencies = collect(config('money'))->map(fn($item, $key) => ['id' => $key, 'name' => $item['name']]);
+//        $locales = collect(config('language.all'))->map(fn($item) => ['id' => $item['long'], 'name' => $item['english']]);
+//        $currencies = collect(config('money'))->map(fn($item, $key) => ['id' => $key, 'name' => $item['name']]);
         $countries = collect(trans('countries'))->map(fn($item, $key) => ['id' => $key, 'name' => $item])->values();
-        return JsonResource::make(compact('locales', 'currencies', 'countries'));
+        return JsonResource::make(compact('countries'));
     }
 
     public function store(Request $request)
@@ -42,7 +42,6 @@ class FullRegister extends Controller
             'password' => 'required|min:8',
 
             'company_name' => 'required|unique:settings,value',
-            'company_email' => 'required|email|unique:settings,value',
             'locale' => ['required', Rule::in($locales)],
             'currency' => ['required', Rule::in($currencies)],
             'country' => ['required', Rule::in($countries)],
@@ -52,7 +51,7 @@ class FullRegister extends Controller
             dispatch_sync(new CreateCompany([
                 'name' => $validated['company_name'],
                 'domain' => '',
-                'email' => $validated['company_email'],
+                'email' => $validated['email'],
                 'currency' => $validated['currency'],
                 'country' => $validated['country'],
                 'locale' => $validated['locale'],
