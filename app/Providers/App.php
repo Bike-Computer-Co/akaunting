@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider as Provider;
 use Laravel\Cashier\Cashier;
 use Laravel\Sanctum\Sanctum;
+use App\Models\Common\Company;
 
 class App extends Provider
 {
@@ -19,6 +20,7 @@ class App extends Provider
      */
     public function register()
     {
+        Cashier::ignoreMigrations();
         if (config('app.installed') && config('app.debug')) {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
@@ -50,6 +52,6 @@ class App extends Provider
             report("Attempted to lazy load [{$relation}] on model [{$class}].");
         });
 
-        Cashier::useCustomerModel(User::class);
+        Cashier::useCustomerModel(Company::class);
     }
 }

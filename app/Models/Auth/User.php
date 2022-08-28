@@ -16,13 +16,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
-use Laravel\Cashier\Billable;
 use Lorisleiva\LaravelSearchString\Concerns\SearchString;
 use function Illuminate\Events\queueable;
 
 class User extends Authenticatable implements HasLocalePreference
 {
-    use HasFactory, LaratrustUserTrait, Media, Notifiable, Owners, SearchString, SoftDeletes, Sortable, Sources, Tenants, Users, Billable;
+    use HasFactory, LaratrustUserTrait, Media, Notifiable, Owners, SearchString, SoftDeletes, Sortable, Sources, Tenants, Users;
 
     protected $table = 'users';
 
@@ -363,13 +362,5 @@ class User extends Authenticatable implements HasLocalePreference
     protected static function booted()
     {
         parent::booted();
-        static::updated(queueable(function (User $user) {
-            if ($user->hasStripeId()) {
-                $user->syncStripeCustomerDetails();
-            }
-        }));
-        static::created(queueable(function (User $user) {
-            $user->createAsStripeCustomer();
-        }));
     }
 }
