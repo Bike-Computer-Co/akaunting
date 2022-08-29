@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        '/*/signed/nlb-bank/invoices/*/callback'
+        '/*/signed/nlb-bank/invoices/*/callback',
+        'stripe/*',
     ];
 }

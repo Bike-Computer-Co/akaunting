@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Lorisleiva\LaravelSearchString\Concerns\SearchString;
+use function Illuminate\Events\queueable;
 
 class User extends Authenticatable implements HasLocalePreference
 {
@@ -192,7 +193,7 @@ class User extends Authenticatable implements HasLocalePreference
         $request = request();
 
         $search = $request->get('search');
-        $limit = (int) $request->get('limit', setting('default.list_limit', '25'));
+        $limit = (int)$request->get('limit', setting('default.list_limit', '25'));
 
         return $query->usingSearchString($search)->sortable($sort)->paginate($limit);
     }
@@ -261,7 +262,7 @@ class User extends Authenticatable implements HasLocalePreference
      */
     public function isCustomer()
     {
-        return (bool) $this->can('read-client-portal');
+        return (bool)$this->can('read-client-portal');
     }
 
     /**
@@ -271,7 +272,7 @@ class User extends Authenticatable implements HasLocalePreference
      */
     public function isNotCustomer()
     {
-        return (bool) $this->can('read-admin-panel');
+        return (bool)$this->can('read-admin-panel');
     }
 
     public function scopeSource($query, $source)
@@ -356,5 +357,10 @@ class User extends Authenticatable implements HasLocalePreference
     protected static function newFactory()
     {
         return \Database\Factories\User::new();
+    }
+
+    protected static function booted()
+    {
+        parent::booted();
     }
 }

@@ -7,6 +7,7 @@ use App\Events\Common\CompanyForgettingCurrent;
 use App\Events\Common\CompanyForgotCurrent;
 use App\Events\Common\CompanyMadeCurrent;
 use App\Events\Common\CompanyMakingCurrent;
+use App\Models\Auth\User;
 use App\Models\Document\Document;
 use App\Traits\Contacts;
 use App\Traits\Media;
@@ -19,11 +20,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laratrust\Contracts\Ownable;
+use Laravel\Cashier\Billable;
 use Lorisleiva\LaravelSearchString\Concerns\SearchString;
+use function Illuminate\Events\queueable;
 
 class Company extends Eloquent implements Ownable
 {
-    use Contacts, HasFactory, Media, Owners, SearchString, SoftDeletes, Sortable, Sources, Tenants, Transactions;
+    use Contacts, HasFactory, Media, Owners, SearchString, SoftDeletes, Sortable, Sources, Tenants, Transactions, Billable;
 
     protected $table = 'companies';
 
@@ -66,11 +69,21 @@ class Company extends Eloquent implements Ownable
         return parent::fill($attributes);
     }
 
+    public function stripeName()
+    {
+        return $this->getAttribute('name');
+    }
+
+    public function stripeEmail()
+    {
+        return $this->getAttribute('email');
+    }
+
     public static function boot()
     {
         parent::boot();
 
-        try { 
+        try {
             // TODO will optimize..
             static::retrieved(function($model) {
                 $model->setCommonSettingsAsAttributes();
@@ -79,6 +92,15 @@ class Company extends Eloquent implements Ownable
             static::saving(function($model) {
                 $model->unsetCommonSettingsFromAttributes();
             });
+
+            static::updated(queueable(function (Company $company) {
+                if ($company->hasStripeId()) {
+                    $company->syncStripeCustomerDetails();
+                }
+            }));
+            static::created(queueable(function (Company $company) {
+                $company->createAsStripeCustomer();
+            }));
         } catch(\Throwable $e) {
 
         }
