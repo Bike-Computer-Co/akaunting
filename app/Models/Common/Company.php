@@ -69,6 +69,16 @@ class Company extends Eloquent implements Ownable
         return parent::fill($attributes);
     }
 
+    public function stripeName()
+    {
+        return $this->getAttribute('name');
+    }
+
+    public function stripeEmail()
+    {
+        return $this->getAttribute('email');
+    }
+
     public static function boot()
     {
         parent::boot();

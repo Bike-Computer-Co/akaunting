@@ -9,7 +9,8 @@ class BillingController extends Controller
 {
     public function redirect(Request $request)
     {
-        $request->user()->createOrGetStripeCustomer();
-        return $request->user()->redirectToBillingPortal(route('dashboard'));
+        $company = company();
+        $company->createOrGetStripeCustomer();
+        return $company->redirectToBillingPortal(route('dashboard'));
     }
 }
