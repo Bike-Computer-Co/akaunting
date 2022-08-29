@@ -60,6 +60,7 @@ class Kernel extends HttpKernel
         ],
 
         'api_public' => [
+            'web',
             'throttle:api',
         ],
 
