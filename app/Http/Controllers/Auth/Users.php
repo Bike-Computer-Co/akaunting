@@ -37,7 +37,8 @@ class Users extends Controller
      */
     public function index()
     {
-        $users = User::with('media', 'roles')->collect();
+        $users = User::whereHas('companies', fn($q) => $q->where('id', company_id()))
+            ->with('media', 'roles')->collect();
 
         return $this->response('auth.users.index', compact('users'));
     }
@@ -80,7 +81,7 @@ class Users extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -108,7 +109,7 @@ class Users extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  User  $user
+     * @param User $user
      *
      * @return Response
      */
@@ -117,8 +118,11 @@ class Users extends Controller
         if (user()->cannot('read-auth-users') && ($user->id != user()->id)) {
             abort(403);
         }
+        if (!$user->companies()->where('id', company_id())->exists()){
+            abort(403);
+        }
 
-        $u = new \stdClass();
+            $u = new \stdClass();
         $u->landing_pages = [];
 
         event(new LandingPageShowing($u));
@@ -161,14 +165,17 @@ class Users extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  User $user
-     * @param  Request $request
+     * @param User $user
+     * @param Request $request
      *
      * @return Response
      */
     public function update(User $user, Request $request)
     {
         if (user()->cannot('update-auth-users') && ($user->id != user()->id)) {
+            abort(403);
+        }
+        if (!$user->companies()->where('id', company_id())->exists()){
             abort(403);
         }
 
@@ -194,7 +201,7 @@ class Users extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  User $user
+     * @param User $user
      *
      * @return Response
      */
@@ -212,7 +219,7 @@ class Users extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  User $user
+     * @param User $user
      *
      * @return Response
      */
@@ -230,12 +237,15 @@ class Users extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  User $user
+     * @param User $user
      *
      * @return Response
      */
     public function destroy(User $user)
     {
+        if (!$user->companies()->where('id', company_id())->exists()){
+            abort(403);
+        }
         $response = $this->ajaxDispatch(new DeleteUser($user));
 
         $response['redirect'] = route('users.index');
@@ -256,7 +266,7 @@ class Users extends Controller
     /**
      * Mark upcoming bills notifications are read and redirect to bills page.
      *
-     * @param  User $user
+     * @param User $user
      *
      * @return Response
      */
@@ -278,7 +288,7 @@ class Users extends Controller
     /**
      * Mark overdue invoices notifications are read and redirect to invoices page.
      *
-     * @param  User $user
+     * @param User $user
      *
      * @return Response
      */
@@ -305,10 +315,10 @@ class Users extends Controller
         $column = $request['column'];
         $value = $request['value'];
 
-        if (! empty($column) && ! empty($value)) {
+        if (!empty($column) && !empty($value)) {
             switch ($column) {
                 case 'id':
-                    $user = User::find((int) $value);
+                    $user = User::find((int)$value);
                     break;
                 case 'email':
                     $user = User::where('email', $value)->first();
@@ -318,21 +328,21 @@ class Users extends Controller
             }
 
             $data = $user;
-        } elseif (! empty($column) && empty($value)) {
+        } elseif (!empty($column) && empty($value)) {
             $data = trans('validation.required', ['attribute' => $column]);
         }
 
         return response()->json([
-            'errors'  => ($user) ? false : true,
+            'errors' => ($user) ? false : true,
             'success' => ($user) ? true : false,
-            'data'    => $data,
+            'data' => $data,
         ]);
     }
 
     /**
      * Process request for reinviting the specified resource.
      *
-     * @param  User  $user
+     * @param User $user
      *
      * @return Response
      */
