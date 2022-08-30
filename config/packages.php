@@ -9,6 +9,7 @@ return [
         'yearly_promo_price' => 0,
         'yearly_promo_duration' => 0,
         'trial_days' => 0,
+        'featured' => false,
         'features' => [
             'mk' => [
                 'Неограничен број клиенти',
@@ -43,6 +44,7 @@ return [
         'yearly_promo_price' => 110,
         'yearly_promo_duration' => 1,
         'trial_days' => 30,
+        'featured' => false,
         'features' => [
             'mk' => [
                 'Неограничен број клиенти',
@@ -83,6 +85,7 @@ return [
         'yearly_promo_price' => 181.99,
         'yearly_promo_duration' => 1,
         'trial_days' => 30,
+        'featured' => true,
         'features' => [
             'mk' => [
                 'Неограничен број клиенти',
@@ -125,6 +128,7 @@ return [
         'yearly_promo_price' => 251,
         'yearly_promo_duration' => 1,
         'trial_days' => 30,
+        'featured' => false,
         'features' => [
             'mk' => [
                 'Неограничен број клиенти',
