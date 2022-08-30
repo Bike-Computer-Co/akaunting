@@ -50,13 +50,13 @@ Route::group(['prefix' => 'common'], function () {
 
     Route::get('contacts/index', 'Common\Contacts@index')->name('contacts.index');
 });
-
-Route::get('/billing-portal', function (Request $request) {
-    return auth()->user()->redirectToBillingPortal(route('billing'));
+Route::group(['prefix' => 'billing'], function () {
+//    Route::get('/home', fn()=> '')->name('home');
+    Route::get('/redirect', 'BillingController@redirect')->name('billing.redirect');
+    Route::get('/subscription', "BillingController@subscription")->name('billing.subscription');
 });
-Route::get('/billing', function () {
-    return 'dsa';
-})->name('billing');
+
+
 Route::group(['prefix' => 'auth'], function () {
 
     Route::get('logout', 'Auth\Login@destroy')->name('logout');
@@ -236,10 +236,7 @@ Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
     });
 });
 
-Route::group(['prefix' => 'billing'], function () {
-    Route::get('/redirect', 'BillingController@redirect')->name('billing.redirect');
 
-});
 
 Route::group(['prefix' => 'install'], function () {
     Route::get('updates', 'Install\Updates@index')->name('updates.index');

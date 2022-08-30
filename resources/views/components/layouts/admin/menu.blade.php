@@ -122,7 +122,7 @@
 
             @can('read-settings-defaults')
                 <x-tooltip id="tooltip-billing" placement="right" message="{{ trans('general.billing') }}">
-                    <a href="{{route('billing.redirect')}}" target="_blank"
+                    <a href="{{route('billing.subscription')}}"
                        class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles">
                         <span id="menu-support-icon"
                               class="material-icons-outlined text-purple text-2xl">credit_card</span>
