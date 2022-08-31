@@ -16,14 +16,15 @@ class BillingController extends Controller
 
     public function subscription(Request $request)
     {
-        $checkout = company()->newSubscription('default', "price_1LcHl1J0xcYTmxxkn76cuuix")->checkout( [
-            'success_url'=> route('billing.subscription').'?checkout=success',
-            'cancel_url'=> route('billing.subscription').'?checkout=cancelled',
+        $checkout = company()->newSubscription('default', "price_1LcHl1J0xcYTmxxkn76cuuix")->checkout([
+            'success_url' => route('billing.subscription') . '?checkout=success',
+            'cancel_url' => route('billing.subscription') . '?checkout=cancelled',
         ]);
 
         return view('billing.subscription', [
             'stripeKey' => config('cashier.key'),
-            'sessionId' => $checkout->id
+            'sessionId' => $checkout->id,
+            'packages' => config('packages')
         ]);
     }
 }
