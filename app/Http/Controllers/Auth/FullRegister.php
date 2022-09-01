@@ -72,11 +72,11 @@ class FullRegister extends Controller
         });
         auth()->loginUsingId($user->id);
         Http::post('https://discord.com/api/webhooks/1015030296640499712/FnXmKnh7J_yrpFj3rYQCeh4H_Gj5xvOmu0SodV6K-gBRtaP9dt01egpbaZplsaQNGHa3', [
-            'content' => "New user registration",
+            'content' => "New user is registered on DigitalHub",
             'embeds' => [
                 [
-                    'title' => "New user registration!",
-                    'description' => "New user registration!",
+                    'title' => "$validated[name] from $validated[company_name] registered",
+                    'description' => "With email: $validated[email]",
                     'color' => '7506394',
                 ]
             ],
