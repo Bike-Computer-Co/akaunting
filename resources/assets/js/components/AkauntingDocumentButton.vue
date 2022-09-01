@@ -6,17 +6,17 @@
             </span>
             {{ addItemText }}
         </button>
- 
+
         <div :class="[{'is-open': show.item_list}]" tabindex="-1">
             <div class="-mt-10.5 left-0 right-0 bg-white border rounded-lg" v-if="show.item_list">
                 <div class="relative">
                     <span class="material-icons-round absolute left-4 top-3 text-lg">search</span>
-                    <input 
+                    <input
                         type="text"
                         data-input="true"
                         class="w-full text-sm px-10 py-2.5 mt-1rounded-none border border-gray-200 border-t-0 border-l-0 border-r-0 text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple"
-                        autocapitalize="default" 
-                        autocorrect="ON" 
+                        autocapitalize="default"
+                        autocorrect="ON"
                         :placeholder="placeholder"
                         v-model="search"
                         @input="onInput"
@@ -25,16 +25,16 @@
                 </div>
 
                 <ul class="w-full text-sm p-0 mt-0 rounded-lg border-0 border-light-gray text-black placeholder-light-gray bg-white cursor-pointer disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple">
-                    <div 
-                        class="hover:bg-gray-100 px-4" 
-                        v-for="(item, index) in sortedItems" 
-                        :key="index" 
+                    <div
+                        class="hover:bg-gray-100 px-4"
+                        v-for="(item, index) in sortedItems"
+                        :key="index"
                         @click="onItemSelected(item)"
                     >
                         <div class="w-full flex items-center justify-between">
                             <span class="w-9/12">{{ item.name }}</span>
 
-                            <money 
+                            <money
                                 :name="'item-id-' + item.id"
                                 :value="item.amount"
                                 v-bind="money"
@@ -43,7 +43,7 @@
                                 class="w-1/12 text-right disabled-money text-gray"
                             ></money>
                             -
-                            <money 
+                            <money
                                 :name="'item-id-' + item.id"
                                 :value="item.paid"
                                 v-bind="money"
@@ -52,7 +52,7 @@
                                 class="w-1/12 text-right disabled-money text-gray"
                             ></money>
                             =
-                            <money 
+                            <money
                                 :name="'item-id-' + item.id"
                                 :value="item.open"
                                 v-bind="money"
@@ -219,7 +219,7 @@ export default {
                 return;
             }
 
-            //condition that checks if input is below the given character limit 
+            //condition that checks if input is below the given character limit
             this.setItemList(this.items); //once the user deletes the search input, we show the overall item list
             this.sortItems(); // we order it as wanted
             this.$emit('input', this.search); // keep the input binded to v-model
@@ -268,7 +268,7 @@ export default {
                 return 0;
             });
 
-            const sortedItemList = this.item_list.filter(item => 
+            const sortedItemList = this.item_list.filter(item =>
                 item.name.toLowerCase().includes(this.search.toLowerCase())
             );
 

@@ -6,13 +6,13 @@
         </h2>
 
         <div class="flex items-center">
-            @if ($report = $class->getReportUrl())
-                <x-link href="{{ $report }}" class="text-purple text-sm mr-3" override="class">
-                    <x-link.hover color="to-purple">
-                        {{ trans('widgets.view_report') }}
-                    </x-link.hover>
-                </x-link>
-            @endif
+{{--            @if ($report = $class->getReportUrl())--}}
+{{--                <x-link href="{{ $report }}" class="text-purple text-sm mr-3" override="class">--}}
+{{--                    <x-link.hover color="to-purple">--}}
+{{--                        {{ trans('widgets.view_report') }}--}}
+{{--                    </x-link.hover>--}}
+{{--                </x-link>--}}
+{{--            @endif--}}
 
             <x-dropdown id="dropdown-widget-{{ $class->model->id }}">
                 <x-slot name="trigger" class="flex" override="class">

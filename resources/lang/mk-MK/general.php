@@ -140,7 +140,16 @@ return [
             'field'         => '-Одбери :field-',
             'file'          => 'Одбери фајл',
         ],
-        'no_file_selected'  => 'Не е селектиран ниеден фајл...',
+        'add'               => 'Додај :field',
+        'add_an'            => 'Додај :field',
+        'add_new'           => 'Додај нов :field',
+        'no_file_selected'  => 'Немате селектирано фајл...',
+        'edit'              => 'Измени :field',
+        'contact_edit'      => 'Измени :contact_name :field',
+        'drop_file'         => 'Прикачи датотеки',
+        'choose'            => 'Одбери :field',
+        'choose_different'  => 'Одбери друг :field',
+        'choose_file'       => 'Одбери датотека',
     ],
 
     'date_range' => [

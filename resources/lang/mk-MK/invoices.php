@@ -39,7 +39,11 @@ return [
     'send_invoice'          => 'Прати фактура',
     'get_paid'              => 'Земи средства',
     'accept_payments'       => 'Прифатете онлајн плаќања',
+    'payment_received'      => 'Примена уплата',
 
+    'form_description' => [
+        'billing'           => '(превод) Billing details appear in your invoice. Invoice Date is used in the dashboard and reports. Select the date you expect to get paid as the Due Date.',
+    ],
     'messages' => [
         'email_required'    => 'Нема адреса на е-пошта за овој клиент!',
         'draft'             => 'Ова е <b>НАЦРТ</b> фактура и ќе се одрази на графиконите откако ќе биде испратена.',
