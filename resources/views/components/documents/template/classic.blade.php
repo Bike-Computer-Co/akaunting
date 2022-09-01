@@ -69,11 +69,13 @@
                         </p>
                     @endif
                 @endif
+                <p class="small-text">
+                    {{setting('invoice.accounts')}}
+                </p>
                 @stack('company_details_end')
             </div>
         </div>
     </div>
-
     <div class="row mt-2">
         <div class="col-33">
             <div class="invoice-classic-line mb-1 mt-4" style="background-color:{{ $backgroundColor }};"></div>
@@ -370,6 +372,14 @@
                 @endif
             @endforeach
         </div>
+    </div>
+    <div style="float:right; margin-top:10px">
+        @if($signature)
+            <img src="{{$signature}}" alt="">
+        @endif
+        @if($stamp)
+            <img src="{{$stamp}}" alt="">
+        @endif
     </div>
     @if (! $hideFooter)
         @if ($document->footer)

@@ -123,13 +123,17 @@ abstract class Template extends Component
 
     public $hideNote;
 
+
+    public $signature;
+    public $stamp;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
     public function __construct(
-        $type, $document, $item = false,  $documentTemplate = '', $logo = '', $backgroundColor = '',
+        $type, $document, $item = false, $documentTemplate = '', $logo = '', $backgroundColor = '',
         bool $hideFooter = false, bool $hideCompanyLogo = false, bool $hideCompanyDetails = false,
         bool $hideCompanyName = false, bool $hideCompanyAddress = false, bool $hideCompanyTaxNumber = false, bool $hideCompanyPhone = false, bool $hideCompanyEmail = false, bool $hideContactInfo = false,
         bool $hideContactName = false, bool $hideContactAddress = false, bool $hideContactTaxNumber = false, bool $hideContactPhone = false, bool $hideContactEmail = false,
@@ -138,12 +142,15 @@ abstract class Template extends Component
         string $textContactInfo = '', string $textDocumentNumber = '', string $textOrderNumber = '', string $textIssuedAt = '', string $textDueAt = '',
         bool $hideItems = false, bool $hideName = false, bool $hideDescription = false, bool $hideQuantity = false, bool $hidePrice = false, bool $hideDiscount = false, bool $hideAmount = false, bool $hideNote = false,
         string $textItems = '', string $textQuantity = '', string $textPrice = '', string $textAmount = ''
-    ) {
+    )
+    {
         $this->type = $type;
         $this->item = $item;
         $this->document = $document;
         $this->documentTemplate = $this->getDocumentTemplate($type, $documentTemplate);
         $this->logo = $this->getLogo($logo);
+        $this->stamp = $this->getCompanyImage('stamp', 100, 100);
+        $this->signature = $this->getCompanyImage('signature', 200, 100);
         $this->backgroundColor = $this->getBackgroundColor($type, $backgroundColor);
 
         $this->hideFooter = $hideFooter;
@@ -193,7 +200,7 @@ abstract class Template extends Component
 
     protected function getDocumentTemplate($type, $documentTemplate)
     {
-        if (! empty($documentTemplate)) {
+        if (!empty($documentTemplate)) {
             return $documentTemplate;
         }
 
@@ -201,22 +208,65 @@ abstract class Template extends Component
             return $template;
         }
 
-        $documentTemplate =  setting($this->getSettingKey($type, 'template'), 'default');
+        $documentTemplate = setting($this->getSettingKey($type, 'template'), 'default');
 
         return $documentTemplate;
     }
 
-    protected function getLogo($logo)
+    protected function getCompanyImage($type, $w=50, $h=50)
     {
-        if (! empty($logo)) {
-            return $logo;
-        }
+//        if (! empty($logo)) {
+//            return $logo;
+//        }
 
-        $media_id = (! empty($this->document->contact->logo) && ! empty($this->document->contact->logo->id)) ? $this->document->contact->logo->id : setting('company.logo');
+        $media_id = setting('company.' . $type);
 
         $media = Media::find($media_id);
 
-        if (! empty($media)) {
+        if (empty($media))
+            return null;
+
+        $path = $media->getDiskPath();
+
+        if (Storage::missing($path)) {
+            return null;
+        }
+
+        try {
+            $image = Image::cache(function ($image) use ($media, $path, $w, $h) {
+                if ($media) {
+                    $image->make(Storage::get($path))->resize($w, $h)->encode();
+                } else {
+                    $image->make($path)->resize($w, $h)->encode();
+                }
+            });
+        } catch (NotReadableException|\Exception $e) {
+            Log::info('Company ID: ' . company_id() . ' components/documentshow.php exception.');
+            Log::info($e->getMessage());
+            return null;
+        }
+
+        if (empty($image)) {
+            return null;
+        }
+
+        $extension = File::extension($path);
+
+        return 'data:image/' . $extension . ';base64,' . base64_encode($image);
+    }
+
+
+    protected function getLogo($logo)
+    {
+        if (!empty($logo)) {
+            return $logo;
+        }
+
+        $media_id = (!empty($this->document->contact->logo) && !empty($this->document->contact->logo->id)) ? $this->document->contact->logo->id : setting('company.logo');
+
+        $media = Media::find($media_id);
+
+        if (!empty($media)) {
             $path = $media->getDiskPath();
 
             if (Storage::missing($path)) {
@@ -227,7 +277,7 @@ abstract class Template extends Component
         }
 
         try {
-            $image = Image::cache(function($image) use ($media, $path) {
+            $image = Image::cache(function ($image) use ($media, $path) {
                 $width = setting('invoice.logo_size_width');
                 $height = setting('invoice.logo_size_height');
 
@@ -237,13 +287,13 @@ abstract class Template extends Component
                     $image->make($path)->resize($width, $height)->encode();
                 }
             });
-        } catch (NotReadableException | \Exception $e) {
+        } catch (NotReadableException|\Exception $e) {
             Log::info('Company ID: ' . company_id() . ' components/documentshow.php exception.');
             Log::info($e->getMessage());
 
             $path = base_path('public/img/company.png');
 
-            $image = Image::cache(function($image) use ($path) {
+            $image = Image::cache(function ($image) use ($path) {
                 $width = setting('invoice.logo_size_width');
                 $height = setting('invoice.logo_size_height');
 
@@ -262,7 +312,7 @@ abstract class Template extends Component
 
     protected function getBackgroundColor($type, $backgroundColor)
     {
-        if (! empty($backgroundColor)) {
+        if (!empty($backgroundColor)) {
             return $backgroundColor;
         }
 
@@ -271,7 +321,7 @@ abstract class Template extends Component
         }
 
 
-        if (! empty($alias = config('type.document.' . $type . '.alias'))) {
+        if (!empty($alias = config('type.document.' . $type . '.alias'))) {
             $type = $alias . '.' . str_replace('-', '_', $type);
         }
 
@@ -282,19 +332,19 @@ abstract class Template extends Component
 
     protected function getTextDocumentTitle($type, $textDocumentTitle)
     {
-        if (! empty($textDocumentTitle)) {
+        if (!empty($textDocumentTitle)) {
             return $textDocumentTitle;
         }
 
         $key = $this->getSettingKey($type, 'title');
 
-        if (! empty(setting($key))) {
+        if (!empty(setting($key))) {
             return setting($key);
         }
 
         $translation = $this->getTextFromConfig($type, 'document_title', Str::plural($type));
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return trans_choice($translation, 1);
         }
 
@@ -303,19 +353,19 @@ abstract class Template extends Component
 
     protected function getTextDocumentSubheading($type, $textDocumentSubheading)
     {
-        if (! empty($textDocumentSubheading)) {
+        if (!empty($textDocumentSubheading)) {
             return $textDocumentSubheading;
         }
 
         $key = $this->getSettingKey($type, 'subheading');
 
-        if (! empty(setting($key))) {
+        if (!empty(setting($key))) {
             return setting($key);
         }
 
         $translation = $this->getTextFromConfig($type, 'document_subheading', 'subheading');
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return trans($translation);
         }
 
@@ -324,7 +374,7 @@ abstract class Template extends Component
 
     protected function getTextDocumentNumber($type, $textDocumentNumber)
     {
-        if (! empty($textDocumentNumber)) {
+        if (!empty($textDocumentNumber)) {
             return $textDocumentNumber;
         }
 
@@ -341,7 +391,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'document_number', $default_key);
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -350,13 +400,13 @@ abstract class Template extends Component
 
     protected function getTextOrderNumber($type, $textOrderNumber)
     {
-        if (! empty($textOrderNumber)) {
+        if (!empty($textOrderNumber)) {
             return $textOrderNumber;
         }
 
         $translation = $this->getTextFromConfig($type, 'order_number');
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -365,7 +415,7 @@ abstract class Template extends Component
 
     protected function getTextContactInfo($type, $textContactInfo)
     {
-        if (! empty($textContactInfo)) {
+        if (!empty($textContactInfo)) {
             return $textContactInfo;
         }
 
@@ -382,7 +432,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'contact_info', $default_key);
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -391,7 +441,7 @@ abstract class Template extends Component
 
     protected function getTextIssuedAt($type, $textIssuedAt)
     {
-        if (! empty($textIssuedAt)) {
+        if (!empty($textIssuedAt)) {
             return $textIssuedAt;
         }
 
@@ -408,7 +458,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'issued_at', $default_key);
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -417,13 +467,13 @@ abstract class Template extends Component
 
     protected function getTextDueAt($type, $textDueAt)
     {
-        if (! empty($textDueAt)) {
+        if (!empty($textDueAt)) {
             return $textDueAt;
         }
 
         $translation = $this->getTextFromConfig($type, 'due_at', 'due_date');
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -432,7 +482,7 @@ abstract class Template extends Component
 
     protected function getTextItems($type, $textItems)
     {
-        if (! empty($textItems)) {
+        if (!empty($textItems)) {
             return $textItems;
         }
 
@@ -453,7 +503,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'items');
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -462,7 +512,7 @@ abstract class Template extends Component
 
     protected function getTextQuantity($type, $textQuantity)
     {
-        if (! empty($textQuantity)) {
+        if (!empty($textQuantity)) {
             return $textQuantity;
         }
 
@@ -483,7 +533,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'quantity');
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -492,7 +542,7 @@ abstract class Template extends Component
 
     protected function getTextPrice($type, $textPrice)
     {
-        if (! empty($textPrice)) {
+        if (!empty($textPrice)) {
             return $textPrice;
         }
 
@@ -513,7 +563,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'price');
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -522,13 +572,13 @@ abstract class Template extends Component
 
     protected function getTextAmount($type, $textAmount)
     {
-        if (! empty($textAmount)) {
+        if (!empty($textAmount)) {
             return $textAmount;
         }
 
         $translation = $this->getTextFromConfig($type, 'amount');
 
-        if (! empty($translation)) {
+        if (!empty($translation)) {
             return $translation;
         }
 
@@ -537,7 +587,7 @@ abstract class Template extends Component
 
     protected function getHideItems($type, $hideItems, $hideName, $hideDescription)
     {
-        if (! empty($hideItems)) {
+        if (!empty($hideItems)) {
             return $hideItems;
         }
 
@@ -547,14 +597,14 @@ abstract class Template extends Component
             return $hide;
         }
 
-        $hideItems = ($this->getHideName($type, $hideName) & $this->getHideDescription($type, $hideDescription)) ? true  : false;
+        $hideItems = ($this->getHideName($type, $hideName) & $this->getHideDescription($type, $hideDescription)) ? true : false;
 
         return $hideItems;
     }
 
     protected function getHideName($type, $hideName)
     {
-        if (! empty($hideName)) {
+        if (!empty($hideName)) {
             return $hideName;
         }
 
@@ -575,7 +625,7 @@ abstract class Template extends Component
 
     protected function getHideDescription($type, $hideDescription)
     {
-        if (! empty($hideDescription)) {
+        if (!empty($hideDescription)) {
             return $hideDescription;
         }
 
@@ -596,7 +646,7 @@ abstract class Template extends Component
 
     protected function getHideQuantity($type, $hideQuantity)
     {
-        if (! empty($hideQuantity)) {
+        if (!empty($hideQuantity)) {
             return $hideQuantity;
         }
 
@@ -617,7 +667,7 @@ abstract class Template extends Component
 
     protected function getHidePrice($type, $hidePrice)
     {
-        if (! empty($hidePrice)) {
+        if (!empty($hidePrice)) {
             return $hidePrice;
         }
 
@@ -638,7 +688,7 @@ abstract class Template extends Component
 
     protected function getHideDiscount($type, $hideDiscount)
     {
-        if (! empty($hideDiscount)) {
+        if (!empty($hideDiscount)) {
             return $hideDiscount;
         }
 
@@ -659,7 +709,7 @@ abstract class Template extends Component
 
     protected function getHideAmount($type, $hideAmount)
     {
-        if (! empty($hideAmount)) {
+        if (!empty($hideAmount)) {
             return $hideAmount;
         }
 
