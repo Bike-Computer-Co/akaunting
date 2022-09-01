@@ -9,6 +9,8 @@ return [
         'phone'             => 'Телефон',
         'address'           => 'Адреса',
         'logo'              => 'Лого',
+        'signature'         => 'Потпис',
+        'stamp'             => 'Печат',
     ],
     'localisation' => [
         'tab'               => 'Локализација',

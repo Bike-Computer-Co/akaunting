@@ -22,6 +22,8 @@
 
                         <div class="sm:col-span-3">
                             <x-form.group.file name="logo" label="{{ trans('settings.company.logo') }}" :value="setting('company.logo')" not-required />
+                            <x-form.group.file name="signature" label="{{ trans('settings.company.signature') }}" :value="setting('company.signature')" not-required />
+                            <x-form.group.file name="stamp" label="{{ trans('settings.company.stamp') }}" :value="setting('company.stamp')" not-required />
                         </div>
                     </x-slot>
                 </x-form.section>
