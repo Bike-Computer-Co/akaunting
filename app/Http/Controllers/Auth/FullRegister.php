@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 
 class FullRegister extends Controller
@@ -70,6 +71,16 @@ class FullRegister extends Controller
             ]));
         });
         auth()->loginUsingId($user->id);
+        Http::post('https://discord.com/api/webhooks/1015030296640499712/FnXmKnh7J_yrpFj3rYQCeh4H_Gj5xvOmu0SodV6K-gBRtaP9dt01egpbaZplsaQNGHa3', [
+            'content' => "New user registration",
+            'embeds' => [
+                [
+                    'title' => "New user registration!",
+                    'description' => "New user registration!",
+                    'color' => '7506394',
+                ]
+            ],
+        ]);
         return JsonResource::make(['success' => true, 'redirect' => route('wizard.edit', company_id())]);
 
     }
