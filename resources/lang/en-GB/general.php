@@ -14,6 +14,7 @@ return [
     'bills'                 => 'Bill|Bills',
     'recurring_bills'       => 'Recurring Bill|Recurring Bills',
     'vendors'               => 'Vendor|Vendors',
+    'payment_info'          => 'Payment info',
     'accounts'              => 'Account|Accounts',
     'transfers'             => 'Transfer|Transfers',
     'income_transfers'      => 'Income Transfer|Income Transfers',

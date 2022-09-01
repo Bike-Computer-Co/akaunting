@@ -19,9 +19,9 @@ abstract class SettingController extends Controller
 
     public $skip_keys = ['company_id', '_method', '_token', '_prefix'];
 
-    public $file_keys = ['company.logo', 'invoice.logo', 'company.stamp', 'company.signature'];
+    public $file_keys = ['company.logo', 'invoice.logo', 'company.stamp'];
 
-    public $uploaded_file_keys = ['company.uploaded_logo', 'invoice.uploaded_logo', 'company.uploaded_stamp', 'company.uploaded_signature'];
+    public $uploaded_file_keys = ['company.uploaded_logo', 'invoice.uploaded_logo', 'company.uploaded_stamp'];
 
     /**
      * Update the specified resource in storage.

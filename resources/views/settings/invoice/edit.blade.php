@@ -73,7 +73,7 @@
                         <x-form.group.text name="subheading" label="{{ trans('settings.invoice.subheading') }}" value="{{ setting('invoice.subheading') }}" not-required />
 
                         <x-form.group.textarea name="notes" label="{{ trans_choice('general.notes', 2) }}" :value="setting('invoice.notes')" form-group-class="sm:col-span-3" not-required />
-                        <x-form.group.textarea name="accounts" label="{{ trans_choice('general.accounts', 2) }}" :value="setting('invoice.accounts')" form-group-class="sm:col-span-3" not-required />
+                        <x-form.group.textarea name="accounts" label="{{ trans('general.payment_info') }}" :value="setting('invoice.accounts')" form-group-class="sm:col-span-3" not-required />
 
                         <x-form.group.textarea name="footer" label="{{ trans('general.footer') }}" :value="setting('invoice.footer')" form-group-class="sm:col-span-3" not-required />
                     </x-slot>

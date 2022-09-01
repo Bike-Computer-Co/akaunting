@@ -346,9 +346,6 @@
         </div>
     </div>
     <div style="float:right; margin-top:10px">
-        @if($signature)
-            <img src="{{$signature}}" alt="">
-        @endif
         @if($stamp)
             <img src="{{$stamp}}" alt="">
         @endif

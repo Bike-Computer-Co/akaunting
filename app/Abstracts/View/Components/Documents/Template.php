@@ -124,7 +124,6 @@ abstract class Template extends Component
     public $hideNote;
 
 
-    public $signature;
     public $stamp;
 
     /**
@@ -149,8 +148,7 @@ abstract class Template extends Component
         $this->document = $document;
         $this->documentTemplate = $this->getDocumentTemplate($type, $documentTemplate);
         $this->logo = $this->getLogo($logo);
-        $this->stamp = $this->getCompanyImage('stamp', 100, 100);
-        $this->signature = $this->getCompanyImage('signature', 200, 100);
+        $this->stamp = $this->getCompanyImage('stamp', 200, 100);
         $this->backgroundColor = $this->getBackgroundColor($type, $backgroundColor);
 
         $this->hideFooter = $hideFooter;
