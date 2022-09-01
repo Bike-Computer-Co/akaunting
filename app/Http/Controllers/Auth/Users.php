@@ -73,7 +73,7 @@ class Users extends Controller
 
         $companies = user()->companies()->take(setting('default.select_limit'))->get()->sortBy('name')->pluck('name', 'id');
 
-        $roles_url = $this->getCloudRolesPageUrl();
+        $roles_url = '';
 
         return view('auth.users.create', compact('roles', 'companies', 'landing_pages', 'roles_url'));
     }

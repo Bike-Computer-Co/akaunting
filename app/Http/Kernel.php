@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckBilling;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -88,6 +89,7 @@ class Kernel extends HttpKernel
             'wizard.redirect',
             'menu.admin',
             'permission:read-admin-panel',
+            'check_billing'
         ],
 
         'wizard' => [
@@ -187,6 +189,7 @@ class Kernel extends HttpKernel
         'ability' => \Laratrust\Middleware\LaratrustAbility::class,
         'role' => \Laratrust\Middleware\LaratrustRole::class,
         'permission' => \Laratrust\Middleware\LaratrustPermission::class,
+        'check_billing' => CheckBilling::class
     ];
 
     /**

@@ -23,7 +23,7 @@ return [
 
     'form_description' => [
         'personal'          => 'The invitation link will be sent to the new user, so ensure that the email address is correct. They will be able to enter their password.',
-        'assign'            => 'The user will have access to the selected companies. You can restrict the permissions from the <a href=":url" class="border-b border-black">roles</a> page.',
+        'assign'            => 'The user will have access to the selected companies.',
         'preferences'       => 'Select the default language of the user. You can also set the landing page after the user logs in.',
     ],
 

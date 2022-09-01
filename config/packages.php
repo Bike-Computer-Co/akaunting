@@ -30,6 +30,7 @@ return [
                 'Financial Reports',
             ],
         ],
+        'feature_keys'=>[],
         'support' => [
             'Email',
             'Chat'
@@ -73,6 +74,8 @@ return [
                 'Invite your accountant'
             ],
         ],
+        'feature_keys'=>['invite_accountant'],
+
         'support' => [
             'Email',
             'Chat'
@@ -118,6 +121,8 @@ return [
                 'Payroll management (coming soon)'
             ],
         ],
+        'feature_keys'=>['invite_accountant'],
+
         'support' => [
             'Email',
             'Chat'
@@ -169,6 +174,7 @@ return [
                 'Team Flex Payments (coming soon)',
             ],
         ],
+        'feature_keys'=>['invite_accountant'],
         'support' => [
             'Email',
             'Chat'
