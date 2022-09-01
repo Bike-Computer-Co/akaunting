@@ -1,14 +1,25 @@
 <x-layouts.admin>
     <x-slot name="title">
-        Subscription
-
+        @lang('billing.subscription')
     </x-slot>
     <x-slot name="buttons">
-        <a href="{{route('billing.redirect')}}">Stripe dashboard</a>
+        <a href="{{route('billing.redirect')}}">@lang('billing.stripe_dashboard')</a>
     </x-slot>
 
     <x-slot name="content">
+        <div class="grid grid-cols-4">
+            <div></div>
+            <a href="/{{company_id()}}/billing/subscription"
+                @class(['text-center mb-2 px-3 py-1.5 rounded-xl text-sm font-medium leading-6','text-white bg-blue hover:bg-blue-700'=> !$yearly])>
+                @lang('billing.monthly')
+            </a>
+            <a href="/{{company_id()}}/billing/subscription?yearly=1"
+                @class(['text-center mb-2 px-3 py-1.5 rounded-xl text-sm font-medium leading-6','text-white bg-blue hover:bg-blue-700'=> $yearly])>
+                @lang('billing.yearly')
 
+            </a>
+            <div></div>
+        </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
 
             @foreach($packages as $package)
@@ -18,65 +29,71 @@
                     ])>
                     <h1 class="text-xl mb-2"> {{$package['name']}}</h1>
                     <div class="text-8xl font-bold px-4  py-6 text-blue">
-                        <div @class(["line-through",'text-gray-500'=>$package['monthly_price'],  'text-gray-50'=> !$package['monthly_price']]) >
+                        <div @class(["line-through",'text-gray-500'=>$package[$keyword.'_price'],  'text-gray-50'=> !$package[$keyword.'_price']]) >
                             <span class="text-xl ">$</span><span
-                                class="text-3xl ">{{number_format($package['monthly_price'], 2)}}</span>
+                                class="text-3xl ">{{number_format($package[$keyword.'_price'], 2)}}</span>
                         </div>
-                        <div @class(['text-xs', 'text-gray-50'=> !$package['monthly_price']])>
-                            First {{$package['monthly_promo_duration']}} months
+                        <div @class(['text-xs', 'text-gray-50'=> !$package[$keyword.'_price']])>
+                            @if($yearly)
+                                @lang('billing.first_year',['duration'=>$package[$keyword.'_promo_duration'] ])
+                            @else
+                                @lang('billing.first_month',['duration'=>$package[$keyword.'_promo_duration']] )
+                            @endif
                         </div>
-                        @if($package['monthly_promo_price'])
-                            <span class="text-4xl">$</span>{{number_format($package['monthly_promo_price'], 2)}}
+                        @if($package[$keyword.'_promo_price'])
+                            <span class="text-4xl">$</span>{{number_format($package[$keyword.'_promo_price'], 2)}}
                         @else
                             Free
                         @endif
                     </div>
-                    @if(isset($package['monthly_stripe_id']))
-                        @if(company()->subscribedToPrice($package['monthly_stripe_id']))
+                    @if(isset($package[$keyword.'_stripe_id']))
+                        @if(company()->subscribedToPrice($package[$keyword.'_stripe_id']))
                             @if(company()->subscribed() && company()->subscription()->onGracePeriod())
                                 <x-form method="PATCH" url="/{{company_id()}}/billing/resume">
                                     <x-button
                                         type="submit"
                                         class="w-full mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700"
                                         override="class">
-                                        Продолжи
+                                        @lang('billing.continue')
                                     </x-button>
                                 </x-form>
                             @else
                                 <x-button
                                     class="w-full mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700 disabled disabled:bg-blue-400"
                                     disabled="disabled"
-                                    override="class">Селектиран
+                                    override="class">
+                                    @lang('billing.selected')
                                 </x-button>
                             @endif
                         @else
                             @if(company()->subscribed())
                                 <x-form method="PATCH" url="/{{company_id()}}/billing/swap">
-                                    <input type="hidden" name="price_id" value="{{$package['monthly_stripe_id']}}">
+                                    <input type="hidden" name="price_id" value="{{$package[$keyword.'_stripe_id']}}">
                                     <x-button
                                         type="submit"
                                         class="w-full mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700"
                                         override="class">
 
-                                        Промени
+                                        @lang('billing.change')
                                     </x-button>
                                 </x-form>
                             @else
                                 <x-button
-                                    onclick="checkout('{{$package['monthly_stripe_id']}}')"
+                                    onclick="checkout('{{$package[$keyword.'_stripe_id']}}')"
                                     class="w-full mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700"
                                     override="class">
 
-                                    Купи веднаш
+                                    @lang('billing.buy_now')
                                 </x-button>
                             @endif
                         @endif
                         @if(!company()->subscribed())
                             <div @class(['invisible'=> !$package['trial_days']])>
                                 <x-button
-                                    onclick="checkout('{{$package['monthly_stripe_id']}}', true)"
+                                    onclick="checkout('{{$package[$keyword.'_stripe_id']}}', true)"
                                     class="w-full mb-2 px-3 py-1.5  rounded-xl text-sm font-medium leading-6 bg-gray-100 hover:bg-gray-200"
-                                    override="class">30-дневен период
+                                    override="class">
+                                    @lang('billing.trial_days', ['days'=> $package['trial_days']])
                                 </x-button>
                             </div>
                         @endif
@@ -87,45 +104,33 @@
                                     type="submit"
                                     class="w-full mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700"
                                     override="class">
-                                    Промени
+                                    @lang('billing.change')
                                 </x-button>
                             </x-form>
                         @else
                             <x-button
                                 class="w-full mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700 disabled disabled:bg-blue-400"
                                 disabled="disabled"
-                                override="class">Селектиран
+                                override="class">@lang('billing.selected')
                             </x-button>
                         @endif
                     @endif
 
                     <div class="text-sm my-2"> {{$package['name']}} вклучува:</div>
                     <ul>
-                        @foreach($package['features']['mk'] as $feature)
+                        @foreach($package['features'][app()->getLocale()  === 'mk-MK' ? 'mk' : 'en'] as $feature)
                             <li class="text-gray-500 text-xs">
                                 {{$feature}}
                             </li>
                         @endforeach
                     </ul>
-                    <div class="mt-3">Support:</div>
+                    <div class="mt-3">@lang('billing.support'):</div>
                     <div class="text-xs">{{implode(', ', $package['support'])}}</div>
                 </div>
 
             @endforeach
 
         </div>
-        {{--        <div class="mt-5">--}}
-        {{--        @if(company()->subscribed())--}}
-        {{--            Subscribed to starter--}}
-        {{--        @else--}}
-        {{--            <x-button onclick="checkout()">--}}
-        {{--                Subscribe to Starter--}}
-        {{--            </x-button>--}}
-        {{--        @endif--}}
-        {{--            <div class="mt-5">--}}
-        {{--                <a href="{{route('billing.redirect')}}">Manage billing on Stripe</a>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
     </x-slot>
 
 

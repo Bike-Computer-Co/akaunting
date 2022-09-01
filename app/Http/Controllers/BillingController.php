@@ -17,10 +17,12 @@ class BillingController extends Controller
 
     public function subscription(Request $request)
     {
-
+        $yearly = $request->has('yearly');
         return view('billing.subscription', [
             'stripeKey' => config('cashier.key'),
             'packages' => config('packages'),
+            'yearly' => $yearly,
+            'keyword' => $yearly ? 'yearly' : 'monthly'
         ]);
     }
 
@@ -69,7 +71,7 @@ class BillingController extends Controller
 
     public function cancel(Request $request)
     {
-        abort_if(!company()->subscribed() , 400);
+        abort_if(!company()->subscribed(), 400);
         company()->subscription()->cancel();
         return back();
     }
