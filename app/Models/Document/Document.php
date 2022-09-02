@@ -11,11 +11,13 @@ use App\Traits\DateTime;
 use App\Traits\Documents;
 use App\Traits\Media;
 use App\Traits\Recurring;
+use AshAllenDesign\ShortURL\Facades\ShortURL;
 use Bkwld\Cloner\Cloneable;
 use Database\Factories\Document as DocumentFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\URL;
 
 class Document extends Model
 {
@@ -149,6 +151,16 @@ class Document extends Model
         return $this->morphOne('App\Models\Common\Recurring', 'recurable');
     }
 
+    public function getShortUrlAttribute(): string
+    {
+        $url = URL::signedRoute('signed.invoices.show', [$this->id]);
+        $shortUrl = \AshAllenDesign\ShortURL\Models\ShortURL::where('destination_url', $url)->first();
+        if (!$shortUrl) {
+            $shortUrl = ShortURL::destinationUrl($url)->make();
+        }
+        return $shortUrl->default_short_url;
+    }
+
     public function totals()
     {
         return $this->hasMany('App\Models\Document\DocumentTotal', 'document_id');
@@ -232,8 +244,8 @@ class Document extends Model
     /**
      * @inheritDoc
      *
-     * @param  Document $src
-     * @param  boolean $child
+     * @param Document $src
+     * @param boolean $child
      */
     public function onCloning($src, $child = null)
     {
@@ -243,7 +255,7 @@ class Document extends Model
             $type = $src->type;
         }
 
-        $this->status          = 'draft';
+        $this->status = 'draft';
         $this->document_number = $this->getNextDocumentNumber($type);
     }
 
@@ -395,14 +407,14 @@ class Document extends Model
      */
     public function getStatusLabelAttribute()
     {
-        return match($this->status) {
-            'paid'      => 'status-success',
-            'partial'   => 'status-partial',
-            'sent'      => 'status-danger',
-            'received'  => 'status-danger',
-            'viewed'    => 'status-sent',
+        return match ($this->status) {
+            'paid' => 'status-success',
+            'partial' => 'status-partial',
+            'sent' => 'status-danger',
+            'received' => 'status-danger',
+            'viewed' => 'status-sent',
             'cancelled' => 'status-canceled',
-            default     => 'status-draft',
+            default => 'status-draft',
         };
     }
 
@@ -413,10 +425,10 @@ class Document extends Model
      */
     public function getRecurringStatusLabelAttribute()
     {
-        return match($this->recurring->status) {
-            'active'    => 'status-partial',
-            'ended'     => 'status-success',
-            default     => 'status-success',
+        return match ($this->recurring->status) {
+            'active' => 'status-partial',
+            'ended' => 'status-success',
+            default => 'status-success',
         };
     }
 
@@ -429,7 +441,7 @@ class Document extends Model
     {
         $amount = $this->amount;
 
-        $this->totals->where('code', 'tax')->each(function ($total) use(&$amount) {
+        $this->totals->where('code', 'tax')->each(function ($total) use (&$amount) {
             $tax = Tax::name($total->name)->first();
 
             if (!empty($tax) && ($tax->type == 'withholding')) {
@@ -498,10 +510,11 @@ class Document extends Model
                     'id' => 'index-more-actions-show-' . $this->id,
                 ],
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
-            if (! $this->reconciled) {
+            if (!$this->reconciled) {
                 $actions[] = [
                     'title' => trans('general.edit'),
                     'icon' => 'edit',
@@ -512,7 +525,8 @@ class Document extends Model
                     ],
                 ];
             }
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             $actions[] = [
@@ -524,7 +538,8 @@ class Document extends Model
                     'id' => 'index-more-actions-duplicate-' . $this->id,
                 ],
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         if ($this->status != 'cancelled') {
             try {
@@ -538,7 +553,8 @@ class Document extends Model
                         'target' => '_blank',
                     ],
                 ];
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
 
         try {
@@ -552,9 +568,10 @@ class Document extends Model
                     'target' => '_blank',
                 ],
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
-        if (! str_contains($this->type, 'recurring')) {
+        if (!str_contains($this->type, 'recurring')) {
             if ($this->status != 'cancelled') {
                 $actions[] = [
                     'type' => 'divider',
@@ -565,30 +582,32 @@ class Document extends Model
                         'type' => 'button',
                         'title' => trans('general.share_link'),
                         'icon' => 'share',
-                        'url' => route('modals.'. $prefix . '.share.create', $this->id),
+                        'url' => route('modals.' . $prefix . '.share.create', $this->id),
                         'permission' => 'read-' . $group . '-' . $permission_prefix,
                         'attributes' => [
                             'id' => 'index-more-actions-share-link-' . $this->id,
-                            '@click' => 'onShareLink("' . route('modals.'. $prefix . '.share.create', $this->id) . '")',
+                            '@click' => 'onShareLink("' . route('modals.' . $prefix . '.share.create', $this->id) . '")',
                         ],
                     ];
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
 
                 try {
-                    if (! empty($this->contact) && $this->contact->email && $this->type == 'invoice') {
+                    if (!empty($this->contact) && $this->contact->email && $this->type == 'invoice') {
                         $actions[] = [
                             'type' => 'button',
                             'title' => trans('invoices.send_mail'),
                             'icon' => 'email',
-                            'url' => route('modals.'. $prefix . '.emails.create', $this->id),
+                            'url' => route('modals.' . $prefix . '.emails.create', $this->id),
                             'permission' => 'read-' . $group . '-' . $permission_prefix,
                             'attributes' => [
-                                'id'        => 'index-more-actions-send-email-' . $this->id,
-                                '@click'    => 'onEmail("' . route('modals.'. $prefix . '.emails.create', $this->id) . '")',
+                                'id' => 'index-more-actions-send-email-' . $this->id,
+                                '@click' => 'onEmail("' . route('modals.' . $prefix . '.emails.create', $this->id) . '")',
                             ],
                         ];
                     }
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
 
             $actions[] = [
@@ -606,7 +625,8 @@ class Document extends Model
                             'id' => 'index-more-actions-cancel-' . $this->id,
                         ],
                     ];
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
 
                 $actions[] = [
                     'type' => 'divider',
@@ -622,16 +642,18 @@ class Document extends Model
                     'permission' => 'delete-' . $group . '-' . $permission_prefix,
                     'model' => $this,
                 ];
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         } else {
             try {
                 $actions[] = [
                     'title' => trans('general.end'),
                     'icon' => 'block',
-                    'url' => route($prefix. '.end', $this->id),
+                    'url' => route($prefix . '.end', $this->id),
                     'permission' => 'update-' . $group . '-' . $permission_prefix,
                 ];
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
 
         return $actions;
@@ -640,8 +662,8 @@ class Document extends Model
     /**
      * Retrieve the model for a bound value.
      *
-     * @param  mixed  $value
-     * @param  string|null  $field
+     * @param mixed $value
+     * @param string|null $field
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function resolveRouteBinding($value, $field = null)

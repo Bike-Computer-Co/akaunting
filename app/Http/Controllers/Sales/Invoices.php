@@ -14,6 +14,8 @@ use App\Jobs\Document\UpdateDocument;
 use App\Models\Document\Document;
 use App\Notifications\Sale\Invoice as Notification;
 use App\Traits\Documents;
+use AshAllenDesign\ShortURL\Facades\ShortURL;
+use Illuminate\Support\Facades\URL;
 
 class Invoices extends Controller
 {
@@ -285,6 +287,7 @@ class Invoices extends Controller
 
         return mb_convert_encoding($view, 'HTML-ENTITIES', 'UTF-8');
     }
+
 
     /**
      * Download the PDF file of invoice.
