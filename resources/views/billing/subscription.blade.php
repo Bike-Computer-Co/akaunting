@@ -7,7 +7,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <div class="grid grid-cols-4">
+        <div class="grid grid-cols-4 mt-10">
             <div></div>
             <a href="/{{company_id()}}/billing/subscription"
                 @class(['text-center mb-2 px-3 py-1.5 rounded-xl text-sm font-medium leading-6','text-white bg-blue hover:bg-blue-700'=> !$yearly])>
@@ -20,12 +20,16 @@
             </a>
             <div></div>
         </div>
+        <div class="text-center mt-20">
+            Придружи се и добиј 70% попуст <br>
+            за првите 3 месеци
+        </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
 
-            @foreach($packages as $package)
+            @foreach($packages as $key=> $package)
                 <div @class([
                         'border'=> $package['featured'],
-                        'p-2 rounded-md'
+                        'p-2 rounded-md flex flex-col mb-10'
                     ])>
                     <h1 class="text-xl mb-2"> {{$package['name']}}</h1>
                     <div class="text-8xl font-bold px-4  py-6 text-blue">
@@ -33,19 +37,21 @@
                             <span class="text-xl ">$</span><span
                                 class="text-3xl ">{{number_format($package[$keyword.'_price'], 2)}}</span>
                         </div>
-                        <div @class(['text-xs', 'text-gray-50'=> !$package[$keyword.'_price']])>
-                            @if($yearly)
-                                @lang('billing.first_year',['duration'=>$package[$keyword.'_promo_duration'] ])
-                            @else
-                                @lang('billing.first_month',['duration'=>$package[$keyword.'_promo_duration']] )
-                            @endif
-                        </div>
+                        {{--                        <div @class(['text-xs', 'text-gray-50'=> !$package[$keyword.'_price']])>--}}
+                        {{--                            @if($yearly)--}}
+                        {{--                                @lang('billing.first_year',['duration'=>$package[$keyword.'_promo_duration'] ])--}}
+                        {{--                            @else--}}
+                        {{--                                @lang('billing.first_month',['duration'=>$package[$keyword.'_promo_duration']] )--}}
+                        {{--                            @endif--}}
+                        {{--                        </div>--}}
                         @if($package[$keyword.'_promo_price'])
                             <span class="text-4xl">$</span>{{number_format($package[$keyword.'_promo_price'], 2)}}
                         @else
                             Free
                         @endif
+                        <div class="text-sm text-gray-500">/месечно</div>
                     </div>
+
                     @if(isset($package[$keyword.'_stripe_id']))
                         @if(company()->subscribedToPrice($package[$keyword.'_stripe_id']))
                             @if(company()->subscribed() && company()->subscription()->onGracePeriod())
@@ -115,16 +121,26 @@
                             </x-button>
                         @endif
                     @endif
-
-                    <div class="text-sm my-2"> {{$package['name']}} вклучува:</div>
-                    <ul>
-                        @foreach($package['features'][app()->getLocale()  === 'mk-MK' ? 'mk' : 'en'] as $feature)
-                            <li class="text-gray-500 text-xs">
+                    @php
+                        $lang = app()->getLocale()  === 'mk-MK' ? 'mk' : 'en';
+                    @endphp
+                    <ul class="list">
+                        @if($key > 0)
+                            <li class="text-gray-500 text-xs font-bold mb-1">&#10004; Се
+                                од {{$packages[$key-1]['name']}}:
+                            </li>
+                        @endif
+                        @foreach($package['features'][$lang] as $feature)
+                            @if($key !== 0 && in_array($feature, $packages[$key-1]['features'][$lang]))
+                                @continue
+                            @endif
+                            <li class="text-gray-500 text-xs mb-1">
+                                &#10004;
                                 {{$feature}}
                             </li>
                         @endforeach
                     </ul>
-                    <div class="mt-3">@lang('billing.support'):</div>
+                    <div class="mt-auto pt-3">@lang('billing.support'):</div>
                     <div class="text-xs">{{implode(', ', $package['support'])}}</div>
                 </div>
 
@@ -132,10 +148,10 @@
 
         </div>
     </x-slot>
-    <x-contacts.script type="customer" />
+    <x-contacts.script type="customer"/>
 
 
-@push('scripts')
+    @push('scripts')
         <script src="https://js.stripe.com/v3/" defer></script>
 
         <script>

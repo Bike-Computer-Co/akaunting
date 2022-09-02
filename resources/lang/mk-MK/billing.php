@@ -11,5 +11,5 @@ return [
   'change'=>'Промени',
   'buy_now'=>'Kупи веднаш',
   'support'=>'Поддршка',
-  'billing_days'=>':days-дневен период',
+  'trial_days'=>':days-дневен период',
 ];

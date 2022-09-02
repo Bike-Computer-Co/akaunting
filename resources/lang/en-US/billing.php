@@ -11,5 +11,5 @@ return [
   'change'=>'Change',
   'buy_now'=>'Buy now',
   'support'=>'Support',
-  'billing_days'=>':days-days period',
+  'trial_days'=>':days-days period',
 ];
