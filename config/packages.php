@@ -74,7 +74,7 @@ return [
                 'Invite your accountant'
             ],
         ],
-        'feature_keys'=>['invite_accountant'],
+        'feature_keys'=>['invite_accountant', 'recurring_invoices', 'remind'],
 
         'support' => [
             'Email',
@@ -121,7 +121,7 @@ return [
                 'Payroll management (coming soon)'
             ],
         ],
-        'feature_keys'=>['invite_accountant'],
+        'feature_keys'=>['invite_accountant', 'recurring_invoices', 'remind'],
 
         'support' => [
             'Email',
@@ -174,7 +174,7 @@ return [
                 'Team Flex Payments (coming soon)',
             ],
         ],
-        'feature_keys'=>['invite_accountant'],
+        'feature_keys'=>['invite_accountant', 'recurring_invoices', 'remind'],
         'support' => [
             'Email',
             'Chat'
