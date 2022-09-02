@@ -391,4 +391,6 @@
             </div>
         @endif
     @endif
+    <div style="clear: both"></div>
+
 </div>
