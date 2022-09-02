@@ -18,15 +18,15 @@ class CheckBilling
     {
 
         //invite acountant
-        $check1 = $request->routeIs('users.store') && $request->roles == 4 && !$this->haveOption('invite_accountant');
+        $check1 = $request->routeIs('users.store') && $request->roles == 4 && $this->haveOption('invite_accountant');
         if ($check1) {
-            if($request->expectsJson()){
+            flash('Ве молиме надградете го вашиот пакет за да ја користите таа опција')->error()->important();
+            if ($request->expectsJson()) {
                 return response()->json([
-                    'redirect'=> route('billing.subscription')
+                    'redirect' => route('billing.subscription')
                 ]);
-            }else{
+            } else {
                 return redirect()->route('billing.subscription');
-
             }
         }
 

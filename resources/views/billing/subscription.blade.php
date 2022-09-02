@@ -132,9 +132,10 @@
 
         </div>
     </x-slot>
+    <x-contacts.script type="customer" />
 
 
-    @push('scripts')
+@push('scripts')
         <script src="https://js.stripe.com/v3/" defer></script>
 
         <script>
