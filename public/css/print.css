@@ -55,6 +55,9 @@ h3{
     font-weight: 600;
 }
 
+.text-bold {
+    font-weight: 700;
+}
 .row
 {
     font-size: 0;
