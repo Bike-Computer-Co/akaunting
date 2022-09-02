@@ -20,6 +20,7 @@ class CheckBilling
         //invite acountant
         $check1 = $request->routeIs('users.store') && $request->roles == 4 && !company()->haveOption('invite_accountant');
         $check2 = $request->routeIs('recurring-invoices.*')  && !company()->haveOption('recurring_invoices');
+        $check3 = $request->routeIs('settings.schedule.update') && !company()->haveOption('remind');
         if ($check1 || $check2) {
             flash('Ве молиме надградете го вашиот пакет за да ја користите таа опција')->error()->important();
             if ($request->expectsJson()) {

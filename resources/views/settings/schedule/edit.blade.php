@@ -28,22 +28,22 @@
                     </x-slot>
                 </x-form.section>
 
-                <x-form.section>
-                    <x-slot name="head">
-                        <x-form.section.head title="{{ trans('settings.scheduling.cron_command') }}" description="{{ trans('settings.scheduling.form_description.cron') }}" />
-                    </x-slot>
+{{--                <x-form.section>--}}
+{{--                    <x-slot name="head">--}}
+{{--                        <x-form.section.head title="{{ trans('settings.scheduling.cron_command') }}" description="{{ trans('settings.scheduling.form_description.cron') }}" />--}}
+{{--                    </x-slot>--}}
 
-                    <x-slot name="body">
-                        <div class="sm:col-span-6">
-                            <x-form.label for="cron_command">
-                                {{ trans('settings.scheduling.command') }}
-                            </x-form.label>
-                            <input type="text" class="w-full text-sm px-3 py-2.5 mt-1 rounded-lg border border-light-gray text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple" disabled value="php {{ base_path('artisan') }} schedule:run >> /dev/null 2>&1">
-                        </div>
+{{--                    <x-slot name="body">--}}
+{{--                        <div class="sm:col-span-6">--}}
+{{--                            <x-form.label for="cron_command">--}}
+{{--                                {{ trans('settings.scheduling.command') }}--}}
+{{--                            </x-form.label>--}}
+{{--                            <input type="text" class="w-full text-sm px-3 py-2.5 mt-1 rounded-lg border border-light-gray text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple" disabled value="php {{ base_path('artisan') }} schedule:run >> /dev/null 2>&1">--}}
+{{--                        </div>--}}
 
-                        <x-form.group.text name="time" label="{{ trans('settings.scheduling.schedule_time') }}" value="{{ setting('schedule.time') }}" not-required />
-                    </x-slot>
-                </x-form.section>
+{{--                        <x-form.group.text name="time" label="{{ trans('settings.scheduling.schedule_time') }}" value="{{ setting('schedule.time') }}" not-required />--}}
+{{--                    </x-slot>--}}
+{{--                </x-form.section>--}}
 
                 @can('update-settings-schedule')
                 <x-form.section>
