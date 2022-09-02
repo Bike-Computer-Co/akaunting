@@ -7,7 +7,7 @@ return [
     'total_price'           => 'Вкупна цена',
     'due_date'              => 'Краен рок',
     'order_number'          => 'Број на нарачка',
-    'bill_to'               => 'Сметка за',
+    'bill_to'               => 'Клиент',
 
     'quantity'              => 'Квантитет',
     'price'                 => 'Цена',

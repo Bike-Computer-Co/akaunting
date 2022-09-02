@@ -12,17 +12,23 @@ table
 
 th, td
 {
-    padding: 10px 9px 10px 9px;
+    padding: 6px 4px 6px 4px;
 }
 
 .print-template p {
     color: #424242;
-    margin-bottom: 9px;
+    margin-bottom: 2px;
 }
 
 .spacing {
     display: inline-block;
-    margin-bottom: 9px;
+    margin-bottom: 1px;
+}
+p{
+    margin: 0;
+}
+h3{
+    margin: 0 0 3px;
 }
 
 .right-column {
@@ -257,7 +263,7 @@ html[dir='rtl'] .border-radius-last {
 .text
 {
     color: #595959;
-    margin-top:8px;
+    /*margin-top:px;*/
     font-size: 12px;
 }
 
@@ -439,8 +445,7 @@ html[dir='rtl'] .text-alignment-right {
 
 .d-logo
 {
-    padding-top: 18px;
-    padding-bottom: 30px;
+    padding: 5px 0;
 }
 
 .d-note
@@ -677,11 +682,11 @@ html[dir='rtl'] .text-alignment-right {
 }
 
 .extra-spacing {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .top-spacing {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 /*--Print--*/

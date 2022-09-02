@@ -39,6 +39,7 @@
         "akaunting/laravel-sortable": "^1.0",
         "akaunting/laravel-version": "^1.0",
         "akaunting/module-offline-payments": "^3.0",
+        "ashallendesign/short-url": "^7.1",
         "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-dompdf": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.9",
