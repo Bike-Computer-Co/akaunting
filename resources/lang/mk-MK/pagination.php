@@ -2,8 +2,8 @@
 
 return [
 
-    'previous'              => 'Прегходно',
+    'previous'              => 'Претходно',
     'next'                  => 'Следно',
-    'showing'               => ':first-:last of :total records.',
+    'showing'               => ':first-:last од вкупно :total ставки.',
     'page'                  => 'По страна.',
 ];

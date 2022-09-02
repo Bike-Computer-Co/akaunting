@@ -3,7 +3,7 @@
 return [
     // TODO:
     'dashboards'            => 'Контролна табла|Контролни табли',
-    'items'                 => 'Опис|Описи',
+    'items'                 => 'Ставка|Ставки',
     'incomes'               => 'Приход|Приходи',
     'invoices'              => 'Фактура|Фактури',
     'recurring_invoices'    => 'Повторлива фактура|Повторливи фактури',
@@ -13,6 +13,12 @@ return [
     'expenses'              => 'Трошок|Трошоци',
     'recurring_expenses'    => 'Повторлив трошок|Повторливи трошоци',
     'bills'                 => 'Сметка|Сметки',
+    'share_link'            => 'Сподели Link',
+    'last_sent'             => 'Последно испратено :date',
+    'amount_due'            => 'Износот што го должи',
+    'create'                => 'Креирано',
+    'download_pdf'          => 'Преземи PDF',
+    'customize'             => 'Прилагоди',
     'payments'              => 'Плаќање|Плаќања',
     'vendors'               => 'Добавувач|Добавувачи',
     'accounts'              => 'Акаунт|Акаунти',
@@ -153,13 +159,24 @@ return [
         'contact_edit'      => 'Измени :contact_name :field',
         'drop_file'         => 'Прикачи датотеки',
         'choose'            => 'Одбери :field',
+        'countries'         => 'Држава|Држави',
         'choose_different'  => 'Одбери друг :field',
         'choose_file'       => 'Одбери датотека',
+    ],
+
+    'placeholder' => [
+        'search'            => 'Напиши за да пребаруваш..',
+        'search_and_filter' => 'Барај или филтрирај резултати..',
+        'select_and_filter' => 'Одбери една од следните избори подолу',
+        'enter_and_filter'  => 'Кликни ентер да ги филтрираш резултати, или да поставиш нов филтер',
+        'contact_search'    => 'Напиши :type име',
+        'item_search'       => 'Напиши име на ставка',
     ],
 
     'date_range' => [
         'today' => 'Денес',
         'yesterday' => 'Вчера',
+        'week_ago'      => 'Пред една недела',
         'last_days' => 'Последни :day дена',
         'this_month' => 'Овој месец',
         'last_month' => 'Претходен месец',
