@@ -4,9 +4,9 @@ return [
 
     'receivables'               => 'Побарувања',
     'payables'                  => 'Обврски',
-    'cash_flow'                 => 'Кеш Флоу',
-    'profit_loss'               => 'Добивка и загуба',
-    'expenses_by_category'      => 'Трошоци по категорија',
+    'cash_flow'                 => 'Готовински тек',
+    'profit_loss'               => 'Приходи и трошоци',
+    'expenses_by_category'      => 'Трошоци по категории',
     'account_balance'           => 'Состојба на сметката',
     'bank_feeds'                => 'Поврзете ги банкарските сметки',
     'currencies'                => 'Валути',
