@@ -57,6 +57,8 @@ return [
     'reconciliations'       => 'Reconciliation|Reconciliations',
     'deposits'              => 'Deposit|Deposits',
     'withdrawals'           => 'Withdrawal|Withdrawals',
+    'defaults'              => 'Стандардно|Стандардни',
+    'email_templates'       => 'Шаблон за е-пошта|Шаблони за е-пошти',
 
     'dashboard'             => 'Контролна табла',
     'banking'               => 'Банкарство',
@@ -139,6 +141,7 @@ return [
     'billing'               => 'Наплата',
     'localisations'         => 'Локализирање|Локализирање',
     'financial_year'        => 'Финансиска година',
+    'widgets'               => 'Виџет|Виџети',
 
     'title' => [
         'new'               => 'Нов :type',
@@ -147,6 +150,11 @@ return [
         'send'              => 'Испрати :type',
         'get'               => 'Земи :type',
         'invite'            => 'Покани :type',
+        'show'              => 'Прикажи :type',
+        'delete'            => 'Избриши :type',
+        'add'               => 'Додај :type',
+        'manage'            => 'Управувај :type',
+        'closed'            => 'Затворен :type',
 
     ],
 
