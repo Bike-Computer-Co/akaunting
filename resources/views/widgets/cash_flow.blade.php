@@ -8,7 +8,7 @@
 
         <div class="w-full lg:w-1/12 mt-11 space-y-2">
             <div class="flex flex-col items-center justify-between text-center">
-                <div class="flex justify-end lg:block text-lg">
+                <div class="flex justify-end lg:block text-lg whitespace-nowrap">
                     {{ $totals['incoming'] }}
                 </div>
 
@@ -20,7 +20,7 @@
             </div>
 
             <div class="flex flex-col items-center justify-between">
-                <div class="flex justify-end lg:block text-lg">
+                <div class="flex justify-end lg:block text-lg whitespace-nowrap">
                     {{ $totals['outgoing'] }}
                 </div>
 
@@ -32,7 +32,7 @@
             </div>
 
             <div class="flex flex-col items-center justify-between">
-                <div class="flex justify-end lg:block text-lg">
+                <div class="flex justify-end lg:block text-lg whitespace-nowrap">
                     {{ $totals['profit'] }}
                 </div>
 
