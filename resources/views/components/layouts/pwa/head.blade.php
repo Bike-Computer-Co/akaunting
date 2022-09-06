@@ -35,5 +35,17 @@
         navigator.serviceWorker.register("{{ asset('serviceworker.js') }}");
     }
 
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "0bac40d3-31c9-4289-af89-719f76620505";
+
+    (function (){
+        d = document;
+        s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+    })();
+
+
+
 </script>
-<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="0bac40d3-31c9-4289-af89-719f76620505";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js%22;s.async=1;d.getElementsByTagName(%22head%22)[0].appendChild(s);%7D)();</script>
