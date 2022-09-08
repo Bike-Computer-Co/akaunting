@@ -77,6 +77,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::patch('profile/{user}', 'Auth\Users@update')->name('profile.update');
 });
 
+Route::resource('employees', \App\Http\Controllers\Employee::class);
+
 Route::group(['prefix' => 'sales'], function () {
     Route::get('invoices/{invoice}/sent', 'Sales\Invoices@markSent')->name('invoices.sent');
     Route::get('invoices/{invoice}/cancelled', 'Sales\Invoices@markCancelled')->name('invoices.cancelled');

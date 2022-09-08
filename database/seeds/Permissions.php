@@ -27,6 +27,7 @@ class Permissions extends Seeder
     {
         $rows = [
             'admin' => [
+                'employee'=> 'c,r,u,d',
                 'admin-panel' => 'r',
                 'api' => 'r',
                 'auth-profile' => 'r,u',
