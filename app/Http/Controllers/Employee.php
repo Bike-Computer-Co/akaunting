@@ -75,14 +75,15 @@ class Employee extends Controller
 
     public function show(Model $employee)
     {
-        return view('employees.show', compact('employee'));
+        $salaries = $employee->salaries()->collect();
+        return view('employees.show', compact('employee', 'salaries'));
     }
 
     public function destroy(Model $employee)
     {
         $response = $this->ajaxDispatch(new DeleteEmployee($employee));
 
-        $response['redirect'] = route('accounts.index');
+        $response['redirect'] = route('employees.index');
 
         if ($response['success']) {
             $message = trans('messages.success.deleted', ['type' => $employee->first_name . ' ' . $employee->last_name]);

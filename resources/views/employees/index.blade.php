@@ -70,7 +70,7 @@
 
                 <x-table.tbody>
                     @foreach($employees as $item)
-                        <x-table.tr href="{{ route('accounts.show', $item->id) }}">
+                        <x-table.tr href="{{ route('employees.show', $item->id) }}">
                             <x-table.td class="ltr:pr-6 rtl:pl-6 hidden sm:table-cell" override="class">
                                 <x-index.bulkaction.single id="{{ $item->id }}"
                                                            name="{{ $item->first_name.' '.$item->last_name }}"/>

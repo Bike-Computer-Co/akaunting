@@ -11,7 +11,14 @@ class Employee extends Model
     use HasFactory;
     use Cloneable;
 
-    protected $fillable = ['company_id', 'first_name', 'last_name', 'personal_number', 'birth_date', 'bank_account', 'occupation', 'address', 'email', 'phone', 'salary'];
+    protected $fillable = ['company_id', 'first_name', 'last_name', 'personal_number', 'birth_date', 'bank_account', 'occupation', 'address', 'email', 'phone', 'salary', 'enabled'];
+
+
+    public function salaries(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Salary::class);
+    }
+
 
     /**
      * Get the line actions.

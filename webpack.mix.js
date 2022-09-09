@@ -70,6 +70,7 @@ mix
     .js('resources/assets/js/views/settings/settings.js', 'public/js/settings/settings.min.js')
     .js('resources/assets/js/views/settings/taxes.js', 'public/js/settings/taxes.min.js')
     .js('resources/assets/js/views/employees.js', 'public/js/employees.min.js')
+    .js('resources/assets/js/views/salaries.js', 'public/js/salaries.min.js')
 
     .vue()
 

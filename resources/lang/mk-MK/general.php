@@ -63,7 +63,7 @@ return [
     'first_name'            => 'Име',
     'last_name'             => 'Презиме',
     'personal_number'       => 'Матичен број',
-    'occupation'            => 'Окупација',
+    'occupation'            => 'Занимање',
     'birth_date'            => 'Ден на раѓање',
     'bank_account'          => 'Сметка во банка',
     'salary'                => 'Плата',
