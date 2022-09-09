@@ -38,6 +38,11 @@ class ShowInAdmin
             $menu->route('customers.index', $title, [], 20, ['icon' => 'people']);
         }
 
+        $title = trim(trans_choice('general.employees', 2));
+        if ($this->canAccessMenuItem($title, 'read-employee')) {
+            $menu->route('employees.index', $title, [], 20, ['icon' => 'people']);
+        }
+
         // Items
         $title = trim(trans_choice('general.items', 2));
         if ($this->canAccessMenuItem($title, 'read-common-items')) {
