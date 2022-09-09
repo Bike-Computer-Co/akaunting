@@ -67,6 +67,7 @@ return [
     'birth_date'            => 'Ден на раѓање',
     'bank_account'          => 'Сметка во банка',
     'salary'                => 'Плата',
+    'active'                => 'Активен',
 
     'dashboard'             => 'Контролна табла',
     'banking'               => 'Банкарство',

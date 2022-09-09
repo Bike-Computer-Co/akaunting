@@ -19,10 +19,10 @@
 
     <x-slot name="content">
         <x-index.container>
-                        <x-index.search
-                            search-string="App\Models\Employee"
-                            bulk-action="App\BulkActions\Employees"
-                        />
+            <x-index.search
+                search-string="App\Models\Employee"
+                bulk-action="App\BulkActions\Employees"
+            />
 
             <x-table>
                 <x-table.thead>
@@ -57,6 +57,13 @@
                                 <x-sortablelink column="occupation" title="{{ trans('general.occupation') }}"/>
                             </x-slot>
                         </x-table.th>
+
+                        <x-table.th class="w-3/12 sm:w-6/12">
+                            <x-slot name="first">
+                                <x-sortablelink column="active"
+                                                title="{{ trans('general.active') }}"/>
+                            </x-slot>
+                        </x-table.th>
                     </x-table.tr>
 
                 </x-table.thead>
@@ -80,6 +87,13 @@
                             <x-table.td class="w-3/12 sm:w-6/12 truncate">
                                 {{ $item->occupation }}
                             </x-table.td>
+                            <x-table.td class="w-3/12 sm:w-6/12 truncate">
+                                @if($item->active)
+                                    Активен
+                                @else
+                                    Неактивен
+                                @endif
+                            </x-table.td>
                             <x-table.td kind="action">
                                 <x-table.actions :model="$item"/>
                             </x-table.td>
@@ -91,5 +105,5 @@
             <x-pagination :items="$employees"/>
         </x-index.container>
     </x-slot>
-    <x-script file="employees" />
+    <x-script file="employees"/>
 </x-layouts.admin>

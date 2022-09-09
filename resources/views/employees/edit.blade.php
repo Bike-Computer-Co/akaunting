@@ -12,6 +12,8 @@
     <x-slot name="content">
         <x-form.container>
             <x-form id="employee" method="PATCH" :route="['employees.update', $employee->id]" :model="$employee">
+                <x-form.group.switch name="enabled" label="{{ trans('general.enabled') }}" />
+
                 <x-form.section>
                     <x-slot name="head">
 {{--                        <x-form.section.head title="{{ trans('general.general') }}" description="{{ trans('accounts.form_description.general') }}" />--}}

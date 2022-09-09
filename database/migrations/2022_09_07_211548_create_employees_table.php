@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->unsignedDouble('salary')->nullable();
-
+            $table->boolean('enabled')->default(true);
             $table->softDeletes();
             $table->timestamps();
             $table->index('company_id');
