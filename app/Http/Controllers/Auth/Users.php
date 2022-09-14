@@ -37,7 +37,8 @@ class Users extends Controller
      */
     public function index()
     {
-        $users = User::whereHas('companies', fn($q) => $q->where('id', company_id()))
+        $users = User::query()
+            ->whereHas('companies', fn($q) => $q->where('id', company_id()))
             ->with('media', 'roles')->collect();
 
         return $this->response('auth.users.index', compact('users'));
@@ -87,7 +88,14 @@ class Users extends Controller
      */
     public function store(Request $request)
     {
-        $response = $this->ajaxDispatch(new CreateUser($request));
+        $exists = User::where('email', $request->email)->first();
+        if ($exists) {
+            $request->companies = [...$request->companies, $exists->companies->pluck('id')];
+            $response = $this->ajaxDispatch(new UpdateUser($exists, $request));
+        } else {
+            $response = $this->ajaxDispatch(new CreateUser($request));
+
+        }
 
         if ($response['success']) {
             $response['redirect'] = route('users.index');
@@ -118,11 +126,11 @@ class Users extends Controller
         if (user()->cannot('read-auth-users') && ($user->id != user()->id)) {
             abort(403);
         }
-        if (!$user->companies()->where('id', company_id())->exists()){
+        if (!$user->companies()->where('id', company_id())->exists()) {
             abort(403);
         }
 
-            $u = new \stdClass();
+        $u = new \stdClass();
         $u->landing_pages = [];
 
         event(new LandingPageShowing($u));
@@ -175,7 +183,7 @@ class Users extends Controller
         if (user()->cannot('update-auth-users') && ($user->id != user()->id)) {
             abort(403);
         }
-        if (!$user->companies()->where('id', company_id())->exists()){
+        if (!$user->companies()->where('id', company_id())->exists()) {
             abort(403);
         }
 
@@ -243,7 +251,7 @@ class Users extends Controller
      */
     public function destroy(User $user)
     {
-        if (!$user->companies()->where('id', company_id())->exists()){
+        if (!$user->companies()->where('id', company_id())->exists()) {
             abort(403);
         }
         $response = $this->ajaxDispatch(new DeleteUser($user));
