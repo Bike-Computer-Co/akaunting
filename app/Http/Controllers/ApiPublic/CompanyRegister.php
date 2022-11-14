@@ -13,26 +13,26 @@ class CompanyRegister extends Controller
     public function request(Request $request)
     {
         $validated = $request->validate([
-            'merchant' => 'required',
-            'company_name' => 'required',
-            'name' => 'required',
-            'address' => 'required',
-            'personal_id' => 'required',
-            'same_director_button' => 'required',
-            'name_director' => 'required',
-            'address_director' => 'required',
-            'personal_id_director' => 'required',
-            'bank' => 'required',
-            'street' => 'required',
-            'number' => 'required',
-            'city' => 'required',
-            'same_address_button' => 'required',
-            'street_partner' => 'required',
-            'number_partner' => 'required',
-            'city_partner' => 'required',
-            'selected_activity' => 'required',
-            'option_1' => 'required',
-            'option_2' => 'required'
+            'merchant' => 'nullable',
+            'company_name' => 'nullable',
+            'name' => 'nullable',
+            'address' => 'nullable',
+            'personal_id' => 'nullable',
+            'same_director_button' => 'nullable',
+            'name_director' => 'nullable',
+            'address_director' => 'nullable',
+            'personal_id_director' => 'nullable',
+            'bank' => 'nullable',
+            'street' => 'nullable',
+            'number' => 'nullable',
+            'city' => 'nullable',
+            'same_address_button' => 'nullable',
+            'street_partner' => 'nullable',
+            'number_partner' => 'nullable',
+            'city_partner' => 'nullable',
+            'selected_activity' => 'nullable',
+            'option_1' => 'nullable',
+            'option_2' => 'nullable'
         ]);
 
         \Illuminate\Support\Facades\Notification::route('mail', 'ivan@venikom.com')
