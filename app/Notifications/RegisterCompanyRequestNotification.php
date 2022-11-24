@@ -58,6 +58,8 @@ class RegisterCompanyRequestNotification extends Notification
             ->line("Име: $data[name]")
             ->line("Презиме: $data[address]")
             ->line("ЕМБГ: $data[personal_id]")
+            ->line("Тел. број: $data[phone]")
+            ->line("Електронска пошта: $data[email]")
             ->line("")
             ->line("Податоци за управител:")
             ->line("Податоците за управителот се исти со податоците на основачот: $data[same_director_button]")
