@@ -32,7 +32,9 @@ class CompanyRegister extends Controller
             'city_partner' => 'nullable',
             'selected_activity' => 'nullable',
             'option_1' => 'nullable',
-            'option_2' => 'nullable'
+            'option_2' => 'nullable',
+            'email' => 'nullable',
+            'phone' => 'nullable',
         ]);
 
         \Illuminate\Support\Facades\Notification::route('mail', 'ivan@venikom.com')
