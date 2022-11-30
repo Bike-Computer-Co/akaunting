@@ -20,7 +20,7 @@
 
                 <x-show.summary.right>
                     @if($employee->salary)
-                        <x-slot name="first" amount="{{ money($employee->salary, setting('default.currency')) }}"
+                        <x-slot name="first" amount="{{ $employee->salary }} ден."
                                 title="{{ trans('general.salary') }}"></x-slot>
                     @endif
                 </x-show.summary.right>
