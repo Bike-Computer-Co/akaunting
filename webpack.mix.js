@@ -72,6 +72,10 @@ mix
     .js('resources/assets/js/views/employees.js', 'public/js/employees.min.js')
     .js('resources/assets/js/views/salaries.js', 'public/js/salaries.min.js')
 
+    // Inertia
+    .js('resources/inertia/app.js', 'public/inertia/js')
+    .sass('resources/inertia/scss/app.scss', 'public/inertia/css')
+
     .vue()
 
     .postCss('resources/assets/sass/app.css', 'public/css', [

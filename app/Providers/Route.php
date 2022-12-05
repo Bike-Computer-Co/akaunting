@@ -141,6 +141,8 @@ class Route extends Provider
         $this->mapPortalRoutes();
 
         $this->mapSignedRoutes();
+
+        $this->mapInertiaRoutes();
     }
 
     /**
@@ -188,6 +190,20 @@ class Route extends Provider
             ->middleware('api_public')
             ->namespace($this->namespace . '\ApiPublic')
             ->group(base_path('routes/api_public.php'));
+    }
+
+
+    /**
+     * Define the "inertia" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    public function mapInertiaRoutes() {
+        Facade::prefix('super')
+            ->middleware('inertia')
+            ->group(base_path('routes/inertia.php'));
     }
 
     /**

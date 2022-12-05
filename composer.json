@@ -49,6 +49,7 @@
         "genealabs/laravel-model-caching": "0.12.*",
         "graham-campbell/markdown": "14.0.x-dev",
         "guzzlehttp/guzzle": "^7.4",
+        "inertiajs/inertia-laravel": "^0.6.4",
         "intervention/image": "^2.5",
         "intervention/imagecache": "^2.5",
         "laracasts/flash": "3.2.*",
