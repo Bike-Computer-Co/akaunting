@@ -39,7 +39,10 @@ class User extends Authenticatable implements HasLocalePreference
      */
     protected $casts = [
         'enabled' => 'boolean',
+        'is_super' => 'boolean'
     ];
+
+    protected $guarded = ['is_super'];
 
     /**
      * The attributes that should be hidden for arrays.

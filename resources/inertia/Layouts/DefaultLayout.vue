@@ -11,17 +11,17 @@
                 <i class="fa fa-times fa-2x"></i>
             </button>
             <div class="d-flex flex-column p-3 bg-dark shadow-sm text-white">
-<!--                <Link-->
-<!--                    :href="$route('vehicles.index')"-->
-<!--                    class="mb-3 link-dark text-decoration-none text-center"-->
-<!--                >-->
-<!--                    <img-->
-<!--                        class="mb-1"-->
-<!--                        src="/images/autowelt-logo-light.svg"-->
-<!--                        alt="Logo"-->
-<!--                        height="50"-->
-<!--                    />-->
-<!--                </Link>-->
+                <Link
+                    :href="$route('super.users.index')"
+                    class="mb-3 link-dark text-decoration-none text-center"
+                >
+                    <img
+                        class="mb-1"
+                        src="/public/img/akaunting-logo-white.svg"
+                        alt="Logo"
+                        height="50"
+                    />
+                </Link>
                 <hr />
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li

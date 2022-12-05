@@ -39969,6 +39969,24 @@ var render = function () {
             staticClass: "d-flex flex-column p-3 bg-dark shadow-sm text-white",
           },
           [
+            _c(
+              "Link",
+              {
+                staticClass: "mb-3 link-dark text-decoration-none text-center",
+                attrs: { href: _vm.$route("super.users.index") },
+              },
+              [
+                _c("img", {
+                  staticClass: "mb-1",
+                  attrs: {
+                    src: "/public/img/akaunting-logo-white.svg",
+                    alt: "Logo",
+                    height: "50",
+                  },
+                }),
+              ]
+            ),
+            _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
             _c(
@@ -40010,7 +40028,8 @@ var render = function () {
               }),
               0
             ),
-          ]
+          ],
+          1
         ),
       ]
     ),

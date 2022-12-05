@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckBilling;
+use App\Http\Middleware\IsSuper;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -39,6 +40,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Inertia\HandleInertiaRequests::class,
+            'super'
         ],
         'web' => [
             'cookies.encrypt',
@@ -199,7 +201,10 @@ class Kernel extends HttpKernel
         'ability' => \Laratrust\Middleware\LaratrustAbility::class,
         'role' => \Laratrust\Middleware\LaratrustRole::class,
         'permission' => \Laratrust\Middleware\LaratrustPermission::class,
-        'check_billing' => CheckBilling::class
+        'check_billing' => CheckBilling::class,
+
+        // Super
+        'super' => IsSuper::class
     ];
 
     /**
