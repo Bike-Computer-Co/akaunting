@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="text-danger">
         This is dashboard
     </div>
 </template>
