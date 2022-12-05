@@ -19,6 +19,7 @@ class UserController extends BaseController
     public function index(): Response
     {
         $users = User::query()
+            ->latest()
             ->paginate(10);
         return Inertia::render('User/Index', compact('users'));
     }
