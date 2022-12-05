@@ -1,5 +1,8 @@
 <?php
 
-use App\Http\Controllers\Inertia\DashboardController;
+use App\Http\Controllers\Inertia\UserController;
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+// TODO: PROTECT THE ROUTES ONLY FOR SUPER ADMIN
+Route::name('super.')->group(function () {
+    Route::resource('users', UserController::class)->only('index', 'create', 'store');
+});
