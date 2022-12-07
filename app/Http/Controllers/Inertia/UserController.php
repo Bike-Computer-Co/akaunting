@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inertia;
 use App\Jobs\Auth\CreateUser;
 use App\Jobs\Common\CreateCompany;
 use App\Models\Auth\User;
+use App\Models\StripePlan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -27,9 +28,10 @@ class UserController extends BaseController
 
     public function show(User $user): Response
     {
+        $stripePlans = StripePlan::all();
         $user->loadMissing('companies', 'companies.settings');
 
-        return Inertia::render('User/Show', compact('user'));
+        return Inertia::render('User/Show', compact('user', 'stripePlans'));
     }
 
     public function create(): Response

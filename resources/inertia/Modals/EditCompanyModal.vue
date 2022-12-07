@@ -23,8 +23,14 @@
                 </div>
                 <div v-if="company" class="modal-body text-center p-5">
                     <div class="fs-5 line-height-normal mb-4">
-                        Внесете цени за адвокат и сметководител
+                        Внесете цени
                     </div>
+                    <select v-model="form.stripe_plan_id" class="form-select form-select-lg mb-3">
+                        <option selected :value="null">Изберете Stripe пакет</option>
+                        <option v-for="plan in stripePlans" :key="plan.id" :value="plan.id">
+                            {{ plan.name }}
+                        </option>
+                    </select>
                     <div class="form-floating mb-3">
                         <input v-model="form.accountant_price" type="number" class="form-control" id="accountant_price"
                                placeholder="Accountant Price" :class="{'is-invalid' : form.errors.accountant_price}">
@@ -72,6 +78,12 @@ import {Modal} from "bootstrap";
 
 export default {
     name: "EditCompanyModal",
+    props: {
+        stripePlans: {
+            type: Array,
+            default: null
+        }
+    },
     data() {
         return {
             modal: null,
@@ -80,6 +92,7 @@ export default {
                 accountant_price: "",
                 lawyer_price: "",
                 comment: "",
+                stripe_plan_id: null,
             })
         };
     },
@@ -91,6 +104,7 @@ export default {
             this.form.accountant_price = this.company.accountant_price;
             this.form.lawyer_price = this.company.lawyer_price;
             this.form.comment = this.company.comment;
+            this.form.stripe_plan_id = this.company.stripe_plan_id;
         });
     },
     methods: {

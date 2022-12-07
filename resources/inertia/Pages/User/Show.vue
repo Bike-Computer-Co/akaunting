@@ -142,7 +142,7 @@
                 </div>
             </div>
         </div>
-        <EditCompanyModal/>
+        <EditCompanyModal :stripePlans="stripePlans"/>
     </div>
 </template>
 
@@ -157,6 +157,10 @@ export default {
     props: {
         user: {
             type: Object,
+            default: null
+        },
+        stripePlans: {
+            type: Array,
             default: null
         }
     }

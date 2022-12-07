@@ -15,9 +15,11 @@ class CompanyController extends BaseController
             'accountant_price' => ['required', 'min:0', 'integer'],
             'lawyer_price' => ['required', 'min:0', 'integer'],
             'comment' => ['nullable'],
+            'stripe_plan_id' => ['required', 'exists:stripe_plans,id'],
         ]);
 
         $company->fill($validated);
+        $company->stripe_plan()->associate($validated['stripe_plan_id']);
         $company->save();
 
         return back()->with('success', 'Успешно додадовте цени за сметководител и адвокат');
