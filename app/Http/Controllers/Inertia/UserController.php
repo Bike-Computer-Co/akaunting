@@ -20,8 +20,14 @@ class UserController extends BaseController
     {
         $users = User::query()
             ->latest()
-            ->paginate(10);
+            ->paginate(20);
         return Inertia::render('User/Index', compact('users'));
+    }
+
+    public function show(User $user): Response
+    {
+        $user->loadMissing('companies', 'companies.settings');
+        return Inertia::render('User/Show', compact('user'));
     }
 
     public function create(): Response

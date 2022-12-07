@@ -13,10 +13,11 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Име</th>
-                    <th scope="col">Презиме</th>
+                    <th scope="col">Име и презиме</th>
+                    <th scope="col">Е-пошта</th>
                     <th scope="col">Креиран на</th>
                     <th scope="col">Последен пат логиран</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,7 +26,13 @@
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.created_at | moment('ll') }}</td>
-                    <td>{{ user.last_logged_in_at | moment('ll') }}</td>
+                    <td v-if="user.last_logged_in_at">{{ user.last_logged_in_at | moment('ll') }}</td>
+                    <td v-else>Никогаш</td>
+                    <td>
+                        <Link class="btn btn-sm btn-primary" :href="$route('super.users.show', user)">
+                            Види корисник
+                        </Link>
+                    </td>
                 </tr>
                 </tbody>
             </table>
