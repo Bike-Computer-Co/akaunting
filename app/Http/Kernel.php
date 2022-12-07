@@ -104,6 +104,18 @@ class Kernel extends HttpKernel
             'check_billing',
         ],
 
+        'billing' => [
+            'web',
+            'auth',
+            'auth.disabled',
+            'company.identify',
+            'bindings',
+            'read.only',
+            'wizard.redirect',
+            'menu.admin',
+            'permission:read-admin-panel',
+        ],
+
         'wizard' => [
             'web',
             'auth',
@@ -201,6 +213,8 @@ class Kernel extends HttpKernel
         'ability' => \Laratrust\Middleware\LaratrustAbility::class,
         'role' => \Laratrust\Middleware\LaratrustRole::class,
         'permission' => \Laratrust\Middleware\LaratrustPermission::class,
+
+        //custom
         'check_billing' => CheckBilling::class,
 
         // Super

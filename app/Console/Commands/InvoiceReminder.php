@@ -57,11 +57,6 @@ class InvoiceReminder extends Command
             // Set company
             $company->makeCurrent();
 
-            if (! $company->haveOption('remind')) {
-                $this->info('Company doesnt have package for this');
-
-                continue;
-            }
 
             // Don't send reminders if disabled
             if (! setting('schedule.send_invoice_reminder')) {

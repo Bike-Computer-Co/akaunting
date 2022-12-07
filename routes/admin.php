@@ -49,17 +49,6 @@ Route::group(['prefix' => 'common'], function () {
     Route::get('contacts/index', 'Common\Contacts@index')->name('contacts.index');
 });
 
-// TODO: DISABLED BILLING CONTROLLER FUNCTIONS
-//Route::group(['prefix' => 'billing'], function () {
-////    Route::get('/home', fn()=> '')->name('home');
-//    Route::get('/redirect', 'BillingController@redirect')->name('billing.redirect');
-//    Route::get('/subscription', "BillingController@subscription")->name('billing.subscription');
-//    Route::post('/subscribe', "BillingController@subscribe")->name('billing.subscribe');
-//    Route::patch('/swap', "BillingController@swap")->name('billing.swap');
-//    Route::patch('/cancel', "BillingController@cancel")->name('billing.cancel');
-//    Route::patch('/resume', "BillingController@resume")->name('billing.resume');
-//});
-
 Route::group(['prefix' => 'auth'], function () {
     Route::get('logout', 'Auth\Login@destroy')->name('logout');
 

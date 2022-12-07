@@ -30,12 +30,10 @@ class Login extends Controller
 
     public function create()
     {
-        if (app()->environment('production')) {
+        if (app()->environment('production'))
             return redirect('https://digitalhub.mk/login');
-        }
-
-        return redirect('http://localhost:3000/login');
-//        return view('auth.login.create');
+//        return redirect("http://localhost:3000/login");
+        return view('auth.login.create');
     }
 
     public function store(Request $request)

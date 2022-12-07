@@ -135,6 +135,7 @@ class Route extends Provider
         $this->mapWizardRoutes();
 
         $this->mapAdminRoutes();
+        $this->mapBillingRoutes();
 
         $this->mapPreviewRoutes();
 
@@ -265,6 +266,17 @@ class Route extends Provider
             ->group(base_path('routes/admin.php'));
     }
 
+    /**
+     *
+     * @return void
+     */
+    protected function mapBillingRoutes()
+    {
+        Facade::prefix('{company_id}/billing')
+            ->middleware('billing')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/billing.php'));
+    }
     /**
      * Define the "preview" routes for the application.
      *

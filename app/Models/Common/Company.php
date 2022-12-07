@@ -54,32 +54,6 @@ class Company extends Eloquent implements Ownable
      */
     public $sortable = ['id', 'name', 'domain', 'email', 'enabled', 'created_at', 'tax_number', 'country', 'currency'];
 
-    public function getPackage()
-    {
-        if (! $this->subscribed()) {
-            return config('packages')[0];
-        }
-        foreach (config('packages') as $package) {
-            if (! isset($package['monthly_stripe_id']) || ! isset($package['yearly_stripe_id'])) {
-                continue;
-            }
-            if ($this->subscribedToPrice([$package['monthly_stripe_id'], $package['yearly_stripe_id']])) {
-                return $package;
-            }
-        }
-
-        return null;
-    }
-
-    public function haveOption($option): bool
-    {
-        $package = $this->getPackage();
-        if (! $package) {
-            return false;
-        }
-
-        return in_array($option, $package['feature_keys']);
-    }
 
     /**
      * Fill the model with an array of attributes.

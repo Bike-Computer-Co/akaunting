@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Abstracts\Http\Controller;
+use App\Models\StripePlan;
 use Illuminate\Http\Request;
 
 class BillingController extends Controller
@@ -17,44 +18,26 @@ class BillingController extends Controller
 
     public function subscription(Request $request)
     {
-        $yearly = $request->has('yearly');
-
+        $checkout = $request->get('checkout');
+        if ($checkout == 'success'){
+            flash('Успешно се претплативте')->success()->important();
+        }
+        if($checkout == 'error'){
+            flash('Неуспешна претплата')->error();
+        }
         return view('billing.subscription', [
             'stripeKey' => config('cashier.key'),
-            'packages' => config('packages'),
-            'yearly' => $yearly,
-            'keyword' => $yearly ? 'yearly' : 'monthly',
+            'checkout'=> $request->get('checkout')
         ]);
     }
 
-    private function getPackage(Request $request)
-    {
-        $monthly = collect(config('packages'))->where('monthly_stripe_id', $request->price_id)->first();
-        $yearly = collect(config('packages'))->where('yearly_stripe_id', $request->price_id)->first();
-        if (! $monthly && ! $yearly) {
-            abort(400);
-        }
-
-        return $monthly ?? $yearly;
-    }
 
     public function subscribe(Request $request)
     {
-        $request->validate([
-            'price_id' => 'required',
-            'trial' => 'required|boolean',
-        ]);
         abort_if(company()->subscribed(), 400, 'Already subscribed');
-        $package = $this->getPackage($request);
-
-        $checkout = company()->newSubscription('default', $request->price_id);
-
-        if ($request->trial && $package['trial_days']) {
-            $checkout = $checkout->trialDays($package['trial_days'] + 1);
-        }
-
-        $checkout = $checkout
-            ->checkout([
+        abort_if(!company()->stripe_plan_id, 400, 'Doesnt have');
+        $plan = company()->stripe_plan;
+        $checkout = company()->newSubscription('default', $plan->stripe_id)->checkout([
                 'success_url' => route('billing.subscription').'?checkout=success',
                 'cancel_url' => route('billing.subscription').'?checkout=cancelled',
             ]);
@@ -64,16 +47,16 @@ class BillingController extends Controller
         ]);
     }
 
-    public function swap(Request $request)
-    {
-        $request->validate([
-            'price_id' => 'required',
-        ]);
-        $package = $this->getPackage($request);
-        company()->subscription()->swap($request->price_id);
-
-        return back();
-    }
+//    public function swap(Request $request)
+//    {
+//        $request->validate([
+//            'price_id' => 'required',
+//        ]);
+//        $package = $this->getPackage($request);
+//        company()->subscription()->swap($request->price_id);
+//
+//        return back();
+//    }
 
     public function cancel(Request $request)
     {

@@ -10,8 +10,8 @@ class CheckBilling
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse) $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
@@ -31,6 +31,18 @@ class CheckBilling
 //            }
 //        }
 
-        return $next($request);
+        if (company() && company()->subscribed()) {
+            return $next($request);
+        }
+
+        flash('Немате платена претплата')->error()->important();
+        if ($request->expectsJson()) {
+            return response()->json([
+                'redirect' => route('billing.subscription')
+            ]);
+        } else {
+            return redirect()->route('billing.subscription');
+        }
+
     }
 }
