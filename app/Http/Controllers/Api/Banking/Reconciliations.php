@@ -27,7 +27,7 @@ class Reconciliations extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  $reconciliation
+     * @param    $reconciliation
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Reconciliation $reconciliation)
@@ -38,7 +38,7 @@ class Reconciliations extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -51,8 +51,8 @@ class Reconciliations extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $reconciliation
-     * @param  $request
+     * @param    $reconciliation
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Reconciliation $reconciliation, Request $request)
@@ -65,7 +65,7 @@ class Reconciliations extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Reconciliation $reconciliation
+     * @param  Reconciliation  $reconciliation
      * @return \Illuminate\Http\Response
      */
     public function destroy(Reconciliation $reconciliation)

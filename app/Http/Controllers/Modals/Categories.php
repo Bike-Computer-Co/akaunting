@@ -55,14 +55,13 @@ class Categories extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
     {
         $request['enabled'] = 1;
         $request['type'] = $request->get('type', 'income');
-        $request['color'] = $request->get('color', '#' . dechex(rand(0x000000, 0xFFFFFF)));
+        $request['color'] = $request->get('color', '#'.dechex(rand(0x000000, 0xFFFFFF)));
 
         $response = $this->ajaxDispatch(new CreateCategory($request));
 

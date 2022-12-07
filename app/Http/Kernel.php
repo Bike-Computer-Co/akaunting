@@ -16,7 +16,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-//        \App\Http\Middleware\TrustHosts::class,
+        //        \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
@@ -40,7 +40,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Inertia\HandleInertiaRequests::class,
-            'super'
+            'super',
         ],
         'web' => [
             'cookies.encrypt',
@@ -101,7 +101,7 @@ class Kernel extends HttpKernel
             'wizard.redirect',
             'menu.admin',
             'permission:read-admin-panel',
-            'check_billing'
+            'check_billing',
         ],
 
         'wizard' => [
@@ -147,7 +147,7 @@ class Kernel extends HttpKernel
             'read.only',
             'header.x',
             'language',
-//            'firewall.all',
+            //            'firewall.all',
         ],
 
         'import' => [
@@ -204,7 +204,7 @@ class Kernel extends HttpKernel
         'check_billing' => CheckBilling::class,
 
         // Super
-        'super' => IsSuper::class
+        'super' => IsSuper::class,
     ];
 
     /**

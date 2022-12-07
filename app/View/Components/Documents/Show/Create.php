@@ -18,7 +18,7 @@ class Create extends Component
     public function render()
     {
         $this->description = ($this->document->isRecurringDocument()) ? 'invoices.slider.create_recurring' : 'invoices.slider.create';
-        $this->created_date = '<span class="font-medium">' . company_date($this->document->created_at) . '</span>';
+        $this->created_date = '<span class="font-medium">'.company_date($this->document->created_at).'</span>';
 
         return view('components.documents.show.create');
     }

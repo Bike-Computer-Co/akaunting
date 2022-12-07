@@ -20,22 +20,22 @@ class Setting extends FormRequest
 
         switch ($prefix) {
             case 'company':
-                $logo = 'mimes:' . config('filesystems.mimes')
-                        . '|between:0,' . config('filesystems.max_size') * 1024
-                        . '|dimensions:max_width=' . config('filesystems.max_width') . ',max_height=' . config('filesystems.max_height');
+                $logo = 'mimes:'.config('filesystems.mimes')
+                        .'|between:0,'.config('filesystems.max_size') * 1024
+                        .'|dimensions:max_width='.config('filesystems.max_width').',max_height='.config('filesystems.max_height');
 
                 $rules = [
-                    'name'  => 'required|string',
+                    'name' => 'required|string',
                     'email' => 'required|email',
-                    'logo'  => $logo,
+                    'logo' => $logo,
                 ];
 
                 break;
             case 'default':
                 $rules = [
-                    'currency'          => 'required|string|currency',
-                    'locale'            => 'required|string',
-                    'payment_method'    => 'required|string',
+                    'currency' => 'required|string|currency',
+                    'locale' => 'required|string',
+                    'payment_method' => 'required|string',
                 ];
 
                 break;
@@ -47,9 +47,9 @@ class Setting extends FormRequest
     public function messages()
     {
         $logo_dimensions = trans('validation.custom.invalid_dimension', [
-            'attribute'     => Str::lower(trans('settings.company.logo')),
-            'width'         => config('filesystems.max_width'),
-            'height'        => config('filesystems.max_height'),
+            'attribute' => Str::lower(trans('settings.company.logo')),
+            'width' => config('filesystems.max_width'),
+            'height' => config('filesystems.max_height'),
         ]);
 
         return [

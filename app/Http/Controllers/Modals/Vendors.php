@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Modals;
 
 use App\Abstracts\Http\Controller;
 use App\Http\Requests\Common\Contact as Request;
-use App\Models\Common\Contact;
 use App\Jobs\Common\CreateContact;
 use App\Jobs\Common\UpdateContact;
+use App\Models\Common\Contact;
 
 class Vendors extends Controller
 {
@@ -49,7 +49,6 @@ class Vendors extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -69,7 +68,6 @@ class Vendors extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Contact  $vendor
-     *
      * @return Response
      */
     public function edit(Contact $vendor)
@@ -80,7 +78,7 @@ class Vendors extends Controller
             $contact_selector = request()->get('contact_selector');
         }
 
-        $html = view('modals.vendors.edit', compact('vendor','contact_selector'))->render();
+        $html = view('modals.vendors.edit', compact('vendor', 'contact_selector'))->render();
 
         return response()->json([
             'success' => true,
@@ -93,9 +91,8 @@ class Vendors extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Contact $vendor
-     * @param  Request $request
-     *
+     * @param  Contact  $vendor
+     * @param  Request  $request
      * @return Response
      */
     public function update(Contact $vendor, Request $request)

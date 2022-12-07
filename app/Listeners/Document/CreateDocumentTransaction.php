@@ -14,7 +14,7 @@ class CreateDocumentTransaction
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return array
      */
     public function handle(Event $event)
@@ -36,13 +36,13 @@ class CreateDocumentTransaction
             if (empty($user) || $signed) {
                 flash($message)->error()->important();
 
-                return $this->getResponse('signed.' . $type . '.show', $document, $message);
+                return $this->getResponse('signed.'.$type.'.show', $document, $message);
             }
 
             if ($user->isCustomer()) {
                 flash($message)->error()->important();
 
-                return $this->getResponse('portal.' . $type . '.show', $document, $message);
+                return $this->getResponse('portal.'.$type.'.show', $document, $message);
             }
 
             throw new \Exception($message);

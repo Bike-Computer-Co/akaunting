@@ -17,6 +17,6 @@ return [
     'sent' => 'Şifrə sıfırlama linkinizi elektron poçtla göndərdik!',
     'throttled' => 'Yenidən sınamazdan əvvəl gözləyin.',
     'token' => 'Şifrə sıfırlama ünvanı/kodu etibarsızdır.',
-    'user' => "Bu e-poçt ünvanı ilə qeydiyyatdan keçmiş bir üzv yoxdur.",
+    'user' => 'Bu e-poçt ünvanı ilə qeydiyyatdan keçmiş bir üzv yoxdur.',
 
 ];

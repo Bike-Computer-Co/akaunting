@@ -18,23 +18,23 @@ class Reconciliations extends BulkAction
     ];
 
     public $actions = [
-        'reconcile'     => [
-            'icon'          => 'published_with_changes',
-            'name'          => 'reconciliations.reconcile',
-            'message'       => 'bulk_actions.message.reconcile',
-            'permission'    => 'update-banking-reconciliations',
+        'reconcile' => [
+            'icon' => 'published_with_changes',
+            'name' => 'reconciliations.reconcile',
+            'message' => 'bulk_actions.message.reconcile',
+            'permission' => 'update-banking-reconciliations',
         ],
-        'unreconcile'   => [
-            'icon'          => 'layers_clear',
-            'name'          => 'reconciliations.unreconcile',
-            'message'       => 'bulk_actions.message.unreconcile',
-            'permission'    => 'update-banking-reconciliations',
+        'unreconcile' => [
+            'icon' => 'layers_clear',
+            'name' => 'reconciliations.unreconcile',
+            'message' => 'bulk_actions.message.unreconcile',
+            'permission' => 'update-banking-reconciliations',
         ],
-        'delete'        => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-banking-reconciliations',
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-banking-reconciliations',
         ],
     ];
 

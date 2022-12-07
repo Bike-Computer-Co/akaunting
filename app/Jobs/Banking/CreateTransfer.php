@@ -6,10 +6,9 @@ use App\Abstracts\Job;
 use App\Interfaces\Job\HasOwner;
 use App\Interfaces\Job\HasSource;
 use App\Interfaces\Job\ShouldCreate;
-use App\Jobs\Banking\CreateTransaction;
 use App\Models\Banking\Account;
-use App\Models\Banking\Transfer;
 use App\Models\Banking\Transaction;
+use App\Models\Banking\Transfer;
 use App\Traits\Categories;
 use App\Traits\Currencies;
 use App\Traits\Transactions;
@@ -90,10 +89,10 @@ class CreateTransfer extends Job implements HasOwner, HasSource, ShouldCreate
 
     protected function getCurrencyCode($type)
     {
-        $currency_code = $this->request->get($type . '_account_currency_code');
+        $currency_code = $this->request->get($type.'_account_currency_code');
 
         if (empty($currency_code)) {
-            $currency_code = Account::where('id', $this->request->get($type . '_account_id'))->pluck('currency_code')->first();
+            $currency_code = Account::where('id', $this->request->get($type.'_account_id'))->pluck('currency_code')->first();
         }
 
         return $currency_code;
@@ -101,10 +100,10 @@ class CreateTransfer extends Job implements HasOwner, HasSource, ShouldCreate
 
     protected function getCurrencyRate($type)
     {
-        $currency_rate = $this->request->get($type . '_account_rate');
+        $currency_rate = $this->request->get($type.'_account_rate');
 
         if (empty($currency_rate)) {
-            $currency_rate = config('money.' . $this->getCurrencyCode($type) . '.rate');
+            $currency_rate = config('money.'.$this->getCurrencyCode($type).'.rate');
         }
 
         return $currency_rate;

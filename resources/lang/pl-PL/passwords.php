@@ -17,6 +17,6 @@ return [
     'sent' => 'Przypomnienie hasła zostało wysłane!',
     'throttled' => 'Proszę poczekać przed ponownym próbą.',
     'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'user' => 'Nie znaleziono użytkownika z takim adresem e-mail.',
 
 ];

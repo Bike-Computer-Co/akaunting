@@ -6,11 +6,9 @@ use PaymentGatewayJson\Client\Json\DataObject;
 
 /**
  * Class ThreeDSecureData
- *
- * @package PaymentGatewayJson\Client\Data
  */
-class ThreeDSecureData extends DataObject {
-
+class ThreeDSecureData extends DataObject
+{
     /** @var string */
     protected $threeDSecure;
 
@@ -164,7 +162,7 @@ class ThreeDSecureData extends DataObject {
     /** @var string */
     protected $browserIpAddress;
 
-    /** @var boolean */
+    /** @var bool */
     protected $browserJavaEnabled;
 
     /** @var string */
@@ -218,13 +216,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $threeDSecure
-     *
+     * @param  string  $threeDSecure
      * @return ThreeDSecureData
      */
     public function setThreeDSecure($threeDSecure)
     {
         $this->threeDSecure = $threeDSecure;
+
         return $this;
     }
 
@@ -237,13 +235,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $channel
-     *
+     * @param  string  $channel
      * @return ThreeDSecureData
      */
     public function setChannel($channel)
     {
         $this->channel = $channel;
+
         return $this;
     }
 
@@ -256,13 +254,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $authenticationIndicator
-     *
+     * @param  string  $authenticationIndicator
      * @return ThreeDSecureData
      */
     public function setAuthenticationIndicator($authenticationIndicator)
     {
         $this->authenticationIndicator = $authenticationIndicator;
+
         return $this;
     }
 
@@ -275,13 +273,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $cardholderAuthenticationMethod
-     *
+     * @param  string  $cardholderAuthenticationMethod
      * @return ThreeDSecureData
      */
     public function setCardholderAuthenticationMethod($cardholderAuthenticationMethod)
     {
         $this->cardholderAuthenticationMethod = $cardholderAuthenticationMethod;
+
         return $this;
     }
 
@@ -302,17 +300,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $cardholderAuthenticationDateTime
-     *
+     * @param  \DateTime|string  $cardholderAuthenticationDateTime
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setCardholderAuthenticationDateTime($cardholderAuthenticationDateTime)
     {
-        if (is_string($cardholderAuthenticationDateTime) && !empty($cardholderAuthenticationDateTime)) {
+        if (is_string($cardholderAuthenticationDateTime) && ! empty($cardholderAuthenticationDateTime)) {
             $cardholderAuthenticationDateTime = new \DateTime($cardholderAuthenticationDateTime);
         }
         $this->cardholderAuthenticationDateTime = $cardholderAuthenticationDateTime;
+
         return $this;
     }
 
@@ -325,13 +324,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $cardHolderAuthenticationData
-     *
+     * @param  string  $cardHolderAuthenticationData
      * @return ThreeDSecureData
      */
     public function setCardHolderAuthenticationData($cardHolderAuthenticationData)
     {
         $this->cardHolderAuthenticationData = $cardHolderAuthenticationData;
+
         return $this;
     }
 
@@ -344,13 +343,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $challengeIndicator
-     *
+     * @param  string  $challengeIndicator
      * @return ThreeDSecureData
      */
     public function setChallengeIndicator($challengeIndicator)
     {
         $this->challengeIndicator = $challengeIndicator;
+
         return $this;
     }
 
@@ -363,13 +362,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $priorReference
-     *
+     * @param  string  $priorReference
      * @return ThreeDSecureData
      */
     public function setPriorReference($priorReference)
     {
         $this->priorReference = $priorReference;
+
         return $this;
     }
 
@@ -382,13 +381,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $priorAuthenticationMethod
-     *
+     * @param  string  $priorAuthenticationMethod
      * @return ThreeDSecureData
      */
     public function setPriorAuthenticationMethod($priorAuthenticationMethod)
     {
         $this->priorAuthenticationMethod = $priorAuthenticationMethod;
+
         return $this;
     }
 
@@ -409,17 +408,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $priorAuthenticationDateTime
-     *
+     * @param  \DateTime|string  $priorAuthenticationDateTime
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setPriorAuthenticationDateTime($priorAuthenticationDateTime)
     {
-        if (is_string($priorAuthenticationDateTime) && !empty($priorAuthenticationDateTime)) {
+        if (is_string($priorAuthenticationDateTime) && ! empty($priorAuthenticationDateTime)) {
             $priorAuthenticationDateTime = new \DateTime($priorAuthenticationDateTime);
         }
         $this->priorAuthenticationDateTime = $priorAuthenticationDateTime;
+
         return $this;
     }
 
@@ -432,13 +432,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $priorAuthenticationData
-     *
+     * @param  string  $priorAuthenticationData
      * @return ThreeDSecureData
      */
     public function setPriorAuthenticationData($priorAuthenticationData)
     {
         $this->priorAuthenticationData = $priorAuthenticationData;
+
         return $this;
     }
 
@@ -451,13 +451,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $cardholderAccountType
-     *
+     * @param  string  $cardholderAccountType
      * @return ThreeDSecureData
      */
     public function setCardholderAccountType($cardholderAccountType)
     {
         $this->cardholderAccountType = $cardholderAccountType;
+
         return $this;
     }
 
@@ -478,17 +478,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $cardholderAccountDate
-     *
+     * @param  \DateTime|string  $cardholderAccountDate
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setCardholderAccountDate($cardholderAccountDate)
     {
-        if (is_string($cardholderAccountDate) && !empty($cardholderAccountDate)) {
+        if (is_string($cardholderAccountDate) && ! empty($cardholderAccountDate)) {
             $cardholderAccountDate = new \DateTime($cardholderAccountDate);
         }
         $this->cardholderAccountDate = $cardholderAccountDate;
+
         return $this;
     }
 
@@ -501,13 +502,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $cardholderAccountChangeIndicator
-     *
+     * @param  string  $cardholderAccountChangeIndicator
      * @return ThreeDSecureData
      */
     public function setCardholderAccountChangeIndicator($cardholderAccountChangeIndicator)
     {
         $this->cardholderAccountChangeIndicator = $cardholderAccountChangeIndicator;
+
         return $this;
     }
 
@@ -528,17 +529,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $cardholderAccountLastChange
-     *
+     * @param  \DateTime|string  $cardholderAccountLastChange
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setCardholderAccountLastChange($cardholderAccountLastChange)
     {
-        if (is_string($cardholderAccountLastChange) && !empty($cardholderAccountLastChange)) {
+        if (is_string($cardholderAccountLastChange) && ! empty($cardholderAccountLastChange)) {
             $cardholderAccountLastChange = new \DateTime($cardholderAccountLastChange);
         }
         $this->cardholderAccountLastChange = $cardholderAccountLastChange;
+
         return $this;
     }
 
@@ -551,13 +553,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $cardholderAccountPasswordChangeIndicator
-     *
+     * @param  string  $cardholderAccountPasswordChangeIndicator
      * @return ThreeDSecureData
      */
     public function setCardholderAccountPasswordChangeIndicator($cardholderAccountPasswordChangeIndicator)
     {
         $this->cardholderAccountPasswordChangeIndicator = $cardholderAccountPasswordChangeIndicator;
+
         return $this;
     }
 
@@ -578,17 +580,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $cardholderAccountLastPasswordChange
-     *
+     * @param  \DateTime|string  $cardholderAccountLastPasswordChange
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setCardholderAccountLastPasswordChange($cardholderAccountLastPasswordChange)
     {
-        if (is_string($cardholderAccountLastPasswordChange) && !empty($cardholderAccountLastPasswordChange)) {
+        if (is_string($cardholderAccountLastPasswordChange) && ! empty($cardholderAccountLastPasswordChange)) {
             $cardholderAccountLastPasswordChange = new \DateTime($cardholderAccountLastPasswordChange);
         }
         $this->cardholderAccountLastPasswordChange = $cardholderAccountLastPasswordChange;
+
         return $this;
     }
 
@@ -601,13 +604,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $shippingAddressUsageIndicator
-     *
+     * @param  string  $shippingAddressUsageIndicator
      * @return ThreeDSecureData
      */
     public function setShippingAddressUsageIndicator($shippingAddressUsageIndicator)
     {
         $this->shippingAddressUsageIndicator = $shippingAddressUsageIndicator;
+
         return $this;
     }
 
@@ -628,17 +631,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $shippingAddressFirstUsage
-     *
+     * @param  \DateTime|string  $shippingAddressFirstUsage
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setShippingAddressFirstUsage($shippingAddressFirstUsage)
     {
-        if (is_string($shippingAddressFirstUsage) && !empty($shippingAddressFirstUsage)) {
+        if (is_string($shippingAddressFirstUsage) && ! empty($shippingAddressFirstUsage)) {
             $shippingAddressFirstUsage = new \DateTime($shippingAddressFirstUsage);
         }
         $this->shippingAddressFirstUsage = $shippingAddressFirstUsage;
+
         return $this;
     }
 
@@ -651,13 +655,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $transactionActivityDay
-     *
+     * @param  string  $transactionActivityDay
      * @return ThreeDSecureData
      */
     public function setTransactionActivityDay($transactionActivityDay)
     {
         $this->transactionActivityDay = $transactionActivityDay;
+
         return $this;
     }
 
@@ -670,13 +674,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $transactionActivityYear
-     *
+     * @param  string  $transactionActivityYear
      * @return ThreeDSecureData
      */
     public function setTransactionActivityYear($transactionActivityYear)
     {
         $this->transactionActivityYear = $transactionActivityYear;
+
         return $this;
     }
 
@@ -689,13 +693,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $addCardAttemptsDay
-     *
+     * @param  string  $addCardAttemptsDay
      * @return ThreeDSecureData
      */
     public function setAddCardAttemptsDay($addCardAttemptsDay)
     {
         $this->addCardAttemptsDay = $addCardAttemptsDay;
+
         return $this;
     }
 
@@ -708,13 +712,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $purchaseCountSixMonths
-     *
+     * @param  string  $purchaseCountSixMonths
      * @return ThreeDSecureData
      */
     public function setPurchaseCountSixMonths($purchaseCountSixMonths)
     {
         $this->purchaseCountSixMonths = $purchaseCountSixMonths;
+
         return $this;
     }
 
@@ -727,13 +731,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $suspiciousAccountActivityIndicator
-     *
+     * @param  string  $suspiciousAccountActivityIndicator
      * @return ThreeDSecureData
      */
     public function setSuspiciousAccountActivityIndicator($suspiciousAccountActivityIndicator)
     {
         $this->suspiciousAccountActivityIndicator = $suspiciousAccountActivityIndicator;
+
         return $this;
     }
 
@@ -746,13 +750,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $shippingNameEqualIndicator
-     *
+     * @param  string  $shippingNameEqualIndicator
      * @return ThreeDSecureData
      */
     public function setShippingNameEqualIndicator($shippingNameEqualIndicator)
     {
         $this->shippingNameEqualIndicator = $shippingNameEqualIndicator;
+
         return $this;
     }
 
@@ -765,13 +769,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $paymentAccountAgeIndicator
-     *
+     * @param  string  $paymentAccountAgeIndicator
      * @return ThreeDSecureData
      */
     public function setPaymentAccountAgeIndicator($paymentAccountAgeIndicator)
     {
         $this->paymentAccountAgeIndicator = $paymentAccountAgeIndicator;
+
         return $this;
     }
 
@@ -792,17 +796,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $paymentAccountAgeDate
-     *
+     * @param  \DateTime|string  $paymentAccountAgeDate
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setPaymentAccountAgeDate($paymentAccountAgeDate)
     {
-        if (is_string($paymentAccountAgeDate) && !empty($paymentAccountAgeDate)) {
+        if (is_string($paymentAccountAgeDate) && ! empty($paymentAccountAgeDate)) {
             $paymentAccountAgeDate = new \DateTime($paymentAccountAgeDate);
         }
         $this->paymentAccountAgeDate = $paymentAccountAgeDate;
+
         return $this;
     }
 
@@ -815,13 +820,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $billingShippingAddressMatch
-     *
+     * @param  string  $billingShippingAddressMatch
      * @return ThreeDSecureData
      */
     public function setBillingShippingAddressMatch($billingShippingAddressMatch)
     {
         $this->billingShippingAddressMatch = $billingShippingAddressMatch;
+
         return $this;
     }
 
@@ -834,13 +839,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $homePhoneCountryPrefix
-     *
+     * @param  string  $homePhoneCountryPrefix
      * @return ThreeDSecureData
      */
     public function setHomePhoneCountryPrefix($homePhoneCountryPrefix)
     {
         $this->homePhoneCountryPrefix = $homePhoneCountryPrefix;
+
         return $this;
     }
 
@@ -853,13 +858,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $homePhoneNumber
-     *
+     * @param  string  $homePhoneNumber
      * @return ThreeDSecureData
      */
     public function setHomePhoneNumber($homePhoneNumber)
     {
         $this->homePhoneNumber = $homePhoneNumber;
+
         return $this;
     }
 
@@ -872,13 +877,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $mobilePhoneCountryPrefix
-     *
+     * @param  string  $mobilePhoneCountryPrefix
      * @return ThreeDSecureData
      */
     public function setMobilePhoneCountryPrefix($mobilePhoneCountryPrefix)
     {
         $this->mobilePhoneCountryPrefix = $mobilePhoneCountryPrefix;
+
         return $this;
     }
 
@@ -891,13 +896,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $mobilePhoneNumber
-     *
+     * @param  string  $mobilePhoneNumber
      * @return ThreeDSecureData
      */
     public function setMobilePhoneNumber($mobilePhoneNumber)
     {
         $this->mobilePhoneNumber = $mobilePhoneNumber;
+
         return $this;
     }
 
@@ -910,13 +915,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $workPhoneCountryPrefix
-     *
+     * @param  string  $workPhoneCountryPrefix
      * @return ThreeDSecureData
      */
     public function setWorkPhoneCountryPrefix($workPhoneCountryPrefix)
     {
         $this->workPhoneCountryPrefix = $workPhoneCountryPrefix;
+
         return $this;
     }
 
@@ -929,13 +934,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $workPhoneNumber
-     *
+     * @param  string  $workPhoneNumber
      * @return ThreeDSecureData
      */
     public function setWorkPhoneNumber($workPhoneNumber)
     {
         $this->workPhoneNumber = $workPhoneNumber;
+
         return $this;
     }
 
@@ -948,13 +953,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param int $purchaseInstalData
-     *
+     * @param  int  $purchaseInstalData
      * @return ThreeDSecureData
      */
     public function setPurchaseInstalData($purchaseInstalData)
     {
         $this->purchaseInstalData = $purchaseInstalData;
+
         return $this;
     }
 
@@ -967,13 +972,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $shipIndicator
-     *
+     * @param  string  $shipIndicator
      * @return ThreeDSecureData
      */
     public function setShipIndicator($shipIndicator)
     {
         $this->shipIndicator = $shipIndicator;
+
         return $this;
     }
 
@@ -986,13 +991,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $deliveryTimeframe
-     *
+     * @param  string  $deliveryTimeframe
      * @return ThreeDSecureData
      */
     public function setDeliveryTimeframe($deliveryTimeframe)
     {
         $this->deliveryTimeframe = $deliveryTimeframe;
+
         return $this;
     }
 
@@ -1005,13 +1010,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $deliveryEmailAddress
-     *
+     * @param  string  $deliveryEmailAddress
      * @return ThreeDSecureData
      */
     public function setDeliveryEmailAddress($deliveryEmailAddress)
     {
         $this->deliveryEmailAddress = $deliveryEmailAddress;
+
         return $this;
     }
 
@@ -1024,13 +1029,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $reorderItemsIndicator
-     *
+     * @param  string  $reorderItemsIndicator
      * @return ThreeDSecureData
      */
     public function setReorderItemsIndicator($reorderItemsIndicator)
     {
         $this->reorderItemsIndicator = $reorderItemsIndicator;
+
         return $this;
     }
 
@@ -1043,13 +1048,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $preOrderPurchaseIndicator
-     *
+     * @param  string  $preOrderPurchaseIndicator
      * @return ThreeDSecureData
      */
     public function setPreOrderPurchaseIndicator($preOrderPurchaseIndicator)
     {
         $this->preOrderPurchaseIndicator = $preOrderPurchaseIndicator;
+
         return $this;
     }
 
@@ -1070,17 +1075,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $preOrderDate
-     *
+     * @param  \DateTime|string  $preOrderDate
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setPreOrderDate($preOrderDate)
     {
-        if (is_string($preOrderDate) && !empty($preOrderDate)) {
+        if (is_string($preOrderDate) && ! empty($preOrderDate)) {
             $preOrderDate = new \DateTime($preOrderDate);
         }
         $this->preOrderDate = $preOrderDate;
+
         return $this;
     }
 
@@ -1093,13 +1099,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param float $giftCardAmount
-     *
+     * @param  float  $giftCardAmount
      * @return ThreeDSecureData
      */
     public function setGiftCardAmount($giftCardAmount)
     {
         $this->giftCardAmount = $giftCardAmount;
+
         return $this;
     }
 
@@ -1112,13 +1118,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $giftCardCurrency
-     *
+     * @param  string  $giftCardCurrency
      * @return ThreeDSecureData
      */
     public function setGiftCardCurrency($giftCardCurrency)
     {
         $this->giftCardCurrency = $giftCardCurrency;
+
         return $this;
     }
 
@@ -1131,13 +1137,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param int $giftCardCount
-     *
+     * @param  int  $giftCardCount
      * @return ThreeDSecureData
      */
     public function setGiftCardCount($giftCardCount)
     {
         $this->giftCardCount = $giftCardCount;
+
         return $this;
     }
 
@@ -1158,17 +1164,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $purchaseDate
-     *
+     * @param  \DateTime|string  $purchaseDate
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setPurchaseDate($purchaseDate)
     {
-        if (is_string($purchaseDate) && !empty($purchaseDate)) {
+        if (is_string($purchaseDate) && ! empty($purchaseDate)) {
             $purchaseDate = new \DateTime($purchaseDate);
         }
         $this->purchaseDate = $purchaseDate;
+
         return $this;
     }
 
@@ -1189,17 +1196,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param \DateTime|string $recurringExpiry
-     *
+     * @param  \DateTime|string  $recurringExpiry
      * @return ThreeDSecureData
+     *
      * @throws \Exception
      */
     public function setRecurringExpiry($recurringExpiry)
     {
-        if (is_string($recurringExpiry) && !empty($recurringExpiry)) {
+        if (is_string($recurringExpiry) && ! empty($recurringExpiry)) {
             $recurringExpiry = new \DateTime($recurringExpiry);
         }
         $this->recurringExpiry = $recurringExpiry;
+
         return $this;
     }
 
@@ -1212,13 +1220,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param int $recurringFrequency
-     *
+     * @param  int  $recurringFrequency
      * @return ThreeDSecureData
      */
     public function setRecurringFrequency($recurringFrequency)
     {
         $this->recurringFrequency = $recurringFrequency;
+
         return $this;
     }
 
@@ -1231,13 +1239,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $transType
-     *
+     * @param  string  $transType
      * @return ThreeDSecureData
      */
     public function setTransType($transType)
     {
         $this->transType = $transType;
+
         return $this;
     }
 
@@ -1250,13 +1258,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $browserChallengeWindowSize
-     *
+     * @param  string  $browserChallengeWindowSize
      * @return ThreeDSecureData
      */
     public function setBrowserChallengeWindowSize($browserChallengeWindowSize)
     {
         $this->browserChallengeWindowSize = $browserChallengeWindowSize;
+
         return $this;
     }
 
@@ -1269,13 +1277,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $browserAcceptHeader
-     *
+     * @param  string  $browserAcceptHeader
      * @return ThreeDSecureData
      */
     public function setBrowserAcceptHeader($browserAcceptHeader)
     {
         $this->browserAcceptHeader = $browserAcceptHeader;
+
         return $this;
     }
 
@@ -1288,18 +1296,18 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $browserIpAddress
-     *
+     * @param  string  $browserIpAddress
      * @return ThreeDSecureData
      */
     public function setBrowserIpAddress($browserIpAddress)
     {
         $this->browserIpAddress = $browserIpAddress;
+
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getBrowserJavaEnabled()
     {
@@ -1307,13 +1315,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param boolean $browserJavaEnabled
-     *
+     * @param  bool  $browserJavaEnabled
      * @return ThreeDSecureData
      */
     public function setBrowserJavaEnabled($browserJavaEnabled)
     {
         $this->browserJavaEnabled = $browserJavaEnabled;
+
         return $this;
     }
 
@@ -1326,13 +1334,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $browserLanguage
-     *
+     * @param  string  $browserLanguage
      * @return ThreeDSecureData
      */
     public function setBrowserLanguage($browserLanguage)
     {
         $this->browserLanguage = $browserLanguage;
+
         return $this;
     }
 
@@ -1345,13 +1353,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $browserColorDepth
-     *
+     * @param  string  $browserColorDepth
      * @return ThreeDSecureData
      */
     public function setBrowserColorDepth($browserColorDepth)
     {
         $this->browserColorDepth = $browserColorDepth;
+
         return $this;
     }
 
@@ -1364,13 +1372,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param int $browserScreenHeight
-     *
+     * @param  int  $browserScreenHeight
      * @return ThreeDSecureData
      */
     public function setBrowserScreenHeight($browserScreenHeight)
     {
         $this->browserScreenHeight = $browserScreenHeight;
+
         return $this;
     }
 
@@ -1383,13 +1391,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param int $browserScreenWidth
-     *
+     * @param  int  $browserScreenWidth
      * @return ThreeDSecureData
      */
     public function setBrowserScreenWidth($browserScreenWidth)
     {
         $this->browserScreenWidth = $browserScreenWidth;
+
         return $this;
     }
 
@@ -1402,13 +1410,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $browserTimezone
-     *
+     * @param  string  $browserTimezone
      * @return ThreeDSecureData
      */
     public function setBrowserTimezone($browserTimezone)
     {
         $this->browserTimezone = $browserTimezone;
+
         return $this;
     }
 
@@ -1421,13 +1429,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $browserUserAgent
-     *
+     * @param  string  $browserUserAgent
      * @return ThreeDSecureData
      */
     public function setBrowserUserAgent($browserUserAgent)
     {
         $this->browserUserAgent = $browserUserAgent;
+
         return $this;
     }
 
@@ -1440,13 +1448,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $sdkInterface
-     *
+     * @param  string  $sdkInterface
      * @return ThreeDSecureData
      */
     public function setSdkInterface($sdkInterface)
     {
         $this->sdkInterface = $sdkInterface;
+
         return $this;
     }
 
@@ -1459,13 +1467,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $sdkUiType
-     *
+     * @param  string  $sdkUiType
      * @return ThreeDSecureData
      */
     public function setSdkUiType($sdkUiType)
     {
         $this->sdkUiType = $sdkUiType;
+
         return $this;
     }
 
@@ -1478,13 +1486,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $sdkAppID
-     *
+     * @param  string  $sdkAppID
      * @return ThreeDSecureData
      */
     public function setSdkAppID($sdkAppID)
     {
         $this->sdkAppID = $sdkAppID;
+
         return $this;
     }
 
@@ -1497,13 +1505,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $sdkEncData
-     *
+     * @param  string  $sdkEncData
      * @return ThreeDSecureData
      */
     public function setSdkEncData($sdkEncData)
     {
         $this->sdkEncData = $sdkEncData;
+
         return $this;
     }
 
@@ -1516,13 +1524,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $sdkEphemPubKey
-     *
+     * @param  string  $sdkEphemPubKey
      * @return ThreeDSecureData
      */
     public function setSdkEphemPubKey($sdkEphemPubKey)
     {
         $this->sdkEphemPubKey = $sdkEphemPubKey;
+
         return $this;
     }
 
@@ -1535,13 +1543,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param int $sdkMaxTimeout
-     *
+     * @param  int  $sdkMaxTimeout
      * @return ThreeDSecureData
      */
     public function setSdkMaxTimeout($sdkMaxTimeout)
     {
         $this->sdkMaxTimeout = $sdkMaxTimeout;
+
         return $this;
     }
 
@@ -1554,13 +1562,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $sdkReferenceNumber
-     *
+     * @param  string  $sdkReferenceNumber
      * @return ThreeDSecureData
      */
     public function setSdkReferenceNumber($sdkReferenceNumber)
     {
         $this->sdkReferenceNumber = $sdkReferenceNumber;
+
         return $this;
     }
 
@@ -1573,14 +1581,13 @@ class ThreeDSecureData extends DataObject {
     }
 
     /**
-     * @param string $sdkTransID
-     *
+     * @param  string  $sdkTransID
      * @return ThreeDSecureData
      */
     public function setSdkTransID($sdkTransID)
     {
         $this->sdkTransID = $sdkTransID;
+
         return $this;
     }
-
 }

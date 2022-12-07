@@ -2,9 +2,9 @@
 
 namespace App\View\Components\Modules;
 
-use App\Traits\Modules;
-use App\Models\Module\Module;
 use App\Abstracts\View\Component;
+use App\Models\Module\Module;
+use App\Traits\Modules;
 use Illuminate\Support\Facades\Route;
 
 class Items extends Component
@@ -125,8 +125,8 @@ class Items extends Component
 
         $response = $this->getNewModules([
             'query' => [
-                'limit' => $limit
-            ]
+                'limit' => $limit,
+            ],
         ]);
 
         if ($response) {
@@ -142,8 +142,8 @@ class Items extends Component
 
         $response = $this->getFreeModules([
             'query' => [
-                'limit' => $limit
-            ]
+                'limit' => $limit,
+            ],
         ]);
 
         if ($response) {
@@ -159,8 +159,8 @@ class Items extends Component
 
         $response = $this->getPaidModules([
             'query' => [
-                'limit' => $limit
-            ]
+                'limit' => $limit,
+            ],
         ]);
 
         if ($response) {
@@ -176,8 +176,8 @@ class Items extends Component
 
         $response = $this->getPreSaleModules([
             'query' => [
-                'limit' => $limit
-            ]
+                'limit' => $limit,
+            ],
         ]);
 
         if ($response) {
@@ -195,8 +195,8 @@ class Items extends Component
         if ($limit != 4) {
             $data = [
                 'query' => [
-                    'limit' => $limit
-                ]
+                    'limit' => $limit,
+                ],
             ];
         }
 

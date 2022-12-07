@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'ziņa pēc pieprasījuma',
         ],
-        'invalid_currency'      => ':attribute kods nav derīgs.',
-        'invalid_amount'        => 'Daudzums :attribute ir nederīgs.',
-        'invalid_extension'     => 'Faila paplašinājums nav derīgs.',
+        'invalid_currency' => ':attribute kods nav derīgs.',
+        'invalid_amount' => 'Daudzums :attribute ir nederīgs.',
+        'invalid_extension' => 'Faila paplašinājums nav derīgs.',
     ],
 
     /*

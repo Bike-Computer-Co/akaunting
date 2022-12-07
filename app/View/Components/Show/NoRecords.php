@@ -37,17 +37,17 @@ class NoRecords extends Component
     public $textAction;
 
     public $urls = [
-        'account'   => [
-            'transactions'  => 'accounts.create-income',
-            'transfers'     => 'accounts.create-transfer',
+        'account' => [
+            'transactions' => 'accounts.create-income',
+            'transfers' => 'accounts.create-transfer',
         ],
-        'customer'  => [
-            'invoices'      => 'customers.create-invoice',
-            'transactions'  => 'customers.create-income',
+        'customer' => [
+            'invoices' => 'customers.create-invoice',
+            'transactions' => 'customers.create-income',
         ],
-        'vendor'    => [
-            'bills'         => 'vendors.create-bill',
-            'transactions'  => 'vendors.create-expense',
+        'vendor' => [
+            'bills' => 'vendors.create-bill',
+            'transactions' => 'vendors.create-expense',
         ],
     ];
 
@@ -58,7 +58,7 @@ class NoRecords extends Component
      */
     public function __construct(
         string $type = '', $model = false, string $page = '', string $group = '',
-        string $backgroundColor = '', string $textColor = '', 
+        string $backgroundColor = '', string $textColor = '',
         string $image = '', string $description = '', string $url = '', string $textAction = ''
     ) {
         $this->type = $type;
@@ -90,10 +90,10 @@ class NoRecords extends Component
         }
 
         $image = match ($this->type) {
-            'account'   => 'public/img/no_records/accounts_' . $this->page . '.png',
-            'customer'  => 'public/img/no_records/customers_' . $this->page . '.png',
-            'vendor'    => 'public/img/no_records/vendors_' . $this->page . '.png',
-            default     => '',
+            'account' => 'public/img/no_records/accounts_'.$this->page.'.png',
+            'customer' => 'public/img/no_records/customers_'.$this->page.'.png',
+            'vendor' => 'public/img/no_records/vendors_'.$this->page.'.png',
+            default => '',
         };
 
         return $image;
@@ -108,8 +108,8 @@ class NoRecords extends Component
         $prefix = Str::plural($this->type);
 
         $description = match ($this->type) {
-            'account', 'customer', 'vendor' => trans($prefix . '.no_records.' . $this->page),
-            default     => '',
+            'account', 'customer', 'vendor' => trans($prefix.'.no_records.'.$this->page),
+            default => '',
         };
 
         return $description;
@@ -135,7 +135,7 @@ class NoRecords extends Component
         }
 
         $textAction = match ($this->type) {
-            'account', 'customer', 'vendor' => trans('general.title.new', ['type' => trans_choice('general.' . $this->page, 1)]),
+            'account', 'customer', 'vendor' => trans('general.title.new', ['type' => trans_choice('general.'.$this->page, 1)]),
             default => trans('modules.learn_more'),
         };
 

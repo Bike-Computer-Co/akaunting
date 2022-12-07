@@ -21,8 +21,8 @@ class Schedule extends Component
             ->where('recurable_id', $this->document->id)
             ->first();
 
-        $started_date = '<span class="font-medium">' . company_date($recurring->started_at) . '</span>';
-        $frequency = Str::lower(trans('recurring.' . str_replace('ly', 's', $recurring->frequency)));
+        $started_date = '<span class="font-medium">'.company_date($recurring->started_at).'</span>';
+        $frequency = Str::lower(trans('recurring.'.str_replace('ly', 's', $recurring->frequency)));
         $invertal = $recurring->interval;
 
         $this->description = trans('transactions.slider.schedule', ['frequency' => $frequency, 'interval' => $invertal, 'date' => $started_date]);

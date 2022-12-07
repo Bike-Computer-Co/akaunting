@@ -10,10 +10,9 @@ use PaymentGateway\Client\Transaction\Base\ItemsTrait;
 
 /**
  * Payout: Payout a certain amount of money to the customer. (Debits the merchant's account, Credits the customer's account)
- *
- * @package PaymentGateway\Client\Transaction
  */
-class Payout extends AbstractTransactionWithReference implements AmountableInterface, ItemsInterface {
+class Payout extends AbstractTransactionWithReference implements AmountableInterface, ItemsInterface
+{
     use ItemsTrait;
     use AmountableTrait;
 
@@ -30,29 +29,32 @@ class Payout extends AbstractTransactionWithReference implements AmountableInter
     /**
      * @return string
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param  string  $description
      */
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
     /**
      * @return string
      */
-    public function getCallbackUrl() {
+    public function getCallbackUrl()
+    {
         return $this->callbackUrl;
     }
 
     /**
-     * @param string $callbackUrl
+     * @param  string  $callbackUrl
      */
-    public function setCallbackUrl($callbackUrl) {
+    public function setCallbackUrl($callbackUrl)
+    {
         $this->callbackUrl = $callbackUrl;
     }
-
 }

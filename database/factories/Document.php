@@ -201,7 +201,7 @@ class Document extends AbstractFactory
      */
     public function recurring()
     {
-        $type = $this->getRawAttribute('type') . '-recurring';
+        $type = $this->getRawAttribute('type').'-recurring';
 
         return $this->state([
             'type' => $type,
@@ -330,7 +330,7 @@ class Document extends AbstractFactory
                 case 'paid':
                     $payment_request = [
                         'paid_at' => $updated_document->due_at,
-                        'type' => config('type.document.' . $document->type . '.transaction_type'),
+                        'type' => config('type.document.'.$document->type.'.transaction_type'),
                     ];
 
                     if ($init_status === 'partial') {

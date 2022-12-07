@@ -12,10 +12,9 @@ use PaymentGateway\Client\Transaction\Base\ItemsTrait;
  * Refund: Refund money from a previous Debit (or Capture) transaction to the customer.
  *
  * @note Preauthorized transactions can be reverted with a Void transaction, not a Refund!
- *
- * @package PaymentGateway\Client\Transaction
  */
-class Refund extends AbstractTransactionWithReference implements AmountableInterface, ItemsInterface {
+class Refund extends AbstractTransactionWithReference implements AmountableInterface, ItemsInterface
+{
     use AmountableTrait;
     use ItemsTrait;
 
@@ -32,28 +31,32 @@ class Refund extends AbstractTransactionWithReference implements AmountableInter
     /**
      * @return string
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param  string  $description
      */
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
     /**
      * @return string
      */
-    public function getCallbackUrl() {
+    public function getCallbackUrl()
+    {
         return $this->callbackUrl;
     }
 
     /**
-     * @param string $callbackUrl
+     * @param  string  $callbackUrl
      */
-    public function setCallbackUrl($callbackUrl) {
+    public function setCallbackUrl($callbackUrl)
+    {
         $this->callbackUrl = $callbackUrl;
     }
 }

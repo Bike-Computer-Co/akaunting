@@ -13,8 +13,8 @@ abstract class Update
     /**
      * Check the fired update based on alias and version.
      *
-     * @param  $event
-     * @return boolean
+     * @param    $event
+     * @return bool
      */
     public function skipThisUpdate($event)
     {
@@ -31,6 +31,6 @@ abstract class Update
      */
     public function check($event)
     {
-        return !$this->skipThisUpdate($event);
+        return ! $this->skipThisUpdate($event);
     }
 }

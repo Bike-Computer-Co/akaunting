@@ -7,7 +7,6 @@ use PaymentGateway\Client\Json\ResponseObject;
 /**
  * Class GetProfileResponse
  *
- * @package PaymentGateway\Client\CustomerProfile
  *
  * @property bool $profileExists
  * @property string $profileGuid
@@ -16,6 +15,6 @@ use PaymentGateway\Client\Json\ResponseObject;
  * @property CustomerData $customer
  * @property PaymentInstrument[] $paymentInstruments
  */
-class GetProfileResponse extends ResponseObject {
-
+class GetProfileResponse extends ResponseObject
+{
 }

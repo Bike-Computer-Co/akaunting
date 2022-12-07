@@ -44,29 +44,29 @@ class Route extends Provider
 
             if (isset($attrs['namespace'])) {
                 // null means don't add
-                if (!is_null($attrs['namespace'])) {
+                if (! is_null($attrs['namespace'])) {
                     $attributes['namespace'] = $attrs['namespace'];
                 }
             } else {
-                $attributes['namespace'] = 'Modules\\' . module($alias)->getStudlyName() . '\Http\Controllers';
+                $attributes['namespace'] = 'Modules\\'.module($alias)->getStudlyName().'\Http\Controllers';
             }
 
             if (isset($attrs['prefix'])) {
                 // null means don't add
-                if (!is_null($attrs['prefix'])) {
-                    $attributes['prefix'] = '{company_id}/' . $attrs['prefix'];
+                if (! is_null($attrs['prefix'])) {
+                    $attributes['prefix'] = '{company_id}/'.$attrs['prefix'];
                 }
             } else {
-                $attributes['prefix'] = '{company_id}/' . $alias;
+                $attributes['prefix'] = '{company_id}/'.$alias;
             }
 
             if (isset($attrs['as'])) {
                 // null means don't add
-                if (!is_null($attrs['as'])) {
+                if (! is_null($attrs['as'])) {
                     $attributes['as'] = $attrs['as'];
                 }
             } else {
-                $attributes['as'] = $alias . '.';
+                $attributes['as'] = $alias.'.';
             }
 
             return Facade::group($attributes, $routes);
@@ -74,41 +74,41 @@ class Route extends Provider
 
         Facade::macro('admin', function ($alias, $routes, $attributes = []) {
             return Facade::module($alias, $routes, array_merge([
-                'middleware'    => 'admin',
+                'middleware' => 'admin',
             ], $attributes));
         });
 
         Facade::macro('preview', function ($alias, $routes, $attributes = []) {
             return Facade::module($alias, $routes, array_merge([
-                'middleware'    => 'preview',
-                'prefix'        => 'preview/' . $alias,
-                'as'            => 'preview.' . $alias . '.',
+                'middleware' => 'preview',
+                'prefix' => 'preview/'.$alias,
+                'as' => 'preview.'.$alias.'.',
             ], $attributes));
         });
 
         Facade::macro('portal', function ($alias, $routes, $attributes = []) {
             return Facade::module($alias, $routes, array_merge([
-                'middleware'    => 'portal',
-                'prefix'        => 'portal/' . $alias,
-                'as'            => 'portal.' . $alias . '.',
+                'middleware' => 'portal',
+                'prefix' => 'portal/'.$alias,
+                'as' => 'portal.'.$alias.'.',
             ], $attributes));
         });
 
         Facade::macro('signed', function ($alias, $routes, $attributes = []) {
             return Facade::module($alias, $routes, array_merge([
-                'middleware'    => 'signed',
-                'prefix'        => 'signed/' . $alias,
-                'as'            => 'signed.' . $alias . '.',
+                'middleware' => 'signed',
+                'prefix' => 'signed/'.$alias,
+                'as' => 'signed.'.$alias.'.',
             ], $attributes));
         });
 
         Facade::macro('api', function ($alias, $routes, $attributes = []) {
             return Facade::module($alias, $routes, array_merge([
-                'namespace'     => 'Modules\\' . module($alias)->getStudlyName() . '\Http\Controllers\Api',
-                'domain'        => config('api.domain'),
-                'middleware'    => config('api.middleware'),
-                'prefix'        => config('api.prefix') ? config('api.prefix') . '/' . $alias : $alias,
-                'as'            => 'api.' . $alias . '.',
+                'namespace' => 'Modules\\'.module($alias)->getStudlyName().'\Http\Controllers\Api',
+                'domain' => config('api.domain'),
+                'middleware' => config('api.middleware'),
+                'prefix' => config('api.prefix') ? config('api.prefix').'/'.$alias : $alias,
+                'as' => 'api.'.$alias.'.',
             ], $attributes));
         });
     }
@@ -172,7 +172,7 @@ class Route extends Provider
         Facade::prefix(config('api.prefix'))
             ->domain(config('api.domain'))
             ->middleware(config('api.middleware'))
-            ->namespace($this->namespace . '\Api')
+            ->namespace($this->namespace.'\Api')
             ->group(base_path('routes/api.php'));
     }
 
@@ -188,10 +188,9 @@ class Route extends Provider
         Facade::prefix(config('api.prefix'))
             ->domain(config('api.domain'))
             ->middleware('api_public')
-            ->namespace($this->namespace . '\ApiPublic')
+            ->namespace($this->namespace.'\ApiPublic')
             ->group(base_path('routes/api_public.php'));
     }
-
 
     /**
      * Define the "inertia" routes for the application.
@@ -200,7 +199,8 @@ class Route extends Provider
      *
      * @return void
      */
-    public function mapInertiaRoutes() {
+    public function mapInertiaRoutes()
+    {
         Facade::prefix('super')
             ->middleware('inertia')
             ->group(base_path('routes/inertia.php'));
@@ -264,6 +264,7 @@ class Route extends Provider
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
     }
+
     /**
      * Define the "preview" routes for the application.
      *

@@ -2,11 +2,11 @@
 
 namespace App\View\Components\Contacts\Show;
 
-use App\Utilities\Date;
 use App\Abstracts\View\Components\Contacts\Show as Component;
+use App\Utilities\Date;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class Content extends Component
 {
@@ -83,11 +83,10 @@ class Content extends Component
     /**
      * Generate a pagination collection.
      *
-     * @param array|Collection $items
-     * @param int $perPage
-     * @param int $page
-     * @param array $options
-     *
+     * @param  array|Collection  $items
+     * @param  int  $perPage
+     * @param  int  $page
+     * @param  array  $options
      * @return LengthAwarePaginator
      */
     public function paginate($items, $perPage = null, $page = null, $options = [])

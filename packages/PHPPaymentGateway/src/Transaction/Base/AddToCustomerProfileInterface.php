@@ -4,12 +4,11 @@ namespace PaymentGateway\Client\Transaction\Base;
 
 /**
  * Interface AddToCustomerProfileInterface
- * @package PaymentGateway\Client\Transaction\Base
  */
-interface AddToCustomerProfileInterface {
-
+interface AddToCustomerProfileInterface
+{
     /**
-     * @param bool $addToCustomerProfile
+     * @param  bool  $addToCustomerProfile
      */
     public function setAddToCustomerProfile($addToCustomerProfile);
 
@@ -19,7 +18,7 @@ interface AddToCustomerProfileInterface {
     public function getAddToCustomerProfile();
 
     /**
-     * @param string $profileGuid
+     * @param  string  $profileGuid
      */
     public function setCustomerProfileGuid($profileGuid);
 
@@ -29,7 +28,7 @@ interface AddToCustomerProfileInterface {
     public function getCustomerProfileGuid();
 
     /**
-     * @param string $identification
+     * @param  string  $identification
      */
     public function setCustomerProfileIdentification($identification);
 
@@ -37,14 +36,14 @@ interface AddToCustomerProfileInterface {
      * @return string
      */
     public function getCustomerProfileIdentification();
-    
+
     /**
      * @return bool
      */
     public function getMarkAsPreferred();
 
     /**
-     * @param bool $markAsPreferred
+     * @param  bool  $markAsPreferred
      */
     public function setMarkAsPreferred($markAsPreferred);
 }

@@ -4,7 +4,6 @@ namespace App\Utilities;
 
 use App\Jobs\Auth\CreateUser;
 use App\Jobs\Common\CreateCompany;
-use App\Utilities\Console;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +14,6 @@ use Illuminate\Support\Str;
  * Class Installer
  *
  * Contains all of the Business logic to install the app. Either through the CLI or the `/install` web UI.
- *
- * @package App\Utilities
  */
 class Installer
 {
@@ -36,87 +33,87 @@ class Installer
             $requirements[] = trans('install.requirements.disabled', ['feature' => 'Magic Quotes']);
         }
 
-        if (!ini_get('file_uploads')) {
+        if (! ini_get('file_uploads')) {
             $requirements[] = trans('install.requirements.enabled', ['feature' => 'File Uploads']);
         }
 
-        if (!function_exists('proc_open')) {
+        if (! function_exists('proc_open')) {
             $requirements[] = trans('install.requirements.enabled', ['feature' => 'proc_open']);
         }
 
-        if (!function_exists('proc_close')) {
+        if (! function_exists('proc_close')) {
             $requirements[] = trans('install.requirements.enabled', ['feature' => 'proc_close']);
         }
 
-        if (!class_exists('PDO')) {
+        if (! class_exists('PDO')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'MySQL PDO']);
         }
 
-        if (!extension_loaded('bcmath')) {
+        if (! extension_loaded('bcmath')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'BCMath']);
         }
 
-        if (!extension_loaded('ctype')) {
+        if (! extension_loaded('ctype')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'Ctype']);
         }
 
-        if (!extension_loaded('curl')) {
+        if (! extension_loaded('curl')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'cURL']);
         }
 
-        if (!extension_loaded('dom')) {
+        if (! extension_loaded('dom')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'DOM']);
         }
 
-        if (!extension_loaded('fileinfo')) {
+        if (! extension_loaded('fileinfo')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'FileInfo']);
         }
 
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'Intl']);
         }
 
-        if (!extension_loaded('gd')) {
+        if (! extension_loaded('gd')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'GD']);
         }
 
-        if (!extension_loaded('json')) {
+        if (! extension_loaded('json')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'JSON']);
         }
 
-        if (!extension_loaded('mbstring')) {
+        if (! extension_loaded('mbstring')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'Mbstring']);
         }
 
-        if (!extension_loaded('openssl')) {
+        if (! extension_loaded('openssl')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'OpenSSL']);
         }
 
-        if (!extension_loaded('tokenizer')) {
+        if (! extension_loaded('tokenizer')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'Tokenizer']);
         }
 
-        if (!extension_loaded('xml')) {
+        if (! extension_loaded('xml')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'XML']);
         }
 
-        if (!extension_loaded('zip')) {
+        if (! extension_loaded('zip')) {
             $requirements[] = trans('install.requirements.extension', ['extension' => 'ZIP']);
         }
 
-        if (!is_writable(base_path('storage/app'))) {
+        if (! is_writable(base_path('storage/app'))) {
             $requirements[] = trans('install.requirements.directory', ['directory' => 'storage/app']);
         }
 
-        if (!is_writable(base_path('storage/app/uploads'))) {
+        if (! is_writable(base_path('storage/app/uploads'))) {
             $requirements[] = trans('install.requirements.directory', ['directory' => 'storage/app/uploads']);
         }
 
-        if (!is_writable(base_path('storage/framework'))) {
+        if (! is_writable(base_path('storage/framework'))) {
             $requirements[] = trans('install.requirements.directory', ['directory' => 'storage/framework']);
         }
 
-        if (!is_writable(base_path('storage/logs'))) {
+        if (! is_writable(base_path('storage/logs'))) {
             $requirements[] = trans('install.requirements.directory', ['directory' => 'storage/logs']);
         }
 
@@ -132,10 +129,10 @@ class Installer
      *
      * @return void
      */
-	public static function createDefaultEnvFile()
-	{
+    public static function createDefaultEnvFile()
+    {
         // Rename file
-        if (!is_file(base_path('.env')) && is_file(base_path('.env.example'))) {
+        if (! is_file(base_path('.env')) && is_file(base_path('.env.example'))) {
             File::move(base_path('.env.example'), base_path('.env'));
         }
 
@@ -143,11 +140,11 @@ class Installer
         static::updateEnv([
             'APP_KEY' => 'base64:'.base64_encode(random_bytes(32)),
         ]);
-	}
+    }
 
     public static function createDbTables($host, $port, $database, $username, $password, $prefix = null)
     {
-        if (!static::isDbValid($host, $port, $database, $username, $password)) {
+        if (! static::isDbValid($host, $port, $database, $username, $password)) {
             return false;
         }
 
@@ -176,19 +173,18 @@ class Installer
      * @param $database
      * @param $username
      * @param $password
-     *
      * @return bool
      */
     public static function isDbValid($host, $port, $database, $username, $password)
     {
         Config::set('database.connections.install_test', [
-            'host'      => $host,
-            'port'      => $port,
-            'database'  => $database,
-            'username'  => $username,
-            'password'  => $password,
-            'driver'    => $connection = config('database.default', 'mysql'),
-            'charset'   => config("database.connections.$connection.charset", 'utf8mb4'),
+            'host' => $host,
+            'port' => $port,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'driver' => $connection = config('database.default', 'mysql'),
+            'charset' => config("database.connections.$connection.charset", 'utf8mb4'),
         ]);
 
         try {
@@ -205,22 +201,22 @@ class Installer
 
     public static function saveDbVariables($host, $port, $database, $username, $password, $prefix = null)
     {
-        $prefix = !is_null($prefix) ? $prefix : strtolower(Str::random(3) . '_');
+        $prefix = ! is_null($prefix) ? $prefix : strtolower(Str::random(3).'_');
 
         // Update .env file
         static::updateEnv([
-            'DB_HOST'       =>  $host,
-            'DB_PORT'       =>  $port,
-            'DB_DATABASE'   =>  $database,
-            'DB_USERNAME'   =>  $username,
-            'DB_PASSWORD'   =>  '"' . $password . '"',
-            'DB_PREFIX'     =>  $prefix,
+            'DB_HOST' => $host,
+            'DB_PORT' => $port,
+            'DB_DATABASE' => $database,
+            'DB_USERNAME' => $username,
+            'DB_PASSWORD' => '"'.$password.'"',
+            'DB_PREFIX' => $prefix,
         ]);
 
         $con = config('database.default', 'mysql');
 
         // Change current connection
-        $db = Config::get('database.connections.' . $con);
+        $db = Config::get('database.connections.'.$con);
 
         $db['host'] = $host;
         $db['database'] = $database;
@@ -228,7 +224,7 @@ class Installer
         $db['password'] = $password;
         $db['prefix'] = $prefix;
 
-        Config::set('database.connections.' . $con, $db);
+        Config::set('database.connections.'.$con, $db);
 
         DB::purge($con);
         DB::reconnect($con);
@@ -263,14 +259,14 @@ class Installer
     {
         // Update .env file
         $env = [
-            'APP_LOCALE'            =>  session('locale'),
-            'APP_INSTALLED'         =>  'true',
-            'APP_DEBUG'             =>  'false',
-            'FIREWALL_ENABLED'      =>  'true',
-            'MODEL_CACHE_ENABLED'   =>  'true',
+            'APP_LOCALE' => session('locale'),
+            'APP_INSTALLED' => 'true',
+            'APP_DEBUG' => 'false',
+            'FIREWALL_ENABLED' => 'true',
+            'MODEL_CACHE_ENABLED' => 'true',
         ];
 
-        if (!app()->runningInConsole()) {
+        if (! app()->runningInConsole()) {
             $env['APP_URL'] = request()->getUriForPath('');
         }
 
@@ -286,7 +282,7 @@ class Installer
 
     public static function updateEnv($data)
     {
-        if (empty($data) || !is_array($data) || !is_file(base_path('.env'))) {
+        if (empty($data) || ! is_array($data) || ! is_file(base_path('.env'))) {
             return false;
         }
 
@@ -302,7 +298,7 @@ class Installer
 
                 // Check if new or old key
                 if ($entry[0] == $data_key) {
-                    $env[$env_key] = $data_key . '=' . $data_value;
+                    $env[$env_key] = $data_key.'='.$data_value;
                     $updated = true;
                 } else {
                     $env[$env_key] = $env_value;
@@ -310,8 +306,8 @@ class Installer
             }
 
             // Lets create if not available
-            if (!$updated) {
-                $env[] = $data_key . '=' . $data_value;
+            if (! $updated) {
+                $env[] = $data_key.'='.$data_value;
             }
         }
 

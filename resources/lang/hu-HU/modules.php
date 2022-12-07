@@ -2,92 +2,92 @@
 
 return [
 
-    'api_key'               => 'API kulcs',
-    'my_apps'               => 'Applikációim',
-    'pre_sale'              => '
+    'api_key' => 'API kulcs',
+    'my_apps' => 'Applikációim',
+    'pre_sale' => '
 Elővétel',
-    'top_paid'              => 'Top fizetős',
-    'new'                   => 'Új',
-    'top_free'              => 'Top ingyenes',
-    'free'                  => 'INGYENES',
-    'install'               => 'Telepítés',
-    'buy_now'               => 'Vásárlás most',
-    'get_api_key'           => '
+    'top_paid' => 'Top fizetős',
+    'new' => 'Új',
+    'top_free' => 'Top ingyenes',
+    'free' => 'INGYENES',
+    'install' => 'Telepítés',
+    'buy_now' => 'Vásárlás most',
+    'get_api_key' => '
 <a href=":url" target="_blank"> Kattintson ide </a>, hogy megszerezze API kulcsát.',
-    'no_apps'               => 'Még nincs app ebben a kategóriában.',
-    'become_developer'      => 'Fejlesztő vagy?<a href=":url" target="_blank">Itt</a> megtanulhatod, hogy hogyan készíts appot és adhatod el még ma!',
-    'recommended_apps'      => 'Ajánlott alkalmazások',
+    'no_apps' => 'Még nincs app ebben a kategóriában.',
+    'become_developer' => 'Fejlesztő vagy?<a href=":url" target="_blank">Itt</a> megtanulhatod, hogy hogyan készíts appot és adhatod el még ma!',
+    'recommended_apps' => 'Ajánlott alkalmazások',
 
-    'about'                 => 'Névjegy',
+    'about' => 'Névjegy',
 
-    'added'                 => 'Hozzáadva',
-    'updated'               => 'Frissítve',
-    'compatibility'         => 'Kompatibilitás',
-    'documentation'         => 'Dokumentáció',
-    'view'                  => 'Nézet',
-    'back'                  => 'Vissza',
+    'added' => 'Hozzáadva',
+    'updated' => 'Frissítve',
+    'compatibility' => 'Kompatibilitás',
+    'documentation' => 'Dokumentáció',
+    'view' => 'Nézet',
+    'back' => 'Vissza',
 
-    'installed'             => ':module telepítve',
-    'uninstalled'           => ': modul eltávolítva',
+    'installed' => ':module telepítve',
+    'uninstalled' => ': modul eltávolítva',
     //'updated'               => ':module updated',
-    'enabled'               => ':modul engedélyezve',
-    'disabled'              => ':module letiltva',
+    'enabled' => ':modul engedélyezve',
+    'disabled' => ':module letiltva',
 
     'tab' => [
-        'installation'      => 'Telepítés',
-        'faq'               => 'GYIK',
-        'changelog'         => 'Változások',
-        'reviews'           => 'Vélemények',
+        'installation' => 'Telepítés',
+        'faq' => 'GYIK',
+        'changelog' => 'Változások',
+        'reviews' => 'Vélemények',
     ],
 
     'installation' => [
-        'header'            => 'Alkalmazás telepítés',
-        'download'          => 'Letöltés :module',
-        'unzip'             => ':module fájlok kicsomagolása.',
-        'file_copy'         => ':module fájlok kicsomagolása.',
-        'finish'            => '
+        'header' => 'Alkalmazás telepítés',
+        'download' => 'Letöltés :module',
+        'unzip' => ':module fájlok kicsomagolása.',
+        'file_copy' => ':module fájlok kicsomagolása.',
+        'finish' => '
 Véglegesítés: modul telepítése',
-        'redirect'          => '
+        'redirect' => '
 : modul telepítve, átirányítás a frissítések oldalra',
-        'install'           => ':module fájlok telepítése.',
+        'install' => ':module fájlok telepítése.',
     ],
 
     'errors' => [
-        'download'          => '
+        'download' => '
 Nem lehet letölteni: modul',
-        'zip'               => '
+        'zip' => '
 Nem lehet létrehozni: modul zip fájlt',
-        'unzip'             => '
+        'unzip' => '
 Nem lehet letölteni: modul',
-        'file_copy'         => '
+        'file_copy' => '
 Nem lehet létrehozni: modul zip fájlt',
-        'finish'            => '
+        'finish' => '
 Nem lehet véglegesíteni: modul telepítése',
     ],
 
     'badge' => [
-        'installed'         => 'Telepített',
-        'pre_sale'          => '
+        'installed' => 'Telepített',
+        'pre_sale' => '
 Elővétel',
     ],
 
     'button' => [
-        'uninstall'         => 'Eltávolítás',
-        'disable'           => 'Letiltás',
-        'enable'            => 'Engedélyezés',
+        'uninstall' => 'Eltávolítás',
+        'disable' => 'Letiltás',
+        'enable' => 'Engedélyezés',
     ],
 
     'my' => [
-        'purchased'         => 'Megvásárolva',
-        'installed'         => 'Telepített',
+        'purchased' => 'Megvásárolva',
+        'installed' => 'Telepített',
     ],
 
     'reviews' => [
         'button' => [
-            'add'           => 'Megjegyzés hozzáadása'
+            'add' => 'Megjegyzés hozzáadása',
         ],
 
-        'na'                => 'Nincsenek vélemények.'
+        'na' => 'Nincsenek vélemények.',
     ],
 
 ];

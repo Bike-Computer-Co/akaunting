@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <HTML>
 <HEAD>
 	<TITLE>Cancellation of payment</TITLE>

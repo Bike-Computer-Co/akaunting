@@ -43,7 +43,7 @@ class Translations extends ApiController
 
         $filesystem = app(Filesystem::class);
 
-        $path = base_path('resources/lang/' . $locale);
+        $path = base_path('resources/lang/'.$locale);
 
         foreach ($filesystem->glob("{$path}/*") as $file_system) {
             $file = str_replace('.php', '', basename($file_system));
@@ -54,12 +54,12 @@ class Translations extends ApiController
         $modules = Module::enabled()->get();
 
         foreach ($modules as $module) {
-            $path = base_path('modules/' . Str::studly($module->alias) . '/Resources/lang/' . $locale);
+            $path = base_path('modules/'.Str::studly($module->alias).'/Resources/lang/'.$locale);
 
             foreach ($filesystem->glob("{$path}/*") as $file_system) {
                 $file = str_replace('.php', '', basename($file_system));
 
-                $translations[$module->alias . '::' . $file] = trans($file);
+                $translations[$module->alias.'::'.$file] = trans($file);
             }
         }
 

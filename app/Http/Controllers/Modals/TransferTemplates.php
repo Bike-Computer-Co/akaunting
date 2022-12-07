@@ -21,8 +21,7 @@ class TransferTemplates extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function update(Request $request)
@@ -36,7 +35,7 @@ class TransferTemplates extends Controller
         }
 
         foreach ($fields as $key => $value) {
-            $real_key = $prefix . '.' . $key;
+            $real_key = $prefix.'.'.$key;
 
             // Don't process unwanted keys
             if (in_array($key, $this->skip_keys)) {

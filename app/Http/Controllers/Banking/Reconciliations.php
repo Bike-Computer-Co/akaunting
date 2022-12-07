@@ -63,7 +63,6 @@ class Reconciliations extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -91,7 +90,6 @@ class Reconciliations extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Reconciliation  $reconciliation
-     *
      * @return Response
      */
     public function edit(Reconciliation $reconciliation)
@@ -110,9 +108,8 @@ class Reconciliations extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Reconciliation $reconciliation
-     * @param  Request $request
-     *
+     * @param  Reconciliation  $reconciliation
+     * @param  Request  $request
      * @return Response
      */
     public function update(Reconciliation $reconciliation, Request $request)
@@ -139,8 +136,7 @@ class Reconciliations extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Reconciliation $reconciliation
-     *
+     * @param  Reconciliation  $reconciliation
      * @return Response
      */
     public function destroy(Reconciliation $reconciliation)
@@ -168,13 +164,12 @@ class Reconciliations extends Controller
      * @param $account
      * @param $started_at
      * @param $ended_at
-     *
      * @return mixed
      */
     protected function getTransactions($account, $started_at, $ended_at)
     {
-        $started = explode(' ', $started_at)[0] . ' 00:00:00';
-        $ended = explode(' ', $ended_at)[0] . ' 23:59:59';
+        $started = explode(' ', $started_at)[0].' 00:00:00';
+        $ended = explode(' ', $ended_at)[0].' 23:59:59';
 
         $transactions = Transaction::with('account', 'contact')->where('account_id', $account->id)->whereBetween('paid_at', [$started, $ended])->get();
 
@@ -186,7 +181,6 @@ class Reconciliations extends Controller
      *
      * @param $account
      * @param $started_at
-     *
      * @return string
      */
     public function getOpeningBalance($account, $started_at)

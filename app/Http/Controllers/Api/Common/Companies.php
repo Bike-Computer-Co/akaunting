@@ -49,7 +49,7 @@ class Companies extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -62,8 +62,8 @@ class Companies extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $company
-     * @param  $request
+     * @param    $company
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Company $company, Request $request)
@@ -132,7 +132,6 @@ class Companies extends ApiController
      * Check user company assignment
      *
      * @param  Company  $company
-     *
      * @return \Illuminate\Http\Response
      */
     public function canAccess(Company $company)

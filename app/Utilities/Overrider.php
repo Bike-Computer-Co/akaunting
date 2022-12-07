@@ -19,7 +19,7 @@ class Overrider
 
         static::$company_id = $company_id;
 
-        $method = 'load' . ucfirst($type);
+        $method = 'load'.ucfirst($type);
 
         static::$method();
     }
@@ -53,7 +53,7 @@ class Overrider
 //        }
 
         // Locale
-        if (!session('locale')) {
+        if (! session('locale')) {
             $locale = user()->locale ?? setting('default.locale');
 
             app()->setLocale($locale);
@@ -63,7 +63,7 @@ class Overrider
         Money::setLocale(app()->getLocale());
 
         // Set app url dynamically if empty
-        if (!config('app.url')) {
+        if (! config('app.url')) {
             config(['app.url' => url('/')]);
         }
     }
@@ -73,13 +73,13 @@ class Overrider
         $currencies = Currency::all();
 
         foreach ($currencies as $currency) {
-            config(['money.' . $currency->code . '.name' => $currency->name]);
-            config(['money.' . $currency->code . '.rate' => $currency->rate]);
-            config(['money.' . $currency->code . '.precision' => $currency->precision]);
-            config(['money.' . $currency->code . '.symbol' => $currency->symbol]);
-            config(['money.' . $currency->code . '.symbol_first' => $currency->symbol_first]);
-            config(['money.' . $currency->code . '.decimal_mark' => $currency->decimal_mark]);
-            config(['money.' . $currency->code . '.thousands_separator' => $currency->thousands_separator]);
+            config(['money.'.$currency->code.'.name' => $currency->name]);
+            config(['money.'.$currency->code.'.rate' => $currency->rate]);
+            config(['money.'.$currency->code.'.precision' => $currency->precision]);
+            config(['money.'.$currency->code.'.symbol' => $currency->symbol]);
+            config(['money.'.$currency->code.'.symbol_first' => $currency->symbol_first]);
+            config(['money.'.$currency->code.'.decimal_mark' => $currency->decimal_mark]);
+            config(['money.'.$currency->code.'.thousands_separator' => $currency->thousands_separator]);
         }
 
         // Set currencies with new settings

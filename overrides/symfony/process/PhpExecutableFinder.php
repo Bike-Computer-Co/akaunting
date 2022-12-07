@@ -23,17 +23,17 @@ class PhpExecutableFinder
 
     public function __construct()
     {
-        # @override
+        // @override
         //$this->executableFinder = new ExecutableFinder();
     }
 
     public function getPhpPath()
     {
-		$php_path = getenv('APP_PHP_PATH');
+        $php_path = getenv('APP_PHP_PATH');
 
-		if (! empty($php_path)) {
-			return $php_path;
-		}
+        if (! empty($php_path)) {
+            return $php_path;
+        }
 
         if ($this->isCpanel()) {
             return '/usr/local/bin/php';
@@ -79,7 +79,7 @@ class PhpExecutableFinder
     {
         try {
             return is_dir($folder);
-        } catch (\ErrorException | \Exception | \Throwable $e) {
+        } catch (\ErrorException|\Exception|\Throwable $e) {
             return $this->checkSocket($port);
         }
     }
@@ -95,7 +95,7 @@ class PhpExecutableFinder
             }
 
             return false;
-        } catch (\ErrorException | \Exception | \Throwable $e) {
+        } catch (\ErrorException|\Exception|\Throwable $e) {
             return false;
         }
     }
@@ -107,15 +107,15 @@ class PhpExecutableFinder
      */
     public function find(bool $includeArgs = true)
     {
-        # @override
+        // @override
         // Not working on shared hosting due to "open_basedir" restriction applied by cPanel/Plesk
         return $this->getPhpPath();
 
         if ($php = getenv('PHP_BINARY')) {
-            if (!is_executable($php)) {
+            if (! is_executable($php)) {
                 $command = '\\' === \DIRECTORY_SEPARATOR ? 'where' : 'command -v';
                 if ($php = strtok(exec($command.' '.escapeshellarg($php)), PHP_EOL)) {
-                    if (!is_executable($php)) {
+                    if (! is_executable($php)) {
                         return false;
                     }
                 } else {
@@ -135,7 +135,7 @@ class PhpExecutableFinder
         }
 
         if ($php = getenv('PHP_PATH')) {
-            if (!@is_executable($php)) {
+            if (! @is_executable($php)) {
                 return false;
             }
 

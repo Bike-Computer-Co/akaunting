@@ -14,7 +14,7 @@ class Defaults extends SettingController
 
         $sale_category_id = setting('default.income_category');
 
-        if ($sale_category_id && !$sales_categories->pluck('id')->flip()->has($sale_category_id)) {
+        if ($sale_category_id && ! $sales_categories->pluck('id')->flip()->has($sale_category_id)) {
             $category = Category::find($sale_category_id);
 
             if ($category) {
@@ -26,7 +26,7 @@ class Defaults extends SettingController
 
         $expense_category_id = setting('default.expense_category');
 
-        if ($expense_category_id && !$purchases_categories->pluck('id')->flip()->has($expense_category_id)) {
+        if ($expense_category_id && ! $purchases_categories->pluck('id')->flip()->has($expense_category_id)) {
             $category = Category::find($expense_category_id);
 
             if ($category) {

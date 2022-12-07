@@ -4,11 +4,10 @@ namespace App\View\Components;
 
 use App\Abstracts\View\Component;
 use App\Traits\Modules;
-use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Illuminate\View\View;
 
 class EmptyPage extends Component
 {
@@ -82,7 +81,7 @@ class EmptyPage extends Component
             $alias = $group;
         }
 
-        $this->alias = (module($alias) === null) ? 'core': $alias;
+        $this->alias = (module($alias) === null) ? 'core' : $alias;
         $this->group = $group;
         $this->page = $page;
         $this->docsCategory = $docsCategory;
@@ -123,12 +122,12 @@ class EmptyPage extends Component
 
         switch ($this->alias) {
             case 'core':
-                $text = 'general.' . $this->page;
-                $text2 = 'general.' . Str::replace('-', '_', $this->page);
+                $text = 'general.'.$this->page;
+                $text2 = 'general.'.Str::replace('-', '_', $this->page);
                 break;
             default:
-                $text = $this->alias . '::general.' . $this->page;
-                $text2 = $this->alias . '::general.' . Str::replace('-', '_', $this->page);
+                $text = $this->alias.'::general.'.$this->page;
+                $text2 = $this->alias.'::general.'.Str::replace('-', '_', $this->page);
         }
 
         $title = trans_choice($text, $number);
@@ -148,12 +147,12 @@ class EmptyPage extends Component
 
         switch ($this->alias) {
             case 'core':
-                $text = 'general.empty.' . $this->page;
-                $text2 = 'general.empty.' . Str::replace('-', '_', $this->page);
+                $text = 'general.empty.'.$this->page;
+                $text2 = 'general.empty.'.Str::replace('-', '_', $this->page);
                 break;
             default:
-                $text = $this->alias . '::general.empty.' . $this->page;
-                $text2 = $this->alias . '::general.empty.' . Str::replace('-', '_', $this->page);
+                $text = $this->alias.'::general.empty.'.$this->page;
+                $text2 = $this->alias.'::general.empty.'.Str::replace('-', '_', $this->page);
         }
 
         $description = trans($text);
@@ -165,7 +164,7 @@ class EmptyPage extends Component
         $docs_url = $this->getDocsUrl();
 
         if (! empty($docs_url)) {
-            $description .= ' ' . trans('general.empty.documentation', ['url' => $docs_url]);
+            $description .= ' '.trans('general.empty.documentation', ['url' => $docs_url]);
         }
 
         return $description;
@@ -178,16 +177,18 @@ class EmptyPage extends Component
                 $docs_path = 'user-manual/';
 
                 if (! empty($this->group)) {
-                    $docs_path .= $this->group . '/';
+                    $docs_path .= $this->group.'/';
                 }
 
                 $docs_path .= $this->page;
                 break;
             default:
-                $docs_path = 'app-manual/' . $this->docsCategory . '/' . $this->alias;
+                $docs_path = 'app-manual/'.$this->docsCategory.'/'.$this->alias;
         }
-        return "https://digitalhub.mk/";
-        return 'https://akaunting.com/docs/' . $docs_path;
+
+        return 'https://digitalhub.mk/';
+
+        return 'https://akaunting.com/docs/'.$docs_path;
     }
 
     protected function getImage($page, $image)
@@ -200,10 +201,10 @@ class EmptyPage extends Component
             return asset($this->imageEmptyPage);
         }
 
-        $path = 'public/img/empty_pages/' . $page . '.png';
+        $path = 'public/img/empty_pages/'.$page.'.png';
 
         if ($this->alias != 'core') {
-            $path = 'modules/' . Str::studly($this->alias) . '/Resources/assets/img/empty-' . $page . '.png';
+            $path = 'modules/'.Str::studly($this->alias).'/Resources/assets/img/empty-'.$page.'.png';
 
             if (! file_exists($path)) {
                 $path = 'public/img/empty_pages/default.png';
@@ -232,8 +233,8 @@ class EmptyPage extends Component
             $permissionCreate = $pages[$page];
         }
 
-        if (empty($permissionCreate) && !empty($group)) {
-            $permissionCreate = 'create-' . $group . '-' . $page;
+        if (empty($permissionCreate) && ! empty($group)) {
+            $permissionCreate = 'create-'.$group.'-'.$page;
         }
 
         return $permissionCreate;
@@ -265,19 +266,19 @@ class EmptyPage extends Component
     protected function getCreateButton($page, $group)
     {
         try {
-            $route = route($group . '.' . $page . '.create');
+            $route = route($group.'.'.$page.'.create');
         } catch (\Exception $e) {
-            $route = route($page . '.create');
+            $route = route($page.'.create');
         }
 
         $title = $this->getTitle(null, 1);
 
         return [
-            'url'           => $route,
-            'permission'    => $this->permissionCreate,
-            'text'          => trans('general.title.new', ['type' => $title]),
-            'description'   => trans('general.empty.actions.new', ['type' => strtolower($title)]),
-            'active_badge'  => true,
+            'url' => $route,
+            'permission' => $this->permissionCreate,
+            'text' => trans('general.title.new', ['type' => $title]),
+            'description' => trans('general.empty.actions.new', ['type' => strtolower($title)]),
+            'active_badge' => true,
         ];
     }
 
@@ -289,11 +290,11 @@ class EmptyPage extends Component
         $title = $this->getTitle();
 
         return [
-            'url'           => route($importRoute, $importRouteParameters),
-            'permission'    => $this->permissionCreate,
-            'text'          => trans('import.title', ['type' => $title]),
-            'description'   => trans('general.empty.actions.import', ['type' => strtolower($title)]),
-            'active_badge'  => false,
+            'url' => route($importRoute, $importRouteParameters),
+            'permission' => $this->permissionCreate,
+            'text' => trans('import.title', ['type' => $title]),
+            'description' => trans('general.empty.actions.import', ['type' => strtolower($title)]),
+            'active_badge' => false,
         ];
     }
 
@@ -314,7 +315,7 @@ class EmptyPage extends Component
             return $importRouteParameters;
         }
 
-        return array_slice(request()->segments(), -2, 2, true) ;
+        return array_slice(request()->segments(), -2, 2, true);
     }
 
     public function getSuggestionModule()
@@ -345,7 +346,7 @@ class EmptyPage extends Component
                 continue;
             }
 
-            $s_module->action_url = company_id() . '/' . $s_module->action_url;
+            $s_module->action_url = company_id().'/'.$s_module->action_url;
 
             $modules[] = $s_module;
         }

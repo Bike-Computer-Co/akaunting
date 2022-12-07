@@ -77,7 +77,6 @@ class Categories extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -105,7 +104,6 @@ class Categories extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -129,7 +127,6 @@ class Categories extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Category  $category
-     *
      * @return Response
      */
     public function edit(Category $category)
@@ -162,9 +159,8 @@ class Categories extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Category $category
-     * @param  Request $request
-     *
+     * @param  Category  $category
+     * @param  Request  $request
      * @return Response
      */
     public function update($category_id, Request $request)
@@ -193,8 +189,7 @@ class Categories extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Category $category
-     *
+     * @param  Category  $category
      * @return Response
      */
     public function enable($category_id)
@@ -213,8 +208,7 @@ class Categories extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Category $category
-     *
+     * @param  Category  $category
      * @return Response
      */
     public function disable($category_id)
@@ -233,8 +227,7 @@ class Categories extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Category $category
-     *
+     * @param  Category  $category
      * @return Response
      */
     public function destroy(Category $category)

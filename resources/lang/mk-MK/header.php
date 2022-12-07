@@ -26,8 +26,8 @@ return [
     'support_link' => 'https://akaunting.com/support',
 
     'favorite' => [
-        'added_favorite'    => 'Додадено во омилени',
-        'add_favorite'      => 'Додади во омилени',
+        'added_favorite' => 'Додадено во омилени',
+        'add_favorite' => 'Додади во омилени',
     ],
 
 ];

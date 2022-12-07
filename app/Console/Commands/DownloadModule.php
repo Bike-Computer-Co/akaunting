@@ -49,15 +49,15 @@ class DownloadModule extends Command
 
         company($this->company)->makeCurrent();
 
-        if (!$path = $this->download()) {
+        if (! $path = $this->download()) {
             return self::CMD_ERROR;
         }
 
-        if (!$this->unzip($path)) {
+        if (! $this->unzip($path)) {
             return self::CMD_ERROR;
         }
 
-        if (!$this->copyFiles($path)) {
+        if (! $this->copyFiles($path)) {
             return self::CMD_ERROR;
         }
 
@@ -120,7 +120,7 @@ class DownloadModule extends Command
         if (empty($version)) {
             $current = '1.0.0';
 
-            $url = 'apps/' . $this->alias . '/version/' . $current . '/' . version('short');
+            $url = 'apps/'.$this->alias.'/version/'.$current.'/'.version('short');
 
             $version = Versions::getLatestVersion($url, $current);
         }

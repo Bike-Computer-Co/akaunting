@@ -2,8 +2,8 @@
 
 return [
 
-    'previous'              => '&laquo; Претходна',
-    'next'                  => 'Следећа &raquo;',
-    'showing'               => 'Приказивање :first до :last од :total :type',
+    'previous' => '&laquo; Претходна',
+    'next' => 'Следећа &raquo;',
+    'showing' => 'Приказивање :first до :last од :total :type',
 
 ];

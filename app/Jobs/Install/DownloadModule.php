@@ -14,8 +14,8 @@ class DownloadModule extends Job
     /**
      * Create a new job instance.
      *
-     * @param  $alias
-     * @param  $company_id
+     * @param    $alias
+     * @param    $company_id
      */
     public function __construct($alias, $company_id)
     {

@@ -38,7 +38,7 @@ class Users extends Controller
     public function index()
     {
         $users = User::query()
-            ->whereHas('companies', fn($q) => $q->where('id', company_id()))
+            ->whereHas('companies', fn ($q) => $q->where('id', company_id()))
             ->with('media', 'roles')->collect();
 
         return $this->response('auth.users.index', compact('users'));
@@ -82,8 +82,7 @@ class Users extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
@@ -94,7 +93,6 @@ class Users extends Controller
             $response = $this->ajaxDispatch(new UpdateUser($exists, $request));
         } else {
             $response = $this->ajaxDispatch(new CreateUser($request));
-
         }
 
         if ($response['success']) {
@@ -117,8 +115,7 @@ class Users extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return Response
      */
     public function edit(User $user)
@@ -126,7 +123,7 @@ class Users extends Controller
         if (user()->cannot('read-auth-users') && ($user->id != user()->id)) {
             abort(403);
         }
-        if (!$user->companies()->where('id', company_id())->exists()) {
+        if (! $user->companies()->where('id', company_id())->exists()) {
             abort(403);
         }
 
@@ -140,7 +137,7 @@ class Users extends Controller
         if ($user->isCustomer()) {
             // Show only roles with customer permission
             $roles = Role::all()->reject(function ($r) {
-                return !$r->hasPermission('read-client-portal');
+                return ! $r->hasPermission('read-client-portal');
             })->pluck('display_name', 'id');
         } else {
             // Don't show roles with customer permission
@@ -173,9 +170,8 @@ class Users extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param User $user
-     * @param Request $request
-     *
+     * @param  User  $user
+     * @param  Request  $request
      * @return Response
      */
     public function update(User $user, Request $request)
@@ -183,7 +179,7 @@ class Users extends Controller
         if (user()->cannot('update-auth-users') && ($user->id != user()->id)) {
             abort(403);
         }
-        if (!$user->companies()->where('id', company_id())->exists()) {
+        if (! $user->companies()->where('id', company_id())->exists()) {
             abort(403);
         }
 
@@ -209,8 +205,7 @@ class Users extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return Response
      */
     public function enable(User $user)
@@ -227,8 +222,7 @@ class Users extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return Response
      */
     public function disable(User $user)
@@ -245,13 +239,12 @@ class Users extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return Response
      */
     public function destroy(User $user)
     {
-        if (!$user->companies()->where('id', company_id())->exists()) {
+        if (! $user->companies()->where('id', company_id())->exists()) {
             abort(403);
         }
         $response = $this->ajaxDispatch(new DeleteUser($user));
@@ -274,8 +267,7 @@ class Users extends Controller
     /**
      * Mark upcoming bills notifications are read and redirect to bills page.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return Response
      */
     public function readUpcomingBills(User $user)
@@ -296,8 +288,7 @@ class Users extends Controller
     /**
      * Mark overdue invoices notifications are read and redirect to invoices page.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return Response
      */
     public function readOverdueInvoices(User $user)
@@ -323,10 +314,10 @@ class Users extends Controller
         $column = $request['column'];
         $value = $request['value'];
 
-        if (!empty($column) && !empty($value)) {
+        if (! empty($column) && ! empty($value)) {
             switch ($column) {
                 case 'id':
-                    $user = User::find((int)$value);
+                    $user = User::find((int) $value);
                     break;
                 case 'email':
                     $user = User::where('email', $value)->first();
@@ -336,7 +327,7 @@ class Users extends Controller
             }
 
             $data = $user;
-        } elseif (!empty($column) && empty($value)) {
+        } elseif (! empty($column) && empty($value)) {
             $data = trans('validation.required', ['attribute' => $column]);
         }
 
@@ -350,8 +341,7 @@ class Users extends Controller
     /**
      * Process request for reinviting the specified resource.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return Response
      */
     public function invite(User $user)

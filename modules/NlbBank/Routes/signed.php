@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
  *
  * @see \App\Providers\Route::register
  */
-
 Route::signed('nlb-bank', function () {
     Route::get('invoices/{invoice}', 'Payment@show')->name('invoices.show');
 
@@ -19,5 +18,4 @@ Route::signed('nlb-bank', function () {
     Route::get('invoices/{invoice}/cancel', 'Payment@cancel')->name('invoices.cancel');
 
     Route::post('invoices/{invoice}/callback', 'Payment@callback')->name('invoices.callback');
-
 });

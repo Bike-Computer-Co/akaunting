@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
  * @see \App\Providers\Route::mapGuestRoutes
  * @see \modules\PaypalStandard\Routes\guest.php for module example
  */
-
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', 'Auth\Login@create')->name('login');
     Route::post('login', 'Auth\Login@store')->name('login.store');
@@ -26,10 +25,8 @@ Route::group(['prefix' => 'auth'], function () {
     // disabled register routes for public
 //    Route::get("full-register", 'Auth\FullRegister@create')->name("full_register.create");
 //    Route::post("full-register", 'Auth\FullRegister@store')->name("full_register.store");
-
 });
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
-

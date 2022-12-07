@@ -60,10 +60,10 @@
         <label style="color:green; font-size: 20px">Number of installments</label><br/>
         <select name="numInstalment" id="numInstalment">
             <?php
-                foreach(range(0, 36) as $number){
-                  printf('<option value="%1$02d">%1$02d</option>', $number);
+                foreach (range(0, 36) as $number) {
+                    printf('<option value="%1$02d">%1$02d</option>', $number);
                 }
-              ?>
+            ?>
         </select>
         <br/><br/>
     </div>

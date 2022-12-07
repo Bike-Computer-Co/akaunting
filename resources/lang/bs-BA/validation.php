@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'prilagođena-poruka',
         ],
-        'invalid_currency'      => 'Kód :attribute nije valjan.',
-        'invalid_amount'        => 'Iznos :atribut nije valjan.',
-        'invalid_extension'     => 'Ekstenzija datoteke nije valjana.',
+        'invalid_currency' => 'Kód :attribute nije valjan.',
+        'invalid_amount' => 'Iznos :atribut nije valjan.',
+        'invalid_extension' => 'Ekstenzija datoteke nije valjana.',
     ],
 
     /*

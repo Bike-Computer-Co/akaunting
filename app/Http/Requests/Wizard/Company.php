@@ -4,8 +4,8 @@ namespace App\Http\Requests\Wizard;
 
 use App\Abstracts\Http\FormRequest;
 use App\Traits\Modules as RemoteModules;
-use Illuminate\Validation\Factory as ValidationFactory;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Factory as ValidationFactory;
 
 class Company extends FormRequest
 {
@@ -32,9 +32,9 @@ class Company extends FormRequest
         $logo = 'nullable';
 
         if ($this->files->get('logo')) {
-            $logo = 'mimes:' . config('filesystems.mimes')
-                    . '|between:0,' . config('filesystems.max_size') * 1024
-                    . '|dimensions:max_width=' . config('filesystems.max_width') . ',max_height=' . config('filesystems.max_height');
+            $logo = 'mimes:'.config('filesystems.mimes')
+                    .'|between:0,'.config('filesystems.max_size') * 1024
+                    .'|dimensions:max_width='.config('filesystems.max_width').',max_height='.config('filesystems.max_height');
         }
 
         $rules = [
@@ -51,9 +51,9 @@ class Company extends FormRequest
     public function messages()
     {
         $logo_dimensions = trans('validation.custom.invalid_dimension', [
-            'attribute'     => Str::lower(trans('settings.company.logo')),
-            'width'         => config('filesystems.max_width'),
-            'height'        => config('filesystems.max_height'),
+            'attribute' => Str::lower(trans('settings.company.logo')),
+            'width' => config('filesystems.max_width'),
+            'height' => config('filesystems.max_height'),
         ]);
 
         return [

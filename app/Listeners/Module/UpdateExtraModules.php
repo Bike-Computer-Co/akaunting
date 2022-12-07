@@ -12,7 +12,7 @@ class UpdateExtraModules
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -56,7 +56,7 @@ class UpdateExtraModules
             $command = "update {$alias} {$company_id} {$latest_version}";
 
             if (true !== $result = Console::run($command)) {
-                $message = !empty($result) ? $result : trans('modules.errors.finish', ['module' => $alias]);
+                $message = ! empty($result) ? $result : trans('modules.errors.finish', ['module' => $alias]);
 
                 report($message);
 

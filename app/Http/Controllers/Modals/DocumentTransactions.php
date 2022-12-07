@@ -9,11 +9,9 @@ use App\Jobs\Banking\UpdateBankingDocumentTransaction;
 use App\Models\Banking\Transaction;
 use App\Models\Document\Document;
 use App\Models\Setting\Currency;
-use App\Utilities\Modules;
-use App\Traits\Uploads;
 use App\Traits\Transactions;
+use App\Traits\Uploads;
 use Date;
-
 
 class DocumentTransactions extends Controller
 {
@@ -35,7 +33,6 @@ class DocumentTransactions extends Controller
      * Show the form for creating a new resource.
      *
      * @param  Document  $document
-     *
      * @return Response
      */
     public function create(Document $document)
@@ -64,11 +61,11 @@ class DocumentTransactions extends Controller
         $buttons = [
             'cancel' => [
                 'text' => trans('general.cancel'),
-                'class' => 'btn-outline-secondary'
+                'class' => 'btn-outline-secondary',
             ],
             'confirm' => [
                 'text' => trans('general.save'),
-                'class' => 'disabled:bg-blue-100'
+                'class' => 'disabled:bg-blue-100',
             ],
         ];
 
@@ -86,16 +83,15 @@ class DocumentTransactions extends Controller
             'data' => [
                 'title' => trans('general.title.new', ['type' => trans_choice('general.payments', 1)]),
                 'buttons' => $buttons,
-            ]
+            ],
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Document $document
-     * @param Request $request
-     *
+     * @param  Document  $document
+     * @param  Request  $request
      * @return Response
      */
     public function store(Document $document, Request $request)
@@ -103,13 +99,13 @@ class DocumentTransactions extends Controller
         $response = $this->ajaxDispatch(new CreateBankingDocumentTransaction($document, $request));
 
         if ($response['success']) {
-            $route = config('type.document.' . $document->type . '.route.prefix');
+            $route = config('type.document.'.$document->type.'.route.prefix');
 
-            if ($alias = config('type.document.' . $document->type . '.alias')) {
-                $route = $alias . '.' . $route;
+            if ($alias = config('type.document.'.$document->type.'.alias')) {
+                $route = $alias.'.'.$route;
             }
 
-            $response['redirect'] = route($route . '.show', $document->id);
+            $response['redirect'] = route($route.'.show', $document->id);
 
             $message = trans('messages.success.added', ['type' => trans_choice('general.payments', 1)]);
 
@@ -125,7 +121,6 @@ class DocumentTransactions extends Controller
      * Show the form for creating a new resource.
      *
      * @param  Document  $document
-     *
      * @return Response
      */
     public function edit(Document $document, Transaction $transaction)
@@ -143,11 +138,11 @@ class DocumentTransactions extends Controller
         $buttons = [
             'cancel' => [
                 'text' => trans('general.cancel'),
-                'class' => 'btn-outline-secondary'
+                'class' => 'btn-outline-secondary',
             ],
             'confirm' => [
                 'text' => trans('general.save'),
-                'class' => 'disabled:bg-blue-100'
+                'class' => 'disabled:bg-blue-100',
             ],
         ];
 
@@ -165,15 +160,15 @@ class DocumentTransactions extends Controller
             'data' => [
                 'title' => trans('general.title.edit', ['type' => trans_choice('general.payments', 1)]),
                 'buttons' => $buttons,
-            ]
+            ],
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  $item
-     * @param  $request
+     * @param    $item
+     * @param    $request
      * @return Response
      */
     public function update(Document $document, Transaction $transaction, Request $request)
@@ -181,13 +176,13 @@ class DocumentTransactions extends Controller
         $response = $this->ajaxDispatch(new UpdateBankingDocumentTransaction($document, $transaction, $request));
 
         if ($response['success']) {
-            $route = config('type.document.' . $document->type . '.route.prefix');
+            $route = config('type.document.'.$document->type.'.route.prefix');
 
-            if ($alias = config('type.document.' . $document->type . '.alias')) {
-                $route = $alias . '.' . $route;
+            if ($alias = config('type.document.'.$document->type.'.alias')) {
+                $route = $alias.'.'.$route;
             }
 
-            $response['redirect'] = route($route . '.show', $document->id);
+            $response['redirect'] = route($route.'.show', $document->id);
 
             $message = trans('messages.success.added', ['type' => trans_choice('general.payments', 1)]);
 

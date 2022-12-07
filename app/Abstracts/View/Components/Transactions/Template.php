@@ -6,21 +6,23 @@ use App\Abstracts\View\Component;
 use App\Models\Common\Media;
 use App\Traits\DateTime;
 use App\Traits\Transactions;
+use App\Traits\ViewComponents;
 use App\Utilities\Modules;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 use Intervention\Image\Exception\NotReadableException;
-use App\Traits\ViewComponents;
+use Intervention\Image\Facades\Image;
 
 abstract class Template extends Component
 {
     use DateTime, Transactions, ViewComponents;
 
     public const OBJECT_TYPE = 'transaction';
+
     public const DEFAULT_TYPE = 'transaction';
+
     public const DEFAULT_PLURAL_TYPE = 'transactions';
 
     /** @var string */
@@ -266,15 +268,15 @@ abstract class Template extends Component
 
     protected function getLogo($logo)
     {
-        if (!empty($logo)) {
+        if (! empty($logo)) {
             return $logo;
         }
 
-        $media_id = (!empty($this->transaction->contact->logo) && !empty($this->transaction->contact->logo->id)) ? $this->transaction->contact->logo->id : setting('company.logo');
+        $media_id = (! empty($this->transaction->contact->logo) && ! empty($this->transaction->contact->logo->id)) ? $this->transaction->contact->logo->id : setting('company.logo');
 
         $media = Media::find($media_id);
 
-        if (!empty($media)) {
+        if (! empty($media)) {
             $path = $media->getDiskPath();
 
             if (Storage::missing($path)) {
@@ -285,7 +287,7 @@ abstract class Template extends Component
         }
 
         try {
-            $image = Image::cache(function($image) use ($media, $path) {
+            $image = Image::cache(function ($image) use ($media, $path) {
                 $width = setting('invoice.logo_size_width');
                 $height = setting('invoice.logo_size_height');
 
@@ -295,13 +297,13 @@ abstract class Template extends Component
                     $image->make($path)->resize($width, $height)->encode();
                 }
             });
-        } catch (NotReadableException | \Exception $e) {
-            Log::info('Company ID: ' . company_id() . ' components/transactionshow.php exception.');
+        } catch (NotReadableException|\Exception $e) {
+            Log::info('Company ID: '.company_id().' components/transactionshow.php exception.');
             Log::info($e->getMessage());
 
             $path = base_path('public/img/company.png');
 
-            $image = Image::cache(function($image) use ($path) {
+            $image = Image::cache(function ($image) use ($path) {
                 $width = setting('invoice.logo_size_width');
                 $height = setting('invoice.logo_size_height');
 
@@ -315,12 +317,12 @@ abstract class Template extends Component
 
         $extension = File::extension($path);
 
-        return 'data:image/' . $extension . ';base64,' . base64_encode($image);
+        return 'data:image/'.$extension.';base64,'.base64_encode($image);
     }
 
     protected function getTextContentTitle($type, $textContentTitle)
     {
-        if (!empty($textContentTitle)) {
+        if (! empty($textContentTitle)) {
             return $textContentTitle;
         }
 
@@ -335,9 +337,9 @@ abstract class Template extends Component
                 break;
         }
 
-        $translation = $this->getTextFromConfig($type, $type . '_made', $default_key);
+        $translation = $this->getTextFromConfig($type, $type.'_made', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -346,7 +348,7 @@ abstract class Template extends Component
 
     protected function getTextNumber($type, $textNumber)
     {
-        if (!empty($textNumber)) {
+        if (! empty($textNumber)) {
             return $textNumber;
         }
 
@@ -355,13 +357,13 @@ abstract class Template extends Component
 
     protected function getTextPaidAt($type, $textPaidAt)
     {
-        if (!empty($textPaidAt)) {
+        if (! empty($textPaidAt)) {
             return $textPaidAt;
         }
 
         $translation = $this->getTextFromConfig($type, 'paid_at', 'date');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -370,13 +372,13 @@ abstract class Template extends Component
 
     protected function getTextAccount($type, $textAccount)
     {
-        if (!empty($textAccount)) {
+        if (! empty($textAccount)) {
             return $textAccount;
         }
 
         $translation = $this->getTextFromConfig($type, 'accounts', 'accounts', 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -385,13 +387,13 @@ abstract class Template extends Component
 
     protected function getTextCategory($type, $textCategory)
     {
-        if (!empty($textCategory)) {
+        if (! empty($textCategory)) {
             return $textCategory;
         }
 
         $translation = $this->getTextFromConfig($type, 'categories', 'categories', 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -400,13 +402,13 @@ abstract class Template extends Component
 
     protected function getTextPaymentMethods($type, $textPaymentMethods)
     {
-        if (!empty($textPaymentMethods)) {
+        if (! empty($textPaymentMethods)) {
             return $textPaymentMethods;
         }
 
         $translation = $this->getTextFromConfig($type, 'payment_methods', 'payment_methods', 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -415,13 +417,13 @@ abstract class Template extends Component
 
     protected function getTextReference($type, $textReference)
     {
-        if (!empty($textReference)) {
+        if (! empty($textReference)) {
             return $textReference;
         }
 
         $translation = $this->getTextFromConfig($type, 'reference', 'reference');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -430,13 +432,13 @@ abstract class Template extends Component
 
     protected function getTextDescription($type, $textDescription)
     {
-        if (!empty($textDescription)) {
+        if (! empty($textDescription)) {
             return $textDescription;
         }
 
         $translation = $this->getTextFromConfig($type, 'description', 'description');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -445,13 +447,13 @@ abstract class Template extends Component
 
     protected function getTextAmount($type, $textAmount)
     {
-        if (!empty($textAmount)) {
+        if (! empty($textAmount)) {
             return $textAmount;
         }
 
         $translation = $this->getTextFromConfig($type, 'amount', 'amount');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -460,7 +462,7 @@ abstract class Template extends Component
 
     protected function getTextPaidBy($type, $textPaidBy)
     {
-        if (!empty($textPaidBy)) {
+        if (! empty($textPaidBy)) {
             return $textPaidBy;
         }
 
@@ -477,7 +479,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'paid_to_by', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -486,7 +488,7 @@ abstract class Template extends Component
 
     protected function getTextContactInfo($type, $textContactInfo)
     {
-        if (!empty($textContactInfo)) {
+        if (! empty($textContactInfo)) {
             return $textContactInfo;
         }
 
@@ -506,7 +508,7 @@ abstract class Template extends Component
 
     protected function getTextRelatedTransansaction($type, $textRelatedTransansaction)
     {
-        if (!empty($textRelatedTransansaction)) {
+        if (! empty($textRelatedTransansaction)) {
             return $textRelatedTransansaction;
         }
 
@@ -523,7 +525,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'related_type', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -532,13 +534,13 @@ abstract class Template extends Component
 
     protected function getTextRelatedDocumentNumber($type, $textRelatedDocumentNumber)
     {
-        if (!empty($textRelatedDocumentNumber)) {
+        if (! empty($textRelatedDocumentNumber)) {
             return $textRelatedDocumentNumber;
         }
 
         $translation = $this->getTextFromConfig($type, 'related_document_number', 'numbers');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -547,15 +549,15 @@ abstract class Template extends Component
 
     protected function getTextRelatedContact($type, $textRelatedContact)
     {
-        if (!empty($textRelatedContact)) {
+        if (! empty($textRelatedContact)) {
             return $textRelatedContact;
         }
 
-        $default_key = Str::plural(config('type.transaction.' . $type . '.contact_type'), 2);
+        $default_key = Str::plural(config('type.transaction.'.$type.'.contact_type'), 2);
 
         $translation = $this->getTextFromConfig($type, 'related_contact', $default_key, 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -564,7 +566,7 @@ abstract class Template extends Component
 
     protected function getTextRelatedDocumentDate($type, $textRelatedDocumentDate)
     {
-        if (!empty($textRelatedDocumentDate)) {
+        if (! empty($textRelatedDocumentDate)) {
             return $textRelatedDocumentDate;
         }
 
@@ -581,7 +583,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'related_document_date', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -590,7 +592,7 @@ abstract class Template extends Component
 
     protected function getTextRelatedDocumentAmount($type, $textRelatedDocumentAmount)
     {
-        if (!empty($textRelatedDocumentAmount)) {
+        if (! empty($textRelatedDocumentAmount)) {
             return $textRelatedDocumentAmount;
         }
 
@@ -607,7 +609,7 @@ abstract class Template extends Component
 
         $translation = $this->getTextFromConfig($type, 'related_document_amount', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -616,13 +618,13 @@ abstract class Template extends Component
 
     protected function getTextRelatedAmount($type, $textRelatedAmount)
     {
-        if (!empty($textRelatedAmount)) {
+        if (! empty($textRelatedAmount)) {
             return $textRelatedAmount;
         }
 
         $translation = $this->getTextFromConfig($type, 'related_amount', 'amount');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -631,11 +633,11 @@ abstract class Template extends Component
 
     protected function routeDocumentShow($type, $routeDocumentShow)
     {
-        if (!empty($routeDocumentShow)) {
+        if (! empty($routeDocumentShow)) {
             return $routeDocumentShow;
         }
 
-        if (!$this->transaction->document) {
+        if (! $this->transaction->document) {
             return $routeDocumentShow;
         }
 
@@ -644,7 +646,7 @@ abstract class Template extends Component
 
         $route = $this->getRouteFromConfig($this->transaction->document->type, 'show', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 

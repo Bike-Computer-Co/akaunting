@@ -33,19 +33,19 @@
 			<p>V svoji aplikaciji za Flik plačila potrdi&nbsp;zahtevek&nbsp;za&nbsp;plačilo.</p>
 			<div>
 				<p>Ime trgovca</p>
-				<p><?php 
-                echo($_GET["amount"]); 
-                echo(" ");
-                echo($_GET["currency"]); 
-                ?> </p>
+				<p><?php
+                echo $_GET['amount'];
+				echo ' ';
+				echo $_GET['currency'];
+				?> </p>
                 <p id=startTime></p>
 			</div>
 		</div>
 	</div>
     <script>
 		// creating loading screen with countdown timers
-        var start = dayjs.utc("<?php Print($_GET['expiresDateTime']); ?>", 'YYYY-MM-DD hh:mm:ss').add(-5,'minute');
-        var end = dayjs.utc("<?php Print($_GET['expiresDateTime']); ?>", 'YYYY-MM-DD hh:mm:ss');
+        var start = dayjs.utc("<?php echo $_GET['expiresDateTime']; ?>", 'YYYY-MM-DD hh:mm:ss').add(-5,'minute');
+        var end = dayjs.utc("<?php echo $_GET['expiresDateTime']; ?>", 'YYYY-MM-DD hh:mm:ss');
         document.getElementById('startTime').innerText = start.local().format('DD. MM. YYYY, H:mm'); 
         setTimeout(function(){
             document.getElementById('procent').style.color = 'red';
@@ -62,7 +62,7 @@
 	
 		
 		//Check every 10000ms (10s) if the transaction result was send on callbackURL  	
-		var interval = setInterval(checkCallback, 10000, "<?php Print($_GET['uuid']); ?>",end.add(90, 'second'));
+		var interval = setInterval(checkCallback, 10000, "<?php echo $_GET['uuid']; ?>",end.add(90, 'second'));
 		
 		function checkCallback(uuid, endTime){
 			var myNow= dayjs();

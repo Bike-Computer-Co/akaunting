@@ -2,9 +2,9 @@
 
 namespace App\Models\Employees;
 
+use App\Abstracts\Model;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Abstracts\Model;
 
 class Employee extends Model
 {
@@ -13,12 +13,10 @@ class Employee extends Model
 
     protected $fillable = ['company_id', 'first_name', 'last_name', 'personal_number', 'birth_date', 'bank_account', 'occupation', 'address', 'email', 'phone', 'salary', 'enabled'];
 
-
     public function salaries(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Salary::class);
     }
-
 
     /**
      * Get the line actions.

@@ -30,7 +30,7 @@ class Bills extends Import
         $row['contact_id'] = $this->getContactId($row, 'vendor');
         $row['currency_code'] = $this->getCurrencyCode($row);
         $row['type'] = Model::BILL_TYPE;
-        $row['contact_country'] = !empty($country) ? $country : null;
+        $row['contact_country'] = ! empty($country) ? $country : null;
 
         return $row;
     }

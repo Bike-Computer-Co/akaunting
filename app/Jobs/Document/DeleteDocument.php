@@ -17,7 +17,7 @@ class DeleteDocument extends Job implements ShouldDelete
             Transaction::mute();
 
             $this->deleteRelationships($this->model, [
-                'items', 'item_taxes', 'histories', 'transactions', 'recurring', 'totals'
+                'items', 'item_taxes', 'histories', 'transactions', 'recurring', 'totals',
             ]);
 
             $this->model->delete();

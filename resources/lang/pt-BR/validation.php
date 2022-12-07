@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'invalid_currency'      => 'O código :attribute é inválido.',
-        'invalid_amount'        => 'O :attribute é inválido.',
-        'invalid_extension'     => 'A extensão do arquivo é inválida.',
+        'invalid_currency' => 'O código :attribute é inválido.',
+        'invalid_amount' => 'O :attribute é inválido.',
+        'invalid_extension' => 'A extensão do arquivo é inválida.',
     ],
 
     /*

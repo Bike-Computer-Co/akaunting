@@ -84,8 +84,7 @@ class Search extends Component
     /**
      * Get the action for a "url" option.
      *
-     * @param  array|string $options
-     *
+     * @param  array|string  $options
      * @return string
      */
     protected function getUrlAction($options)
@@ -100,8 +99,7 @@ class Search extends Component
     /**
      * Get the action for a "route" option.
      *
-     * @param  array|string $options
-     *
+     * @param  array|string  $options
      * @return string
      */
     protected function getRouteAction($options)

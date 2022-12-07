@@ -19,6 +19,6 @@ class RoleUpdating extends Event
     public function __construct($role, $request)
     {
         $this->role = $role;
-        $this->request  = $request;
+        $this->request = $request;
     }
 }

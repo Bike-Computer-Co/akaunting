@@ -39,7 +39,7 @@ class CheckForReadOnlyMode
         }
 
         foreach (config('read-only.livewire') as $path) {
-            $url = company_id() . '/livewire/message/' . $path;
+            $url = company_id().'/livewire/message/'.$path;
 
             if (! $request->isMethod('post') || ! $request->is($url)) {
                 continue;

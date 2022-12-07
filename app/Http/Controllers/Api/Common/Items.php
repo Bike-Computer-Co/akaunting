@@ -35,7 +35,7 @@ class Items extends ApiController
         $item = Item::with('category', 'taxes')->find($id);
 
         if (! $item instanceof Item) {
-            return $this->errorInternal('No query results for model [' . Item::class . '] ' . $id);
+            return $this->errorInternal('No query results for model ['.Item::class.'] '.$id);
         }
 
         return new Resource($item);
@@ -44,7 +44,7 @@ class Items extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -57,8 +57,8 @@ class Items extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $item
-     * @param  $request
+     * @param    $item
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Item $item, Request $request)

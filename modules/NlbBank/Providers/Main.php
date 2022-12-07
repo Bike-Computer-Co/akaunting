@@ -38,7 +38,7 @@ class Main extends Provider
      */
     public function loadViews()
     {
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'nlb-bank');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'nlb-bank');
     }
 
     /**
@@ -58,7 +58,7 @@ class Main extends Provider
      */
     public function loadTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'nlb-bank');
+        $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'nlb-bank');
     }
 
     /**
@@ -68,7 +68,7 @@ class Main extends Provider
      */
     public function loadMigrations()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -78,7 +78,7 @@ class Main extends Provider
      */
     public function loadConfig()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'nlb-bank');
+        $this->mergeConfigFrom(__DIR__.'/../Config/config.php', 'nlb-bank');
     }
 
     /**
@@ -98,7 +98,7 @@ class Main extends Provider
         ];
 
         foreach ($routes as $route) {
-            $this->loadRoutesFrom(__DIR__ . '/../Routes/' . $route);
+            $this->loadRoutesFrom(__DIR__.'/../Routes/'.$route);
         }
     }
 

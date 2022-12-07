@@ -9,8 +9,8 @@ class RedirectIfWizardNotCompleted
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -21,7 +21,7 @@ class RedirectIfWizardNotCompleted
         }
 
         // Check url
-        if ($request->isWizard(company_id()) || $request->is(company_id() . '/settings/*')) {
+        if ($request->isWizard(company_id()) || $request->is(company_id().'/settings/*')) {
             return $next($request);
         }
 

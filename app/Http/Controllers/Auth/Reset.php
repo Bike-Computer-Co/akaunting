@@ -78,7 +78,6 @@ class Reset extends Controller
      * Get the response for a successful password reset.
      *
      * @param  string  $response
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function sendResetResponse($response)
@@ -123,7 +122,6 @@ class Reset extends Controller
      *
      * @param  \Illuminate\Http\Request
      * @param  string  $response
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function sendResetFailedResponse(Request $request, $response)

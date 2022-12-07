@@ -12,7 +12,7 @@ class SendDocumentReminderNotification
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return array
      */
     public function handle(Event $event)

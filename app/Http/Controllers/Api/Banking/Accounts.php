@@ -27,7 +27,7 @@ class Accounts extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  $id
+     * @param    $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
@@ -40,7 +40,7 @@ class Accounts extends ApiController
         }
 
         if (! $account instanceof Account) {
-            return $this->errorInternal('No query results for model [' . Account::class . '] ' . $id);
+            return $this->errorInternal('No query results for model ['.Account::class.'] '.$id);
         }
 
         return new Resource($account);
@@ -49,7 +49,7 @@ class Accounts extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -62,8 +62,8 @@ class Accounts extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $account
-     * @param  $request
+     * @param    $account
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Account $account, Request $request)

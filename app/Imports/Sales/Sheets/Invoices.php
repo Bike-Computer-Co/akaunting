@@ -30,7 +30,7 @@ class Invoices extends Import
         $row['contact_id'] = $this->getContactId($row, 'customer');
         $row['currency_code'] = $this->getCurrencyCode($row);
         $row['type'] = Model::INVOICE_TYPE;
-        $row['contact_country'] = !empty($country) ? $country : null;
+        $row['contact_country'] = ! empty($country) ? $country : null;
 
         return $row;
     }

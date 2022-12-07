@@ -7,7 +7,6 @@ use App\Http\Requests\Module\Module as Request;
 
 class ApiKey extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +21,6 @@ class ApiKey extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)

@@ -25,7 +25,8 @@ class Currency extends Component
      *
      * @return void
      */
-    public function __construct($code) {
+    public function __construct($code)
+    {
         $this->code = $code;
     }
 
@@ -38,7 +39,7 @@ class Currency extends Component
     {
         $code = ($this->code) ? $this->code : setting('default.currency');
 
-        $this->currency = config('money.' . $code . '.name');
+        $this->currency = config('money.'.$code.'.name');
 
         return view('components.index.currency');
     }

@@ -20,7 +20,7 @@ class CancelDocument extends Job
     {
         \DB::transaction(function () {
             $this->deleteRelationships($this->model, [
-                'transactions', 'recurring'
+                'transactions', 'recurring',
             ]);
 
             $this->model->status = 'cancelled';

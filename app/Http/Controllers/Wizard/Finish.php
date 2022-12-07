@@ -32,8 +32,8 @@ class Finish extends Controller
 
         $data = [
             'query' => [
-                'limit' => 6
-            ]
+                'limit' => 6,
+            ],
         ];
 
         $modules = $this->getFeaturedModules($data);

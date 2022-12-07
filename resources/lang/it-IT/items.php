@@ -2,8 +2,8 @@
 
 return [
 
-    'sale_price'            => 'Prezzo di vendita',
-    'purchase_price'         => 'Prezzo d\'acquisto',
+    'sale_price' => 'Prezzo di vendita',
+    'purchase_price' => 'Prezzo d\'acquisto',
     'enter_item_description' => 'Inserisci descrizione articolo',
 
 ];

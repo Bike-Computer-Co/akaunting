@@ -17,5 +17,4 @@ class Currencies extends Widget
             'currencies' => $currencies,
         ]);
     }
-
 }

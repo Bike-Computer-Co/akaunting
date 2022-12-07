@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Banking;
 
-use App\Http\Resources\Banking\Account;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Reconciliation extends JsonResource

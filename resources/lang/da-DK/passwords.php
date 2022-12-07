@@ -17,6 +17,6 @@ return [
     'sent' => 'Vi har sendt dig en e-mail med et link til at nulstille dit kodeord.',
     'throttled' => 'Venligst vent for du prøver igen.',
     'token' => 'Nulstillingsnøglen til denne adgangskode er ugyldig.',
-    'user' => "Vi kan ikke finde en bruger med den E-mail adresse.",
+    'user' => 'Vi kan ikke finde en bruger med den E-mail adresse.',
 
 ];

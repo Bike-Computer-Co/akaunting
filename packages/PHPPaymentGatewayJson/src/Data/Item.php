@@ -4,129 +4,140 @@ namespace PaymentGatewayJson\Client\Data;
 
 /**
  * Class Item
- *
- * @package PaymentGatewayJson\Client\Data
  */
-class Item extends Data {
-
+class Item extends Data
+{
     /**
      * @var string
      */
     protected $identification;
 
-    /** @var  string */
+    /** @var string */
     protected $name;
 
-    /** @var  float */
+    /** @var float */
     protected $price;
 
-    /** @var  string */
+    /** @var string */
     protected $currency;
 
-    /** @var  int */
+    /** @var int */
     protected $quantity;
 
-    /** @var  string */
+    /** @var string */
     protected $description;
 
     /**
      * @return string
      */
-    public function getIdentification() {
+    public function getIdentification()
+    {
         return $this->identification;
     }
 
     /**
-     * @param string $identification
-	 * @return $this
+     * @param  string  $identification
+     * @return $this
      */
-    public function setIdentification($identification) {
+    public function setIdentification($identification)
+    {
         $this->identification = $identification;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
+     * @param  string  $name
      * @return $this
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
+
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getPrice() {
+    public function getPrice()
+    {
         return $this->price;
     }
 
     /**
-     * @param float $price
-     *
+     * @param  float  $price
      * @return $this
      */
-    public function setPrice($price) {
+    public function setPrice($price)
+    {
         $this->price = $price;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCurrency() {
+    public function getCurrency()
+    {
         return $this->currency;
     }
 
     /**
-     * @param string $currency
-     *
+     * @param  string  $currency
      * @return $this
      */
-    public function setCurrency($currency) {
+    public function setCurrency($currency)
+    {
         $this->currency = $currency;
+
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getQuantity() {
+    public function getQuantity()
+    {
         return $this->quantity;
     }
 
     /**
-     * @param int $quantity
-     *
+     * @param  int  $quantity
      * @return $this
      */
-    public function setQuantity($quantity) {
+    public function setQuantity($quantity)
+    {
         $this->quantity = $quantity;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
     /**
-     * @param string $description
-     *
+     * @param  string  $description
      * @return $this
      */
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
+
         return $this;
     }
 }

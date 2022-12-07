@@ -59,10 +59,16 @@
             </div>
             <div v-for="company in user.companies" :key="company.id" class="col col-12 col-md-6">
                 <h5>Информации за компании на овој корисник</h5>
-                <div class="table-responsive">
-                    <h6 class="text-nowrap">
-                        Компанија: {{ company.settings.find(a => a.key === 'company.name').value }}
-                    </h6>
+                <div class="table-responsive mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="text-nowrap">
+                            Компанија: {{ company.settings.find(a => a.key === 'company.name').value }}
+                        </h6>
+                        <button data-bs-toggle="modal" data-bs-target="#editCompanyModal"
+                                :data-bs-company="JSON.stringify(company)" class="btn btn-primary btn-sm">
+                            Измени
+                        </button>
+                    </div>
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
                         <tr>
@@ -107,19 +113,46 @@
                                 {{ company.settings.find(a => a.key === 'default.currency').value }}
                             </td>
                         </tr>
+                        <tr>
+                            <th>
+                                Цена за сметководител:
+                            </th>
+                            <td>
+                                {{ company.accountant_price }} &euro;
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Цена за адвокат:
+                            </th>
+                            <td>
+                                {{ company.lawyer_price }} &euro;
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Коментар од администратор:
+                            </th>
+                            <td>
+                                {{ company.comment ? company.comment : 'Сеуште нема' }}
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <EditCompanyModal/>
     </div>
 </template>
 
 <script>
 import DefaultLayout from "../../Layouts/DefaultLayout";
+import EditCompanyModal from "../../Modals/EditCompanyModal";
 
 export default {
     name: "Show",
+    components: {EditCompanyModal},
     layout: DefaultLayout,
     props: {
         user: {

@@ -6,11 +6,9 @@ use PaymentGateway\Client\Exception\TypeException;
 
 /**
  * Class StatusRequestData
- *
- * @package PaymentGateway\Client\StatusApi
  */
-class StatusRequestData {
-
+class StatusRequestData
+{
     /**
      * the referenceId received by the transaction response
      *
@@ -28,25 +26,27 @@ class StatusRequestData {
     /**
      * StatusRequestData constructor.
      *
-     * @param string $transactionUuid
+     * @param  string  $transactionUuid
      */
-    public function __construct($transactionUuid = null) {
+    public function __construct($transactionUuid = null)
+    {
         $this->transactionUuid = $transactionUuid;
     }
 
     /**
      * @return string
      */
-    public function getTransactionUuid() {
+    public function getTransactionUuid()
+    {
         return $this->transactionUuid;
     }
 
     /**
-     * @param string $transactionUuid
-     *
+     * @param  string  $transactionUuid
      * @return StatusRequestData
      */
-    public function setTransactionUuid($transactionUuid) {
+    public function setTransactionUuid($transactionUuid)
+    {
         $this->transactionUuid = $transactionUuid;
 
         return $this;
@@ -55,16 +55,17 @@ class StatusRequestData {
     /**
      * @return string
      */
-    public function getMerchantTransactionId() {
+    public function getMerchantTransactionId()
+    {
         return $this->merchantTransactionId;
     }
 
     /**
-     * @param string $merchantTransactionId
-     *
+     * @param  string  $merchantTransactionId
      * @return StatusRequestData
      */
-    public function setMerchantTransactionId($merchantTransactionId) {
+    public function setMerchantTransactionId($merchantTransactionId)
+    {
         $this->merchantTransactionId = $merchantTransactionId;
 
         return $this;
@@ -73,13 +74,13 @@ class StatusRequestData {
     /**
      * @throws TypeException
      */
-    public function validate() {
+    public function validate()
+    {
         if (empty($this->transactionUuid) && empty($this->merchantTransactionId)) {
             throw new TypeException('Either transactionUuid or merchantTransactionId must be set.');
         }
-        if (!empty($this->transactionUuid) && !empty($this->merchantTransactionId)) {
+        if (! empty($this->transactionUuid) && ! empty($this->merchantTransactionId)) {
             throw new TypeException('Either transactionUuid or merchantTransactionId must be set but not both.');
         }
     }
-
 }

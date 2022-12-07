@@ -2,15 +2,15 @@
 
 return [
 
-    'change_language'       => 'Endre språk',
-    'last_login'            => 'Siste pålogging :time',
+    'change_language' => 'Endre språk',
+    'last_login' => 'Siste pålogging :time',
 
     'notifications' => [
-        'counter'           => '{0} Du har ingen nye varsler|{1} Du har :count ny varsel|[2,*] Du har :count nye varsler',
-        'new_apps'          => '{1} :count ny app er publisert|[2,*] :count nye apper er publisert',
-        'overdue_invoices'  => '{1} :count forfalt faktura|[2,*] :count forfalte fakturaer',
-        'upcoming_bills'    => '{1} :count kommende faktura [2,*] :count kommende fakturaer',
-        'view_all'          => 'Vis alle',
+        'counter' => '{0} Du har ingen nye varsler|{1} Du har :count ny varsel|[2,*] Du har :count nye varsler',
+        'new_apps' => '{1} :count ny app er publisert|[2,*] :count nye apper er publisert',
+        'overdue_invoices' => '{1} :count forfalt faktura|[2,*] :count forfalte fakturaer',
+        'upcoming_bills' => '{1} :count kommende faktura [2,*] :count kommende fakturaer',
+        'view_all' => 'Vis alle',
 
         'exports' => [
             'completed' => '{1} :count ferdig eksport|[2,*] :count ferdige eksporter',
@@ -22,7 +22,7 @@ return [
         ],
     ],
 
-    'docs_link'             => 'https://akaunting.com/docs',
-    'support_link'          => 'https://akaunting.com/support',
+    'docs_link' => 'https://akaunting.com/docs',
+    'support_link' => 'https://akaunting.com/support',
 
 ];

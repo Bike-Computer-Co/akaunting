@@ -2,8 +2,8 @@
 
 return [
 
-    'previous'              => '&laquo; Προηγούμενη',
-    'next'                  => 'Επόμενη &raquo;',
-    'showing'               => ':first-:last από :total εγγραφές.',
-    'page'                  => 'ανά σελίδα.',
+    'previous' => '&laquo; Προηγούμενη',
+    'next' => 'Επόμενη &raquo;',
+    'showing' => ':first-:last από :total εγγραφές.',
+    'page' => 'ανά σελίδα.',
 ];

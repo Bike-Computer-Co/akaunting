@@ -14,7 +14,7 @@ trait Uploads
     {
         $path = '';
 
-        if (!$file || !$file->isValid()) {
+        if (! $file || ! $file->isValid()) {
             return $path;
         }
 
@@ -23,7 +23,7 @@ trait Uploads
         $file_name = $this->getMediaFileName($file);
 
         return MediaUploader::makePrivate()
-                            ->beforeSave(function(MediaModel $media) {
+                            ->beforeSave(function (MediaModel $media) {
                                 $media->company_id = company_id();
                                 $media->created_from = source_name();
                                 $media->created_by = user_id();
@@ -38,14 +38,14 @@ trait Uploads
     {
         $path = '';
 
-        if (!$disk) {
+        if (! $disk) {
             $disk = config('mediable.default_disk');
         }
 
-        $path = $this->getMediaFolder($folder, $company_id) . '/' . basename($file);
+        $path = $this->getMediaFolder($folder, $company_id).'/'.basename($file);
 
         return MediaUploader::makePrivate()
-                            ->beforeSave(function(MediaModel $media) {
+                            ->beforeSave(function (MediaModel $media) {
                                 $media->company_id = company_id();
                                 $media->created_from = source_name();
                                 $media->created_by = user_id();
@@ -57,14 +57,14 @@ trait Uploads
     {
         $medias = $model->$parameter;
 
-        if (!$medias) {
+        if (! $medias) {
             return;
         }
 
         $already_uploaded = [];
 
-        if ($request && isset($request['uploaded_' . $parameter])) {
-            $uploaded = $request['uploaded_' . $parameter];
+        if ($request && isset($request['uploaded_'.$parameter])) {
+            $uploaded = $request['uploaded_'.$parameter];
 
             if (count($medias) == count($uploaded)) {
                 return;
@@ -75,7 +75,7 @@ trait Uploads
             }
         }
 
-        foreach ((array)$medias as $media) {
+        foreach ((array) $medias as $media) {
             if (in_array($media->id, $already_uploaded)) {
                 continue;
             }
@@ -86,19 +86,19 @@ trait Uploads
 
     public function getMediaFolder($folder, $company_id = null)
     {
-        if (!$company_id) {
+        if (! $company_id) {
             $company_id = company_id();
         }
 
         $date = Date::now()->format('Y/m/d');
 
         // 2021/04/09/34235/invoices
-        return $date . '/' . $company_id . '/' . $folder;
+        return $date.'/'.$company_id.'/'.$folder;
     }
 
     public function getMediaPathOnStorage($media)
     {
-        if (!is_object($media)) {
+        if (! is_object($media)) {
             return false;
         }
 
@@ -114,7 +114,7 @@ trait Uploads
     public function streamMedia($media)
     {
         return response()->streamDownload(
-            function() use ($media) {
+            function () use ($media) {
                 $stream = $media->stream();
 
                 while ($bytes = $stream->read(1024)) {
@@ -123,15 +123,15 @@ trait Uploads
             },
             $media->basename,
             [
-                'Content-Type'      => $media->mime_type,
-                'Content-Length'    => $media->size,
+                'Content-Type' => $media->mime_type,
+                'Content-Length' => $media->size,
             ],
         );
     }
 
     public function isLocalStorage()
     {
-        return config('filesystems.disks.' . config('filesystems.default') . '.driver') == 'local';
+        return config('filesystems.disks.'.config('filesystems.default').'.driver') == 'local';
     }
 
     public function getMediaFileName($file): string
@@ -150,7 +150,7 @@ trait Uploads
      */
     public function filename($file): string
     {
-        return pathinfo((string)$file->getClientOriginalName(), PATHINFO_FILENAME);
+        return pathinfo((string) $file->getClientOriginalName(), PATHINFO_FILENAME);
     }
 
     /**
@@ -164,6 +164,6 @@ trait Uploads
             return $extension;
         }
 
-        return (string)$file->guessExtension();
+        return (string) $file->guessExtension();
     }
 }

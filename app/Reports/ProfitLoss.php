@@ -83,7 +83,7 @@ class ProfitLoss extends Report
     {
         foreach ($this->footer_totals as $table => $dates) {
             foreach ($dates as $date => $total) {
-                if (!isset($this->net_profit[$date])) {
+                if (! isset($this->net_profit[$date])) {
                     $this->net_profit[$date] = 0;
                 }
 

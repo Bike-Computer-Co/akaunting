@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
  * @see \App\Providers\Route::mapPreviewRoutes
  * @see \modules\OfflinePayments\Routes\preview.php for module example
  */
-
 Route::group(['as' => 'preview.'], function () {
     Route::get('invoices/{invoice}', 'Portal\Invoices@preview')->name('invoices.show');
     Route::get('invoices/{invoice}/print', 'Portal\Invoices@printInvoice')->name('invoices.print');

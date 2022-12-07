@@ -1,4 +1,5 @@
 <?php
+
 return [
     [
         'name' => 'SIMPLE START',
@@ -28,10 +29,10 @@ return [
                 'Basic Financial reports',
             ],
         ],
-        'feature_keys'=>[],
+        'feature_keys' => [],
         'support' => [
-            'Email'
-        ]
+            'Email',
+        ],
     ],
     [
         'name' => 'STARTER',
@@ -55,7 +56,7 @@ return [
                 'Основни Финансиски извештаи',
                 'Автоматски испраќајте потсетници за задоцнето плаќање',
                 'Повторливи фактури',
-                'Поканете го вашиот сметководител'
+                'Поканете го вашиот сметководител',
             ],
             'en' => [
                 'Personalized invoices',
@@ -66,15 +67,15 @@ return [
                 'Basic Financial reports',
                 'Automatically send late payment reminders',
                 'Recurring invoices',
-                'Invite your accountant'
+                'Invite your accountant',
             ],
         ],
-        'feature_keys'=>['invite_accountant', 'recurring_invoices', 'remind'],
+        'feature_keys' => ['invite_accountant', 'recurring_invoices', 'remind'],
 
         'support' => [
             'Email',
-            'Chat'
-        ]
+            'Chat',
+        ],
     ],
     [
         'name' => 'ADVANCE',
@@ -100,7 +101,7 @@ return [
                 'Повторливи фактури',
                 'Поканете го вашиот сметководител',
                 'Управување со платен список',
-                'Team Flex Payments (наскоро)'
+                'Team Flex Payments (наскоро)',
             ],
             'en' => [
                 'Personalized invoices',
@@ -113,15 +114,15 @@ return [
                 'Recurring invoices',
                 'Invite your accountant',
                 'Payroll Management',
-                'Team Flex Payments (soon)'
+                'Team Flex Payments (soon)',
             ],
         ],
-        'feature_keys'=>['invite_accountant', 'recurring_invoices', 'remind'],
+        'feature_keys' => ['invite_accountant', 'recurring_invoices', 'remind'],
 
         'support' => [
             'Email',
-            'Chat'
-        ]
+            'Chat',
+        ],
     ],
     [
         'name' => 'PROFESSIONAL',
@@ -150,7 +151,7 @@ return [
                 'Team Flex Payments (наскоро)',
                 'Примајте уплата со кредитна картичка',
                 'Дигитално потпишување на документи',
-                'Напредни Финансиски извештаи'
+                'Напредни Финансиски извештаи',
             ],
             'en' => [
                 'Personalized invoices',
@@ -166,16 +167,15 @@ return [
                 'Team Flex Payments (soon)',
                 'Receive payment by credit card',
                 'Digital signing of documents',
-                'Advanced Financial reports'
+                'Advanced Financial reports',
             ],
         ],
-        'feature_keys'=>['invite_accountant', 'recurring_invoices', 'remind'],
+        'feature_keys' => ['invite_accountant', 'recurring_invoices', 'remind'],
         'support' => [
             'Email',
             'Chat',
-            'Voice'
-        ]
-    ]
-
+            'Voice',
+        ],
+    ],
 
 ];

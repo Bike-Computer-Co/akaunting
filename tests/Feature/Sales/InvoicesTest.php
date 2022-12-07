@@ -81,20 +81,20 @@ class InvoicesTest extends FeatureTestCase
         Storage::disk('uploads')->assertExists('2021/05/15/1/invoices/invoices.png');
 
         $this->assertDatabaseHas('documents', [
-            'document_number' => $request['document_number']
+            'document_number' => $request['document_number'],
         ]);
 
         $this->assertDatabaseHas('mediables', [
             'mediable_type' => Document::class,
-            'tag'           => 'attachment',
+            'tag' => 'attachment',
         ]);
 
         $this->assertDatabaseHas('media', [
-            'disk'           => 'uploads',
-            'directory'      => '2021/05/15/1/invoices',
-            'filename'       => 'invoices',
-            'extension'      => 'png',
-            'mime_type'      => 'image/png',
+            'disk' => 'uploads',
+            'directory' => '2021/05/15/1/invoices',
+            'filename' => 'invoices',
+            'extension' => 'png',
+            'mime_type' => 'image/png',
             'aggregate_type' => 'image',
         ]);
     }
@@ -149,7 +149,7 @@ class InvoicesTest extends FeatureTestCase
         $this->loginAs()
             ->patch(route('invoices.update', $invoice->id), $request)
             ->assertStatus(200)
-			->assertSee($request['contact_email']);
+            ->assertSee($request['contact_email']);
 
         $this->assertFlashLevel('success');
 
@@ -190,7 +190,7 @@ class InvoicesTest extends FeatureTestCase
         \Excel::matchByRegex();
 
         \Excel::assertDownloaded(
-            '/' . \Str::filename(trans_choice('general.invoices', 2)) . '-\d{10}\.xlsx/',
+            '/'.\Str::filename(trans_choice('general.invoices', 2)).'-\d{10}\.xlsx/',
             function (Export $export) use ($count) {
                 // Assert that the correct export is downloaded.
                 return $export->sheets()[0]->collection()->count() === $count;
@@ -217,7 +217,7 @@ class InvoicesTest extends FeatureTestCase
         \Excel::matchByRegex();
 
         \Excel::assertDownloaded(
-            '/' . \Str::filename(trans_choice('general.invoices', 2)) . '-\d{10}\.xlsx/',
+            '/'.\Str::filename(trans_choice('general.invoices', 2)).'-\d{10}\.xlsx/',
             function (Export $export) use ($select_count) {
                 return $export->sheets()[0]->collection()->count() === $select_count;
             }

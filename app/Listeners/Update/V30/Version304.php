@@ -19,7 +19,7 @@ class Version304 extends Listener
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -57,13 +57,13 @@ class Version304 extends Listener
         $companies = Company::cursor();
 
         foreach ($companies as $company) {
-            Log::channel('stdout')->info('Updating company:' . $company->id);
+            Log::channel('stdout')->info('Updating company:'.$company->id);
 
             $company->makeCurrent();
 
             $this->updateEmailTemplates();
 
-            Log::channel('stdout')->info('Company updated:' . $company->id);
+            Log::channel('stdout')->info('Company updated:'.$company->id);
         }
 
         company($company_id)->makeCurrent();
@@ -78,7 +78,7 @@ class Version304 extends Listener
         $email_templates = EmailTemplate::cursor();
 
         foreach ($email_templates as $email_template) {
-            Log::channel('stdout')->info('Updating email template:' . $email_template->id);
+            Log::channel('stdout')->info('Updating email template:'.$email_template->id);
 
             $body = preg_replace('%<p(.*?)>|</p>%s', '', $email_template->body);
 
@@ -86,7 +86,7 @@ class Version304 extends Listener
 
             $email_template->save();
 
-            Log::channel('stdout')->info('Email Template updated:' . $email_template->id);
+            Log::channel('stdout')->info('Email Template updated:'.$email_template->id);
         }
 
         Log::channel('stdout')->info('Email Templates updated.');

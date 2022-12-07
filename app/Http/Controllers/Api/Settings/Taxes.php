@@ -38,7 +38,7 @@ class Taxes extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -51,8 +51,8 @@ class Taxes extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $tax
-     * @param  $request
+     * @param    $tax
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Tax $tax, Request $request)

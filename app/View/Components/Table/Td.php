@@ -51,19 +51,19 @@ class Td extends Component
 
         switch ($this->kind) {
             case 'amount':
-                $default = $class . ' ltr:pl-6 rtl:pr-6 ltr:text-right rtl:text-left ' . $default;
+                $default = $class.' ltr:pl-6 rtl:pr-6 ltr:text-right rtl:text-left '.$default;
                 break;
             case 'right':
-                $default = $class . ' ltr:pl-6 rtl:pr-6 ltr:text-right rtl:text-left ' . $default;
+                $default = $class.' ltr:pl-6 rtl:pr-6 ltr:text-right rtl:text-left '.$default;
                 break;
             case 'action':
                 $default = 'p-0';
                 break;
             case 'cursor-none':
-                $default = $class . ' cursor-default ' . $default;
-            break;
+                $default = $class.' cursor-default '.$default;
+                break;
             default:
-                $default = $class . ' ltr:pr-6 rtl:pl-6 ltr:text-left rtl:text-right cursor-pointer ' . $default;
+                $default = $class.' ltr:pr-6 rtl:pl-6 ltr:text-left rtl:text-right cursor-pointer '.$default;
         }
 
         return $default;

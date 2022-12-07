@@ -6,11 +6,9 @@ use PaymentGatewayJson\Client\Data\ThreeDSecureData;
 
 /**
  * Class ThreeDSecureTrait
- *
- * @package PaymentGatewayJson\Client\Transaction\Base
  */
-trait ThreeDSecureTrait {
-
+trait ThreeDSecureTrait
+{
     /** @var ThreeDSecureData */
     protected $threeDSecureData;
 
@@ -23,14 +21,13 @@ trait ThreeDSecureTrait {
     }
 
     /**
-     * @param ThreeDSecureData $threeDSecureData
-     *
+     * @param  ThreeDSecureData  $threeDSecureData
      * @return $this
      */
     public function setThreeDSecureData($threeDSecureData)
     {
         $this->threeDSecureData = $threeDSecureData;
+
         return $this;
     }
-
 }

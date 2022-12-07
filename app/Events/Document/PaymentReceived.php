@@ -21,11 +21,11 @@ class PaymentReceived extends Event
     public function __construct($document, $request = [])
     {
         $this->document = $document;
-                
+
         if (empty($request['number'])) {
             $request['number'] = $this->getNextTransactionNumber();
         }
 
-        $this->request  = $request;
+        $this->request = $request;
     }
 }

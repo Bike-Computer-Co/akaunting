@@ -30,7 +30,7 @@ trait Contacts
 
     public function getContactTypes($index, $return = 'array')
     {
-        $types = (string) setting('contact.type.' . $index);
+        $types = (string) setting('contact.type.'.$index);
 
         return ($return == 'array') ? explode(',', $types) : $types;
     }
@@ -47,7 +47,7 @@ trait Contacts
 
     public function addContactType($new_type, $index)
     {
-        $types = explode(',', setting('contact.type.' . $index));
+        $types = explode(',', setting('contact.type.'.$index));
 
         if (in_array($new_type, $types)) {
             return;
@@ -56,7 +56,7 @@ trait Contacts
         $types[] = $new_type;
 
         setting([
-            'contact.type.' . $index => implode(',', $types),
+            'contact.type.'.$index => implode(',', $types),
         ])->save();
     }
 }

@@ -30,7 +30,7 @@ class Invoices extends Controller
     {
         $invoices = Document::invoice()->with('contact', 'histories', 'items', 'payments')
             ->accrued()->where('contact_id', user()->contact->id)
-            ->collect(['document_number'=> 'desc']);
+            ->collect(['document_number' => 'desc']);
 
         return $this->response('portal.invoices.index', compact('invoices'));
     }
@@ -38,8 +38,7 @@ class Invoices extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function show(Document $invoice, Request $request)
@@ -53,8 +52,7 @@ class Invoices extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function finish(Document $invoice, Request $request)
@@ -67,8 +65,7 @@ class Invoices extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function printInvoice(Document $invoice, Request $request)
@@ -83,8 +80,7 @@ class Invoices extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function pdfInvoice(Document $invoice, Request $request)
@@ -119,8 +115,8 @@ class Invoices extends Controller
         foreach ($payment_methods as $payment_method_key => $payment_method_value) {
             $codes = explode('.', $payment_method_key);
 
-            if (!isset($payment_actions[$codes[0]])) {
-                $payment_actions[$codes[0]] = URL::signedRoute('signed.' . $codes[0] . '.invoices.show', [$invoice->id]);
+            if (! isset($payment_actions[$codes[0]])) {
+                $payment_actions[$codes[0]] = URL::signedRoute('signed.'.$codes[0].'.invoices.show', [$invoice->id]);
             }
         }
 
@@ -139,8 +135,8 @@ class Invoices extends Controller
         foreach ($payment_methods as $payment_method_key => $payment_method_value) {
             $codes = explode('.', $payment_method_key);
 
-            if (!isset($payment_actions[$codes[0]])) {
-                $payment_actions[$codes[0]] = URL::signedRoute('signed.' . $codes[0] . '.invoices.show', [$invoice->id]);
+            if (! isset($payment_actions[$codes[0]])) {
+                $payment_actions[$codes[0]] = URL::signedRoute('signed.'.$codes[0].'.invoices.show', [$invoice->id]);
             }
         }
 

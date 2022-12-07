@@ -1,14 +1,12 @@
 <?php
 
-
 namespace PaymentGateway\Client\Transaction\Base;
 
 /**
  * Interface OffsiteInterface
- * @package PaymentGateway\Client\Transaction
  */
-interface OffsiteInterface {
-
+interface OffsiteInterface
+{
     /**
      * @return string
      */
@@ -17,7 +15,7 @@ interface OffsiteInterface {
     /**
      * description of your transaction (e.g. purchased goods etc.)
      *
-     * @param string $description
+     * @param  string  $description
      */
     public function setDescription($description);
 
@@ -29,7 +27,7 @@ interface OffsiteInterface {
     /**
      * the url to which the Gateway redirects after a successful transaction
      *
-     * @param string $successUrl
+     * @param  string  $successUrl
      */
     public function setSuccessUrl($successUrl);
 
@@ -41,7 +39,7 @@ interface OffsiteInterface {
     /**
      * the url to which the Gateway redirects after a cancelled transaction
      *
-     * @param string $cancelUrl
+     * @param  string  $cancelUrl
      */
     public function setCancelUrl($cancelUrl);
 
@@ -53,7 +51,7 @@ interface OffsiteInterface {
     /**
      * the url to which the Gateway redirects after a failed transaction
      *
-     * @param string $errorUrl
+     * @param  string  $errorUrl
      */
     public function setErrorUrl($errorUrl);
 
@@ -65,7 +63,7 @@ interface OffsiteInterface {
     /**
      * the url to which the Gateway sends the Callback notification
      *
-     * @param string $callbackUrl
+     * @param  string  $callbackUrl
      */
     public function setCallbackUrl($callbackUrl);
 }

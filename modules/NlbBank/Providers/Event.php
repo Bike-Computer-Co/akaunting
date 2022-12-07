@@ -24,7 +24,7 @@ class Event extends Provider
     protected function discoverEventsWithin()
     {
         return [
-            __DIR__ . '/../Listeners',
+            __DIR__.'/../Listeners',
         ];
     }
 }

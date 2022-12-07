@@ -41,12 +41,12 @@ return [
         |
         */
         'csv' => [
-            'delimiter'              => ',',
-            'enclosure'              => '"',
-            'line_ending'            => PHP_EOL,
-            'use_bom'                => false,
+            'delimiter' => ',',
+            'enclosure' => '"',
+            'line_ending' => PHP_EOL,
+            'use_bom' => false,
             'include_separator_line' => false,
-            'excel_compatibility'    => false,
+            'excel_compatibility' => false,
         ],
 
         /*
@@ -58,15 +58,15 @@ return [
         |
         */
         'properties' => [
-            'creator'        => 'Akaunting',
+            'creator' => 'Akaunting',
             'lastModifiedBy' => '',
-            'title'          => '',
-            'description'    => '',
-            'subject'        => '',
-            'keywords'       => '',
-            'category'       => '',
-            'manager'        => '',
-            'company'        => '',
+            'title' => '',
+            'description' => '',
+            'subject' => '',
+            'keywords' => '',
+            'category' => '',
+            'manager' => '',
+            'company' => '',
         ],
     ],
 
@@ -126,11 +126,11 @@ return [
         |
         */
         'csv' => [
-            'delimiter'        => ',',
-            'enclosure'        => '"',
+            'delimiter' => ',',
+            'enclosure' => '"',
             'escape_character' => '\\',
-            'contiguous'       => false,
-            'input_encoding'   => 'UTF-8',
+            'contiguous' => false,
+            'input_encoding' => 'UTF-8',
         ],
 
         /*
@@ -141,16 +141,16 @@ return [
         | Configure e.g. default title, creator, subject,...
         |
         */
-        'properties'  => [
-            'creator'        => 'Akaunting',
+        'properties' => [
+            'creator' => 'Akaunting',
             'lastModifiedBy' => '',
-            'title'          => '',
-            'description'    => '',
-            'subject'        => '',
-            'keywords'       => '',
-            'category'       => '',
-            'manager'        => '',
-            'company'        => '',
+            'title' => '',
+            'description' => '',
+            'subject' => '',
+            'keywords' => '',
+            'category' => '',
+            'manager' => '',
+            'company' => '',
         ],
     ],
 
@@ -165,21 +165,21 @@ return [
     |
     */
     'extension_detector' => [
-        'xlsx'     => 'Xlsx',
-        'xlsm'     => 'Xlsx',
-        'xltx'     => 'Xlsx',
-        'xltm'     => 'Xlsx',
-        'xls'      => 'Xls',
-        'xlt'      => 'Xls',
-        'ods'      => 'Ods',
-        'ots'      => 'Ods',
-        'slk'      => 'Slk',
-        'xml'      => 'Xml',
+        'xlsx' => 'Xlsx',
+        'xlsm' => 'Xlsx',
+        'xltx' => 'Xlsx',
+        'xltm' => 'Xlsx',
+        'xls' => 'Xls',
+        'xlt' => 'Xls',
+        'ods' => 'Ods',
+        'ots' => 'Ods',
+        'slk' => 'Slk',
+        'xml' => 'Xml',
         'gnumeric' => 'Gnumeric',
-        'htm'      => 'Html',
-        'html'     => 'Html',
-        'csv'      => 'Csv',
-        'tsv'      => 'Csv',
+        'htm' => 'Html',
+        'html' => 'Html',
+        'csv' => 'Csv',
+        'tsv' => 'Csv',
 
         /*
         |--------------------------------------------------------------------------
@@ -231,7 +231,7 @@ return [
         | Drivers: memory|illuminate|batch
         |
         */
-        'driver'     => env('EXCEL_CACHE_DRIVER', 'memory'),
+        'driver' => env('EXCEL_CACHE_DRIVER', 'memory'),
 
         /*
         |--------------------------------------------------------------------------
@@ -243,7 +243,7 @@ return [
         | Here you can tweak the memory limit to your liking.
         |
         */
-        'batch'     => [
+        'batch' => [
             'memory_limit' => env('EXCEL_CACHE_BATCH_MEMORY_LIMIT', 60000),
         ],
 
@@ -264,7 +264,7 @@ return [
         ],
     ],
 
-     /*
+    /*
     |--------------------------------------------------------------------------
     | Transaction Handler
     |--------------------------------------------------------------------------
@@ -310,8 +310,8 @@ return [
         | in conjunction with queued imports and exports.
         |
         */
-        'remote_disk'       => env('EXCEL_TEMPORARY_FILES_REMOTE_DISK'),
-        'remote_prefix'     => env('EXCEL_TEMPORARY_FILES_REMOTE_PREFIX'),
+        'remote_disk' => env('EXCEL_TEMPORARY_FILES_REMOTE_DISK'),
+        'remote_prefix' => env('EXCEL_TEMPORARY_FILES_REMOTE_PREFIX'),
 
         /*
         |--------------------------------------------------------------------------

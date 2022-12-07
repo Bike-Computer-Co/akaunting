@@ -13,8 +13,8 @@ class NotifyUser extends JobShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param  $user
-     * @param  $notification
+     * @param    $user
+     * @param    $notification
      */
     public function __construct($user, $notification)
     {

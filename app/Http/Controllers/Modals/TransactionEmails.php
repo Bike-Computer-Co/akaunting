@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Modals;
 
 use App\Abstracts\Http\Controller;
-use App\Models\Banking\Transaction;
-use App\Notifications\Portal\PaymentReceived as PaymentReceivedNotification;
-use App\Notifications\Banking\Transaction as TransactionNotification;
-use App\Jobs\Banking\SendTransactionAsCustomMail;
 use App\Http\Requests\Common\CustomMail as Request;
+use App\Jobs\Banking\SendTransactionAsCustomMail;
+use App\Models\Banking\Transaction;
+use App\Notifications\Banking\Transaction as TransactionNotification;
+use App\Notifications\Portal\PaymentReceived as PaymentReceivedNotification;
 
 class TransactionEmails extends Controller
 {
@@ -27,12 +27,11 @@ class TransactionEmails extends Controller
      * Show the form for creating a new resource.
      *
      * @param  Transaction  $transaction
-     *
      * @return Response
      */
     public function create(Transaction $transaction)
     {
-        $email_template = config('type.transaction.' . $transaction->type . '.email_template');
+        $email_template = config('type.transaction.'.$transaction->type.'.email_template');
 
         if (request()->get('email_template')) {
             $email_template = request()->get('email_template');
@@ -67,35 +66,34 @@ class TransactionEmails extends Controller
                     'confirm' => [
                         'text' => trans('general.send'),
                         'class' => 'disabled:bg-blue-100',
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
         $transaction = Transaction::find($request->get('transaction_id'));
 
-        $email_template = config('type.transaction.' . $transaction->type . '.email_template');
+        $email_template = config('type.transaction.'.$transaction->type.'.email_template');
 
         $response = $this->ajaxDispatch(new SendTransactionAsCustomMail($request, $email_template));
 
         if ($response['success']) {
-            $route = config('type.transaction.' . $transaction->type . '.route.prefix');
+            $route = config('type.transaction.'.$transaction->type.'.route.prefix');
 
-            if ($alias = config('type.transaction.' . $transaction->type . '.alias')) {
-                $route = $alias . '.' . $route;
+            if ($alias = config('type.transaction.'.$transaction->type.'.alias')) {
+                $route = $alias.'.'.$route;
             }
 
-            $response['redirect'] = route($route . '.show', $transaction->id);
+            $response['redirect'] = route($route.'.show', $transaction->id);
 
             $message = trans('documents.messages.email_sent', ['type' => trans_choice('general.transactions', 1)]);
 

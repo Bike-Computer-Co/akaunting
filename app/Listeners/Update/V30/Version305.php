@@ -18,7 +18,7 @@ class Version305 extends Listener
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -53,13 +53,13 @@ class Version305 extends Listener
 
         DB::table('settings')->where('key', 'transaction.type.income')->cursor()->each(function ($setting) {
             DB::table('settings')->where('id', $setting->id)->update([
-                'value' => $setting->value . ',' . Transaction::INCOME_TRANSFER_TYPE,
+                'value' => $setting->value.','.Transaction::INCOME_TRANSFER_TYPE,
             ]);
         });
 
         DB::table('settings')->where('key', 'transaction.type.expense')->cursor()->each(function ($setting) {
             DB::table('settings')->where('id', $setting->id)->update([
-                'value' => $setting->value . ',' . Transaction::EXPENSE_TRANSFER_TYPE,
+                'value' => $setting->value.','.Transaction::EXPENSE_TRANSFER_TYPE,
             ]);
         });
 
@@ -71,14 +71,14 @@ class Version305 extends Listener
         Log::channel('stdout')->info('Updating transfers...');
 
         DB::table('transfers')->cursor()->each(function ($transfer) {
-            Log::channel('stdout')->info('Updating transfer: ' . $transfer->id);
+            Log::channel('stdout')->info('Updating transfer: '.$transfer->id);
 
             try {
                 DB::table('transactions')->where('id', $transfer->income_transaction_id)->update([
                     'type' => Transaction::INCOME_TRANSFER_TYPE,
                 ]);
             } catch (\Exception $e) {
-                Log::channel('stdout')->error('Error updating transaction: ' . $transfer->income_transaction_id);
+                Log::channel('stdout')->error('Error updating transaction: '.$transfer->income_transaction_id);
             }
 
             try {
@@ -86,7 +86,7 @@ class Version305 extends Listener
                     'type' => Transaction::EXPENSE_TRANSFER_TYPE,
                 ]);
             } catch (\Exception $e) {
-                Log::channel('stdout')->error('Error updating transaction: ' . $transfer->expense_transaction_id);
+                Log::channel('stdout')->error('Error updating transaction: '.$transfer->expense_transaction_id);
             }
         });
 

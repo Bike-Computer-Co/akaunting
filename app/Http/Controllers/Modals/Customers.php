@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Modals;
 
 use App\Abstracts\Http\Controller;
 use App\Http\Requests\Common\Contact as Request;
-use App\Models\Common\Contact;
 use App\Jobs\Common\CreateContact;
 use App\Jobs\Common\UpdateContact;
+use App\Models\Common\Contact;
 
 class Customers extends Controller
 {
@@ -49,7 +49,6 @@ class Customers extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -70,7 +69,6 @@ class Customers extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Contact  $customer
-     *
      * @return Response
      */
     public function edit(Contact $customer)
@@ -94,9 +92,8 @@ class Customers extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Contact $customer
-     * @param  Request $request
-     *
+     * @param  Contact  $customer
+     * @param  Request  $request
      * @return Response
      */
     public function update(Contact $customer, Request $request)

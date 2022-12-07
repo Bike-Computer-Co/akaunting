@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Modules;
 
-use App\Traits\Modules;
-use App\Models\Module\Module;
 use App\Abstracts\Http\Controller;
-use Illuminate\Support\Str;
+use App\Models\Module\Module;
+use App\Traits\Modules;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class Tiles extends Controller
 {
@@ -15,8 +15,7 @@ class Tiles extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $alias
-     *
+     * @param    $alias
      * @return Response
      */
     public function categoryModules($alias)
@@ -26,7 +25,7 @@ class Tiles extends Controller
         $data = [
             'query' => [
                 'page' => $page,
-            ]
+            ],
         ];
 
         $data = $this->getModulesByCategory($alias, $data);
@@ -35,8 +34,8 @@ class Tiles extends Controller
             return redirect()->route('apps.home.index')->send();
         }
 
-        $title = !empty($data->category) ? $data->category->name : Str::studly($alias);
-        $modules = !empty($data->modules) ? $data->modules : [];
+        $title = ! empty($data->category) ? $data->category->name : Str::studly($alias);
+        $modules = ! empty($data->modules) ? $data->modules : [];
         $installed = Module::all()->pluck('enabled', 'alias')->toArray();
 
         return $this->response('modules.tiles.index', compact('modules', 'title', 'installed'));
@@ -45,8 +44,7 @@ class Tiles extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $alias
-     *
+     * @param    $alias
      * @return Response
      */
     public function vendorModules($alias)
@@ -56,13 +54,13 @@ class Tiles extends Controller
         $data = [
             'query' => [
                 'page' => $page,
-            ]
+            ],
         ];
 
         $data = $this->getModulesByVendor($alias, $data);
 
-        $title = !empty($data->vendor) ? $data->vendor->name : Str::studly($alias);
-        $modules = !empty($data->modules) ? $data->modules : [];
+        $title = ! empty($data->vendor) ? $data->vendor->name : Str::studly($alias);
+        $modules = ! empty($data->modules) ? $data->modules : [];
         $installed = Module::all()->pluck('enabled', 'alias')->toArray();
 
         return $this->response('modules.tiles.index', compact('modules', 'title', 'installed'));
@@ -80,7 +78,7 @@ class Tiles extends Controller
         $data = [
             'query' => [
                 'page' => $page,
-            ]
+            ],
         ];
 
         $title = trans('modules.top_paid');
@@ -102,7 +100,7 @@ class Tiles extends Controller
         $data = [
             'query' => [
                 'page' => $page,
-            ]
+            ],
         ];
 
         $title = trans('modules.new');
@@ -124,14 +122,14 @@ class Tiles extends Controller
         $data = [
             'query' => [
                 'page' => $page,
-            ]
+            ],
         ];
 
         $title = trans('modules.top_free');
         $modules = $this->getFreeModules($data);
         $installed = Module::all()->pluck('enabled', 'alias')->toArray();
 
-        return $this->response('modules.tiles.index', compact('modules', 'title','installed'));
+        return $this->response('modules.tiles.index', compact('modules', 'title', 'installed'));
     }
 
     /**
@@ -148,7 +146,7 @@ class Tiles extends Controller
             'query' => [
                 'keyword' => $keyword,
                 'page' => $page,
-            ]
+            ],
         ];
 
         $title = trans('general.search');
@@ -167,7 +165,7 @@ class Tiles extends Controller
         $data = [
             'query' => [
                 'page' => $page,
-            ]
+            ],
         ];
 
         $last_page = 1;
@@ -177,7 +175,7 @@ class Tiles extends Controller
                 $alias = $request->get('alias');
                 $response = $this->getModulesByCategory($alias, $data);
 
-                $response = !empty($response->modules) ? $response->modules : [];
+                $response = ! empty($response->modules) ? $response->modules : [];
                 $last_page = ! empty($response) ? $response->last_page : 1;
 
                 $modules = $this->prepareModules($response);
@@ -186,7 +184,7 @@ class Tiles extends Controller
                 $alias = $request->get('alias');
                 $response = $this->getModulesByVendor($alias, $data);
 
-                $response = !empty($response->modules) ? $response->modules : [];
+                $response = ! empty($response->modules) ? $response->modules : [];
                 $last_page = ! empty($response) ? $response->last_page : 1;
 
                 $modules = $this->prepareModules($response);
@@ -223,12 +221,12 @@ class Tiles extends Controller
         $html = view('components.modules.raw_items', compact('modules'))->render();
 
         return response()->json([
-            'success'   => true,
-            'error'     => false,
-            'message'   => 'null',
-            'modules'   => $modules,
+            'success' => true,
+            'error' => false,
+            'message' => 'null',
+            'modules' => $modules,
             'last_page' => $last_page,
-            'html'      => $html,
+            'html' => $html,
         ]);
     }
 

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
  * @see \App\Providers\Route::mapPortalRoutes
  * @see \modules\OfflinePayments\Routes\portal.php for module example
  */
-
 Route::group(['as' => 'portal.'], function () {
     Route::get('invoices/{invoice}/print', 'Portal\Invoices@printInvoice')->name('invoices.print');
     Route::get('invoices/{invoice}/pdf', 'Portal\Invoices@pdfInvoice')->name('invoices.pdf');

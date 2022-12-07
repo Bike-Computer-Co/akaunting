@@ -4,8 +4,8 @@ namespace App\Listeners\Update\V30;
 
 use App\Abstracts\Listeners\Update as Listener;
 use App\Events\Install\UpdateFinished as Event;
-use App\Models\Common\Widget;
 use App\Models\Common\Company;
+use App\Models\Common\Widget;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -18,7 +18,7 @@ class Version303 extends Listener
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -43,13 +43,13 @@ class Version303 extends Listener
         $companies = Company::cursor();
 
         foreach ($companies as $company) {
-            Log::channel('stdout')->info('Updating company:' . $company->id);
+            Log::channel('stdout')->info('Updating company:'.$company->id);
 
             $company->makeCurrent();
 
             $this->updateWidgets();
 
-            Log::channel('stdout')->info('Company updated:' . $company->id);
+            Log::channel('stdout')->info('Company updated:'.$company->id);
         }
 
         company($company_id)->makeCurrent();
@@ -64,18 +64,18 @@ class Version303 extends Listener
         $widgets = Widget::cursor();
 
         foreach ($widgets as $widget) {
-            Log::channel('stdout')->info('Updating widget:' . $widget->id);
+            Log::channel('stdout')->info('Updating widget:'.$widget->id);
 
             $widget_settings = $widget->settings;
 
             if (empty($widget_settings->width)) {
-                Log::channel('stdout')->info('Skip widget:' . $widget->id);
+                Log::channel('stdout')->info('Skip widget:'.$widget->id);
 
                 continue;
             }
 
             if (Str::contains($widget_settings->width, 'w-full')) {
-                Log::channel('stdout')->info('Already new classs widget:' . $widget->id);
+                Log::channel('stdout')->info('Already new classs widget:'.$widget->id);
 
                 continue;
             }
@@ -99,7 +99,7 @@ class Version303 extends Listener
 
             $widget->save();
 
-            Log::channel('stdout')->info('Widget updated:' . $widget->id);
+            Log::channel('stdout')->info('Widget updated:'.$widget->id);
         }
 
         Log::channel('stdout')->info('Widgets updated.');

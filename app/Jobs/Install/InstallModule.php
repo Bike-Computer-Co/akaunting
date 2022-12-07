@@ -19,9 +19,9 @@ class InstallModule extends Job
     /**
      * Create a new job instance.
      *
-     * @param  $alias
-     * @param  $company_id
-     * @param  $locale
+     * @param    $alias
+     * @param    $company_id
+     * @param    $locale
      */
     public function __construct($alias, $company_id, $locale = null)
     {
@@ -44,7 +44,7 @@ class InstallModule extends Job
         $result = Console::run($command);
 
         if ($result !== true) {
-            $message = !empty($result) ? $result : trans('modules.errors.finish', ['module' => $this->alias]);
+            $message = ! empty($result) ? $result : trans('modules.errors.finish', ['module' => $this->alias]);
 
             throw new \Exception($message);
         }

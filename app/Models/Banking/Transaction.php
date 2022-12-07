@@ -20,12 +20,19 @@ class Transaction extends Model
     use Cloneable, Currencies, DateTime, HasFactory, Media, Recurring, Transactions;
 
     public const INCOME_TYPE = 'income';
+
     public const INCOME_TRANSFER_TYPE = 'income-transfer';
+
     public const INCOME_SPLIT_TYPE = 'income-split';
+
     public const INCOME_RECURRING_TYPE = 'income-recurring';
+
     public const EXPENSE_TYPE = 'expense';
+
     public const EXPENSE_TRANSFER_TYPE = 'expense-transfer';
+
     public const EXPENSE_SPLIT_TYPE = 'expense-split';
+
     public const EXPENSE_RECURRING_TYPE = 'expense-recurring';
 
     protected $table = 'transactions';
@@ -295,9 +302,9 @@ class Transaction extends Model
             $suffix = $src->isRecurringTransaction() ? '-recurring' : '';
         }
 
-        $this->number       = $this->getNextTransactionNumber($suffix);
-        $this->document_id  = null;
-        $this->split_id     = null;
+        $this->number = $this->getNextTransactionNumber($suffix);
+        $this->document_id = null;
+        $this->split_id = null;
     }
 
     /**
@@ -312,7 +319,7 @@ class Transaction extends Model
         // Convert amount if not same currency
         if ($this->account->currency_code != $this->currency_code) {
             $to_code = $this->account->currency_code;
-            $to_rate = config('money.' . $this->account->currency_code . '.rate');
+            $to_rate = config('money.'.$this->account->currency_code.'.rate');
 
             $amount = $this->convertBetween($amount, $this->currency_code, $this->currency_rate, $to_code, $to_rate);
         }
@@ -327,9 +334,9 @@ class Transaction extends Model
      */
     public function getAttachmentAttribute($value)
     {
-        if (!empty($value) && !$this->hasMedia('attachment')) {
+        if (! empty($value) && ! $this->hasMedia('attachment')) {
             return $value;
-        } elseif (!$this->hasMedia('attachment')) {
+        } elseif (! $this->hasMedia('attachment')) {
             return false;
         }
 
@@ -367,7 +374,7 @@ class Transaction extends Model
 
         $type = str_replace('-', '_', $type);
 
-        return $value ?? trans_choice('general.' . Str::plural($type), 1);
+        return $value ?? trans_choice('general.'.Str::plural($type), 1);
     }
 
     /**
@@ -385,7 +392,7 @@ class Transaction extends Model
             if (! empty($this->document_id) && $this->document->type != 'invoice') {
                 return $this->getRouteFromConfig();
             } else {
-                return !empty($this->document_id) ? 'invoices.show' : 'transactions.show';
+                return ! empty($this->document_id) ? 'invoices.show' : 'transactions.show';
             }
         }
 
@@ -393,7 +400,7 @@ class Transaction extends Model
             if (! empty($this->document_id) && $this->document->type != 'bill') {
                 return $this->getRouteFromConfig();
             } else {
-                return !empty($this->document_id) ? 'bills.show' : 'transactions.show';
+                return ! empty($this->document_id) ? 'bills.show' : 'transactions.show';
             }
         }
 
@@ -404,20 +411,20 @@ class Transaction extends Model
     {
         $route = '';
 
-        $alias = config('type.document.' . $this->document->type . '.alias');
-        $prefix = config('type.document.' . $this->document->type . '.route.prefix');
+        $alias = config('type.document.'.$this->document->type.'.alias');
+        $prefix = config('type.document.'.$this->document->type.'.route.prefix');
 
         // if use module set module alias
-        if (!empty($alias)) {
-            $route .= $alias . '.';
+        if (! empty($alias)) {
+            $route .= $alias.'.';
         }
 
-        if (!empty($prefix)) {
-            $route .= $prefix . '.';
+        if (! empty($prefix)) {
+            $route .= $prefix.'.';
         }
 
         if ($route) {
-            return $route . 'show';
+            return $route.'show';
         }
 
         return 'transactions.index';
@@ -430,7 +437,7 @@ class Transaction extends Model
      */
     public function getRouteIdAttribute($value)
     {
-        return !empty($value) ? $value : (!empty($this->document_id) ? $this->document_id : $this->id);
+        return ! empty($value) ? $value : (! empty($this->document_id) ? $this->document_id : $this->id);
     }
 
     /**
@@ -452,41 +459,44 @@ class Transaction extends Model
             $actions[] = [
                 'title' => trans('general.show'),
                 'icon' => 'visibility',
-                'url' => route($prefix. '.show', $this->id),
+                'url' => route($prefix.'.show', $this->id),
                 'permission' => 'read-banking-transactions',
                 'attributes' => [
-                    'id' => 'index-more-actions-show-' . $this->id,
+                    'id' => 'index-more-actions-show-'.$this->id,
                 ],
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             if (! $this->reconciled && $this->isNotTransferTransaction()) {
                 $actions[] = [
                     'title' => trans('general.edit'),
                     'icon' => 'edit',
-                    'url' => route($prefix. '.edit', $this->id),
+                    'url' => route($prefix.'.edit', $this->id),
                     'permission' => 'update-banking-transactions',
                     'attributes' => [
-                        'id' => 'index-more-actions-edit-' . $this->id,
+                        'id' => 'index-more-actions-edit-'.$this->id,
                     ],
                 ];
             }
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             if (empty($this->document_id) && $this->isNotTransferTransaction()) {
                 $actions[] = [
                     'title' => trans('general.duplicate'),
                     'icon' => 'file_copy',
-                    'url' => route($prefix. '.duplicate', $this->id),
+                    'url' => route($prefix.'.duplicate', $this->id),
                     'permission' => 'create-banking-transactions',
                     'attributes' => [
-                        'id' => 'index-more-actions-duplicate-' . $this->id,
+                        'id' => 'index-more-actions-duplicate-'.$this->id,
                     ],
                 ];
             }
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             if ($this->is_splittable && empty($this->document_id) && empty($this->recurring) && $this->isNotTransferTransaction()) {
@@ -496,8 +506,8 @@ class Transaction extends Model
                     'icon' => 'sensors',
                     'permission' => 'create-banking-transactions',
                     'attributes' => [
-                        'id' => 'index-transactions-more-actions-connect-' . $this->id,
-                        '@click' => 'onConnectTransactions(\'' . route('transactions.dial', $this->id) . '\')',
+                        'id' => 'index-transactions-more-actions-connect-'.$this->id,
+                        '@click' => 'onConnectTransactions(\''.route('transactions.dial', $this->id).'\')',
                     ],
                 ];
 
@@ -507,33 +517,36 @@ class Transaction extends Model
                     'type' => 'divider',
                 ];
             }
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             $actions[] = [
                 'title' => trans('general.print'),
                 'icon' => 'print',
-                'url' => route($prefix. '.print', $this->id),
+                'url' => route($prefix.'.print', $this->id),
                 'permission' => 'read-banking-transactions',
                 'attributes' => [
-                    'id' => 'index-more-actions-print-' . $this->id,
+                    'id' => 'index-more-actions-print-'.$this->id,
                     'target' => '_blank',
                 ],
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             $actions[] = [
                 'title' => trans('general.download_pdf'),
                 'icon' => 'picture_as_pdf',
-                'url' => route($prefix. '.pdf', $this->id),
+                'url' => route($prefix.'.pdf', $this->id),
                 'permission' => 'read-banking-transactions',
                 'attributes' => [
-                    'id' => 'index-more-actions-pdf-' . $this->id,
+                    'id' => 'index-more-actions-pdf-'.$this->id,
                     'target' => '_blank',
                 ],
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         if ($prefix != 'recurring-transactions') {
             if ($this->isNotTransferTransaction()) {
@@ -549,11 +562,12 @@ class Transaction extends Model
                         'url' => route('modals.transactions.share.create', $this->id),
                         'permission' => 'read-banking-transactions',
                         'attributes' => [
-                            'id' => 'index-more-actions-share-' . $this->id,
-                            '@click' => 'onShareLink("' . route('modals.transactions.share.create', $this->id) . '")',
+                            'id' => 'index-more-actions-share-'.$this->id,
+                            '@click' => 'onShareLink("'.route('modals.transactions.share.create', $this->id).'")',
                         ],
                     ];
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
 
                 try {
                     if (! empty($this->contact) && $this->contact->email) {
@@ -564,12 +578,13 @@ class Transaction extends Model
                             'url' => route('modals.transactions.emails.create', $this->id),
                             'permission' => 'read-banking-transactions',
                             'attributes' => [
-                                'id' => 'index-more-actions-send-email-' . $this->id,
-                                '@click' => 'onEmail("' . route('modals.transactions.emails.create', $this->id) . '")',
+                                'id' => 'index-more-actions-send-email-'.$this->id,
+                                '@click' => 'onEmail("'.route('modals.transactions.emails.create', $this->id).'")',
                             ],
                         ];
                     }
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
 
                 $actions[] = [
                     'type' => 'divider',
@@ -581,22 +596,24 @@ class Transaction extends Model
                             'type' => 'delete',
                             'icon' => 'delete',
                             'text' => ! empty($this->recurring) ? 'transactions' : 'recurring_template',
-                            'route' => $prefix. '.destroy',
+                            'route' => $prefix.'.destroy',
                             'permission' => 'delete-banking-transactions',
                             'model' => $this,
                         ];
                     }
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
         } else {
             try {
                 $actions[] = [
                     'title' => trans('general.end'),
                     'icon' => 'block',
-                    'url' => route($prefix. '.end', $this->id),
+                    'url' => route($prefix.'.end', $this->id),
                     'permission' => 'update-banking-transactions',
                 ];
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
 
         return $actions;
@@ -609,10 +626,10 @@ class Transaction extends Model
      */
     public function getRecurringStatusLabelAttribute()
     {
-        return match($this->recurring->status) {
-            'active'    => 'status-partial',
-            'ended'     => 'status-success',
-            default     => 'status-success',
+        return match ($this->recurring->status) {
+            'active' => 'status-partial',
+            'ended' => 'status-success',
+            default => 'status-success',
         };
     }
 

@@ -78,6 +78,7 @@ abstract class Report
     ];
 
     public $column_name_width = 'report-column-name';
+
     public $column_value_width = 'report-column-value';
 
     public $row_tree_nodes = [];
@@ -86,13 +87,13 @@ abstract class Report
     {
         $this->setGroups();
 
-        if (!$model) {
+        if (! $model) {
             return;
         }
 
         $this->model = $model;
 
-        if (!$load_data) {
+        if (! $load_data) {
             return;
         }
 
@@ -127,7 +128,7 @@ abstract class Report
 
     public function getDefaultName()
     {
-        if (!empty($this->default_name)) {
+        if (! empty($this->default_name)) {
             return trans($this->default_name);
         }
 
@@ -146,10 +147,10 @@ abstract class Report
         }
 
         return $this->findTranslation([
-            $this->category . '_desc',
-            $this->category . '_description',
-            str_replace('general.', 'reports.', $this->category) . '_desc',
-            str_replace('general.', 'reports.', $this->category) . '_description',
+            $this->category.'_desc',
+            $this->category.'_description',
+            str_replace('general.', 'reports.', $this->category).'_desc',
+            str_replace('general.', 'reports.', $this->category).'_description',
         ]);
     }
 
@@ -160,11 +161,11 @@ abstract class Report
 
     public function getGrandTotal()
     {
-        if (!$this->loaded) {
+        if (! $this->loaded) {
             $this->load();
         }
 
-        if (!empty($this->footer_totals)) {
+        if (! empty($this->footer_totals)) {
             $sum = 0;
 
             foreach ($this->footer_totals as $total) {
@@ -182,7 +183,7 @@ abstract class Report
     public function getCharts($table_key)
     {
         return [
-            'bar'   => $this->getBarChart($table_key),
+            'bar' => $this->getBarChart($table_key),
             'donut' => $this->getDonutChart($table_key),
         ];
     }
@@ -195,7 +196,7 @@ abstract class Report
             return $chart;
         }
 
-        $options = !empty($this->chart[$table_key]) ? $this->chart[$table_key]['bar'] : $this->chart['bar'];
+        $options = ! empty($this->chart[$table_key]) ? $this->chart[$table_key]['bar'] : $this->chart['bar'];
 
         $chart->setType('bar')
             ->setOptions($options)
@@ -228,7 +229,7 @@ abstract class Report
         $tmp_values = collect($tmp_values)->sort()->reverse()->take(10)->all();
 
         $total = array_sum($tmp_values);
-        $total = !empty($total) ? $total : 1;
+        $total = ! empty($total) ? $total : 1;
 
         $group = $this->getSetting('group');
 
@@ -237,12 +238,12 @@ abstract class Report
         foreach ($tmp_values as $id => $value) {
             $labels[$id] = $this->row_names[$table_key][$id];
 
-            $colors[$id] = ($group == 'category') ? Category::withSubCategory()->find($id)?->colorHexCode : '#' . dechex(rand(0x000000, 0xFFFFFF));
+            $colors[$id] = ($group == 'category') ? Category::withSubCategory()->find($id)?->colorHexCode : '#'.dechex(rand(0x000000, 0xFFFFFF));
 
             $values[$id] = round(($value * 100 / $total), 0);
         }
 
-        $options = !empty($this->chart[$table_key]) ? $this->chart[$table_key]['donut'] : $this->chart['donut'];
+        $options = ! empty($this->chart[$table_key]) ? $this->chart[$table_key]['donut'] : $this->chart['donut'];
 
         $chart->setType('donut')
             ->setOptions($options)
@@ -273,7 +274,7 @@ abstract class Report
 
     public function setColumnWidth()
     {
-        if (!$period = $this->getSetting('period')) {
+        if (! $period = $this->getSetting('period')) {
             return;
         }
 
@@ -312,28 +313,28 @@ abstract class Report
     public function setViews()
     {
         $this->views = [
-            'show'                      => 'components.reports.show',
-            'print'                     => 'components.reports.print',
-            'filter'                    => 'components.reports.filter',
+            'show' => 'components.reports.show',
+            'print' => 'components.reports.print',
+            'filter' => 'components.reports.filter',
 
-            'detail'                    => 'components.reports.detail',
-            'detail.content.header'     => 'components.reports.detail.content.header',
-            'detail.content.footer'     => 'components.reports.detail.content.footer',
-            'detail.table'              => 'components.reports.detail.table',
-            'detail.table.header'       => 'components.reports.detail.table.header',
-            'detail.table.body'         => 'components.reports.detail.table.body',
-            'detail.table.row'          => 'components.reports.detail.table.row',
-            'detail.table.footer'       => 'components.reports.detail.table.footer',
+            'detail' => 'components.reports.detail',
+            'detail.content.header' => 'components.reports.detail.content.header',
+            'detail.content.footer' => 'components.reports.detail.content.footer',
+            'detail.table' => 'components.reports.detail.table',
+            'detail.table.header' => 'components.reports.detail.table.header',
+            'detail.table.body' => 'components.reports.detail.table.body',
+            'detail.table.row' => 'components.reports.detail.table.row',
+            'detail.table.footer' => 'components.reports.detail.table.footer',
 
-            'summary'                   => 'components.reports.summary',
-            'summary.content.header'    => 'components.reports.summary.content.header',
-            'summary.content.footer'    => 'components.reports.summary.content.footer',
-            'summary.table'             => 'components.reports.summary.table',
-            'summary.table.header'      => 'components.reports.summary.table.header',
-            'summary.table.body'        => 'components.reports.summary.table.body',
-            'summary.table.row'         => 'components.reports.summary.table.row',
-            'summary.table.footer'      => 'components.reports.summary.table.footer',
-            'summary.chart'             => 'components.reports.summary.chart',
+            'summary' => 'components.reports.summary',
+            'summary.content.header' => 'components.reports.summary.content.header',
+            'summary.content.footer' => 'components.reports.summary.content.footer',
+            'summary.table' => 'components.reports.summary.table',
+            'summary.table.header' => 'components.reports.summary.table.header',
+            'summary.table.body' => 'components.reports.summary.table.body',
+            'summary.table.row' => 'components.reports.summary.table.row',
+            'summary.table.footer' => 'components.reports.summary.table.footer',
+            'summary.chart' => 'components.reports.summary.chart',
         ];
     }
 
@@ -350,7 +351,7 @@ abstract class Report
             return;
         }
 
-        $function = 'sub' . ucfirst(str_replace('ly', '', $period));
+        $function = 'sub'.ucfirst(str_replace('ly', '', $period));
 
         $start = $this->getFinancialStart($this->year)->copy()->$function();
 
@@ -403,7 +404,7 @@ abstract class Report
 
     public function setTotals($items, $date_field, $check_type = false, $table = 'default', $with_tax = true)
     {
-        $group_field = $this->getSetting('group') . '_id';
+        $group_field = $this->getSetting('group').'_id';
 
         foreach ($items as $item) {
             // Make groups extensible
@@ -411,16 +412,16 @@ abstract class Report
 
             $date = $this->getFormattedDate(Date::parse($item->$date_field));
 
-            if (!isset($item->$group_field)) {
+            if (! isset($item->$group_field)) {
                 continue;
             }
 
             $group = $item->$group_field;
 
             if (
-                !isset($this->row_values[$table][$group])
-                || !isset($this->row_values[$table][$group][$date])
-                || !isset($this->footer_totals[$table][$date])
+                ! isset($this->row_values[$table][$group])
+                || ! isset($this->row_values[$table][$group][$date])
+                || ! isset($this->footer_totals[$table][$date])
             ) {
                 continue;
             }
@@ -443,9 +444,9 @@ abstract class Report
 
     public function setArithmeticTotals($items, $date_field, $operator = 'add', $table = 'default', $amount_field = 'amount')
     {
-        $group_field = $this->getSetting('group') . '_id';
+        $group_field = $this->getSetting('group').'_id';
 
-        $function = $operator . 'ArithmeticAmount';
+        $function = $operator.'ArithmeticAmount';
 
         foreach ($items as $item) {
             // Make groups extensible
@@ -453,16 +454,16 @@ abstract class Report
 
             $date = $this->getFormattedDate(Date::parse($item->$date_field));
 
-            if (!isset($item->$group_field)) {
+            if (! isset($item->$group_field)) {
                 continue;
             }
 
             $group = $item->$group_field;
 
             if (
-                !isset($this->row_values[$table][$group])
-                || !isset($this->row_values[$table][$group][$date])
-                || !isset($this->footer_totals[$table][$date])
+                ! isset($this->row_values[$table][$group])
+                || ! isset($this->row_values[$table][$group][$date])
+                || ! isset($this->footer_totals[$table][$date])
             ) {
                 continue;
             }
@@ -546,7 +547,7 @@ abstract class Report
                     $start = $quarter->getStartDate()->format($this->getQuarterlyDateFormat($this->year));
                     $end = $quarter->getEndDate()->format($this->getQuarterlyDateFormat($this->year));
 
-                    $formatted_date = $start . '-' . $end;
+                    $formatted_date = $start.'-'.$end;
                 }
 
                 break;
@@ -561,12 +562,12 @@ abstract class Report
 
     public function getUrl($action = 'print')
     {
-        $url = company_id() . '/common/reports/' . $this->model->id . '/' . $action;
+        $url = company_id().'/common/reports/'.$this->model->id.'/'.$action;
 
         $search = request('search');
 
-        if (!empty($search)) {
-            $url .= '?search=' . $search;
+        if (! empty($search)) {
+            $url .= '?search='.$search;
         }
 
         return $url;

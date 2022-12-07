@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
  *
  * @see \App\Providers\Route::register
  */
-
 Route::portal('nlb-bank', function () {
     // Route::get('invoices/{invoice}', 'Main@show')->name('invoices.show');
     // Route::post('invoices/{invoice}/confirm', 'Main@confirm')->name('invoices.confirm');
@@ -20,5 +19,4 @@ Route::portal('nlb-bank', function () {
     Route::get('invoices/{invoice}/error', 'Payment@error')->name('invoices.error');
 
     Route::get('invoices/{invoice}/cancel', 'Payment@cancel')->name('invoices.cancel');
-
 });

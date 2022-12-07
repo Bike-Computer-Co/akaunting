@@ -124,12 +124,12 @@ class Tax extends Model
      */
     public function getTitleAttribute()
     {
-        $title = $this->name . ' (';
+        $title = $this->name.' (';
 
         if (setting('localisation.percent_position', 'after') == 'after') {
-            $title .= $this->getAttribute('type') == 'fixed' ?  $this->rate : $this->rate . '%';
+            $title .= $this->getAttribute('type') == 'fixed' ? $this->rate : $this->rate.'%';
         } else {
-            $title .= $this->getAttribute('type') == 'fixed' ?  $this->rate : '%' . $this->rate;
+            $title .= $this->getAttribute('type') == 'fixed' ? $this->rate : '%'.$this->rate;
         }
         $title .= ')';
 

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Install;
 
 use App\Abstracts\Http\Controller;
-use App\Http\Requests\Module\Install as InstallRequest;
 use App\Events\Install\UpdateCacheCleared;
 use App\Events\Install\UpdateCopied;
 use App\Events\Install\UpdateDownloaded;
 use App\Events\Install\UpdateUnzipped;
+use App\Http\Requests\Module\Install as InstallRequest;
 use App\Jobs\Install\CopyFiles;
 use App\Jobs\Install\DownloadFile;
 use App\Jobs\Install\FinishUpdate;
@@ -19,9 +19,8 @@ class Updates extends Controller
 {
     public function __construct()
     {
-        if (!app()->runningInConsole()){
+        if (! app()->runningInConsole()) {
             abort(404);
-
         }
     }
 
@@ -48,7 +47,7 @@ class Updates extends Controller
             foreach ($rows as $row) {
                 $alias = $row->get('alias');
 
-                if (!isset($updates[$alias])) {
+                if (! isset($updates[$alias])) {
                     continue;
                 }
 
@@ -89,14 +88,14 @@ class Updates extends Controller
     /**
      * Run the update.
      *
-     * @param  $alias
-     * @param  $version
+     * @param    $alias
+     * @param    $version
      * @return Response
      */
     public function run($alias, $version)
     {
         if ($alias == 'core') {
-            $name = 'Akaunting ' . $version;
+            $name = 'Akaunting '.$version;
 
             $installed = version('short');
         } else {
@@ -114,8 +113,7 @@ class Updates extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function steps(InstallRequest $request)
@@ -127,46 +125,45 @@ class Updates extends Controller
         // Download
         $steps[] = [
             'text' => trans('modules.installation.download', ['module' => $name]),
-            'url'  => route('updates.download'),
+            'url' => route('updates.download'),
         ];
 
         // Unzip
         $steps[] = [
             'text' => trans('modules.installation.unzip', ['module' => $name]),
-            'url'  => route('updates.unzip'),
+            'url' => route('updates.unzip'),
         ];
 
         // Copy files
         $steps[] = [
             'text' => trans('modules.installation.file_copy', ['module' => $name]),
-            'url'  => route('updates.copy'),
+            'url' => route('updates.copy'),
         ];
 
         // Finish/Apply
         $steps[] = [
             'text' => trans('modules.installation.finish', ['module' => $name]),
-            'url'  => route('updates.finish'),
+            'url' => route('updates.finish'),
         ];
 
         // Redirect
         $steps[] = [
             'text' => trans('modules.installation.redirect', ['module' => $name]),
-            'url'  => route('updates.redirect'),
+            'url' => route('updates.redirect'),
         ];
 
         return response()->json([
             'success' => true,
             'error' => false,
             'data' => $steps,
-            'message' => null
+            'message' => null,
         ]);
     }
 
     /**
      * Download the file
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function download(InstallRequest $request)
@@ -201,8 +198,7 @@ class Updates extends Controller
     /**
      * Unzip the downloaded file
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function unzip(InstallRequest $request)
@@ -237,8 +233,7 @@ class Updates extends Controller
     /**
      * Copy files
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function copyFiles(InstallRequest $request)
@@ -273,8 +268,7 @@ class Updates extends Controller
     /**
      * Finish the update
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function finish(InstallRequest $request)
@@ -305,8 +299,7 @@ class Updates extends Controller
     /**
      * Redirect back
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function redirect()

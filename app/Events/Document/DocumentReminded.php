@@ -8,6 +8,7 @@ use App\Models\Document\Document;
 class DocumentReminded extends Event
 {
     public $document;
+
     public $notification;
 
     /**

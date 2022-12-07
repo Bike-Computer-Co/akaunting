@@ -31,7 +31,7 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
 
         event(new CompanyCreated($this->model));
 
-        if (!empty($current_company_id)) {
+        if (! empty($current_company_id)) {
             company($current_company_id)->makeCurrent();
         }
 
@@ -47,10 +47,10 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
 
         // Company seeds
         Artisan::call('company:seed', [
-            'company' => $this->model->id
+            'company' => $this->model->id,
         ]);
 
-        if (!$user = user()) {
+        if (! $user = user()) {
             return;
         }
 
@@ -90,7 +90,7 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
             'default.locale' => $this->request->get('locale', 'mk-MK'),
         ]);
 
-        if (!empty($this->request->settings)) {
+        if (! empty($this->request->settings)) {
             foreach ($this->request->settings as $name => $value) {
                 setting()->set([$name => $value]);
             }

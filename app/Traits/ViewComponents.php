@@ -4,7 +4,6 @@ namespace App\Traits;
 
 use Akaunting\Module\Module;
 use App\Events\Common\BulkActionsAdding;
-use App\Traits\Modules;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -35,12 +34,12 @@ trait ViewComponents
         $translation = '';
 
         // if set config translation config_key
-        if ($translation = config('type.' . static::OBJECT_TYPE . '.' . $type . '.translation.' . $config_key)) {
+        if ($translation = config('type.'.static::OBJECT_TYPE.'.'.$type.'.translation.'.$config_key)) {
             return $translation;
         }
 
-        $alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias');
-        $prefix = config('type.' . static::OBJECT_TYPE . '.' . $type . '.translation.prefix');
+        $alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias');
+        $prefix = config('type.'.static::OBJECT_TYPE.'.'.$type.'.translation.prefix');
 
         if (! empty($alias)) {
             $alias .= '::';
@@ -48,10 +47,10 @@ trait ViewComponents
 
         // This magic trans key..
         $translations = [
-            'general' => $alias . 'general.' . $default_key,
-            'prefix' => $alias . $prefix . '.' . $default_key,
-            'config_general' => $alias . 'general.' . $config_key,
-            'config_prefix' => $alias . $prefix . '.' . $config_key,
+            'general' => $alias.'general.'.$default_key,
+            'prefix' => $alias.$prefix.'.'.$default_key,
+            'config_general' => $alias.'general.'.$config_key,
+            'config_prefix' => $alias.$prefix.'.'.$config_key,
         ];
 
         switch ($trans_type) {
@@ -81,16 +80,16 @@ trait ViewComponents
         $route = '';
 
         // if set config trasnlation config_key
-        if ($route = config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.' . $config_key)) {
+        if ($route = config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.'.$config_key)) {
             return $route;
         }
 
-        $alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias');
-        $prefix = config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix');
+        $alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias');
+        $prefix = config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix');
 
         // if use module set module alias
         if (! empty($alias)) {
-            $route .= $alias . '.';
+            $route .= $alias.'.';
         }
 
         if ($modal == true) {
@@ -98,7 +97,7 @@ trait ViewComponents
         }
 
         if (! empty($prefix)) {
-            $route .= $prefix . '.';
+            $route .= $prefix.'.';
         }
 
         $route .= $config_key;
@@ -107,7 +106,7 @@ trait ViewComponents
             route($route, $config_parameters);
         } catch (\Exception $e) {
             try {
-                $route = Str::plural($type, 2) . '.' . $config_key;
+                $route = Str::plural($type, 2).'.'.$config_key;
 
                 route($route, $config_parameters);
             } catch (\Exception $e) {
@@ -123,24 +122,24 @@ trait ViewComponents
         $permission = '';
 
         // if set config trasnlation config_key
-        if ($permission = config('type.' . static::OBJECT_TYPE . '.' . $type . '.permission.' . $config_key)) {
+        if ($permission = config('type.'.static::OBJECT_TYPE.'.'.$type.'.permission.'.$config_key)) {
             return $permission;
         }
 
-        $alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias');
-        $group = config('type.' . static::OBJECT_TYPE . '.' . $type . '.group');
-        $prefix = config('type.' . static::OBJECT_TYPE . '.' . $type . '.permission.prefix');
+        $alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias');
+        $group = config('type.'.static::OBJECT_TYPE.'.'.$type.'.group');
+        $prefix = config('type.'.static::OBJECT_TYPE.'.'.$type.'.permission.prefix');
 
-        $permission = $config_key . '-';
+        $permission = $config_key.'-';
 
         // if use module set module alias
         if (! empty($alias)) {
-            $permission .= $alias . '-';
+            $permission .= $alias.'-';
         }
 
         // if controller in folder it must
         if (! empty($group)) {
-            $permission .= $group . '-';
+            $permission .= $group.'-';
         }
 
         $permission .= $prefix;
@@ -152,7 +151,7 @@ trait ViewComponents
     {
         $hide = false;
 
-        $hides = config('type.' . static::OBJECT_TYPE . '.' . $type . '.hide');
+        $hides = config('type.'.static::OBJECT_TYPE.'.'.$type.'.hide');
 
         if (! empty($hides) && (in_array($config_key, $hides))) {
             $hide = true;
@@ -163,7 +162,7 @@ trait ViewComponents
 
     public function getClassFromConfig($type, $config_key)
     {
-        $class_key = 'type.' . $type . '.class.' . $config_key;
+        $class_key = 'type.'.$type.'.class.'.$config_key;
 
         return config($class_key, '');
     }
@@ -173,7 +172,7 @@ trait ViewComponents
         $category_type = '';
 
         // if set config trasnlation config_key
-        if ($category_type = config('type.' . static::OBJECT_TYPE . '.' . $type . '.category_type')) {
+        if ($category_type = config('type.'.static::OBJECT_TYPE.'.'.$type.'.category_type')) {
             return $category_type;
         }
 
@@ -202,7 +201,7 @@ trait ViewComponents
 
     public function getScriptFromConfig($type, $config_key)
     {
-        $script_key = config('type.' . static::OBJECT_TYPE . '.' . $type . '.script.' . $config_key, '');
+        $script_key = config('type.'.static::OBJECT_TYPE.'.'.$type.'.script.'.$config_key, '');
 
         return $script_key;
     }
@@ -213,7 +212,7 @@ trait ViewComponents
             return $textPage;
         }
 
-        $config_route_prefix = config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix', static::DEFAULT_PLURAL_TYPE);
+        $config_route_prefix = config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix', static::DEFAULT_PLURAL_TYPE);
 
         $page = str_replace('-', '_', $config_route_prefix);
 
@@ -223,7 +222,7 @@ trait ViewComponents
             return $translation;
         }
 
-        return 'general.' . $page;
+        return 'general.'.$page;
     }
 
     protected function getGroup($type, $group)
@@ -232,7 +231,7 @@ trait ViewComponents
             return $group;
         }
 
-        return config('type.' . static::OBJECT_TYPE . '.' . $type . '.group', static::DEFAULT_PLURAL_TYPE);
+        return config('type.'.static::OBJECT_TYPE.'.'.$type.'.group', static::DEFAULT_PLURAL_TYPE);
     }
 
     protected function getPage($type, $page)
@@ -285,11 +284,11 @@ trait ViewComponents
 
         $route = $this->getRouteFromConfig($type, 'index');
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
-        return static::DEFAULT_PLURAL_TYPE . '.index';
+        return static::DEFAULT_PLURAL_TYPE.'.index';
     }
 
     protected function getShowRoute($type, $showRoute)
@@ -300,11 +299,11 @@ trait ViewComponents
 
         $route = $this->getRouteFromConfig($type, 'show', 1);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
-        return static::DEFAULT_PLURAL_TYPE . '.show';
+        return static::DEFAULT_PLURAL_TYPE.'.show';
     }
 
     protected function getCreateRoute($type, $createRoute)
@@ -319,7 +318,7 @@ trait ViewComponents
             return $route;
         }
 
-        return static::DEFAULT_PLURAL_TYPE . '.create';
+        return static::DEFAULT_PLURAL_TYPE.'.create';
     }
 
     protected function getEditRoute($type, $editRoute)
@@ -334,7 +333,7 @@ trait ViewComponents
             return $route;
         }
 
-        return static::DEFAULT_PLURAL_TYPE . '.edit';
+        return static::DEFAULT_PLURAL_TYPE.'.edit';
     }
 
     protected function getDuplicateRoute($type, $duplicateRoute)
@@ -349,7 +348,7 @@ trait ViewComponents
             return $route;
         }
 
-        return static::DEFAULT_PLURAL_TYPE . '.duplicate';
+        return static::DEFAULT_PLURAL_TYPE.'.duplicate';
     }
 
     protected function getDeleteRoute($type, $deleteRoute)
@@ -364,7 +363,7 @@ trait ViewComponents
             return $route;
         }
 
-        return static::DEFAULT_PLURAL_TYPE . '.destroy';
+        return static::DEFAULT_PLURAL_TYPE.'.destroy';
     }
 
     protected function getCancelRoute($type, $cancelRoute)
@@ -379,7 +378,7 @@ trait ViewComponents
             return $route;
         }
 
-        return static::DEFAULT_PLURAL_TYPE . '.index';
+        return static::DEFAULT_PLURAL_TYPE.'.index';
     }
 
     protected function getImportRoute($importRoute)
@@ -399,13 +398,13 @@ trait ViewComponents
             return $importRouteParameters;
         }
 
-        $alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias');
-        $group = config('type.' . static::OBJECT_TYPE . '.' . $type . '.group');
-        $prefix = config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix');
+        $alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias');
+        $group = config('type.'.static::OBJECT_TYPE.'.'.$type.'.group');
+        $prefix = config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix');
 
-        if (empty($group) && ! empty($alias)){
+        if (empty($group) && ! empty($alias)) {
             $group = $alias;
-        } else if (empty($group) && empty($alias)) {
+        } elseif (empty($group) && empty($alias)) {
             $group = 'sales';
         }
 
@@ -429,7 +428,7 @@ trait ViewComponents
             return $route;
         }
 
-        return static::DEFAULT_PLURAL_TYPE . '.export';
+        return static::DEFAULT_PLURAL_TYPE.'.export';
     }
 
     protected function getSearchStringModel($type, $searchStringModel)
@@ -438,22 +437,22 @@ trait ViewComponents
             return $searchStringModel;
         }
 
-        $search_string_model = config('type.' . static::OBJECT_TYPE . '.' . $type . '.search_string_model');
+        $search_string_model = config('type.'.static::OBJECT_TYPE.'.'.$type.'.search_string_model');
 
         if (! empty($search_string_model)) {
             return $search_string_model;
         }
 
-        if ($group = config('type.' . static::OBJECT_TYPE . '.' . $type . '.group')) {
-            $group = Str::studly(Str::singular($group)) . '\\';
+        if ($group = config('type.'.static::OBJECT_TYPE.'.'.$type.'.group')) {
+            $group = Str::studly(Str::singular($group)).'\\';
         }
 
-        $prefix = Str::studly(Str::singular(config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix')));
+        $prefix = Str::studly(Str::singular(config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix')));
 
-        if ($alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias')) {
-            $searchStringModel = 'Modules\\' . Str::studly($alias) .'\Models\\' . $group . $prefix;
+        if ($alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias')) {
+            $searchStringModel = 'Modules\\'.Str::studly($alias).'\Models\\'.$group.$prefix;
         } else {
-            $searchStringModel = 'App\Models\\' . $group . $prefix;
+            $searchStringModel = 'App\Models\\'.$group.$prefix;
         }
 
         return $searchStringModel;
@@ -465,7 +464,7 @@ trait ViewComponents
             return $bulkActionClass;
         }
 
-        $bulk_actions = config('type.' . static::OBJECT_TYPE . '.' . $type . '.bulk_actions');
+        $bulk_actions = config('type.'.static::OBJECT_TYPE.'.'.$type.'.bulk_actions');
 
         if (! empty($bulk_actions)) {
             return $bulk_actions;
@@ -473,15 +472,15 @@ trait ViewComponents
 
         $file_name = '';
 
-        if ($group = config('type.' . static::OBJECT_TYPE . '.' . $type . '.group')) {
-            $file_name .= Str::studly($group) . '\\';
+        if ($group = config('type.'.static::OBJECT_TYPE.'.'.$type.'.group')) {
+            $file_name .= Str::studly($group).'\\';
         }
 
-        if ($prefix = config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix')) {
+        if ($prefix = config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix')) {
             $file_name .= Str::studly($prefix);
         }
 
-        if ($alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias')) {
+        if ($alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias')) {
             $module = module($alias);
 
             if (! $module instanceof Module) {
@@ -493,9 +492,9 @@ trait ViewComponents
                 return $b->actions;
             }
 
-            $bulkActionClass = 'Modules\\' . $module->getStudlyName() . '\BulkActions\\' . $file_name;
+            $bulkActionClass = 'Modules\\'.$module->getStudlyName().'\BulkActions\\'.$file_name;
         } else {
-            $bulkActionClass = 'App\BulkActions\\' .  $file_name;
+            $bulkActionClass = 'App\BulkActions\\'.$file_name;
         }
 
         return $bulkActionClass;
@@ -507,15 +506,15 @@ trait ViewComponents
             return $bulkActionRouteParameters;
         }
 
-        $group = config('type.' . static::OBJECT_TYPE . '.' . $type . '.group');
+        $group = config('type.'.static::OBJECT_TYPE.'.'.$type.'.group');
 
-        if (! empty(config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias'))) {
-            $group = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias');
+        if (! empty(config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias'))) {
+            $group = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias');
         }
 
         $bulkActionRouteParameters = [
             'group' => $group,
-            'type' => config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix')
+            'type' => config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix'),
         ];
 
         return $bulkActionRouteParameters;
@@ -542,17 +541,17 @@ trait ViewComponents
             return $imageEmptyPage;
         }
 
-        $image_empty_page = config('type.' . static::OBJECT_TYPE . '.' . $type . '.image_empty_page');
+        $image_empty_page = config('type.'.static::OBJECT_TYPE.'.'.$type.'.image_empty_page');
 
         if (! empty($image_empty_page)) {
             return $image_empty_page;
         }
 
-        $page = str_replace('-', '_', config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix', 'invoices'));
-        $image_path = 'public/img/empty_pages/' . $page . '.png';
+        $page = str_replace('-', '_', config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix', 'invoices'));
+        $image_path = 'public/img/empty_pages/'.$page.'.png';
 
-        if ($alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias')) {
-            $image_path = 'modules/' . Str::studly($alias) . '/Resources/assets/img/empty_pages/' . $page . '.png';
+        if ($alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias')) {
+            $image_path = 'modules/'.Str::studly($alias).'/Resources/assets/img/empty_pages/'.$page.'.png';
         }
 
         return $image_path;
@@ -564,20 +563,20 @@ trait ViewComponents
             return $textEmptyPage;
         }
 
-        $page = str_replace('-', '_', config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix', 'invoices'));
+        $page = str_replace('-', '_', config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix', 'invoices'));
 
-        $translation = $this->getTextFromConfig($type, 'empty_page', 'empty.' . $page);
+        $translation = $this->getTextFromConfig($type, 'empty_page', 'empty.'.$page);
 
         if (! empty($translation)) {
             return $translation;
         }
 
-        return 'general.empty.' . $page;
+        return 'general.empty.'.$page;
     }
 
     protected function getTextSectionTitle($type, $key, $default_key = '')
     {
-        $translation = $this->getTextFromConfig($type, 'section_'. $key . '_title', $key);
+        $translation = $this->getTextFromConfig($type, 'section_'.$key.'_title', $key);
 
         if (! empty($translation)) {
             return $translation;
@@ -587,12 +586,12 @@ trait ViewComponents
             return $default_key;
         }
 
-        return 'general.' . $key;
+        return 'general.'.$key;
     }
 
     protected function getTextSectionDescription($type, $key, $default_key = '')
     {
-        $translation = $this->getTextFromConfig($type, 'section_'. $key . '_description', 'form_description.' . $key);
+        $translation = $this->getTextFromConfig($type, 'section_'.$key.'_description', 'form_description.'.$key);
 
         if (! empty($translation)) {
             return $translation;
@@ -602,7 +601,7 @@ trait ViewComponents
             return $default_key;
         }
 
-        return 'general.form_description.' . $key;
+        return 'general.form_description.'.$key;
     }
 
     protected function getUrlDocsPath($type, $urlDocsPath)
@@ -611,7 +610,7 @@ trait ViewComponents
             return $urlDocsPath;
         }
 
-        $docs_path = config('type.' . static::OBJECT_TYPE . '.' . $type . '.docs_path');
+        $docs_path = config('type.'.static::OBJECT_TYPE.'.'.$type.'.docs_path');
 
         if (! empty($docs_path)) {
             return $docs_path;
@@ -637,12 +636,12 @@ trait ViewComponents
                 break;
         }
 
-        return 'https://akaunting.com/docs/user-manual/' . $docsPath;
+        return 'https://akaunting.com/docs/user-manual/'.$docsPath;
     }
 
     public function getSuggestionModule()
     {
-        return !empty($this->suggestions) ? Arr::random($this->suggestions) : false;
+        return ! empty($this->suggestions) ? Arr::random($this->suggestions) : false;
     }
 
     public function getSuggestionModules()
@@ -668,7 +667,7 @@ trait ViewComponents
                 continue;
             }
 
-            $s_module->action_url = company_id() . '/' . $s_module->action_url;
+            $s_module->action_url = company_id().'/'.$s_module->action_url;
 
             $modules[] = $s_module;
         }
@@ -716,11 +715,11 @@ trait ViewComponents
 
     protected function getAlias($type, $alias)
     {
-        if (!empty($alias)) {
+        if (! empty($alias)) {
             return $alias;
         }
 
-        if ($alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias')) {
+        if ($alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias')) {
             return $alias;
         }
 
@@ -729,11 +728,11 @@ trait ViewComponents
 
     protected function getScriptFolder($type, $folder)
     {
-        if (!empty($folder)) {
+        if (! empty($folder)) {
             return $folder;
         }
 
-        if ($folder = config('type.' . static::OBJECT_TYPE . '.' . $type . '.script.folder')) {
+        if ($folder = config('type.'.static::OBJECT_TYPE.'.'.$type.'.script.folder')) {
             return $folder;
         }
 
@@ -742,11 +741,11 @@ trait ViewComponents
 
     protected function getScriptFile($type, $file)
     {
-        if (!empty($file)) {
+        if (! empty($file)) {
             return $file;
         }
 
-        if ($file = config('type.' . static::OBJECT_TYPE . '.' . $type . '.script.file')) {
+        if ($file = config('type.'.static::OBJECT_TYPE.'.'.$type.'.script.file')) {
             return $file;
         }
 

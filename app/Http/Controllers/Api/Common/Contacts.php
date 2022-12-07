@@ -44,7 +44,7 @@ class Contacts extends ApiController
 
         if (! $contact instanceof Contact) {
             //return $this->noContent();
-            return $this->errorInternal('No query results for model [' . Contact::class . '] ' . $id);
+            return $this->errorInternal('No query results for model ['.Contact::class.'] '.$id);
         }
 
         return new Resource($contact);
@@ -53,7 +53,7 @@ class Contacts extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -66,8 +66,8 @@ class Contacts extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $contact
-     * @param  $request
+     * @param    $contact
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Contact $contact, Request $request)
@@ -80,7 +80,7 @@ class Contacts extends ApiController
     /**
      * Enable the specified resource in storage.
      *
-     * @param  Contact $contact
+     * @param  Contact  $contact
      * @return \Illuminate\Http\JsonResponse
      */
     public function enable(Contact $contact)
@@ -93,7 +93,7 @@ class Contacts extends ApiController
     /**
      * Disable the specified resource in storage.
      *
-     * @param  Contact $contact
+     * @param  Contact  $contact
      * @return \Illuminate\Http\JsonResponse
      */
     public function disable(Contact $contact)
@@ -110,7 +110,7 @@ class Contacts extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Contact $contact
+     * @param  Contact  $contact
      * @return \Illuminate\Http\Response
      */
     public function destroy(Contact $contact)

@@ -8,7 +8,6 @@ use PaymentGatewayJson\Client\Data\Customer;
 use PaymentGatewayJson\Client\Data\CustomerProfileData;
 use PaymentGatewayJson\Client\Data\IbanCustomer;
 use PaymentGatewayJson\Client\Data\Item;
-use PaymentGatewayJson\Client\Data\PaymentData\CardData;
 use PaymentGatewayJson\Client\Data\PaymentData\IbanData;
 use PaymentGatewayJson\Client\Data\PaymentData\PaymentData;
 use PaymentGatewayJson\Client\Data\PaymentData\WalletData;
@@ -30,20 +29,17 @@ use PaymentGatewayJson\Client\Transaction\VoidTransaction;
 
 /**
  * Class Generator
- *
- * @package PaymentGatewayJson\Client\Json
  */
-class JsonGenerator {
-
+class JsonGenerator
+{
     /**
-     * @param                     $method
-     * @param AbstractTransaction $transaction
-     * @param null                $language
-     *
+     * @param    $method
+     * @param  AbstractTransaction  $transaction
+     * @param  null  $language
      * @return array
      */
-    public function generateTransaction($method, AbstractTransaction $transaction, $language=null) {
-
+    public function generateTransaction($method, AbstractTransaction $transaction, $language = null)
+    {
         // common
         $json = [
             'merchantTransactionId' => $transaction->getMerchantTransactionId(),
@@ -54,7 +50,7 @@ class JsonGenerator {
         ];
 
         // type specific
-        switch($method){
+        switch($method) {
             case 'debit':
                 $json = array_merge($json, $this->createDebit($transaction, $language));
                 break;
@@ -85,23 +81,23 @@ class JsonGenerator {
         }
 
         $this->purgeNullValues($json);
+
         return $json;
     }
 
     /**
-     * @param string                                                $action
-     * @param ScheduleData|StartSchedule|ContinueSchedule|string    $scheduleData
-     *
+     * @param  string  $action
+     * @param  ScheduleData|StartSchedule|ContinueSchedule|string  $scheduleData
      * @return array|null
      */
-    public function generateSchedule($action, $scheduleData){
-
+    public function generateSchedule($action, $scheduleData)
+    {
         $json = [];
 
-        switch($action){
+        switch($action) {
             case Client::SCHEDULE_ACTION_START:
                 /* backwards compatible */
-                if($scheduleData instanceof ScheduleData){
+                if ($scheduleData instanceof ScheduleData) {
                     $json = [
                         'registrationUuid' => $scheduleData->getRegistrationUuid(),
                         'amount' => $scheduleData->getAmount(),
@@ -109,7 +105,7 @@ class JsonGenerator {
                         'periodLength' => $scheduleData->getPeriodLength(),
                         'periodUnit' => $scheduleData->getPeriodUnit(),
                         'startDateTime' => $scheduleData->getStartDateTimeFormatted(\DateTime::ATOM),
-                        'merchantMetaData' => $scheduleData->getMerchantMetaData()
+                        'merchantMetaData' => $scheduleData->getMerchantMetaData(),
                     ];
                 } else {
                     /** @var StartSchedule $scheduleData */
@@ -133,6 +129,7 @@ class JsonGenerator {
         }
 
         $this->purgeNullValues($json);
+
         return $json;
     }
 
@@ -141,14 +138,14 @@ class JsonGenerator {
      *
      * @param $transaction
      * @param $language
-     *
      * @return array
      */
-    protected function createDebit($transaction, $language){
+    protected function createDebit($transaction, $language)
+    {
         /** @var Debit $transaction */
         $data = [
             'referenceUuid' => $transaction->getReferenceUuid(),
-            'amount' => (string)$transaction->getAmount(),
+            'amount' => (string) $transaction->getAmount(),
             'currency' => $transaction->getCurrency(),
             'successUrl' => $transaction->getSuccessUrl(),
             'cancelUrl' => $transaction->getCancelUrl(),
@@ -174,19 +171,20 @@ class JsonGenerator {
      *
      * @param $transaction
      * @param $language
-     *
      * @return array
      */
-    protected function createPreauthorize($transaction, $language){
+    protected function createPreauthorize($transaction, $language)
+    {
         /** @var Preauthorize $transaction */
         return $this->createDebit($transaction, $language);
     }
 
-    protected function createIncrementalAuthorization($transaction, $language) {
+    protected function createIncrementalAuthorization($transaction, $language)
+    {
         /** @var IncrementalAuthorization $transaction */
         $data = [
             'referenceUuid' => $transaction->getReferenceUuid(),
-            'amount' => (string)$transaction->getAmount(),
+            'amount' => (string) $transaction->getAmount(),
             'currency' => $transaction->getCurrency(),
             'successUrl' => $transaction->getSuccessUrl(),
             'cancelUrl' => $transaction->getCancelUrl(),
@@ -205,14 +203,14 @@ class JsonGenerator {
      * capture specific data
      *
      * @param $transaction
-     *
      * @return array
      */
-    protected function createCapture($transaction){
+    protected function createCapture($transaction)
+    {
         /** @var Capture $transaction */
         $data = [
             'referenceUuid' => $transaction->getReferenceUuid(),
-            'amount' => (string)$transaction->getAmount(),
+            'amount' => (string) $transaction->getAmount(),
             'currency' => $transaction->getCurrency(),
             'items' => $this->createItems($transaction->getItems()),
         ];
@@ -224,10 +222,10 @@ class JsonGenerator {
      * void specific data
      *
      * @param $transaction
-     *
      * @return array
      */
-    protected function createVoid($transaction){
+    protected function createVoid($transaction)
+    {
         /** @var VoidTransaction $transaction */
         $data = [
             'referenceUuid' => $transaction->getReferenceUuid(),
@@ -241,10 +239,10 @@ class JsonGenerator {
      *
      * @param $transaction
      * @param $language
-     *
      * @return array
      */
-    protected function createRegister($transaction, $language){
+    protected function createRegister($transaction, $language)
+    {
         /** @var Register $transaction */
         $data = [
             'successUrl' => $transaction->getSuccessUrl(),
@@ -267,10 +265,10 @@ class JsonGenerator {
      * deregister specific data
      *
      * @param $transaction
-     *
      * @return array
      */
-    protected function createDeregister($transaction){
+    protected function createDeregister($transaction)
+    {
         /** @var Deregister $transaction */
         $data = [
             'referenceUuid' => $transaction->getReferenceUuid(),
@@ -283,14 +281,14 @@ class JsonGenerator {
      * refund specific data
      *
      * @param $transaction
-     *
      * @return array
      */
-    protected function createRefund($transaction){
+    protected function createRefund($transaction)
+    {
         /** @var Refund $transaction */
         $data = [
             'referenceUuid' => $transaction->getReferenceUuid(),
-            'amount' => (string)$transaction->getAmount(),
+            'amount' => (string) $transaction->getAmount(),
             'currency' => $transaction->getCurrency(),
             'callbackUrl' => $transaction->getCallbackUrl(),
             'transactionToken' => $transaction->getTransactionToken(),
@@ -306,14 +304,14 @@ class JsonGenerator {
      *
      * @param $transaction
      * @param $language
-     *
      * @return array
      */
-    protected function createPayout($transaction, $language){
+    protected function createPayout($transaction, $language)
+    {
         /** @var Payout $transaction */
         $data = [
             'referenceUuid' => $transaction->getReferenceUuid(),
-            'amount' => (string)$transaction->getAmount(),
+            'amount' => (string) $transaction->getAmount(),
             'currency' => $transaction->getCurrency(),
             'successUrl' => $transaction->getSuccessUrl(),
             'cancelUrl' => $transaction->getCancelUrl(),
@@ -333,19 +331,18 @@ class JsonGenerator {
      * items data
      *
      * @param $items
-     *
      * @return array
      */
-    protected function createItems($items){
-
-        if(!$items){
+    protected function createItems($items)
+    {
+        if (! $items) {
             return null;
         }
 
         $data = [];
 
         /** @var Item $item */
-        foreach($items as $item){
+        foreach ($items as $item) {
             $data[] = [
                 'identification' => $item->getIdentification(),
                 'name' => $item->getName(),
@@ -364,13 +361,12 @@ class JsonGenerator {
      * customer data
      * - includes paymentData
      *
-     * @param Customer|null $customer
-     *
+     * @param  Customer|null  $customer
      * @return mixed
      */
-    protected function createCustomer($customer){
-
-        if(!$customer){
+    protected function createCustomer($customer)
+    {
+        if (! $customer) {
             return null;
         }
 
@@ -404,18 +400,18 @@ class JsonGenerator {
             'nationalId' => $customer->getNationalId(),
             'extraData' => $this->stringifyExtraData($customer->getExtraData()),
             // uncomment below upon removing backwards compatibility
-//             'paymentData' => $this->createPaymentData($customer->getPaymentData()),
+            //             'paymentData' => $this->createPaymentData($customer->getPaymentData()),
         ];
 
         // backwards compatible part
-        if($customer instanceof IbanCustomer){
+        if ($customer instanceof IbanCustomer) {
             $data['paymentData']['ibanData'] = [
                 'iban' => $customer->getIban(),
                 'bic' => $customer->getBic(),
                 'mandateId' => $customer->getMandateId(),
                 'mandateDate' => $customer->getMandateDate() ? ($customer->getMandateDate())->format('Y-m-d') : null,
             ];
-        } elseif($customer instanceof CreditCardCustomer){
+        } elseif ($customer instanceof CreditCardCustomer) {
             $data['paymentData']['cardData'] = [
                 'brand' => $customer->getBrand(),
                 'cardHolder' => $customer->getCardHolder(),
@@ -434,25 +430,24 @@ class JsonGenerator {
     /**
      * payment data
      *
-     * @param PaymentData $paymentData
-     *
+     * @param  PaymentData  $paymentData
      * @return array|null
      */
-    protected function createPaymentData($paymentData){
-
-        if(!$paymentData){
+    protected function createPaymentData($paymentData)
+    {
+        if (! $paymentData) {
             return null;
         }
         $data = null;
 
-        if($paymentData instanceof IbanData){
+        if ($paymentData instanceof IbanData) {
             $data['ibanData'] = [
                 'iban' => $paymentData->getIban(),
                 'bic' => $paymentData->getBic(),
                 'mandateId' => $paymentData->getMandateId(),
                 'mandateDate' => $paymentData->getMandateDateFormatted(),
             ];
-        } elseif($paymentData instanceof WalletData){
+        } elseif ($paymentData instanceof WalletData) {
             $data['walletData'] = [
                 'walletReferenceId' => $paymentData->getWalletReferenceId(),
                 'walletOwner' => $paymentData->getWalletOwner(),
@@ -461,17 +456,15 @@ class JsonGenerator {
         }
 
         return $data;
-
     }
 
     /**
-     * @param ScheduleWithTransaction $schedule
-     *
+     * @param  ScheduleWithTransaction  $schedule
      * @return array|null
      */
-    protected function createSchedule($schedule){
-
-        if(!$schedule){
+    protected function createSchedule($schedule)
+    {
+        if (! $schedule) {
             return null;
         }
 
@@ -481,7 +474,7 @@ class JsonGenerator {
             'periodLength' => $schedule->getPeriodLength(),
             'periodUnit' => $schedule->getPeriodUnit(),
             'startDateTime' => $schedule->getStartDateTimeFormatted(\DateTime::ATOM),
-            'merchantMetaData' => $schedule->getMerchantMetaData()
+            'merchantMetaData' => $schedule->getMerchantMetaData(),
         ];
 
         return $data;
@@ -490,35 +483,33 @@ class JsonGenerator {
     /**
      * customer profile data
      *
-     * @param CustomerProfileData $customerProfile
-     *
+     * @param  CustomerProfileData  $customerProfile
      * @return array|null
      */
-    protected function createAddToCustomerProfile($customerProfile){
-        if (!$customerProfile) {
+    protected function createAddToCustomerProfile($customerProfile)
+    {
+        if (! $customerProfile) {
             return null;
         }
 
         $data = [
             'profileGuid' => $customerProfile->getProfileGuid(),
             'customerIdentification' => $customerProfile->getCustomerIdentification(),
-            'markAsPreferred' => $customerProfile->getMarkAsPreferred()
+            'markAsPreferred' => $customerProfile->getMarkAsPreferred(),
         ];
 
         return $data;
     }
 
-
     /**
      * three d secure data
      *
-     * @param ThreeDSecureData $threeDSecureData
-     *
+     * @param  ThreeDSecureData  $threeDSecureData
      * @return array|null
      */
-    protected function createThreeDSecureData($threeDSecureData){
-
-        if(!$threeDSecureData){
+    protected function createThreeDSecureData($threeDSecureData)
+    {
+        if (! $threeDSecureData) {
             return null;
         }
 
@@ -600,13 +591,14 @@ class JsonGenerator {
      *
      * @param $data
      */
-    protected function purgeNullValues(&$data){
-        foreach($data as $key => &$value){
-            if(is_array($value)){
-                 $this->purgeNullValues($value);
+    protected function purgeNullValues(&$data)
+    {
+        foreach ($data as $key => &$value) {
+            if (is_array($value)) {
+                $this->purgeNullValues($value);
             }
             // remove unfilled values
-            if($value === null || $value === '' || (is_array($value) && count($value) === 0)){
+            if ($value === null || $value === '' || (is_array($value) && count($value) === 0)) {
                 unset($data[$key]);
             }
         }
@@ -614,20 +606,25 @@ class JsonGenerator {
 
     /**
      * @deprecated not used anymore, only relevant for xml
-     * @param string $namespaceRoot
+     *
+     * @param  string  $namespaceRoot
      */
-    public function setNamespaceRoot($namespaceRoot) {}
+    public function setNamespaceRoot($namespaceRoot)
+    {
+    }
 
     /**
-     * @param array $extraData
+     * @param  array  $extraData
      * @return array
      */
-    protected function stringifyExtraData($extraData) {
+    protected function stringifyExtraData($extraData)
+    {
         if (is_array($extraData)) {
-            array_walk($extraData, function(&$v) {
-                $v = (string)$v;
+            array_walk($extraData, function (&$v) {
+                $v = (string) $v;
             });
         }
+
         return $extraData;
     }
 }

@@ -28,11 +28,11 @@ class Macro extends ServiceProvider
     public function boot()
     {
         Request::macro('isApi', function () {
-            return $this->is(config('api.prefix') . '/*');
+            return $this->is(config('api.prefix').'/*');
         });
 
         Request::macro('isNotApi', function () {
-            return !$this->isApi();
+            return ! $this->isApi();
         });
 
         Request::macro('isAuth', function () {
@@ -40,7 +40,7 @@ class Macro extends ServiceProvider
         });
 
         Request::macro('isNotAuth', function () {
-            return !$this->isAuth();
+            return ! $this->isAuth();
         });
 
         Request::macro('isInstall', function () {
@@ -48,39 +48,39 @@ class Macro extends ServiceProvider
         });
 
         Request::macro('isNotInstall', function () {
-            return !$this->isInstall();
+            return ! $this->isInstall();
         });
 
         Request::macro('isPreview', function ($company_id) {
-            return $this->is($company_id . '/preview/*');
+            return $this->is($company_id.'/preview/*');
         });
 
         Request::macro('isNotPreview', function ($company_id) {
-            return !$this->isPreview($company_id);
+            return ! $this->isPreview($company_id);
         });
 
         Request::macro('isSigned', function ($company_id) {
-            return $this->is($company_id . '/signed/*');
+            return $this->is($company_id.'/signed/*');
         });
 
         Request::macro('isNotSigned', function ($company_id) {
-            return !$this->isSigned($company_id);
+            return ! $this->isSigned($company_id);
         });
 
         Request::macro('isPortal', function ($company_id) {
-            return $this->is($company_id . '/portal') || $this->is($company_id . '/portal/*');
+            return $this->is($company_id.'/portal') || $this->is($company_id.'/portal/*');
         });
 
         Request::macro('isNotPortal', function ($company_id) {
-            return !$this->isPortal($company_id);
+            return ! $this->isPortal($company_id);
         });
 
         Request::macro('isWizard', function ($company_id) {
-            return $this->is($company_id . '/wizard') || $this->is($company_id . '/wizard/*');
+            return $this->is($company_id.'/wizard') || $this->is($company_id.'/wizard/*');
         });
 
         Request::macro('isNotWizard', function ($company_id) {
-            return !$this->isWizard($company_id);
+            return ! $this->isWizard($company_id);
         });
 
         Request::macro('isAdmin', function ($company_id) {
@@ -93,7 +93,7 @@ class Macro extends ServiceProvider
         });
 
         Request::macro('isNotAdmin', function ($company_id) {
-            return !$this->isAdmin($company_id);
+            return ! $this->isAdmin($company_id);
         });
 
         Str::macro('filename', function ($string, $separator = '-') {

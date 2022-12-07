@@ -4,12 +4,9 @@ namespace PaymentGatewayJson\Client\Data\Result;
 
 /**
  * Class WalletData
- *
- * @package PaymentGatewayJson\Client\Data
- *
  */
-class WalletData extends ResultData {
-
+class WalletData extends ResultData
+{
     /**
      * @var string
      */
@@ -25,64 +22,69 @@ class WalletData extends ResultData {
      */
     protected $walletType;
 
-
     /**
      * @return string
      */
-    public function getWalletType() {
+    public function getWalletType()
+    {
         return $this->walletType;
     }
 
     /**
-     * @param string $walletType
+     * @param  string  $walletType
      */
-    public function setWalletType($walletType) {
+    public function setWalletType($walletType)
+    {
         $this->walletType = $walletType;
     }
 
     /**
      * @return string
      */
-    public function getWalletOwner() {
+    public function getWalletOwner()
+    {
         return $this->walletOwner;
     }
 
     /**
-     * @param string $walletOwner
+     * @param  string  $walletOwner
      * @return WalletData
      */
-    public function setWalletOwner($walletOwner) {
+    public function setWalletOwner($walletOwner)
+    {
         $this->walletOwner = $walletOwner;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getWalletReferenceId() {
+    public function getWalletReferenceId()
+    {
         return $this->walletReferenceId;
     }
 
     /**
-     * @param string $walletReferenceId
+     * @param  string  $walletReferenceId
      * @return WalletData
      */
-    public function setWalletReferenceId($walletReferenceId) {
+    public function setWalletReferenceId($walletReferenceId)
+    {
         $this->walletReferenceId = $walletReferenceId;
+
         return $this;
     }
-
 
     /**
      * @return array
      */
-    public function toArray() {
-        return array(
+    public function toArray()
+    {
+        return [
             'walletType' => $this->walletType,
             'walletOwner' => $this->walletOwner,
-            'walletReferenceId' => $this->walletReferenceId
-        );
+            'walletReferenceId' => $this->walletReferenceId,
+        ];
     }
-
-
 }

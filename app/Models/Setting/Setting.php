@@ -25,13 +25,12 @@ class Setting extends Model
     /**
      * Scope to only include by prefix.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $prefix
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $prefix
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePrefix($query, $prefix = 'company')
     {
-        return $query->where('key', 'like', $prefix . '.%');
+        return $query->where('key', 'like', $prefix.'.%');
     }
 }

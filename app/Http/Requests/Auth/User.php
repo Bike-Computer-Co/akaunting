@@ -27,9 +27,9 @@ class User extends FormRequest
         $picture = 'nullable';
 
         if ($this->files->get('picture')) {
-            $picture = 'mimes:' . config('filesystems.mimes')
-                    . '|between:0,' . config('filesystems.max_size') * 1024
-                    . '|dimensions:max_width=' . config('filesystems.max_width') . ',max_height=' . config('filesystems.max_height');
+            $picture = 'mimes:'.config('filesystems.mimes')
+                    .'|between:0,'.config('filesystems.max_size') * 1024
+                    .'|dimensions:max_width='.config('filesystems.max_width').',max_height='.config('filesystems.max_height');
         }
 
         $email = 'required|email:rfc,dns';
@@ -42,10 +42,10 @@ class User extends FormRequest
 
             if ($this->user->contact) {
                 $email .= '|unique:contacts,NULL,'
-                          . $this->user->contact->id . ',id'
-                          . ',company_id,' . company_id()
-                          . ',type,customer'
-                          . ',deleted_at,NULL';
+                          .$this->user->contact->id.',id'
+                          .',company_id,'.company_id()
+                          .',type,customer'
+                          .',deleted_at,NULL';
             }
         } else {
             // Creating user
@@ -62,22 +62,22 @@ class User extends FormRequest
         $password = $change_password ? '|confirmed' : '';
 
         return [
-            'name'              => 'required|string',
-            'email'             => $email,
-            'current_password'  => 'required_if:change_password,true' . $current_password,
-            'password'          => 'required_if:change_password,true' . $password,
-            'companies'         => $companies,
-            'roles'             => $roles,
-            'picture'           => $picture,
+            'name' => 'required|string',
+            'email' => $email,
+            'current_password' => 'required_if:change_password,true'.$current_password,
+            'password' => 'required_if:change_password,true'.$password,
+            'companies' => $companies,
+            'roles' => $roles,
+            'picture' => $picture,
         ];
     }
 
     public function messages()
     {
         $picture_dimensions = trans('validation.custom.invalid_dimension', [
-            'attribute'     => Str::lower(trans_choice('general.pictures', 1)),
-            'width'         => config('filesystems.max_width'),
-            'height'        => config('filesystems.max_height'),
+            'attribute' => Str::lower(trans_choice('general.pictures', 1)),
+            'width' => config('filesystems.max_width'),
+            'height' => config('filesystems.max_height'),
         ]);
 
         return [

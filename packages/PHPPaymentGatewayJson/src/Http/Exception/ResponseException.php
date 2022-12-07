@@ -4,8 +4,6 @@ namespace PaymentGatewayJson\Client\Http\Exception;
 
 /**
  * Class ResponseException
- *
- * @package PaymentGatewayJson\Client\Http\Exception
  */
 class ResponseException extends ClientException
 {
@@ -20,13 +18,13 @@ class ResponseException extends ClientException
     private $response;
 
     /**
-     * @param mixed $httpStatus
-     *
+     * @param  mixed  $httpStatus
      * @return ResponseException
      */
     public function setHttpStatus($httpStatus)
     {
         $this->httpStatus = $httpStatus;
+
         return $this;
     }
 
@@ -39,13 +37,13 @@ class ResponseException extends ClientException
     }
 
     /**
-     * @param mixed $response
-     *
+     * @param  mixed  $response
      * @return ResponseException
      */
     public function setResponse($response)
     {
         $this->response = $response;
+
         return $this;
     }
 
@@ -62,11 +60,11 @@ class ResponseException extends ClientException
      */
     public function toArray()
     {
-        return array(
+        return [
             'code' => $this->code,
             'message' => $this->message,
             'http-status' => $this->httpStatus,
             'response' => $this->response,
-        );
+        ];
     }
 }

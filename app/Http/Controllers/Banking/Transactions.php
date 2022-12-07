@@ -36,7 +36,7 @@ class Transactions extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with('account', 'category', 'contact')->collect(['paid_at'=> 'desc']);
+        $transactions = Transaction::with('account', 'category', 'contact')->collect(['paid_at' => 'desc']);
 
         $totals = [
             'income' => 0,
@@ -88,7 +88,7 @@ class Transactions extends Controller
 
         $number = $this->getNextTransactionNumber();
 
-        $contact_type = config('type.transaction.' . $type . '.contact_type');
+        $contact_type = config('type.transaction.'.$type.'.contact_type');
 
         $account_currency_code = Account::where('id', setting('default.account'))->pluck('currency_code')->first();
 
@@ -107,7 +107,6 @@ class Transactions extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -135,7 +134,6 @@ class Transactions extends Controller
      * Duplicate the specified resource.
      *
      * @param  Transaction  $transaction
-     *
      * @return Response
      */
     public function duplicate(Transaction $transaction)
@@ -153,7 +151,6 @@ class Transactions extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -177,13 +174,12 @@ class Transactions extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Transaction  $transaction
-     *
      * @return Response
      */
     public function edit(Transaction $transaction)
     {
         $type = $transaction->type;
-        $contact_type = config('type.transaction.' . $type . '.contact_type');
+        $contact_type = config('type.transaction.'.$type.'.contact_type');
 
         $currency = Currency::where('code', $transaction->currency_code)->first();
 
@@ -201,9 +197,8 @@ class Transactions extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Transaction $transaction
-     * @param  Request $request
-     *
+     * @param  Transaction  $transaction
+     * @param  Request  $request
      * @return Response
      */
     public function update(Transaction $transaction, Request $request)
@@ -230,8 +225,7 @@ class Transactions extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Transaction $transaction
-     *
+     * @param  Transaction  $transaction
      * @return Response
      */
     public function destroy(Transaction $transaction)
@@ -266,8 +260,7 @@ class Transactions extends Controller
     /**
      * Download the PDF file of transaction.
      *
-     * @param  Transaction $transaction
-     *
+     * @param  Transaction  $transaction
      * @return Response
      */
     public function emailTransaction(Transaction $transaction)
@@ -277,7 +270,7 @@ class Transactions extends Controller
         }
 
         // Notify the customer/vendor
-        $transaction->contact->notify(new Notification($transaction, config('type.transaction.' . $transaction->type . '.email_template'), true));
+        $transaction->contact->notify(new Notification($transaction, config('type.transaction.'.$transaction->type.'.email_template'), true));
 
         event(new TransactionSent($transaction));
 
@@ -289,8 +282,7 @@ class Transactions extends Controller
     /**
      * Print the transaction.
      *
-     * @param  Transaction $transaction
-     *
+     * @param  Transaction  $transaction
      * @return Response
      */
     public function printTransaction(Transaction $transaction)
@@ -305,8 +297,7 @@ class Transactions extends Controller
     /**
      * Download the PDF file of transaction.
      *
-     * @param  Transaction $transaction
-     *
+     * @param  Transaction  $transaction
      * @return Response
      */
     public function pdfTransaction(Transaction $transaction)
@@ -372,7 +363,7 @@ class Transactions extends Controller
         if ($total_items == 1) {
             $document = Document::find($request->data['items'][0]['document_id']);
 
-            if (!is_null($document)) {
+            if (! is_null($document)) {
                 $response = $this->ajaxDispatch(new MatchBankingDocumentTransaction($document, $transaction));
             }
         }

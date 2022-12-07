@@ -34,7 +34,8 @@ if (! function_exists('company_date_format')) {
      */
     function company_date_format(): string
     {
-        $date_time = new class() {
+        $date_time = new class()
+        {
             use DateTime;
         };
 
@@ -114,7 +115,8 @@ if (! function_exists('source_name')) {
      */
     function source_name(string|null $alias = null): string
     {
-        $tmp = new class() {
+        $tmp = new class()
+        {
             use Sources;
         };
 
@@ -128,7 +130,7 @@ if (! function_exists('cache_prefix')) {
      */
     function cache_prefix(): string
     {
-        return company_id() . '_';
+        return company_id().'_';
     }
 }
 
@@ -140,7 +142,7 @@ if (! function_exists('array_values_recursive')) {
     {
         $flat = [];
 
-        foreach($array as $value) {
+        foreach ($array as $value) {
             if (is_array($value)) {
                 $flat = array_merge($flat, array_values_recursive($value));
             } else {
@@ -168,7 +170,7 @@ if (! function_exists('simple_icons')) {
      */
     function simple_icons(string $name): string
     {
-        $path = base_path('vendor/simple-icons/simple-icons/icons/' . $name . '.svg');
+        $path = base_path('vendor/simple-icons/simple-icons/icons/'.$name.'.svg');
 
         return file_get_contents($path);
     }

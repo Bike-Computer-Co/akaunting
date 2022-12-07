@@ -17,6 +17,6 @@ return [
     'sent' => 'Olemme lähettäneet salasanan nollauslinkin sähköpostiin!',
     'throttled' => 'Odota ennen kuin yrität uudelleen.',
     'token' => 'Salasanan nollauslinkki on virheellinen.',
-    'user' => "Emme löydä käyttäjää, jolla on kyseinen sähköpostiosoite.",
+    'user' => 'Emme löydä käyttäjää, jolla on kyseinen sähköpostiosoite.',
 
 ];

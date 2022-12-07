@@ -96,7 +96,7 @@ abstract class JobShouldQueue implements ShouldQueue
     /**
      * Check if request is array and if so, convert to a request class.
      *
-     * @param mixed $request
+     * @param  mixed  $request
      * @return \Illuminate\Foundation\Http\FormRequest
      *
      * @deprecated Request is not serializable so can't use it with queues.
@@ -109,7 +109,7 @@ abstract class JobShouldQueue implements ShouldQueue
     /**
      * Covert the request to collection.
      *
-     * @param mixed $request
+     * @param  mixed  $request
      * @return \App\Utilities\QueueCollection
      */
     public function getRequestAsCollection($request)
@@ -117,7 +117,9 @@ abstract class JobShouldQueue implements ShouldQueue
         if (is_array($request)) {
             $data = $request;
 
-            $request = new class() extends FormRequest {};
+            $request = new class() extends FormRequest
+            {
+            };
 
             $request->merge($data);
         }

@@ -13,6 +13,6 @@ trait Owners
 
     public function isNotOwnable()
     {
-        return !$this->isOwnable();
+        return ! $this->isOwnable();
     }
 }

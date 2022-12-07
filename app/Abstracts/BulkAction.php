@@ -2,9 +2,9 @@
 
 namespace App\Abstracts;
 
+use App\Jobs\Banking\DeleteTransaction;
 use App\Jobs\Common\DeleteContact;
 use App\Jobs\Common\UpdateContact;
-use App\Jobs\Banking\DeleteTransaction;
 use App\Traits\Jobs;
 use App\Traits\Relationships;
 use App\Utilities\Export;
@@ -18,52 +18,52 @@ abstract class BulkAction
     public $model = false;
 
     public $actions = [
-        'enable'    => [
-            'name'          => 'general.enable',
-            'message'       => 'bulk_actions.message.enable',
-            'permission'    => 'update-common-items',
+        'enable' => [
+            'name' => 'general.enable',
+            'message' => 'bulk_actions.message.enable',
+            'permission' => 'update-common-items',
         ],
-        'disable'   => [
-            'name'          => 'general.disable',
-            'message'       => 'bulk_actions.message.disable',
-            'permission'    => 'update-common-items',
+        'disable' => [
+            'name' => 'general.disable',
+            'message' => 'bulk_actions.message.disable',
+            'permission' => 'update-common-items',
         ],
-        'delete'    => [
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-common-items',
+        'delete' => [
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-common-items',
         ],
-        'export'    => [
-            'name'          => 'general.export',
-            'message'       => 'bulk_actions.message.export',
-            'type'          => 'download'
+        'export' => [
+            'name' => 'general.export',
+            'message' => 'bulk_actions.message.export',
+            'type' => 'download',
         ],
     ];
 
     public $icons = [
-        'enable'        => 'check_circle',
-        'disable'       => 'hide_source',
-        'delete'        => 'delete',
-        'export'        => 'file_download',
-        'reconcile'     => 'published_with_changes',
-        'unreconcile'   => 'layers_clear',
-        'received'      => 'call_received',
-        'cancelled'     => 'cancel',
-        'sent'          => 'send',
-        'approved'      => 'approval',
-        'refused'       => 'do_not_disturb_on',
-        'issued'        => 'mark_email_read',
-        'confirmed'     => 'thumb_up_alt',
+        'enable' => 'check_circle',
+        'disable' => 'hide_source',
+        'delete' => 'delete',
+        'export' => 'file_download',
+        'reconcile' => 'published_with_changes',
+        'unreconcile' => 'layers_clear',
+        'received' => 'call_received',
+        'cancelled' => 'cancel',
+        'sent' => 'send',
+        'approved' => 'approval',
+        'refused' => 'do_not_disturb_on',
+        'issued' => 'mark_email_read',
+        'confirmed' => 'thumb_up_alt',
     ];
 
     public $messages = [
-        'general'   => 'bulk_actions.success.general',
-        'enable'    => 'messages.success.enabled',
-        'disable'   => 'messages.success.disabled',
-        'delete'    => 'messages.success.deleted',
+        'general' => 'bulk_actions.success.general',
+        'enable' => 'messages.success.enabled',
+        'disable' => 'messages.success.disabled',
+        'delete' => 'messages.success.deleted',
         'duplicate' => 'messages.success.duplicated',
-        'invite'    => 'messages.success.invited',
-        'end'       => 'messages.success.ended',
+        'invite' => 'messages.success.invited',
+        'end' => 'messages.success.ended',
     ];
 
     public function getSelectedRecords($request, $relationships = null)
@@ -87,8 +87,7 @@ abstract class BulkAction
     /**
      * Duplicate the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function duplicate($request)
@@ -103,8 +102,7 @@ abstract class BulkAction
     /**
      * Enable the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function enable($request)
@@ -120,8 +118,7 @@ abstract class BulkAction
     /**
      * Disable the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function disable($request)
@@ -137,8 +134,7 @@ abstract class BulkAction
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function delete($request)
@@ -149,8 +145,7 @@ abstract class BulkAction
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function destroy($request)
@@ -207,7 +202,6 @@ abstract class BulkAction
      * @param $class
      * @param $request
      * @param $translation
-     *
      * @return array
      */
     public function importExcel($class, $request, $translation)
@@ -221,7 +215,6 @@ abstract class BulkAction
      * @param $class
      * @param $translation
      * @param $extension
-     *
      * @return mixed
      */
     public function exportExcel($class, $translation, $extension = 'xlsx')

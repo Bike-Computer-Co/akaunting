@@ -2,52 +2,52 @@
 
 return [
 
-    'title'                 => 'АПИ Токен',
-    'api_token'             => 'Токен',
-    'my_apps'               => 'Моје Апликације',
-    'top_paid'              => 'Најбоље комерцијалне',
-    'new'                   => 'Ново',
-    'top_free'              => 'Најбоље бесплатне',
-    'free'                  => 'БЕСПЛАТНО',
-    'search'                => 'Претраживање',
-    'install'               => 'Инсталирај',
-    'buy_now'               => 'Купи одмах',
-    'token_link'            => '<a href="https://akaunting.com/tokens" target="_blank">Кликните овде</a> да бисте добили свој API token.',
-    'no_apps'               => 'У овој категорији још нема апликација.',
-    'developer'             => 'Јеси ли програмер? <a href="https://akaunting.com/blog/akaunting-app-store" target="_blank">Овде </a> можете научити како креирати апликацију и можеш да почнеш да је продајеш!',
+    'title' => 'АПИ Токен',
+    'api_token' => 'Токен',
+    'my_apps' => 'Моје Апликације',
+    'top_paid' => 'Најбоље комерцијалне',
+    'new' => 'Ново',
+    'top_free' => 'Најбоље бесплатне',
+    'free' => 'БЕСПЛАТНО',
+    'search' => 'Претраживање',
+    'install' => 'Инсталирај',
+    'buy_now' => 'Купи одмах',
+    'token_link' => '<a href="https://akaunting.com/tokens" target="_blank">Кликните овде</a> да бисте добили свој API token.',
+    'no_apps' => 'У овој категорији још нема апликација.',
+    'developer' => 'Јеси ли програмер? <a href="https://akaunting.com/blog/akaunting-app-store" target="_blank">Овде </a> можете научити како креирати апликацију и можеш да почнеш да је продајеш!',
 
-    'recommended_apps'      => 'Препоручене апликације',
+    'recommended_apps' => 'Препоручене апликације',
 
-    'about'                 => 'O aпликацији',
+    'about' => 'O aпликацији',
 
-    'added'                 => 'Додато',
-    'updated'               => 'Ажурирано',
-    'compatibility'         => 'Компатибилност',
-    'documentation'         => 'Documentation',
-    'view'                  => 'View',
-    'back'                  => 'Back',
+    'added' => 'Додато',
+    'updated' => 'Ажурирано',
+    'compatibility' => 'Компатибилност',
+    'documentation' => 'Documentation',
+    'view' => 'View',
+    'back' => 'Back',
 
-    'installed'             => ':module инсталирана',
-    'uninstalled'           => ':module разинсталирана',
+    'installed' => ':module инсталирана',
+    'uninstalled' => ':module разинсталирана',
     //'updated'               => ':module updated',
-    'enabled'               => ':module омогућена',
-    'disabled'              => ':module онемогућена',
+    'enabled' => ':module омогућена',
+    'disabled' => ':module онемогућена',
 
     'tab' => [
-        'installation'      => 'Инсталација',
-        'faq'               => 'ČPP',
-        'changelog'         => 'Попис промена',
-        'reviews'            => 'Рецензије',
+        'installation' => 'Инсталација',
+        'faq' => 'ČPP',
+        'changelog' => 'Попис промена',
+        'reviews' => 'Рецензије',
     ],
 
     'installation' => [
-        'header'            => 'Инсталација апликације',
-        'download'          => 'Преузимање :module датотеке.',
-        'unzip'             => 'Распакивање :module датотека.',
-        'file_copy'         => 'Копирање :module датотека.',
-        'migrate'           => 'Примена :module исправке.',
-        'finish'            => 'Ажурирање је успешно инсталирано. Бићете преусмерени на Центар за ажурирање.',
-        'install'           => 'Инсталација :module датотека.',
+        'header' => 'Инсталација апликације',
+        'download' => 'Преузимање :module датотеке.',
+        'unzip' => 'Распакивање :module датотека.',
+        'file_copy' => 'Копирање :module датотека.',
+        'migrate' => 'Примена :module исправке.',
+        'finish' => 'Ажурирање је успешно инсталирано. Бићете преусмерени на Центар за ажурирање.',
+        'install' => 'Инсталација :module датотека.',
     ],
 
     'errors' => [
@@ -64,9 +64,9 @@ return [
     ],
 
     'button' => [
-        'uninstall'         => 'Разинсталирај',
-        'disable'           => 'Онемогући',
-        'enable'            => 'Омогући',
+        'uninstall' => 'Разинсталирај',
+        'disable' => 'Онемогући',
+        'enable' => 'Омогући',
     ],
 
     'my' => [
@@ -76,8 +76,8 @@ return [
 
     'reviews' => [
         'button' => [
-            'add' => 'Додај рецензију'
+            'add' => 'Додај рецензију',
         ],
-        'na' => 'Нема рецензија.'
-    ]
+        'na' => 'Нема рецензија.',
+    ],
 ];

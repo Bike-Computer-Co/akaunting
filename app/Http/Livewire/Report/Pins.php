@@ -4,9 +4,8 @@ namespace App\Http\Livewire\Report;
 
 use App\Models\Common\Report;
 use App\Utilities\Reports as Utility;
-use Livewire\Component;
-use Illuminate\Support\Str;
 use Illuminate\Contracts\View\View;
+use Livewire\Component;
 
 class Pins extends Component
 {
@@ -29,13 +28,13 @@ class Pins extends Component
     {
         $this->reports = collect();
 
-        $pins = setting('favorites.report.' . user()->id, []);
+        $pins = setting('favorites.report.'.user()->id, []);
 
-        if (!empty($pins)) {
+        if (! empty($pins)) {
             $pins = json_decode($pins, true);
 
             foreach ($this->categories as $category) {
-                foreach($category['reports'] as $report) {
+                foreach ($category['reports'] as $report) {
                     if (is_array($report)) {
                         $report = Report::find($report['id']);
                     }

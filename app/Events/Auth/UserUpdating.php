@@ -19,6 +19,6 @@ class UserUpdating extends Event
     public function __construct($user, $request)
     {
         $this->user = $user;
-        $this->request  = $request;
+        $this->request = $request;
     }
 }

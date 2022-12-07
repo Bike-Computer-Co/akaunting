@@ -3,10 +3,9 @@
 namespace App\Notifications\Purchase;
 
 use App\Abstracts\Notification;
-use App\Models\Setting\EmailTemplate;
 use App\Models\Document\Document;
+use App\Models\Setting\EmailTemplate;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Support\Str;
 
 class Bill extends Notification
 {
@@ -58,8 +57,8 @@ class Bill extends Notification
 
         return [
             'template_alias' => $this->template->alias,
-            'title' => trans('notifications.menu.' . $this->template->alias . '.title'),
-            'description' => trans('notifications.menu.' . $this->template->alias . '.description', $this->getTagsBinding()),
+            'title' => trans('notifications.menu.'.$this->template->alias.'.title'),
+            'description' => trans('notifications.menu.'.$this->template->alias.'.description', $this->getTagsBinding()),
             'bill_id' => $this->bill->id,
             'bill_number' => $this->bill->document_number,
             'vendor_name' => $this->bill->contact_name,

@@ -12,7 +12,7 @@ class ShowInSettings
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)

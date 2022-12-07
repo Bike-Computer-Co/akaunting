@@ -20,7 +20,7 @@ class FinishUninstallation
     /**
      * Handle the event.
      *
-     * @param  Event $event
+     * @param  Event  $event
      * @return void
      */
     public function handle(Event $event)
@@ -33,7 +33,7 @@ class FinishUninstallation
     /**
      * Delete any dashboard created by the module.
      *
-     * @param  string $alias
+     * @param  string  $alias
      * @return void
      */
     protected function deleteDashboards($alias)
@@ -54,7 +54,7 @@ class FinishUninstallation
     /**
      * Delete any email template created by the module.
      *
-     * @param  string $alias
+     * @param  string  $alias
      * @return void
      */
     protected function deleteEmailTemplates($alias)
@@ -71,7 +71,7 @@ class FinishUninstallation
     /**
      * Delete any report created by the module.
      *
-     * @param  string $alias
+     * @param  string  $alias
      * @return void
      */
     protected function deleteReports($alias)

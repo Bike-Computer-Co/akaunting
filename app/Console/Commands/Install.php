@@ -10,18 +10,31 @@ use Illuminate\Support\Facades\Session;
 class Install extends Command
 {
     const CMD_SUCCESS = 0;
+
     const CMD_ERROR = 1;
+
     const OPT_DB_HOST = 'db-host';
+
     const OPT_DB_PORT = 'db-port';
+
     const OPT_DB_NAME = 'db-name';
+
     const OPT_DB_USERNAME = 'db-username';
+
     const OPT_DB_PASSWORD = 'db-password';
+
     const OPT_DB_PREFIX = 'db-prefix';
+
     const OPT_COMPANY_NAME = 'company-name';
+
     const OPT_COMPANY_EMAIL = 'company-email';
+
     const OPT_ADMIN_EMAIL = 'admin-email';
+
     const OPT_ADMIN_PASSWORD = 'admin-password';
+
     const OPT_LOCALE = 'locale';
+
     const OPT_NO_INTERACTION = 'no-interaction';
 
     /**
@@ -60,12 +73,12 @@ class Install extends Command
         if (($missing_options = $this->getMissingOptions()) && $this->option(self::OPT_NO_INTERACTION)) {
             $this->line('❌ Some options are missing and --no-interaction is present. Please run the following command for more information :');
             $this->line('❌ php artisan help install');
-            $this->line('❌ Missing options are : ' . implode(', ', $missing_options));
+            $this->line('❌ Missing options are : '.implode(', ', $missing_options));
 
             return self::CMD_ERROR;
         }
 
-        $this->line('Setting locale ' . $this->locale);
+        $this->line('Setting locale '.$this->locale);
         Session::put(self::OPT_LOCALE, $this->locale);
         app()->setLocale($this->locale);
 
@@ -111,7 +124,7 @@ class Install extends Command
             'OPT_COMPANY_NAME',
             'OPT_COMPANY_EMAIL',
             'OPT_ADMIN_EMAIL',
-            'OPT_ADMIN_PASSWORD'
+            'OPT_ADMIN_PASSWORD',
         ];
 
         $allowed_empty = ['db_password', 'db_prefix'];
@@ -123,7 +136,7 @@ class Install extends Command
 
             $this->$property = $this->option($option);
 
-            if (!empty($this->$property)) {
+            if (! empty($this->$property)) {
                 continue;
             }
 
@@ -158,7 +171,7 @@ class Install extends Command
             $this->db_username = $this->ask('What is the database username?', 'root');
         }
 
-        if (!isset($this->db_password)) {
+        if (! isset($this->db_password)) {
             $this->db_password = $this->secret('What is the database password?', '');
         }
 
@@ -181,16 +194,16 @@ class Install extends Command
 
     private function createDatabaseTables()
     {
-        $this->db_host     = $this->option(self::OPT_DB_HOST);
-        $this->db_port     = $this->option(self::OPT_DB_PORT);
-        $this->db_name     = $this->option(self::OPT_DB_NAME);
+        $this->db_host = $this->option(self::OPT_DB_HOST);
+        $this->db_port = $this->option(self::OPT_DB_PORT);
+        $this->db_name = $this->option(self::OPT_DB_NAME);
         $this->db_username = $this->option(self::OPT_DB_USERNAME);
         $this->db_password = $this->option(self::OPT_DB_PASSWORD);
-        $this->db_prefix   = $this->option(self::OPT_DB_PREFIX);
+        $this->db_prefix = $this->option(self::OPT_DB_PREFIX);
 
-        $this->line('Connecting to database ' . $this->db_name . '@' . $this->db_host . ':' . $this->db_port);
+        $this->line('Connecting to database '.$this->db_name.'@'.$this->db_host.':'.$this->db_port);
 
-        if (!Installer::createDbTables($this->db_host, $this->db_port, $this->db_name, $this->db_username, $this->db_password, $this->db_prefix)) {
+        if (! Installer::createDbTables($this->db_host, $this->db_port, $this->db_name, $this->db_username, $this->db_password, $this->db_prefix)) {
             $this->error('Error: Could not connect to the database! Please, make sure the details are correct.');
 
             return false;

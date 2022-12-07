@@ -27,10 +27,10 @@ class FinishUpdate extends Job
     /**
      * Create a new job instance.
      *
-     * @param  $alias
-     * @param  $new
-     * @param  $old
-     * @param  $company_id
+     * @param    $alias
+     * @param    $new
+     * @param    $old
+     * @param    $company_id
      */
     public function __construct($alias, $new, $old, $company_id)
     {
@@ -52,7 +52,7 @@ class FinishUpdate extends Job
             $command = "update:finish {$this->alias} {$company_id} {$this->new} {$this->old}";
 
             if (true !== $result = Console::run($command)) {
-                $message = !empty($result) ? $result : trans('modules.errors.finish', ['module' => $this->alias]);
+                $message = ! empty($result) ? $result : trans('modules.errors.finish', ['module' => $this->alias]);
 
                 throw new \Exception($message);
             }
@@ -103,7 +103,7 @@ class FinishUpdate extends Job
         $module = module($this->alias);
         $filesystem = app(Filesystem::class);
 
-        $updates_folder = $module->getPath() . '/Listeners/Update';
+        $updates_folder = $module->getPath().'/Listeners/Update';
 
         if (! File::isDirectory($updates_folder)) {
             return $listener;
@@ -113,7 +113,7 @@ class FinishUpdate extends Job
             $path = str_replace([$module->getPath(), '.php'], '', $file->getPathname());
 
             // Thank you PSR-4
-            $class = '\Modules\\' . $module->getStudlyName() . str_replace('/', '\\', $path);
+            $class = '\Modules\\'.$module->getStudlyName().str_replace('/', '\\', $path);
 
             if (! Versions::shouldUpdate($class::VERSION, $this->old, $this->new)) {
                 continue;

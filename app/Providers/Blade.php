@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
+use App\Traits\DateTime;
 use App\View\Components\Form\Group\Sswitch;
-use App\View\Components\Media\Ffile as MFile;
 use App\View\Components\Form\Input\Ffile;
 use App\View\Components\Index\Ddefault;
-use App\Traits\DateTime;
+use App\View\Components\Media\Ffile as MFile;
 use Illuminate\Support\Facades\Blade as Facade;
 use Illuminate\Support\ServiceProvider;
 

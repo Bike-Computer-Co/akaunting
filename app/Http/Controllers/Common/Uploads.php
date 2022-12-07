@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Common;
 use App\Abstracts\Http\Controller;
 use App\Models\Common\Media;
 use App\Traits\Uploads as Helper;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class Uploads extends Controller
 {
@@ -15,7 +15,7 @@ class Uploads extends Controller
     /**
      * Get the specified resource.
      *
-     * @param  $id
+     * @param    $id
      * @return mixed
      */
     public function get($id)
@@ -27,7 +27,7 @@ class Uploads extends Controller
         }
 
         // Get file path
-        if (!$this->getMediaPathOnStorage($media)) {
+        if (! $this->getMediaPathOnStorage($media)) {
             return response(null, 204);
         }
 
@@ -37,7 +37,7 @@ class Uploads extends Controller
     /**
      * Get the specified resource.
      *
-     * @param  $id
+     * @param    $id
      * @return mixed
      */
     public function show($id, Request $request)
@@ -62,21 +62,21 @@ class Uploads extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'error'   => true,
-                'data'    => [],
+                'error' => true,
+                'data' => [],
                 'message' => 'null',
-                'html'    => '',
+                'html' => '',
             ]);
         }
 
         // Get file path
-        if (!$this->getMediaPathOnStorage($media)) {
+        if (! $this->getMediaPathOnStorage($media)) {
             return response()->json([
                 'success' => false,
-                'error'   => true,
-                'data'    => [],
+                'error' => true,
+                'data' => [],
                 'message' => 'null',
-                'html'    => '',
+                'html' => '',
             ]);
         }
 
@@ -86,17 +86,17 @@ class Uploads extends Controller
 
         return response()->json([
             'success' => true,
-            'error'   => false,
-            'data'    => [],
+            'error' => false,
+            'data' => [],
             'message' => 'null',
-            'html'    => $html,
+            'html' => $html,
         ]);
     }
 
     /**
      * Download the specified resource.
      *
-     * @param  $id
+     * @param    $id
      * @return mixed
      */
     public function download($id)
@@ -108,7 +108,7 @@ class Uploads extends Controller
         }
 
         // Get file path
-        if (!$this->getMediaPathOnStorage($media)) {
+        if (! $this->getMediaPathOnStorage($media)) {
             return false;
         }
 
@@ -118,7 +118,7 @@ class Uploads extends Controller
     /**
      * Destroy the specified resource.
      *
-     * @param  $id
+     * @param    $id
      * @return callable
      */
     public function destroy($id, Request $request)
@@ -130,7 +130,7 @@ class Uploads extends Controller
                 'success' => true,
                 'errors' => false,
                 'message' => '',
-                'redirect' => $request->get('redirect')
+                'redirect' => $request->get('redirect'),
             ];
         }
 
@@ -141,7 +141,7 @@ class Uploads extends Controller
         }
 
         // Get file path
-        if (!$path = $this->getMediaPathOnStorage($media)) {
+        if (! $path = $this->getMediaPathOnStorage($media)) {
             $message = trans('messages.warning.deleted', ['name' => $media->basename, 'text' => $media->basename]);
 
             flash($message)->warning()->important();
@@ -153,7 +153,7 @@ class Uploads extends Controller
 
         Storage::delete($path);
 
-        if (!empty($request->input('page'))) {
+        if (! empty($request->input('page'))) {
             switch ($request->input('page')) {
                 case 'setting':
                     setting()->set($request->input('key'), '');

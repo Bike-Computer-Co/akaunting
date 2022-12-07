@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <HTML>
 <HEAD>
 <TITLE>Bill payment</TITLE>
@@ -26,10 +26,10 @@
 	<div class="container">
 		<pre>
 		<?php
-			$buf = extract($_GET);
-			if(isset($buf) and $buf != ""){
-				print_r($_GET);
-			}
+            $buf = extract($_GET);
+		if (isset($buf) and $buf != '') {
+		    print_r($_GET);
+		}
 		?>
 		</pre>
 	</div>

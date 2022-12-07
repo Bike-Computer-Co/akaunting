@@ -3,12 +3,11 @@
 namespace App\Notifications\Sale;
 
 use App\Abstracts\Notification;
-use App\Models\Setting\EmailTemplate;
 use App\Models\Document\Document;
+use App\Models\Setting\EmailTemplate;
 use App\Traits\Documents;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
 
 class Invoice extends Notification
 {
@@ -55,7 +54,7 @@ class Invoice extends Notification
      */
     public function toMail($notifiable): MailMessage
     {
-        if (!empty($this->custom_mail['to'])) {
+        if (! empty($this->custom_mail['to'])) {
             $notifiable->email = $this->custom_mail['to'];
         }
 
@@ -82,8 +81,8 @@ class Invoice extends Notification
 
         return [
             'template_alias' => $this->template->alias,
-            'title' => trans('notifications.menu.' . $this->template->alias . '.title'),
-            'description' => trans('notifications.menu.' . $this->template->alias . '.description', $this->getTagsBinding()),
+            'title' => trans('notifications.menu.'.$this->template->alias.'.title'),
+            'description' => trans('notifications.menu.'.$this->template->alias.'.description', $this->getTagsBinding()),
             'invoice_id' => $this->invoice->id,
             'invoice_number' => $this->invoice->document_number,
             'customer_name' => $this->invoice->contact_name,

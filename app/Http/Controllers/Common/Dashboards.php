@@ -102,7 +102,7 @@ class Dashboards extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return Response
      */
     public function store(Request $request)
@@ -130,7 +130,6 @@ class Dashboards extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Dashboard  $dashboard
-     *
      * @return Response
      */
     public function edit(Dashboard $dashboard)
@@ -152,7 +151,7 @@ class Dashboards extends Controller
      * Update the specified resource in storage.
      *
      * @param  Dashboard  $dashboard
-     * @param  $request
+     * @param    $request
      * @return Response
      */
     public function update(Dashboard $dashboard, Request $request)
@@ -179,8 +178,7 @@ class Dashboards extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Dashboard $dashboard
-     *
+     * @param  Dashboard  $dashboard
      * @return Response
      */
     public function enable(Dashboard $dashboard)
@@ -197,8 +195,7 @@ class Dashboards extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Dashboard $dashboard
-     *
+     * @param  Dashboard  $dashboard
      * @return Response
      */
     public function disable(Dashboard $dashboard)
@@ -215,8 +212,7 @@ class Dashboards extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Dashboard $dashboard
-     *
+     * @param  Dashboard  $dashboard
      * @return Response
      */
     public function destroy(Dashboard $dashboard)
@@ -244,7 +240,6 @@ class Dashboards extends Controller
      * Change the active dashboard.
      *
      * @param  Dashboard  $dashboard
-     *
      * @return Response
      */
     public function switch(Dashboard $dashboard)

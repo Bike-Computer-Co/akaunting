@@ -10,7 +10,7 @@ return [
     | This option enable language route.
     |
     */
-    'route'         => true,
+    'route' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ return [
     | to url('/')
     |
     */
-    'home'          => false,
+    'home' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ return [
     | This option will add the language code to the redirected url
     |
     */
-    'url'          => false,
+    'url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     | It can be 'session' (default) or 'referer'
     |
     */
-    'back'          => 'session',
+    'back' => 'session',
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     | This option the language of carbon library.
     |
     */
-    'carbon'        => true,
+    'carbon' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -62,7 +62,7 @@ return [
     | This option the language of jenssegers/date library.
     |
     */
-    'date'          => false,
+    'date' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -73,7 +73,7 @@ return [
     | browser language.
     |
     */
-    'auto'          => true,
+    'auto' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     | This option indicates the prefix for language routes.
     |
     */
-    'prefix'        => 'languages',
+    'prefix' => 'languages',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     | This option indicates the middleware to change language.
     |
     */
-    'middleware'    => 'Akaunting\Language\Middleware\SetLocale',
+    'middleware' => 'Akaunting\Language\Middleware\SetLocale',
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +103,7 @@ return [
     | This option indicates the controller to be used.
     |
     */
-    'controller'    => 'Akaunting\Language\Controllers\Language',
+    'controller' => 'Akaunting\Language\Controllers\Language',
 
     /*
     |--------------------------------------------------------------------------
@@ -113,7 +113,7 @@ return [
     | This option indicates the flags features.
     |
     */
-    'flags'         => ['width' => '22px', 'ul_class' => 'menu', 'li_class' => '', 'img_class' => ''],
+    'flags' => ['width' => '22px', 'ul_class' => 'menu', 'li_class' => '', 'img_class' => ''],
 
     /*
     |--------------------------------------------------------------------------
@@ -126,7 +126,7 @@ return [
     | Long: languagecode-COUNTRYCODE (en-GB)
     |
     */
-    'mode'          => ['code' => 'long', 'name' => 'native'],
+    'mode' => ['code' => 'long', 'name' => 'native'],
 
     /*
     |--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ return [
     | This options indicates the language allowed languages.
     |
     */
-    'allowed'       => ['en-GB', 'mk-MK'],
+    'allowed' => ['en-GB', 'mk-MK'],
 
     /*
     |--------------------------------------------------------------------------

@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Abstracts\Http\Controller;
 use App\Jobs\Employees\Salaries\DeleteSalary;
 use App\Jobs\Employees\Salaries\UpdateSalary;
-use Illuminate\Http\Request;
+use App\Models\Employees\Employee;
 use App\Models\Employees\Salary as Model;
-use \App\Models\Employees\Employee;
+use Illuminate\Http\Request;
+
 class Salary extends Controller
 {
     public function edit(Employee $employee, Model $salary)
@@ -18,7 +19,7 @@ class Salary extends Controller
     public function update(Employee $employee, Model $salary, Request $request)
     {
         $request->validate([
-            'amount'=> 'nullable|numeric'
+            'amount' => 'nullable|numeric',
         ]);
         $response = $this->ajaxDispatch(new UpdateSalary($salary, $request));
 

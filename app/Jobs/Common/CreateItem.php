@@ -6,7 +6,6 @@ use App\Abstracts\Job;
 use App\Interfaces\Job\HasOwner;
 use App\Interfaces\Job\HasSource;
 use App\Interfaces\Job\ShouldCreate;
-use App\Jobs\Common\CreateItemTaxes;
 use App\Models\Common\Item;
 
 class CreateItem extends Job implements HasOwner, HasSource, ShouldCreate

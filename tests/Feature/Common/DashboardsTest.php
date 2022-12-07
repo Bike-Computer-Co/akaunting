@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Common;
 
-use App\Models\Common\Widget;
-use App\Models\Common\Dashboard;
 use App\Jobs\Common\CreateDashboard;
+use App\Models\Common\Dashboard;
+use App\Models\Common\Widget;
 use App\Utilities\Widgets;
 use Tests\Feature\FeatureTestCase;
 

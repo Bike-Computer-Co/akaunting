@@ -24,10 +24,10 @@ class Contacts extends Controller
     public function index()
     {
         return response()->json([
-            'success'   => true,
-            'error'     => false,
-            'data'      => Contact::collect(),
-            'message'   => '',
+            'success' => true,
+            'error' => false,
+            'data' => Contact::collect(),
+            'message' => '',
         ]);
     }
 }

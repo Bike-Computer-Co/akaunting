@@ -16,6 +16,6 @@ class DocumentRecurring extends Event
      */
     public function __construct(Document $document)
     {
-        $this->document     = $document;
+        $this->document = $document;
     }
 }

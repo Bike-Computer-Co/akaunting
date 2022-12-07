@@ -2,15 +2,15 @@
 
 return [
 
-    'change_language'       => 'Mainīt valodu',
-    'last_login'            => 'Pēdējā autorizācija :time',
+    'change_language' => 'Mainīt valodu',
+    'last_login' => 'Pēdējā autorizācija :time',
 
     'notifications' => [
-        'counter'           => '{0} Jums nav nevienas notifkācijas|{1} Jums ir :skaitīt notifikācija|[2,*] Jums ir :skaitīt notifikācijas',
-        'new_apps'          => '{1} :skaitīt tiek publicēta jauna programma|[2,*] :skaitīt publicētas jaunas programmas',
-        'overdue_invoices'  => '{1} :skaitīt kavēts rēķins|[2,*] :skaitīt kavēti rēķini',
-        'upcoming_bills'    => '{1} Drīzumā jāapmaksā :count rēķins |[2,*] Drīzūmā jāapmaksā :count rēķini',
-        'view_all'          => 'Skatīt visus',
+        'counter' => '{0} Jums nav nevienas notifkācijas|{1} Jums ir :skaitīt notifikācija|[2,*] Jums ir :skaitīt notifikācijas',
+        'new_apps' => '{1} :skaitīt tiek publicēta jauna programma|[2,*] :skaitīt publicētas jaunas programmas',
+        'overdue_invoices' => '{1} :skaitīt kavēts rēķins|[2,*] :skaitīt kavēti rēķini',
+        'upcoming_bills' => '{1} Drīzumā jāapmaksā :count rēķins |[2,*] Drīzūmā jāapmaksā :count rēķini',
+        'view_all' => 'Skatīt visus',
 
         'exports' => [
             'completed' => '{1} :skaitīt eksportēšana pabeigta|[2,*] :skaitīt eksportēšanas pabeigtas',
@@ -22,12 +22,12 @@ return [
         ],
     ],
 
-    'docs_link'             => 'https://akaunting.com',
-    'support_link'          => 'https://akaunting.com/support',
+    'docs_link' => 'https://akaunting.com',
+    'support_link' => 'https://akaunting.com/support',
 
     'favorite' => [
-        'added_favorite'    => 'Pievienota pie favorītiem',
-        'add_favorite'      => 'Pievienot pie favorītiem',
+        'added_favorite' => 'Pievienota pie favorītiem',
+        'add_favorite' => 'Pievienot pie favorītiem',
     ],
 
 ];

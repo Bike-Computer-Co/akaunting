@@ -72,7 +72,6 @@ class Taxes extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -100,7 +99,6 @@ class Taxes extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -124,7 +122,6 @@ class Taxes extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Tax  $tax
-     *
      * @return Response
      */
     public function edit(Tax $tax)
@@ -149,9 +146,8 @@ class Taxes extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Tax $tax
-     * @param  Request $request
-     *
+     * @param  Tax  $tax
+     * @param  Request  $request
      * @return Response
      */
     public function update(Tax $tax, Request $request)
@@ -178,8 +174,7 @@ class Taxes extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Tax $tax
-     *
+     * @param  Tax  $tax
      * @return Response
      */
     public function enable(Tax $tax)
@@ -196,8 +191,7 @@ class Taxes extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Tax $tax
-     *
+     * @param  Tax  $tax
      * @return Response
      */
     public function disable(Tax $tax)
@@ -214,8 +208,7 @@ class Taxes extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Tax $tax
-     *
+     * @param  Tax  $tax
      * @return Response
      */
     public function destroy(Tax $tax)
@@ -236,7 +229,7 @@ class Taxes extends Controller
 
         return response()->json($response);
     }
-    
+
     /**
      * Export the specified resource.
      *

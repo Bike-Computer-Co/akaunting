@@ -152,10 +152,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'Un message spécifique sera affiché si le paramètre \'Utiliser message spécifique\' est implémenté pour le champ \'Message hors-ligne\'',
         ],
-        'invalid_currency'      => 'Le code de :attribute est invalide.',
-        'invalid_amount'        => 'Le montant :amount n\'est pas valide.',
-        'invalid_extension'     => 'L\'extension de fichier n\'est pas valide.',
-        'invalid_dimension'     => 'Les dimensions de :attribute doivent être max :width x :height px.',
+        'invalid_currency' => 'Le code de :attribute est invalide.',
+        'invalid_amount' => 'Le montant :amount n\'est pas valide.',
+        'invalid_extension' => 'L\'extension de fichier n\'est pas valide.',
+        'invalid_dimension' => 'Les dimensions de :attribute doivent être max :width x :height px.',
     ],
 
     /*

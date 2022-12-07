@@ -4,8 +4,8 @@ namespace App\Listeners\Document;
 
 use App\Events\Document\DocumentUpdated as Event;
 use App\Models\Common\Company;
-use App\Traits\Uploads;
 use App\Traits\Documents;
+use App\Traits\Uploads;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -16,7 +16,7 @@ class SettingFieldUpdated
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -24,7 +24,7 @@ class SettingFieldUpdated
         $request = $event->request;
         $document = $event->document;
 
-        if (!$request->has('setting')) {
+        if (! $request->has('setting')) {
             return;
         }
 
@@ -42,7 +42,7 @@ class SettingFieldUpdated
                 continue;
             }
 
-            $real_key = $type . '.' . $key;
+            $real_key = $type.'.'.$key;
 
             setting()->set($real_key, $value);
         }
@@ -53,7 +53,7 @@ class SettingFieldUpdated
             $company = Company::find($document->company_id);
 
             foreach ($files as $key => $value) {
-                // Upload attachment    
+                // Upload attachment
                 $media = $this->getMedia($value, 'settings');
 
                 $company->attachMedia($media, Str::snake($real_key));
@@ -66,7 +66,7 @@ class SettingFieldUpdated
                     continue;
                 }
 
-                $real_key = $type . '.' . $key;
+                $real_key = $type.'.'.$key;
 
                 setting()->set($real_key, $value);
             }

@@ -17,12 +17,12 @@ trait SiteApi
         $client = new Client(['verify' => false, 'base_uri' => static::$base_uri]);
 
         $headers['headers'] = [
-            'Authorization' => 'Bearer ' . setting('apps.api_key'),
-            'Accept'        => 'application/json',
-            'Referer'       => app()->runningInConsole() ? config('app.url') : url('/'),
-            'Akaunting'     => version('short'),
-            'Language'      => language()->getShortCode(),
-            'Information'   => json_encode(Info::all()),
+            'Authorization' => 'Bearer '.setting('apps.api_key'),
+            'Accept' => 'application/json',
+            'Referer' => app()->runningInConsole() ? config('app.url') : url('/'),
+            'Akaunting' => version('short'),
+            'Language' => language()->getShortCode(),
+            'Information' => json_encode(Info::all()),
         ];
 
         $data = array_merge([
@@ -35,7 +35,7 @@ trait SiteApi
 
         try {
             $response = $client->request($method, $path, $options);
-        } catch (ConnectException | Exception | RequestException $e) {
+        } catch (ConnectException|Exception|RequestException $e) {
             $response = $e;
         }
 
@@ -48,7 +48,7 @@ trait SiteApi
 
         $is_exception = (($response instanceof ConnectException) || ($response instanceof Exception) || ($response instanceof RequestException));
 
-        if (!$response || $is_exception || ($response->getStatusCode() != $status_code)) {
+        if (! $response || $is_exception || ($response->getStatusCode() != $status_code)) {
             return false;
         }
 
@@ -57,13 +57,13 @@ trait SiteApi
 
     public static function getResponseData($method, $path, $data = [], $status_code = 200)
     {
-        if (!$response = static::getResponse($method, $path, $data, $status_code)) {
+        if (! $response = static::getResponse($method, $path, $data, $status_code)) {
             return [];
         }
 
         $body = json_decode($response->getBody());
 
-        if (!is_object($body)) {
+        if (! is_object($body)) {
             return [];
         }
 

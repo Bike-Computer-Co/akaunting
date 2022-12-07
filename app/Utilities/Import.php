@@ -15,7 +15,6 @@ class Import
      * @param $class
      * @param $request
      * @param $translation
-     *
      * @return array
      */
     public static function fromExcel($class, $request, $translation)
@@ -27,9 +26,9 @@ class Import
                 $rows = $class->toArray($file);
 
                 $total_rows = 0;
-                if (!empty($rows[0])) {
+                if (! empty($rows[0])) {
                     $total_rows = count($rows[0]);
-                } else if (!empty($sheets = $class->sheets())) {
+                } elseif (! empty($sheets = $class->sheets())) {
                     $total_rows = count($rows[array_keys($sheets)[0]]);
                 }
 
@@ -45,18 +44,18 @@ class Import
             }
 
             $response = [
-                'success'   => true,
-                'error'     => false,
-                'data'      => null,
-                'message'   => $message,
+                'success' => true,
+                'error' => false,
+                'data' => null,
+                'message' => $message,
             ];
         } catch (Throwable $e) {
             if ($e instanceof ValidationException) {
                 foreach ($e->failures() as $failure) {
                     $message = trans('messages.error.import_column', [
-                        'message'   => collect($failure->errors())->first(),
-                        'column'    => $failure->attribute(),
-                        'line'      => $failure->row(),
+                        'message' => collect($failure->errors())->first(),
+                        'column' => $failure->attribute(),
+                        'line' => $failure->row(),
                     ]);
 
                     flash($message)->error()->important();
@@ -68,10 +67,10 @@ class Import
             }
 
             $response = [
-                'success'   => false,
-                'error'     => true,
-                'data'      => null,
-                'message'   => $message,
+                'success' => false,
+                'error' => true,
+                'data' => null,
+                'message' => $message,
             ];
         }
 

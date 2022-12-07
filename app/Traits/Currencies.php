@@ -16,7 +16,7 @@ trait Currencies
         }
 
         try {
-            $money = $money->$method((double) $rate);
+            $money = $money->$method((float) $rate);
         } catch (\Throwable $e) {
             report($e);
 
@@ -70,7 +70,7 @@ trait Currencies
 
     public function getDefaultCurrency()
     {
-        return !empty($this->default_currency_code) ? $this->default_currency_code : setting('default.currency');
+        return ! empty($this->default_currency_code) ? $this->default_currency_code : setting('default.currency');
     }
 
     public function setDefaultCurrency($code)

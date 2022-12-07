@@ -12,9 +12,9 @@ use Ixopay\Client\Transaction\Base\OffsiteTrait;
 
 /**
  * Class Preauthorize
- * @package IxopayV2\Transaction
  */
-class IncrementalAuthorization extends AbstractTransactionWithReference implements AmountableInterface, OffsiteInterface, ItemsInterface {
+class IncrementalAuthorization extends AbstractTransactionWithReference implements AmountableInterface, OffsiteInterface, ItemsInterface
+{
     use OffsiteTrait;
     use AmountableTrait;
     use ItemsTrait;
@@ -27,21 +27,24 @@ class IncrementalAuthorization extends AbstractTransactionWithReference implemen
     /**
      * @return string
      */
-    public function getTransactionIndicator() {
+    public function getTransactionIndicator()
+    {
         return $this->transactionIndicator;
     }
 
     /**
-     * @param string $transactionIndicator
+     * @param  string  $transactionIndicator
      */
-    public function setTransactionIndicator($transactionIndicator) {
+    public function setTransactionIndicator($transactionIndicator)
+    {
         $this->transactionIndicator = $transactionIndicator;
     }
 
     /**
      * @return string
      */
-    public function getTransactionMethod() {
+    public function getTransactionMethod()
+    {
         return self::TRANSACTION_METHOD_INCREMENTAL_AUTHORIZATION;
     }
 }

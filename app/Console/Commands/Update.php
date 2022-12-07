@@ -57,7 +57,7 @@ class Update extends Command
         $this->company = $this->argument('company');
 
         if (false === $this->new = $this->getNewVersion()) {
-            $message = 'Not able to get the latest version of ' . $this->alias . '!';
+            $message = 'Not able to get the latest version of '.$this->alias.'!';
 
             $this->error($message);
 
@@ -70,19 +70,19 @@ class Update extends Command
 
         company($this->company)->makeCurrent();
 
-        if (!$path = $this->download()) {
+        if (! $path = $this->download()) {
             return self::CMD_ERROR;
         }
 
-        if (!$this->unzip($path)) {
+        if (! $this->unzip($path)) {
             return self::CMD_ERROR;
         }
 
-        if (!$this->copyFiles($path)) {
+        if (! $this->copyFiles($path)) {
             return self::CMD_ERROR;
         }
 
-        if (!$this->finish()) {
+        if (! $this->finish()) {
             return self::CMD_ERROR;
         }
 

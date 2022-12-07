@@ -30,7 +30,7 @@ class Settings extends Component
             event(new SettingsCreated($menu));
 
             $this->addSettingsOfModulesFromJsonFile($menu);
-            foreach($menu->getItems() as $item) {
+            foreach ($menu->getItems() as $item) {
                 if ($item->isActive()) {
                     $this->active_menu = 1;
                 }
@@ -59,11 +59,11 @@ class Settings extends Component
             $m = module($module->alias);
 
             // Check if the module exists and has settings
-            if (!$m || empty($m->get('settings'))) {
+            if (! $m || empty($m->get('settings'))) {
                 continue;
             }
 
-            if ($this->user->cannot('read-' . $m->getAlias() . '-settings')) {
+            if ($this->user->cannot('read-'.$m->getAlias().'-settings')) {
                 continue;
             }
 
@@ -99,7 +99,7 @@ class Settings extends Component
             }
 
             if (
-                !empty($item->attributes['search_keywords'])
+                ! empty($item->attributes['search_keywords'])
                 && Str::contains(Str::lower($item->attributes['search_keywords']), Str::lower($keyword))
             ) {
                 $status = true;

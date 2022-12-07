@@ -7,13 +7,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class Auth extends Controller
 {
-
     public function check(): JsonResource
     {
-        if (!auth()->check())
+        if (! auth()->check()) {
             return JsonResource::make([
-                'success' => false
+                'success' => false,
             ]);
+        }
 
         $user = auth()->user();
         $company = $user->withoutEvents(function () use ($user) {
@@ -22,7 +22,7 @@ class Auth extends Controller
 
         return JsonResource::make([
             'status' => true,
-            'redirect' => route($user->landing_page, ['company_id' => $company->id])
+            'redirect' => route($user->landing_page, ['company_id' => $company->id]),
         ]);
     }
 }

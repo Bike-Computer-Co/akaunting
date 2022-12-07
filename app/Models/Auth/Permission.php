@@ -31,9 +31,8 @@ class Permission extends LaratrustPermission
     /**
      * Scope to get all rows filtered, sorted and paginated.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $sort
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCollect($query, $sort = 'display_name')
@@ -49,14 +48,13 @@ class Permission extends LaratrustPermission
     /**
      * Scope to only include by action.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $action
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $action
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAction($query, $action = 'read')
     {
-        return $query->where('name', 'like', $action . '-%');
+        return $query->where('name', 'like', $action.'-%');
     }
 
     /**

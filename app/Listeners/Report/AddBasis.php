@@ -18,7 +18,7 @@ class AddBasis extends Listener
     /**
      * Handle filter showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleFilterShowing(FilterShowing $event)
@@ -31,9 +31,9 @@ class AddBasis extends Listener
         $event->class->filters['keys']['basis'] = 'basis';
         $event->class->filters['defaults']['basis'] = $event->class->getSetting('basis', 'accrual');
         $event->class->filters['operators']['basis'] = [
-            'equal'     => true,
+            'equal' => true,
             'not_equal' => false,
-            'rande'     => false,
+            'rande' => false,
         ];
     }
 }

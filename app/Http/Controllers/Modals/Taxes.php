@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Modals;
 
-use App\Models\Setting\Tax;
-use App\Jobs\Setting\CreateTax;
 use App\Abstracts\Http\Controller;
 use App\Http\Requests\Setting\Tax as Request;
+use App\Jobs\Setting\CreateTax;
+use App\Models\Setting\Tax;
 
 class Taxes extends Controller
 {
@@ -64,7 +64,6 @@ class Taxes extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)

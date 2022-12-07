@@ -21,7 +21,7 @@ class Dashboard
         $contact = user()->contact;
 
         // Redirect user redirect landing page..
-        if (!$contact) {
+        if (! $contact) {
             return redirect(user()->getLandingPageOfUser());
         }
 
@@ -37,7 +37,7 @@ class Dashboard
 
         //$invoices = Document::invoice()->accrued()->where('contact_id', $contact->id)->get();
         $invoices = Document::invoice()->accrued()->whereBetween('due_at', [$start, $end])->where('contact_id', $contact->id)->get();
-        
+
         $amounts = $this->calculateAmounts($invoices, $start, $end);
 
         return view('portal.dashboard.index', compact('contact', 'invoices'));

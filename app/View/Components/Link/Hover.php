@@ -18,7 +18,7 @@ class Hover extends Component
     public function __construct(
         string $color = 'to-black',
         bool $groupHover = false,
-       
+
     ) {
         $this->color = $color;
         $this->groupHover = $groupHover;

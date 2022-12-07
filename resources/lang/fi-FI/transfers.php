@@ -2,11 +2,11 @@
 
 return [
 
-    'from_account'          => 'Tililtä',
-    'to_account'            => 'Tilille',
+    'from_account' => 'Tililtä',
+    'to_account' => 'Tilille',
 
     'messages' => [
-        'delete'            => ':from :sta :to (:amount) :n',
+        'delete' => ':from :sta :to (:amount) :n',
     ],
 
 ];

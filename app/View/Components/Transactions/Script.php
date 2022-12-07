@@ -10,7 +10,9 @@ class Script extends Component
     use ViewComponents;
 
     public const OBJECT_TYPE = 'transaction';
+
     public const DEFAULT_TYPE = 'income';
+
     public const DEFAULT_PLURAL_TYPE = 'incomes';
 
     /** @var string */

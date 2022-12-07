@@ -4,11 +4,9 @@ namespace PaymentGatewayJson\Client\Data;
 
 /**
  * Class ChargebackData
- *
- * @package PaymentGatewayJson\Client\Data
  */
-class ChargebackData {
-
+class ChargebackData
+{
     /**
      * @var string
      */
@@ -44,16 +42,18 @@ class ChargebackData {
      *
      * @return string
      */
-    public function getOriginalTransactionId() {
+    public function getOriginalTransactionId()
+    {
         return $this->originalMerchantTransactionId;
     }
 
     /**
      * @deprecated use setOriginalMerchantTransactionId()
      *
-     * @param string $originalTransactionId
+     * @param  string  $originalTransactionId
      */
-    public function setOriginalTransactionId($originalTransactionId) {
+    public function setOriginalTransactionId($originalTransactionId)
+    {
         $this->originalMerchantTransactionId = $originalTransactionId;
     }
 
@@ -62,16 +62,18 @@ class ChargebackData {
      *
      * @return string
      */
-    public function getOriginalReferenceId() {
+    public function getOriginalReferenceId()
+    {
         return $this->originalUuid;
     }
 
     /**
      * @deprecated use setOriginalUuid()
      *
-     * @param string $originalReferenceId
+     * @param  string  $originalReferenceId
      */
-    public function setOriginalReferenceId($originalReferenceId) {
+    public function setOriginalReferenceId($originalReferenceId)
+    {
         $this->originalUuid = $originalReferenceId;
     }
 
@@ -84,13 +86,13 @@ class ChargebackData {
     }
 
     /**
-     * @param string $originalUuid
-     *
+     * @param  string  $originalUuid
      * @return $this
      */
     public function setOriginalUuid($originalUuid)
     {
         $this->originalUuid = $originalUuid;
+
         return $this;
     }
 
@@ -103,94 +105,104 @@ class ChargebackData {
     }
 
     /**
-     * @param string $originalMerchantTransactionId
-     *
+     * @param  string  $originalMerchantTransactionId
      * @return $this
      */
     public function setOriginalMerchantTransactionId($originalMerchantTransactionId)
     {
         $this->originalMerchantTransactionId = $originalMerchantTransactionId;
+
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getAmount() {
+    public function getAmount()
+    {
         return $this->amount;
     }
 
     /**
-     * @param float $amount
+     * @param  float  $amount
      */
-    public function setAmount($amount) {
+    public function setAmount($amount)
+    {
         $this->amount = $amount;
     }
 
     /**
      * @return string
      */
-    public function getCurrency() {
+    public function getCurrency()
+    {
         return $this->currency;
     }
 
     /**
-     * @param string $currency
+     * @param  string  $currency
      */
-    public function setCurrency($currency) {
+    public function setCurrency($currency)
+    {
         $this->currency = $currency;
     }
 
     /**
      * @return string
      */
-    public function getReason() {
+    public function getReason()
+    {
         return $this->reason;
     }
 
     /**
-     * @param string $reason
+     * @param  string  $reason
      */
-    public function setReason($reason) {
+    public function setReason($reason)
+    {
         $this->reason = $reason;
     }
 
     /**
      * @return \DateTime
      */
-    public function getChargebackDateTime() {
+    public function getChargebackDateTime()
+    {
         return $this->chargebackDateTime;
     }
 
     /**
-     * @param \DateTime|string $chargebackDateTime
-     *
+     * @param  \DateTime|string  $chargebackDateTime
      * @return $this
+     *
      * @throws \Exception
      */
-    public function setChargebackDateTime($chargebackDateTime) {
-        if (!empty($chargebackDateTime) && is_string($chargebackDateTime)) {
+    public function setChargebackDateTime($chargebackDateTime)
+    {
+        if (! empty($chargebackDateTime) && is_string($chargebackDateTime)) {
             $chargebackDateTime = new \DateTime($chargebackDateTime);
         }
         $this->chargebackDateTime = $chargebackDateTime;
+
         return $this;
     }
 
     /**
-	 * @return array
-	 */
-    public function toArray() {
-    	$properties = get_object_vars($this);
-    	foreach(array_keys($properties) as $prop) {
-    		if (is_object($properties[$prop])) {
-    			if (method_exists($properties[$prop], 'toArray')) {
-					$properties[$prop] = $properties[$prop]->toArray();
-				} else {
-					unset($properties[$prop]);
-				}
-    		}
-    	}
-		return $properties;
-    }
+     * @return array
+     */
+    public function toArray()
+    {
+        $properties = get_object_vars($this);
+        foreach (array_keys($properties) as $prop) {
+            if (is_object($properties[$prop])) {
+                if (method_exists($properties[$prop], 'toArray')) {
+                    $properties[$prop] = $properties[$prop]->toArray();
+                } else {
+                    unset($properties[$prop]);
+                }
+            }
+        }
 
+        return $properties;
+    }
 }

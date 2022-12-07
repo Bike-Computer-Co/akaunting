@@ -129,7 +129,7 @@ return [
             'payment_method',
             'reference',
             'category_id' => [
-                'route' => ['categories.index', 'search=type:income,expense enabled:1']
+                'route' => ['categories.index', 'search=type:income,expense enabled:1'],
             ],
             'parent_id',
             'recurring' => [
@@ -186,7 +186,7 @@ return [
             'description' => ['searchable' => true],
             'enabled' => ['boolean' => true],
             'category_id' => [
-                'route' => ['categories.index', 'search=type:item enabled:1']
+                'route' => ['categories.index', 'search=type:item enabled:1'],
             ],
             'sale_price',
             'purchase_price',
@@ -281,7 +281,7 @@ return [
             'contact_phone' => ['searchable' => true],
             'contact_address' => ['searchable' => true],
             'category_id' => [
-                'route' => ['categories.index', 'search=type:income,expense enabled:1']
+                'route' => ['categories.index', 'search=type:income,expense enabled:1'],
             ],
             'parent_id',
             'recurring' => [
@@ -326,7 +326,7 @@ return [
             'contact_phone' => ['searchable' => true],
             'contact_address' => ['searchable' => true],
             'category_id' => [
-                'route' => ['categories.index', 'search=type:expense enabled:1']
+                'route' => ['categories.index', 'search=type:expense enabled:1'],
             ],
             'parent_id',
             'recurring' => [
@@ -352,7 +352,7 @@ return [
                     'viewed' => 'documents.statuses.viewed',
                     'cancelled' => 'documents.statuses.cancelled',
                     'draft' => 'documents.statuses.draft',
-                ]
+                ],
             ],
             'issued_at' => [
                 'key' => 'invoiced_at',
@@ -372,7 +372,7 @@ return [
             'contact_phone' => ['searchable' => true],
             'contact_address' => ['searchable' => true],
             'category_id' => [
-                'route' => ['categories.index', 'search=type:income enabled:1']
+                'route' => ['categories.index', 'search=type:income enabled:1'],
             ],
             'parent_id',
             'recurring' => [
@@ -417,7 +417,7 @@ return [
                 'translation' => [
                     0 => 'currencies.symbol.after',
                     1 => 'currencies.symbol.before',
-                ]
+                ],
             ],
             'decimal_mark',
             'thousands_separator',
@@ -461,7 +461,7 @@ return [
             'due_at' => ['date' => true],
             'amount',
             'currency_code' => [
-                'route' => 'portal.payment.currencies'
+                'route' => 'portal.payment.currencies',
             ],
             'parent_id',
         ],
@@ -473,7 +473,7 @@ return [
             'paid_at' => ['date' => true],
             'amount',
             'currency_code' => [
-                'route' => 'portal.payment.currencies'
+                'route' => 'portal.payment.currencies',
             ],
             'document_id',
             'description' => ['searchable' => true],

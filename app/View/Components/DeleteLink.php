@@ -56,7 +56,7 @@ class DeleteLink extends Component
         $label = '',
         $model = false, $modelId = 'id', $modelName = 'name', string $modelTable = '',
         $text = '', $type = '',
-        $title = '',  $message = '', 
+        $title = '', $message = '',
         $action = '', $route = '', $url = '',
         $cancelText = '', $deleteText = '',
         $override = '', $class = '', $textClass = ''
@@ -141,8 +141,7 @@ class DeleteLink extends Component
     /**
      * Get the action for a "url" option.
      *
-     * @param  array|string $options
-     *
+     * @param  array|string  $options
      * @return string
      */
     protected function getUrlAction($options)
@@ -161,8 +160,7 @@ class DeleteLink extends Component
     /**
      * Get the action for a "route" option.
      *
-     * @param  array|string $options
-     *
+     * @param  array|string  $options
      * @return string
      */
     protected function getRouteAction($options)
@@ -201,7 +199,7 @@ class DeleteLink extends Component
 
     protected function getMessage($cancelText)
     {
-        if (!empty($cancelText)) {
+        if (! empty($cancelText)) {
             return $cancelText;
         }
 
@@ -223,12 +221,12 @@ class DeleteLink extends Component
 
             $type = mb_strtolower($this->getModelTitle());
 
-            $message = trans('general.delete_confirm', ['name' => '<strong>' . $name . '</strong>', 'type' => $type]);
+            $message = trans('general.delete_confirm', ['name' => '<strong>'.$name.'</strong>', 'type' => $type]);
 
             return $message;
         }
 
-        return trans('general.delete_confirm', ['name' => '<strong>' . $name . '</strong>', 'type' => $type]);
+        return trans('general.delete_confirm', ['name' => '<strong>'.$name.'</strong>', 'type' => $type]);
     }
 
     protected function getModelTitle()
@@ -250,13 +248,13 @@ class DeleteLink extends Component
             $page = $paths[1];
         }
 
-        $title = trans_choice('general.' . $page, 1);
+        $title = trans_choice('general.'.$page, 1);
 
         if (module($page) != null) {
             $group = $page;
             $page = (! empty($this->route)) ? $paths[1] : $paths[2];
 
-            $title = trans_choice($group . '::general.' . $page, 1);
+            $title = trans_choice($group.'::general.'.$page, 1);
         }
 
         return $title;
@@ -289,7 +287,7 @@ class DeleteLink extends Component
         if (count($explode) && in_array('class', $explode)) {
             $default_class = $class;
         } else {
-            $default_class .= ' ' . $class;
+            $default_class .= ' '.$class;
         }
 
         return $default_class;

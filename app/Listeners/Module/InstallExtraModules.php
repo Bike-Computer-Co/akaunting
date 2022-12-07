@@ -16,7 +16,7 @@ class InstallExtraModules
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -47,7 +47,7 @@ class InstallExtraModules
             }
 
             try {
-                if (!$this->moduleExists($alias)) {
+                if (! $this->moduleExists($alias)) {
                     $this->dispatch(new DownloadModule($alias, $event->company_id));
                 }
 

@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => [env('API_PREFIX', 'api') . '/*', '/sanctum/csrf-cookie', '/auth/login', '/auth/full-register', '/auth/forgot'],
+    'paths' => [env('API_PREFIX', 'api').'/*', '/sanctum/csrf-cookie', '/auth/login', '/auth/full-register', '/auth/forgot'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ["*"],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 

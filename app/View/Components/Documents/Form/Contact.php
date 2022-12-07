@@ -35,7 +35,7 @@ class Contact extends Component
     /** @var string */
     public $textChooseDifferentContact;
 
-    /** @var $error  */
+    /** @var  */
     public $error;
 
     /**
@@ -52,7 +52,7 @@ class Contact extends Component
         $this->contacts = $contacts;
         $this->searchRoute = $searchRoute;
         $this->createRoute = $createRoute;
-        $this->error = ($error) ?: "form.errors.get('contact_id')" ;
+        $this->error = ($error) ?: "form.errors.get('contact_id')";
 
         $this->textAddContact = $this->getTextAddContact($type, $textAddContact);
         $this->textCreateNewContact = $this->getTextCreateNewContact($type, $textCreateNewContact);
@@ -71,7 +71,7 @@ class Contact extends Component
         if (empty($this->contacts)) {
             $this->contacts = Model::{$this->type}()->enabled()->orderBy('name')->take(setting('default.select_limit'))->get();
 
-            if (!empty($this->contact) && (!$this->contacts->contains('id', $contact->id))) {
+            if (! empty($this->contact) && (! $this->contacts->contains('id', $contact->id))) {
                 $this->contacts->push($this->contact);
             }
         }
@@ -98,15 +98,15 @@ class Contact extends Component
             }
         }
 
-        #todo  3rd part apps
-        $this->placeholder = trans('general.placeholder.contact_search', ['type' => trans_choice('general.' . Str::plural($this->type, 2), 1)]);
+        //todo  3rd part apps
+        $this->placeholder = trans('general.placeholder.contact_search', ['type' => trans_choice('general.'.Str::plural($this->type, 2), 1)]);
 
         return view('components.documents.form.contact');
     }
 
     protected function getTextAddContact($type, $textAddContact)
     {
-        if (!empty($textAddContact)) {
+        if (! empty($textAddContact)) {
             return $textAddContact;
         }
 
@@ -116,13 +116,13 @@ class Contact extends Component
             case 'purchase':
                 $textAddContact = [
                     'general.form.add',
-                    'general.vendors'
+                    'general.vendors',
                 ];
                 break;
             default:
                 $textAddContact = [
                     'general.form.add',
-                    'general.customers'
+                    'general.customers',
                 ];
                 break;
         }
@@ -132,7 +132,7 @@ class Contact extends Component
 
     protected function getTextCreateNewContact($type, $textCreateNewContact)
     {
-        if (!empty($textCreateNewContact) && is_array($textCreateNewContact)) {
+        if (! empty($textCreateNewContact) && is_array($textCreateNewContact)) {
             return trans($textCreateNewContact[0], ['type' => trans_choice($textCreateNewContact[1], 1)]);
         }
 
@@ -142,13 +142,13 @@ class Contact extends Component
             case 'purchase':
                 $textCreateNewContact = [
                     'general.form.add_new',
-                    'general.vendors'
+                    'general.vendors',
                 ];
                 break;
             default:
                 $textCreateNewContact = [
                     'general.form.add_new',
-                    'general.customers'
+                    'general.customers',
                 ];
                 break;
         }
@@ -158,7 +158,7 @@ class Contact extends Component
 
     protected function getTextEditContact($type, $textEditContact)
     {
-        if (!empty($textEditContact)) {
+        if (! empty($textEditContact)) {
             return $textEditContact;
         }
 
@@ -168,13 +168,13 @@ class Contact extends Component
             case 'purchase':
                 $textEditContact = [
                     'general.form.contact_edit',
-                    'general.vendors'
+                    'general.vendors',
                 ];
                 break;
             default:
                 $textEditContact = [
                     'general.form.contact_edit',
-                    'general.customers'
+                    'general.customers',
                 ];
                 break;
         }
@@ -184,7 +184,7 @@ class Contact extends Component
 
     protected function getTextContactInfo($type, $textContactInfo)
     {
-        if (!empty($textContactInfo)) {
+        if (! empty($textContactInfo)) {
             return $textContactInfo;
         }
 
@@ -204,7 +204,7 @@ class Contact extends Component
 
     protected function getTextChooseDifferentContact($type, $textChooseDifferentContact)
     {
-        if (!empty($textChooseDifferentContact)) {
+        if (! empty($textChooseDifferentContact)) {
             return $textChooseDifferentContact;
         }
 
@@ -214,13 +214,13 @@ class Contact extends Component
             case 'purchase':
                 $textChooseDifferentContact = [
                     'general.form.choose_different',
-                    'general.vendors'
+                    'general.vendors',
                 ];
                 break;
             default:
                 $textChooseDifferentContact = [
                     'general.form.choose_different',
-                    'general.customers'
+                    'general.customers',
                 ];
                 break;
         }

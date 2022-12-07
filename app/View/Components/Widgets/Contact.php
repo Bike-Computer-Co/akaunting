@@ -3,7 +3,6 @@
 namespace App\View\Components\Widgets;
 
 use App\Abstracts\View\Component;
-use Illuminate\Support\Str;
 
 class Contact extends Component
 {
@@ -37,7 +36,7 @@ class Contact extends Component
 
         $names = explode(' ', $full_name);
 
-        return strtoupper(substr($names[0], 0, 1) . substr(end($names), 0, 1));
+        return strtoupper(substr($names[0], 0, 1).substr(end($names), 0, 1));
     }
 
     /**

@@ -12,13 +12,13 @@ class SendDocumentRecurringNotification
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return array
      */
     public function handle(Event $event)
     {
         $document = $event->document;
-        $config = config('type.document.' . $document->type . '.notification');
+        $config = config('type.document.'.$document->type.'.notification');
 
         if (empty($config) || empty($config['class'])) {
             return;

@@ -49,7 +49,7 @@ class Bar extends Component
         ]);
 
         if (setting('apps.api_key')) {
-            $categories = Cache::remember('modules.categories.' . language()->getShortCode(), Date::now()->addHour(6), function () {
+            $categories = Cache::remember('modules.categories.'.language()->getShortCode(), Date::now()->addHour(6), function () {
                 return collect($this->getCategoriesOfModules())->pluck('name', 'slug')
                     ->prepend(trans('general.all_type', ['type' => trans_choice('general.categories', 2)]), '*');
             });

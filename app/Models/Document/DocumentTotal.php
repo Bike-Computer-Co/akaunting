@@ -6,7 +6,6 @@ use App\Abstracts\Model;
 use App\Models\Setting\Tax;
 use App\Traits\DateTime;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DocumentTotal extends Model
 {
@@ -69,20 +68,20 @@ class DocumentTotal extends Model
             case 'tax':
                 $tax = Tax::where('name', $title)->first();
 
-                if (!empty($tax->rate)) {
+                if (! empty($tax->rate)) {
                     $percent = $tax->rate;
                 }
 
                 break;
         }
 
-        if (!empty($percent)) {
+        if (! empty($percent)) {
             $title .= ' (';
 
             if (setting('localisation.percent_position', 'after') === 'after') {
-                $title .= ($this->code === 'discount') ? $percent . '%' : (($tax->type === 'fixed') ? $percent : $percent . '%');
+                $title .= ($this->code === 'discount') ? $percent.'%' : (($tax->type === 'fixed') ? $percent : $percent.'%');
             } else {
-                $title .= ($this->code === 'discount') ? '%' . $percent : (($tax->type === 'fixed') ? $percent : '%' . $percent);
+                $title .= ($this->code === 'discount') ? '%'.$percent : (($tax->type === 'fixed') ? $percent : '%'.$percent);
             }
 
             $title .= ')';

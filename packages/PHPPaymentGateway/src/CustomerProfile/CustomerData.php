@@ -7,7 +7,6 @@ use PaymentGateway\Client\Json\DataObject;
 /**
  * Class CustomerData
  *
- * @package PaymentGateway\Client\CustomerProfile
  *
  * @property string firstName
  * @property string $lastName
@@ -26,20 +25,20 @@ use PaymentGateway\Client\Json\DataObject;
  * @property string $nationalId
  * @property array $extraData
  */
-class CustomerData extends DataObject {
-
+class CustomerData extends DataObject
+{
     const GENDER_MALE = 'M';
+
     const GENDER_FEMALE = 'F';
 
-
     /**
-     * @param \DateTime|string $birthDate
+     * @param  \DateTime|string  $birthDate
      */
-    public function setBirthDate($birthDate) {
+    public function setBirthDate($birthDate)
+    {
         if (is_string($birthDate) && $birthDate) {
             $birthDate = new \DateTime($birthDate);
         }
         $this->birthDate = $birthDate;
     }
-
 }

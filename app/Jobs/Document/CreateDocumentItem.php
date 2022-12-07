@@ -28,15 +28,15 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
 
     public function handle(): DocumentItem
     {
-        $item_id = !empty($this->request['item_id']) ? $this->request['item_id'] : 0;
-        $precision = config('money.' . $this->document->currency_code . '.precision');
+        $item_id = ! empty($this->request['item_id']) ? $this->request['item_id'] : 0;
+        $precision = config('money.'.$this->document->currency_code.'.precision');
 
-        $item_amount = (double) $this->request['price'] * (double) $this->request['quantity'];
+        $item_amount = (float) $this->request['price'] * (float) $this->request['quantity'];
 
         $item_discounted_amount = $item_amount;
 
         // Apply line discount to amount
-        if (!empty($this->request['discount'])) {
+        if (! empty($this->request['discount'])) {
             if ($this->request['discount_type'] === 'percentage') {
                 $item_discounted_amount -= ($item_amount * ($this->request['discount'] / 100));
             } else {
@@ -45,7 +45,7 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
         }
 
         // Apply total discount to amount
-        if (!empty($this->request['global_discount'])) {
+        if (! empty($this->request['global_discount'])) {
             if ($this->request['global_discount_type'] === 'percentage') {
                 $item_discounted_amount -= $item_discounted_amount * ($this->request['global_discount'] / 100);
             } else {
@@ -59,16 +59,16 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
 
         $item_taxes = [];
         $doc_parms = [
-            'company_id'    => $this->document->company_id,
-            'type'          => $this->document->type,
-            'document_id'   => $this->document->id,
+            'company_id' => $this->document->company_id,
+            'type' => $this->document->type,
+            'document_id' => $this->document->id,
         ];
 
-        if (!empty($this->request['tax_ids'])) {
+        if (! empty($this->request['tax_ids'])) {
             // New variables by tax type & tax sorting
             foreach ((array) $this->request['tax_ids'] as $tax_id) {
                 $tax = Tax::find($tax_id);
-                ${$tax->type . 's'}[] = $tax;
+                ${$tax->type.'s'}[] = $tax;
             }
 
             if (isset($inclusives)) {
@@ -89,7 +89,7 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
 
             if (isset($fixeds)) {
                 foreach ($fixeds as $tax) {
-                    $tax_amount = $tax->rate * (double) $this->request['quantity'];
+                    $tax_amount = $tax->rate * (float) $this->request['quantity'];
 
                     $item_taxes[] = $doc_parms + [
                         'tax_id' => $tax->id,
@@ -152,12 +152,12 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
         $this->request['document_id'] = $this->document->id;
         $this->request['item_id'] = $item_id;
         $this->request['name'] = Str::limit($this->request['name'], 180, '');
-        $this->request['description'] = !empty($this->request['description']) ? $this->request['description'] : '';
-        $this->request['quantity'] = (double) $this->request['quantity'];
+        $this->request['description'] = ! empty($this->request['description']) ? $this->request['description'] : '';
+        $this->request['quantity'] = (float) $this->request['quantity'];
         $this->request['price'] = round($this->request['price'], $precision);
         $this->request['tax'] = round($item_tax_total, $precision);
-        $this->request['discount_type'] = !empty($this->request['discount_type']) ? $this->request['discount_type'] : 'percentage';
-        $this->request['discount_rate'] = !empty($this->request['discount']) ? $this->request['discount'] : 0;
+        $this->request['discount_type'] = ! empty($this->request['discount_type']) ? $this->request['discount_type'] : 'percentage';
+        $this->request['discount_rate'] = ! empty($this->request['discount']) ? $this->request['discount'] : 0;
         $this->request['total'] = round($actual_price_item, $precision);
         $this->request['created_from'] = $this->request['created_from'];
         $this->request['created_by'] = $this->request['created_by'];
@@ -168,7 +168,7 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
         $document_item->inclusives = false;
         $document_item->compounds = false;
 
-        if (!empty($item_taxes)) {
+        if (! empty($item_taxes)) {
             $document_item->item_taxes = $item_taxes;
             $document_item->inclusives = $inclusives ?? null;
             $document_item->compounds = $compounds ?? null;

@@ -4,11 +4,9 @@ namespace PaymentGatewayJson\Client\Data\PaymentData;
 
 /**
  * Class IbanData
- *
- * @package PaymentGatewayJson\Client\CustomerProfile\PaymentData
  */
-class IbanData extends PaymentData {
-
+class IbanData extends PaymentData
+{
     /**
      * @var string
      */
@@ -38,13 +36,13 @@ class IbanData extends PaymentData {
     }
 
     /**
-     * @param string $iban
-     *
+     * @param  string  $iban
      * @return IbanData
      */
     public function setIban($iban)
     {
         $this->iban = $iban;
+
         return $this;
     }
 
@@ -57,13 +55,13 @@ class IbanData extends PaymentData {
     }
 
     /**
-     * @param string $bic
-     *
+     * @param  string  $bic
      * @return IbanData
      */
     public function setBic($bic)
     {
         $this->bic = $bic;
+
         return $this;
     }
 
@@ -76,13 +74,13 @@ class IbanData extends PaymentData {
     }
 
     /**
-     * @param string $mandateId
-     *
+     * @param  string  $mandateId
      * @return IbanData
      */
     public function setMandateId($mandateId)
     {
         $this->mandateId = $mandateId;
+
         return $this;
     }
 
@@ -103,17 +101,18 @@ class IbanData extends PaymentData {
     }
 
     /**
-     * @param \DateTime|string $mandateDate
-     *
+     * @param  \DateTime|string  $mandateDate
      * @return IbanData
+     *
      * @throws \Exception
      */
-    public function setMandateDate($mandateDate) {
-        if (!empty($mandateDate) && is_string($mandateDate)) {
+    public function setMandateDate($mandateDate)
+    {
+        if (! empty($mandateDate) && is_string($mandateDate)) {
             $mandateDate = new \DateTime($mandateDate);
         }
         $this->mandateDate = $mandateDate;
+
         return $this;
     }
-
 }

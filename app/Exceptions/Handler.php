@@ -203,8 +203,7 @@ class Handler extends ExceptionHandler
     /**
      * Prepare the replacements array by gathering the keys and values.
      *
-     * @param Throwable $exception
-     *
+     * @param  Throwable  $exception
      * @return array
      */
     protected function prepareApiReplacements(Throwable $exception): array
@@ -258,8 +257,7 @@ class Handler extends ExceptionHandler
     /**
      * Recursively remove any empty replacement values in the response array.
      *
-     * @param array $input
-     *
+     * @param  array  $input
      * @return array
      */
     protected function recursivelyRemoveEmptyApiReplacements(array $input)
@@ -282,8 +280,7 @@ class Handler extends ExceptionHandler
     /**
      * Get the status code from the exception.
      *
-     * @param Throwable $exception
-     *
+     * @param  Throwable  $exception
      * @return int
      */
     protected function getStatusCode(Throwable $exception): int

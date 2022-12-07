@@ -3,8 +3,8 @@
 namespace App\Notifications\Auth;
 
 use App\Models\Auth\UserInvitation;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class Invitation extends Notification
 {
@@ -18,7 +18,7 @@ class Invitation extends Notification
     /**
      * Create a notification instance.
      *
-     * @param UserInvitation $invitation
+     * @param  UserInvitation  $invitation
      */
     public function __construct($invitation)
     {

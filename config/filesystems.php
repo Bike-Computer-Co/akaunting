@@ -36,7 +36,6 @@ return [
 
     'mimes' => env('FILESYSTEM_MIMES', 'pdf,jpeg,jpg,png'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Allowed file max size, in MB
@@ -45,7 +44,6 @@ return [
 
     'max_size' => env('FILESYSTEM_MAX_SIZE', '2'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Allowed image max width, in pixes
@@ -53,7 +51,6 @@ return [
     */
 
     'max_width' => env('FILESYSTEM_MAX_WIDTH', '1000'),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -86,27 +83,27 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => app()->runningInConsole() ? '' : url('/') . '/storage',
+            'url' => app()->runningInConsole() ? '' : url('/').'/storage',
             'visibility' => 'public',
         ],
 
         'temp' => [
             'driver' => 'local',
             'root' => storage_path('app/temp'),
-            'url' => app()->runningInConsole() ? '' : url('/') . '/temp',
+            'url' => app()->runningInConsole() ? '' : url('/').'/temp',
             'visibility' => 'private',
         ],
 
         'uploads' => [
             'driver' => 'local',
             'root' => storage_path('app/uploads'),
-            'url' => app()->runningInConsole() ? '' : url('/') . '/uploads',
+            'url' => app()->runningInConsole() ? '' : url('/').'/uploads',
             'visibility' => 'private',
         ],
 
         's3' => [
             'driver' => 's3',
-            'root' =>  env('AWS_ROOT'),
+            'root' => env('AWS_ROOT'),
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),

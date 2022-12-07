@@ -4,27 +4,35 @@ namespace PaymentGatewayJson\Client\Data\Result;
 
 /**
  * Represents a credit card.
- *
- * @package PaymentGatewayJson\Client\Data
  */
-class CreditcardData extends ResultData {
-
+class CreditcardData extends ResultData
+{
     //global cards
     const TYPE_VISA = 'visa';
+
     const TYPE_MASTERCARD = 'mastercard';
+
     const TYPE_AMEX = 'amex';
+
     const TYPE_DINERS = 'diners';
 
     //regional cards
     const TYPE_UNIONPAY = 'unionpay';
+
     const TYPE_DINACARD = 'dinacard';
+
     const TYPE_DISCOVER = 'discover';
+
     const TYPE_JCB = 'jcb';
+
     const TYPE_HIPERCARD = 'hipercard';
+
     const TYPE_TRANSCARD = 'transcard';
 
     const SECURE_3D_MANDATORY = 'MANDATORY';
+
     const SECURE_3D_OPTIONAL = 'OPTIONAL';
+
     const SECURE_3D_OFF = 'OFF';
 
     /**
@@ -115,153 +123,171 @@ class CreditcardData extends ResultData {
     /**
      * @return string
      */
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
     /**
-     * @param string $type
-     *
+     * @param  string  $type
      * @return $this
      */
-    public function setType($type) {
+    public function setType($type)
+    {
         $this->type = $type;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getFirstName() {
+    public function getFirstName()
+    {
         return $this->firstName;
     }
 
     /**
-     * @param string $firstName
-     *
+     * @param  string  $firstName
      * @return $this
      */
-    public function setFirstName($firstName) {
+    public function setFirstName($firstName)
+    {
         $this->firstName = $firstName;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getLastName() {
+    public function getLastName()
+    {
         return $this->lastName;
     }
 
     /**
-     * @param string $lastName
-     *
+     * @param  string  $lastName
      * @return $this
      */
-    public function setLastName($lastName) {
+    public function setLastName($lastName)
+    {
         $this->lastName = $lastName;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCardHolder() {
+    public function getCardHolder()
+    {
         return $this->cardHolder;
     }
 
     /**
-     * @param string $cardHolder
-     *
+     * @param  string  $cardHolder
      * @return $this
      */
-    public function setCardHolder($cardHolder) {
+    public function setCardHolder($cardHolder)
+    {
         $this->cardHolder = $cardHolder;
+
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getExpiryMonth() {
+    public function getExpiryMonth()
+    {
         return $this->expiryMonth;
     }
 
     /**
-     * @param int $expiryMonth
-     *
+     * @param  int  $expiryMonth
      * @return $this
      */
-    public function setExpiryMonth($expiryMonth) {
+    public function setExpiryMonth($expiryMonth)
+    {
         $this->expiryMonth = $expiryMonth;
+
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getExpiryYear() {
+    public function getExpiryYear()
+    {
         return $this->expiryYear;
     }
 
     /**
-     * @param int $expiryYear
-     *
+     * @param  int  $expiryYear
      * @return $this
      */
-    public function setExpiryYear($expiryYear) {
+    public function setExpiryYear($expiryYear)
+    {
         $this->expiryYear = $expiryYear;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getFirstSixDigits() {
+    public function getFirstSixDigits()
+    {
         return $this->firstSixDigits;
     }
 
     /**
-     * @param string $firstSixDigits
-     *
+     * @param  string  $firstSixDigits
      * @return $this
      */
-    public function setFirstSixDigits($firstSixDigits) {
+    public function setFirstSixDigits($firstSixDigits)
+    {
         $this->firstSixDigits = $firstSixDigits;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getLastFourDigits() {
+    public function getLastFourDigits()
+    {
         return $this->lastFourDigits;
     }
 
     /**
-     * @param string $lastFourDigits
-     *
+     * @param  string  $lastFourDigits
      * @return $this
      */
-    public function setLastFourDigits($lastFourDigits) {
+    public function setLastFourDigits($lastFourDigits)
+    {
         $this->lastFourDigits = $lastFourDigits;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCountry() {
+    public function getCountry()
+    {
         return $this->country;
     }
 
     /**
-     * @param string $country
-     *
+     * @param  string  $country
      * @return $this
      */
-    public function setCountry($country) {
+    public function setCountry($country)
+    {
         $this->country = $country;
+
         return $this;
     }
 
@@ -274,12 +300,13 @@ class CreditcardData extends ResultData {
     }
 
     /**
-     * @param string $fingerprint
+     * @param  string  $fingerprint
      * @return $this
      */
     public function setFingerprint($fingerprint)
     {
         $this->fingerprint = $fingerprint;
+
         return $this;
     }
 
@@ -292,12 +319,13 @@ class CreditcardData extends ResultData {
     }
 
     /**
-     * @param string $binBrand
+     * @param  string  $binBrand
      * @return $this
      */
     public function setBinBrand($binBrand)
     {
         $this->binBrand = $binBrand;
+
         return $this;
     }
 
@@ -310,12 +338,13 @@ class CreditcardData extends ResultData {
     }
 
     /**
-     * @param string $binBank
+     * @param  string  $binBank
      * @return $this
      */
     public function setBinBank($binBank)
     {
         $this->binBank = $binBank;
+
         return $this;
     }
 
@@ -328,12 +357,13 @@ class CreditcardData extends ResultData {
     }
 
     /**
-     * @param string $binType
+     * @param  string  $binType
      * @return $this
      */
     public function setBinType($binType)
     {
         $this->binType = $binType;
+
         return $this;
     }
 
@@ -346,44 +376,51 @@ class CreditcardData extends ResultData {
     }
 
     /**
-     * @param string $binLevel
+     * @param  string  $binLevel
      * @return $this
      */
     public function setBinLevel($binLevel)
     {
         $this->binLevel = $binLevel;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getBinCountry() {
+    public function getBinCountry()
+    {
         return $this->binCountry;
     }
 
     /**
-     * @param string $binCountry
+     * @param  string  $binCountry
      * @return $this
      */
-    public function setBinCountry($binCountry) {
+    public function setBinCountry($binCountry)
+    {
         $this->binCountry = $binCountry;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getThreeDSecure() {
+    public function getThreeDSecure()
+    {
         return $this->threeDSecure;
     }
 
     /**
-     * @param string $threeDSecure
+     * @param  string  $threeDSecure
      * @return $this
      */
-    public function setThreeDSecure($threeDSecure) {
+    public function setThreeDSecure($threeDSecure)
+    {
         $this->threeDSecure = $threeDSecure;
+
         return $this;
     }
 
@@ -396,21 +433,22 @@ class CreditcardData extends ResultData {
     }
 
     /**
-     * @param string $eci
+     * @param  string  $eci
      * @return $this
      */
     public function setEci($eci)
     {
         $this->eci = $eci;
+
         return $this;
     }
-
 
     /**
      * @return array
      */
-    public function toArray() {
-        $resultData = array();
+    public function toArray()
+    {
+        $resultData = [];
 
         foreach ($this as $field => $value) {
             $resultData[$field] = $value;
@@ -418,5 +456,4 @@ class CreditcardData extends ResultData {
 
         return $resultData;
     }
-
 }

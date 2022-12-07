@@ -15,7 +15,7 @@ class FinishInstallation
     /**
      * Handle the event.
      *
-     * @param  Event $event
+     * @param  Event  $event
      * @return void
      */
     public function handle(Event $event)
@@ -33,7 +33,7 @@ class FinishInstallation
     {
         // c=create, r=read, u=update, d=delete
         $this->attachPermissionsToAdminRoles([
-            $this->alias . '-settings' => 'c,r,u,d',
+            $this->alias.'-settings' => 'c,r,u,d',
         ]);
     }
 

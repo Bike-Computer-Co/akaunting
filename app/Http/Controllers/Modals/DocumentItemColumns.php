@@ -23,7 +23,6 @@ class DocumentItemColumns extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Contact  $customer
-     *
      * @return Response
      */
     public function edit()
@@ -32,22 +31,22 @@ class DocumentItemColumns extends Controller
 
         $item_names = [
             'hide' => trans('settings.invoice.hide.item_name'),
-            'settings.invoice.item' => trans('settings.' . $type . '.item'),
-            'settings.invoice.product' => trans('settings.' . $type . '.product'),
-            'settings.invoice.service' =>  trans('settings.' . $type . '.service'),
+            'settings.invoice.item' => trans('settings.'.$type.'.item'),
+            'settings.invoice.product' => trans('settings.'.$type.'.product'),
+            'settings.invoice.service' => trans('settings.'.$type.'.service'),
             'custom' => trans('settings.invoice.custom'),
         ];
 
         $price_names = [
             'hide' => trans('settings.invoice.hide.price'),
-            'settings.invoice.price' => trans('settings.' . $type . '.price'),
-            'settings.invoice.rate' => trans('settings.' . $type . '.rate'),
+            'settings.invoice.price' => trans('settings.'.$type.'.price'),
+            'settings.invoice.rate' => trans('settings.'.$type.'.rate'),
             'custom' => trans('settings.invoice.custom'),
         ];
 
         $quantity_names = [
             'hide' => trans('settings.invoice.hide.quantity'),
-            'settings.invoice.quantity' => trans('settings.' . $type . '.quantity'),
+            'settings.invoice.quantity' => trans('settings.'.$type.'.quantity'),
             'custom' => trans('settings.invoice.custom'),
         ];
 
@@ -60,17 +59,17 @@ class DocumentItemColumns extends Controller
             '90' => trans('settings.invoice.due_days', ['days' => 90]),
         ];
 
-        $item_name             = setting($this->getSettingKey($type, 'item_name'));
-        $item_name_input       = setting($this->getSettingKey($type, 'item_name_input'));
-        $price_name            = setting($this->getSettingKey($type, 'price_name'));
-        $price_name_input      = setting($this->getSettingKey($type, 'price_name_input'));
-        $quantity_name         = setting($this->getSettingKey($type, 'quantity_name'));
-        $quantity_name_input   = setting($this->getSettingKey($type, 'quantity_name_input'));
-        $hide_item_name        = setting($this->getSettingKey($type, 'hide_item_name'));
+        $item_name = setting($this->getSettingKey($type, 'item_name'));
+        $item_name_input = setting($this->getSettingKey($type, 'item_name_input'));
+        $price_name = setting($this->getSettingKey($type, 'price_name'));
+        $price_name_input = setting($this->getSettingKey($type, 'price_name_input'));
+        $quantity_name = setting($this->getSettingKey($type, 'quantity_name'));
+        $quantity_name_input = setting($this->getSettingKey($type, 'quantity_name_input'));
+        $hide_item_name = setting($this->getSettingKey($type, 'hide_item_name'));
         $hide_item_description = setting($this->getSettingKey($type, 'hide_item_description'));
-        $hide_quantity         = setting($this->getSettingKey($type, 'hide_quantity'));
-        $hide_price            = setting($this->getSettingKey($type, 'hide_price'));
-        $hide_amount           = setting($this->getSettingKey($type, 'hide_amount'));
+        $hide_quantity = setting($this->getSettingKey($type, 'hide_quantity'));
+        $hide_price = setting($this->getSettingKey($type, 'hide_price'));
+        $hide_amount = setting($this->getSettingKey($type, 'hide_amount'));
 
         $html = view('modals.documents.item_columns', compact(
             'type',
@@ -102,8 +101,7 @@ class DocumentItemColumns extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function update(Request $request)

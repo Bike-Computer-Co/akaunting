@@ -41,7 +41,7 @@ class Versions
                 continue;
             }
 
-            $output .= '<h2><span class="badge badge-pill badge-success">' . $release->tag_name . '</span></h2>';
+            $output .= '<h2><span class="badge badge-pill badge-success">'.$release->tag_name.'</span></h2>';
 
             $output .= Markdown::convertToHtml($release->body);
 
@@ -67,7 +67,7 @@ class Versions
         // Get data from cache
         $versions = Cache::get('versions');
 
-        if (!empty($versions)) {
+        if (! empty($versions)) {
             return $versions;
         }
 
@@ -76,7 +76,7 @@ class Versions
         $versions = [];
 
         // Check core first
-        $url = 'core/version/' . $info['akaunting'] . '/' . $info['php'] . '/' . $info['mysql'] . '/' . $info['companies'];
+        $url = 'core/version/'.$info['akaunting'].'/'.$info['php'].'/'.$info['mysql'].'/'.$info['companies'];
 
         $versions['core'] = static::getLatestVersion($url, $info['akaunting']);
 
@@ -88,14 +88,14 @@ class Versions
                 $module = module($module);
             }
 
-            if (!$module instanceof \Akaunting\Module\Module) {
+            if (! $module instanceof \Akaunting\Module\Module) {
                 continue;
             }
 
             $alias = $module->get('alias');
             $version = $module->get('version');
 
-            $url = 'apps/' . $alias . '/version/' . $version . '/' . $info['akaunting'];
+            $url = 'apps/'.$alias.'/version/'.$version.'/'.$info['akaunting'];
 
             $versions[$alias] = static::getLatestVersion($url, $version);
         }
@@ -107,11 +107,11 @@ class Versions
 
     public static function getLatestVersion($url, $latest)
     {
-        if (!$data = static::getResponseData('GET', $url, ['timeout' => 10])) {
+        if (! $data = static::getResponseData('GET', $url, ['timeout' => 10])) {
             return $latest;
         }
 
-        if (!is_object($data)) {
+        if (! is_object($data)) {
             return $latest;
         }
 
@@ -123,7 +123,7 @@ class Versions
         // Get data from cache
         $updates = Cache::get('updates');
 
-        if (!empty($updates)) {
+        if (! empty($updates)) {
             return $updates;
         }
 
@@ -139,7 +139,7 @@ class Versions
             } else {
                 $module = module($alias);
 
-                if (!$module instanceof \Akaunting\Module\Module) {
+                if (! $module instanceof \Akaunting\Module\Module) {
                     continue;
                 }
 

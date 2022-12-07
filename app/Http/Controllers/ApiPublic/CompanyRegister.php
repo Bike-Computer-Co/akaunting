@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\ApiPublic;
 
 use App\Abstracts\Http\Controller;
-use App\Abstracts\Notification;
 use App\Notifications\RegisterCompanyRequestNotification;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

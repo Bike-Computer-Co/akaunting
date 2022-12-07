@@ -4,17 +4,17 @@ namespace PaymentGatewayJson\Client\Data\PaymentData;
 
 /**
  * Class WalletData
- *
- * @package PaymentGatewayJson\Client\CustomerProfile\PaymentData
  */
-class WalletData extends PaymentData {
-
+class WalletData extends PaymentData
+{
     const TYPE_PAYPAL = 'paypal';
 
     /** @var string */
     protected $walletReferenceId;
+
     /** @var string */
     protected $walletOwner;
+
     /** @var string */
     protected $walletType;
 
@@ -27,13 +27,13 @@ class WalletData extends PaymentData {
     }
 
     /**
-     * @param string $walletReferenceId
-     *
+     * @param  string  $walletReferenceId
      * @return WalletData
      */
     public function setWalletReferenceId($walletReferenceId)
     {
         $this->walletReferenceId = $walletReferenceId;
+
         return $this;
     }
 
@@ -46,13 +46,13 @@ class WalletData extends PaymentData {
     }
 
     /**
-     * @param string $walletOwner
-     *
+     * @param  string  $walletOwner
      * @return WalletData
      */
     public function setWalletOwner($walletOwner)
     {
         $this->walletOwner = $walletOwner;
+
         return $this;
     }
 
@@ -65,14 +65,13 @@ class WalletData extends PaymentData {
     }
 
     /**
-     * @param string $walletType
-     *
+     * @param  string  $walletType
      * @return WalletData
      */
     public function setWalletType($walletType)
     {
         $this->walletType = $walletType;
+
         return $this;
     }
-
 }

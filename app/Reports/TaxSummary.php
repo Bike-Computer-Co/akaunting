@@ -7,8 +7,8 @@ use App\Models\Banking\Transaction;
 use App\Models\Document\Document;
 use App\Models\Setting\Tax;
 use App\Traits\Currencies;
-use App\Utilities\Recurring;
 use App\Utilities\Date;
+use App\Utilities\Recurring;
 
 class TaxSummary extends Report
 {
@@ -94,8 +94,8 @@ class TaxSummary extends Report
                 }
 
                 if (
-                    !isset($this->row_values[$item_total->name][$type][$date])
-                    || !isset($this->footer_totals[$item_total->name][$date])
+                    ! isset($this->row_values[$item_total->name][$type][$date])
+                    || ! isset($this->footer_totals[$item_total->name][$date])
                 ) {
                     continue;
                 }

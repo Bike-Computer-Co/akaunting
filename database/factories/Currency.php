@@ -30,7 +30,7 @@ class Currency extends Factory
         $random = $this->faker->randomElement($currencies);
 
         $filtered = array_filter($currencies, function ($value) use ($random) {
-            return ($value['code'] == $random['code']);
+            return $value['code'] == $random['code'];
         });
 
         $code = key($filtered);

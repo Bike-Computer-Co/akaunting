@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Abstracts\Http\Controller;
+use App\Http\Requests\Setting\Module as Request;
 use App\Models\Banking\Account;
 use App\Models\Setting\Category;
 use App\Models\Setting\Setting;
 use App\Utilities\Modules as Utility;
-use App\Http\Requests\Setting\Module as Request;
 
 class Modules extends Controller
 {
@@ -19,10 +19,10 @@ class Modules extends Controller
         $alias = request()->segment(2);
 
         // Add CRUD permission check
-        $this->middleware('permission:create-' . $alias . '-settings')->only('create', 'store', 'duplicate', 'import');
-        $this->middleware('permission:read-' . $alias . '-settings')->only('index', 'show', 'edit', 'export');
-        $this->middleware('permission:update-' . $alias . '-settings')->only('update', 'enable', 'disable');
-        $this->middleware('permission:delete-' . $alias . '-settings')->only('destroy');
+        $this->middleware('permission:create-'.$alias.'-settings')->only('create', 'store', 'duplicate', 'import');
+        $this->middleware('permission:read-'.$alias.'-settings')->only('index', 'show', 'edit', 'export');
+        $this->middleware('permission:update-'.$alias.'-settings')->only('update', 'enable', 'disable');
+        $this->middleware('permission:delete-'.$alias.'-settings')->only('destroy');
     }
 
     /**
@@ -36,7 +36,8 @@ class Modules extends Controller
         $categories = Category::income()->enabled()->orderBy('name')->pluck('name', 'id');
 
         $setting = Setting::prefix($alias)->get()->transform(function ($s) use ($alias) {
-            $s->key = str_replace($alias . '.', '', $s->key);
+            $s->key = str_replace($alias.'.', '', $s->key);
+
             return $s;
         })->pluck('value', 'key');
 
@@ -48,8 +49,7 @@ class Modules extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  $alias
-     *
+     * @param    $alias
      * @return Response
      */
     public function update($alias, Request $request)
@@ -57,7 +57,7 @@ class Modules extends Controller
         $fields = $request->except(['company_id', '_method', '_token', 'module_alias']);
 
         foreach ($fields as $key => $value) {
-            setting()->set($alias . '.' . $key, $value);
+            setting()->set($alias.'.'.$key, $value);
         }
 
         setting()->save();
@@ -72,7 +72,7 @@ class Modules extends Controller
             'error' => false,
             'message' => $message,
             'data' => null,
-            'redirect' => route('settings.module.edit', $alias)//('settings/apps/' . $alias),
+            'redirect' => route('settings.module.edit', $alias), //('settings/apps/' . $alias),
         ];
 
         flash($message)->success();

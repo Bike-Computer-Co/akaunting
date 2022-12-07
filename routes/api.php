@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
  *
  * @see \App\Providers\Route::mapApiRoutes
  */
-
 Route::group(['as' => 'api.'], function () {
     // Ping
     Route::get('ping', 'Common\Ping@pong')->name('ping');

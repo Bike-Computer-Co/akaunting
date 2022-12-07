@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeds;
 
 use App\Abstracts\Model;
@@ -27,8 +28,8 @@ class Permissions extends Seeder
     {
         $rows = [
             'admin' => [
-                'salary'=> 'r,u,d',
-                'employee'=> 'c,r,u,d',
+                'salary' => 'r,u,d',
+                'employee' => 'c,r,u,d',
                 'admin-panel' => 'r',
                 'api' => 'r',
                 'auth-profile' => 'r,u',
@@ -134,8 +135,8 @@ class Permissions extends Seeder
                 'portal-profile' => 'r,u',
             ],
             'accountant' => [
-                'salary'=> 'r,u',
-                'employee'=> 'r',
+                'salary' => 'r,u',
+                'employee' => 'r',
                 'admin-panel' => 'r',
                 'api' => 'r',
                 'common-dashboards' => 'r',

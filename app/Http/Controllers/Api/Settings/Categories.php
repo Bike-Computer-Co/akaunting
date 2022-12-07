@@ -38,7 +38,7 @@ class Categories extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -51,8 +51,8 @@ class Categories extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $category
-     * @param  $request
+     * @param    $category
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Category $category, Request $request)

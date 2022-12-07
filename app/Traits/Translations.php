@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use Throwable;
 use Illuminate\Support\Arr;
+use Throwable;
 
 trait Translations
 {

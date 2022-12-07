@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'Prilagojeno sporočilo',
         ],
-        'invalid_currency'      => ':attribute koda je neveljavna.',
-        'invalid_amount'        => 'Vrednost :attribute je neveljavna.',
-        'invalid_extension'     => 'Končnica datoteke je neveljavna.',
+        'invalid_currency' => ':attribute koda je neveljavna.',
+        'invalid_amount' => 'Vrednost :attribute je neveljavna.',
+        'invalid_extension' => 'Končnica datoteke je neveljavna.',
     ],
 
     /*

@@ -11,7 +11,6 @@ use App\Models\Employees\Employee as Model;
 
 class Employee extends Controller
 {
-
     public function index()
     {
         $employees = Model::query()->collect();
@@ -21,7 +20,6 @@ class Employee extends Controller
 
     public function create()
     {
-
         return view('employees.create');
     }
 
@@ -72,10 +70,10 @@ class Employee extends Controller
         return response()->json($response);
     }
 
-
     public function show(Model $employee)
     {
         $salaries = $employee->salaries()->collect();
+
         return view('employees.show', compact('employee', 'salaries'));
     }
 
@@ -86,7 +84,7 @@ class Employee extends Controller
         $response['redirect'] = route('employees.index');
 
         if ($response['success']) {
-            $message = trans('messages.success.deleted', ['type' => $employee->first_name . ' ' . $employee->last_name]);
+            $message = trans('messages.success.deleted', ['type' => $employee->first_name.' '.$employee->last_name]);
 
             flash($message)->success();
         } else {

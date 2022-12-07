@@ -6,22 +6,24 @@ use App\Abstracts\View\Component;
 use App\Models\Common\Media;
 use App\Traits\DateTime;
 use App\Traits\Transactions;
+use App\Traits\ViewComponents;
 use App\Utilities\Modules;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 use Intervention\Image\Exception\NotReadableException;
-use App\Traits\ViewComponents;
+use Intervention\Image\Facades\Image;
 
 abstract class Show extends Component
 {
     use DateTime, Transactions, ViewComponents;
 
     public const OBJECT_TYPE = 'transaction';
+
     public const DEFAULT_TYPE = 'transaction';
+
     public const DEFAULT_PLURAL_TYPE = 'transactions';
 
     public $type;
@@ -459,9 +461,9 @@ abstract class Show extends Component
         // Attachment data..
         $this->attachment = '';
 
-        if (!empty($attachment)) {
+        if (! empty($attachment)) {
             $this->attachment = $attachment;
-        } else if (!empty($transaction)) {
+        } elseif (! empty($transaction)) {
             $this->attachment = $transaction->attachment;
         }
 
@@ -475,11 +477,11 @@ abstract class Show extends Component
 
     protected function getTransactionTemplate($type, $transactionTemplate)
     {
-        if (!empty($transactionTemplate)) {
+        if (! empty($transactionTemplate)) {
             return $transactionTemplate;
         }
 
-        if ($template = config('type.transaction.' . $type . '.template', false)) {
+        if ($template = config('type.transaction.'.$type.'.template', false)) {
             return $template;
         }
 
@@ -490,15 +492,15 @@ abstract class Show extends Component
 
     protected function getLogo($logo)
     {
-        if (!empty($logo)) {
+        if (! empty($logo)) {
             return $logo;
         }
 
-        $media_id = (!empty($this->transaction->contact->logo) && !empty($this->transaction->contact->logo->id)) ? $this->transaction->contact->logo->id : setting('company.logo');
+        $media_id = (! empty($this->transaction->contact->logo) && ! empty($this->transaction->contact->logo->id)) ? $this->transaction->contact->logo->id : setting('company.logo');
 
         $media = Media::find($media_id);
 
-        if (!empty($media)) {
+        if (! empty($media)) {
             $path = $media->getDiskPath();
 
             if (Storage::missing($path)) {
@@ -509,7 +511,7 @@ abstract class Show extends Component
         }
 
         try {
-            $image = Image::cache(function($image) use ($media, $path) {
+            $image = Image::cache(function ($image) use ($media, $path) {
                 $width = setting('invoice.logo_size_width');
                 $height = setting('invoice.logo_size_height');
 
@@ -519,13 +521,13 @@ abstract class Show extends Component
                     $image->make($path)->resize($width, $height)->encode();
                 }
             });
-        } catch (NotReadableException | \Exception $e) {
-            Log::info('Company ID: ' . company_id() . ' components/transactionshow.php exception.');
+        } catch (NotReadableException|\Exception $e) {
+            Log::info('Company ID: '.company_id().' components/transactionshow.php exception.');
             Log::info($e->getMessage());
 
             $path = base_path('public/img/company.png');
 
-            $image = Image::cache(function($image) use ($path) {
+            $image = Image::cache(function ($image) use ($path) {
                 $width = setting('invoice.logo_size_width');
                 $height = setting('invoice.logo_size_height');
 
@@ -539,12 +541,12 @@ abstract class Show extends Component
 
         $extension = File::extension($path);
 
-        return 'data:image/' . $extension . ';base64,' . base64_encode($image);
+        return 'data:image/'.$extension.';base64,'.base64_encode($image);
     }
 
     protected function getRouteButtonAddNew($type, $routeButtonAddNew)
     {
-        if (!empty($routeButtonAddNew)) {
+        if (! empty($routeButtonAddNew)) {
             return $routeButtonAddNew;
         }
 
@@ -553,7 +555,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'create', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -562,7 +564,7 @@ abstract class Show extends Component
 
     protected function getRouteButtonEdit($type, $routeButtonEdit)
     {
-        if (!empty($routeButtonEdit)) {
+        if (! empty($routeButtonEdit)) {
             return $routeButtonEdit;
         }
 
@@ -571,7 +573,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'edit', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -580,7 +582,7 @@ abstract class Show extends Component
 
     protected function getRouteButtonDuplicate($type, $routeButtonDuplicate)
     {
-        if (!empty($routeButtonDuplicate)) {
+        if (! empty($routeButtonDuplicate)) {
             return $routeButtonDuplicate;
         }
 
@@ -589,7 +591,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'duplicate', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -598,7 +600,7 @@ abstract class Show extends Component
 
     protected function getRouteButtonPrint($type, $routeButtonPrint)
     {
-        if (!empty($routeButtonPrint)) {
+        if (! empty($routeButtonPrint)) {
             return $routeButtonPrint;
         }
 
@@ -607,7 +609,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'print', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -634,20 +636,20 @@ abstract class Show extends Component
 
     protected function getSignedUrl($type, $signedUrl)
     {
-        if (!empty($signedUrl)) {
+        if (! empty($signedUrl)) {
             return $signedUrl;
         }
 
-        $page = config('type.transaction.' . $type . '.route.prefix');
-        $alias = config('type.transaction.' . $type . '.alias');
+        $page = config('type.transaction.'.$type.'.route.prefix');
+        $alias = config('type.transaction.'.$type.'.alias');
 
         $route = '';
 
-        if (!empty($alias)) {
-            $route .= $alias . '.';
+        if (! empty($alias)) {
+            $route .= $alias.'.';
         }
 
-        $route .= 'signed.' . $page . '.show';
+        $route .= 'signed.'.$page.'.show';
 
         try {
             route($route, [$this->transaction->id, 'company_id' => company_id()]);
@@ -662,7 +664,7 @@ abstract class Show extends Component
 
     protected function getRouteButtonEmail($type, $routeButtonEmail)
     {
-        if (!  empty($routeButtonEmail)) {
+        if (! empty($routeButtonEmail)) {
             return $routeButtonEmail;
         }
 
@@ -680,7 +682,7 @@ abstract class Show extends Component
 
     protected function getRouteButtonPdf($type, $routeButtonPdf)
     {
-        if (!empty($routeButtonPdf)) {
+        if (! empty($routeButtonPdf)) {
             return $routeButtonPdf;
         }
 
@@ -689,7 +691,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'pdf', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -698,7 +700,7 @@ abstract class Show extends Component
 
     protected function getRouteButtonEnd($type, $routeButtonEnd)
     {
-        if (!empty($routeButtonEnd)) {
+        if (! empty($routeButtonEnd)) {
             return $routeButtonEnd;
         }
 
@@ -707,7 +709,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'end', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -716,7 +718,7 @@ abstract class Show extends Component
 
     protected function getRouteButtonDelete($type, $routeButtonDelete)
     {
-        if (!empty($routeButtonDelete)) {
+        if (! empty($routeButtonDelete)) {
             return $routeButtonDelete;
         }
 
@@ -725,7 +727,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'destroy', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -734,20 +736,20 @@ abstract class Show extends Component
 
     protected function getRouteContactShow($type, $routeContactShow)
     {
-        if (!empty($routeContactShow)) {
+        if (! empty($routeContactShow)) {
             return $routeContactShow;
         }
 
         //example route parameter.
         $parameter = 1;
 
-        $route = Str::plural(config('type.transaction.' . $type . '.contact_type'), 2) . '.show';
+        $route = Str::plural(config('type.transaction.'.$type.'.contact_type'), 2).'.show';
 
         try {
             route($route, $parameter);
         } catch (\Exception $e) {
             try {
-                $route = Str::plural($type, 2) . '.' . $config_key;
+                $route = Str::plural($type, 2).'.'.$config_key;
 
                 route($route, $parameter);
             } catch (\Exception $e) {
@@ -755,7 +757,7 @@ abstract class Show extends Component
             }
         }
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -764,22 +766,22 @@ abstract class Show extends Component
 
     protected function getTextButtonAddNew($type, $textButtonAddNew)
     {
-        if (!empty($textButtonAddNew)) {
+        if (! empty($textButtonAddNew)) {
             return $textButtonAddNew;
         }
 
         $translation = $this->getTextFromConfig($type, 'transactions');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return trans('general.title.new', ['type' => trans_choice($translation, 1)]);
         }
 
-        return trans('general.title.new', ['type' => trans_choice('general.' . Str::plural($type), 1)]);
+        return trans('general.title.new', ['type' => trans_choice('general.'.Str::plural($type), 1)]);
     }
 
     protected function getTextContentTitle($type, $textContentTitle)
     {
-        if (!empty($textContentTitle)) {
+        if (! empty($textContentTitle)) {
             return $textContentTitle;
         }
 
@@ -794,9 +796,9 @@ abstract class Show extends Component
                 break;
         }
 
-        $translation = $this->getTextFromConfig($type, $type . '_made', $default_key);
+        $translation = $this->getTextFromConfig($type, $type.'_made', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -805,7 +807,7 @@ abstract class Show extends Component
 
     protected function getTextNumber($type, $textNumber)
     {
-        if (!empty($textNumber)) {
+        if (! empty($textNumber)) {
             return $textNumber;
         }
 
@@ -814,13 +816,13 @@ abstract class Show extends Component
 
     protected function getTextPaidAt($type, $textPaidAt)
     {
-        if (!empty($textPaidAt)) {
+        if (! empty($textPaidAt)) {
             return $textPaidAt;
         }
 
         $translation = $this->getTextFromConfig($type, 'paid_at', 'date');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -829,13 +831,13 @@ abstract class Show extends Component
 
     protected function getTextAccount($type, $textAccount)
     {
-        if (!empty($textAccount)) {
+        if (! empty($textAccount)) {
             return $textAccount;
         }
 
         $translation = $this->getTextFromConfig($type, 'accounts', 'accounts', 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -844,13 +846,13 @@ abstract class Show extends Component
 
     protected function getTextCategory($type, $textCategory)
     {
-        if (!empty($textCategory)) {
+        if (! empty($textCategory)) {
             return $textCategory;
         }
 
         $translation = $this->getTextFromConfig($type, 'categories', 'categories', 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -859,13 +861,13 @@ abstract class Show extends Component
 
     protected function getTextPaymentMethods($type, $textPaymentMethods)
     {
-        if (!empty($textPaymentMethods)) {
+        if (! empty($textPaymentMethods)) {
             return $textPaymentMethods;
         }
 
         $translation = $this->getTextFromConfig($type, 'payment_methods', 'payment_methods', 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -874,13 +876,13 @@ abstract class Show extends Component
 
     protected function getTextReference($type, $textReference)
     {
-        if (!empty($textReference)) {
+        if (! empty($textReference)) {
             return $textReference;
         }
 
         $translation = $this->getTextFromConfig($type, 'reference', 'reference');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -889,13 +891,13 @@ abstract class Show extends Component
 
     protected function getTextDescription($type, $textDescription)
     {
-        if (!empty($textDescription)) {
+        if (! empty($textDescription)) {
             return $textDescription;
         }
 
         $translation = $this->getTextFromConfig($type, 'description', 'description');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -904,13 +906,13 @@ abstract class Show extends Component
 
     protected function getTextAmount($type, $textAmount)
     {
-        if (!empty($textAmount)) {
+        if (! empty($textAmount)) {
             return $textAmount;
         }
 
         $translation = $this->getTextFromConfig($type, 'amount', 'amount');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -919,7 +921,7 @@ abstract class Show extends Component
 
     protected function getTextPaidBy($type, $textPaidBy)
     {
-        if (!empty($textPaidBy)) {
+        if (! empty($textPaidBy)) {
             return $textPaidBy;
         }
 
@@ -936,7 +938,7 @@ abstract class Show extends Component
 
         $translation = $this->getTextFromConfig($type, 'paid_to_by', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -945,7 +947,7 @@ abstract class Show extends Component
 
     protected function getTextRelatedTransansaction($type, $textRelatedTransansaction)
     {
-        if (!empty($textRelatedTransansaction)) {
+        if (! empty($textRelatedTransansaction)) {
             return $textRelatedTransansaction;
         }
 
@@ -962,7 +964,7 @@ abstract class Show extends Component
 
         $translation = $this->getTextFromConfig($type, 'related_type', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -971,13 +973,13 @@ abstract class Show extends Component
 
     protected function getTextRelatedDocumentNumber($type, $textRelatedDocumentNumber)
     {
-        if (!empty($textRelatedDocumentNumber)) {
+        if (! empty($textRelatedDocumentNumber)) {
             return $textRelatedDocumentNumber;
         }
 
         $translation = $this->getTextFromConfig($type, 'related_document_number', 'numbers');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -986,15 +988,15 @@ abstract class Show extends Component
 
     protected function getTextRelatedContact($type, $textRelatedContact)
     {
-        if (!empty($textRelatedContact)) {
+        if (! empty($textRelatedContact)) {
             return $textRelatedContact;
         }
 
-        $default_key = Str::plural(config('type.transaction.' . $type . '.contact_type'), 2);
+        $default_key = Str::plural(config('type.transaction.'.$type.'.contact_type'), 2);
 
         $translation = $this->getTextFromConfig($type, 'related_contact', $default_key, 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -1003,7 +1005,7 @@ abstract class Show extends Component
 
     protected function getTextRelatedDocumentDate($type, $textRelatedDocumentDate)
     {
-        if (!empty($textRelatedDocumentDate)) {
+        if (! empty($textRelatedDocumentDate)) {
             return $textRelatedDocumentDate;
         }
 
@@ -1020,7 +1022,7 @@ abstract class Show extends Component
 
         $translation = $this->getTextFromConfig($type, 'related_document_date', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -1029,7 +1031,7 @@ abstract class Show extends Component
 
     protected function getTextRelatedDocumentAmount($type, $textRelatedDocumentAmount)
     {
-        if (!empty($textRelatedDocumentAmount)) {
+        if (! empty($textRelatedDocumentAmount)) {
             return $textRelatedDocumentAmount;
         }
 
@@ -1046,7 +1048,7 @@ abstract class Show extends Component
 
         $translation = $this->getTextFromConfig($type, 'related_document_amount', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -1055,13 +1057,13 @@ abstract class Show extends Component
 
     protected function getTextRelatedAmount($type, $textRelatedAmount)
     {
-        if (!empty($textRelatedAmount)) {
+        if (! empty($textRelatedAmount)) {
             return $textRelatedAmount;
         }
 
         $translation = $this->getTextFromConfig($type, 'related_amount', 'amount');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -1070,11 +1072,11 @@ abstract class Show extends Component
 
     protected function routeDocumentShow($type, $routeDocumentShow)
     {
-        if (!empty($routeDocumentShow)) {
+        if (! empty($routeDocumentShow)) {
             return $routeDocumentShow;
         }
 
-        if (!$this->transaction->document) {
+        if (! $this->transaction->document) {
             return $routeDocumentShow;
         }
 
@@ -1083,7 +1085,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($this->transaction->document->type, 'show', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -1114,7 +1116,7 @@ abstract class Show extends Component
             return $textRecurringType;
         }
 
-        $default_key = config('type.transaction.' . $type . '.translation.transactions');
+        $default_key = config('type.transaction.'.$type.'.translation.transactions');
 
         $translation = $this->getTextFromConfig($type, 'recurring_type', $default_key);
 

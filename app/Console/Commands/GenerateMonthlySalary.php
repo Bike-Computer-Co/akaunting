@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Employees\Employee;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class GenerateMonthlySalary extends Command
@@ -30,12 +29,13 @@ class GenerateMonthlySalary extends Command
     public function handle()
     {
         Employee::where('enabled', true)->with('company')->withoutGlobalScopes()->get()->each(
-            fn($employee) => $employee->salaries()->create([
+            fn ($employee) => $employee->salaries()->create([
                 'amount' => $employee->salary,
                 'month' => now()->toDateString(),
-                'currency_code' => $employee->company->currency
+                'currency_code' => $employee->company->currency,
             ])
         );
+
         return 0;
     }
 }

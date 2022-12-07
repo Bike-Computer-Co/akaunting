@@ -2,11 +2,11 @@
 
 return [
 
-    'can_login'             => 'Can Login?',
-    'user_created'          => 'User Created',
+    'can_login' => 'Can Login?',
+    'user_created' => 'User Created',
 
     'error' => [
-        'email'             => 'The email has already been taken.',
+        'email' => 'The email has already been taken.',
     ],
 
 ];

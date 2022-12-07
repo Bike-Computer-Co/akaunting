@@ -24,21 +24,21 @@ trait Sources
         $prefix = $this->getSourcePrefix($alias);
 
         if (app()->runningInConsole()) {
-            $source = $prefix . 'console';
+            $source = $prefix.'console';
         }
 
         if (empty($source)) {
             $request = $request ?: request();
 
             if ($request instanceof QueueCollection || running_in_queue()) {
-                $source = $prefix . 'queue';
+                $source = $prefix.'queue';
             } else {
-                $source = $request->isApi() ? $prefix . 'api' : null;
+                $source = $request->isApi() ? $prefix.'api' : null;
             }
         }
 
         if (empty($source)) {
-            $source = $prefix . 'ui';
+            $source = $prefix.'ui';
         }
 
         return $source;
@@ -48,7 +48,7 @@ trait Sources
     {
         $alias = is_null($alias) ? $this->getSourceAlias() : $alias;
 
-        return $alias . '::';
+        return $alias.'::';
     }
 
     public function getSourceAlias()

@@ -21,22 +21,21 @@ class Database extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
-        $connection = config('database.default','mysql');
+        $connection = config('database.default', 'mysql');
 
-        $host     = $request['hostname'];
-        $port     = config("database.connections.$connection.port", '3306');
+        $host = $request['hostname'];
+        $port = config("database.connections.$connection.port", '3306');
         $database = $request['database'];
         $username = $request['username'];
         $password = $request['password'];
 
         // Check database connection
-        if (!Installer::createDbTables($host, $port, $database, $username, $password)) {
+        if (! Installer::createDbTables($host, $port, $database, $username, $password)) {
             $response = [
                 'status' => null,
                 'success' => false,

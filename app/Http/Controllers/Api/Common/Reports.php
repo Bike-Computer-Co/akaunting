@@ -38,7 +38,7 @@ class Reports extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -51,8 +51,8 @@ class Reports extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $report
-     * @param  $request
+     * @param    $report
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Report $report, Request $request)

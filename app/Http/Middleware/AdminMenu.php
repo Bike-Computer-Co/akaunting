@@ -17,7 +17,7 @@ class AdminMenu
     public function handle($request, Closure $next)
     {
         // Check if logged in
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return $next($request);
         }
 

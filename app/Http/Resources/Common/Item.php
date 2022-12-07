@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Common;
 
-use App\Http\Resources\Common\ItemTax;
 use App\Http\Resources\Setting\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 

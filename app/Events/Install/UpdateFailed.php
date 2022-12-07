@@ -19,10 +19,10 @@ class UpdateFailed extends Event
     /**
      * Create a new event instance.
      *
-     * @param  $alias
-     * @param  $old
-     * @param  $new
-     * @param  $step
+     * @param    $alias
+     * @param    $old
+     * @param    $new
+     * @param    $step
      */
     public function __construct($alias, $old, $new, $step, $message = '')
     {

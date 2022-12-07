@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Modals;
 
 use Akaunting\Money\Currency as MoneyCurrency;
 use App\Abstracts\Http\Controller;
+use App\Http\Requests\Setting\Currency as Request;
 use App\Jobs\Setting\CreateCurrency;
 use App\Models\Setting\Currency;
-use App\Http\Requests\Setting\Currency as Request;
 
 class Currencies extends Controller
 {
@@ -59,12 +59,11 @@ class Currencies extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
     {
-        $currency = config('money.' . $request->get('code'));
+        $currency = config('money.'.$request->get('code'));
 
         $request['precision'] = (int) $currency['precision'];
         $request['symbol'] = $currency['symbol'];

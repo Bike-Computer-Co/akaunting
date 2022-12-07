@@ -1,39 +1,32 @@
 <?php
 
-
 namespace PaymentGatewayJson\Client\Http;
 
 /**
  * Interface ClientInterface
- *
- * @package PaymentGatewayJson\Client\Http
  */
-interface ClientInterface {
-
+interface ClientInterface
+{
     /**
-     * @param string $method
-     * @param string $url
-     * @param array  $headers
-     *
+     * @param  string  $method
+     * @param  string  $url
+     * @param  array  $headers
      * @return ResponseInterface
      */
-    public function send($method, $url, array $headers = array());
+    public function send($method, $url, array $headers = []);
 
     /**
-     * @param string $url
-     * @param array  $headers
-     *
+     * @param  string  $url
+     * @param  array  $headers
      * @return ResponseInterface
      */
-    public function get($url, array $headers = array());
+    public function get($url, array $headers = []);
 
     /**
-     * @param string $url
-     * @param mixed  $body
-     * @param array  $headers
-     *
+     * @param  string  $url
+     * @param  mixed  $body
+     * @param  array  $headers
      * @return ResponseInterface
      */
-    public function post($url, $body, array $headers = array());
-
+    public function post($url, $body, array $headers = []);
 }

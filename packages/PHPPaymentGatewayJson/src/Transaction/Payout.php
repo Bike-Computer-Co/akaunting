@@ -14,16 +14,9 @@ use PaymentGatewayJson\Client\Transaction\Base\OffsiteTrait;
 
 /**
  * Payout: Payout a certain amount of money to the customer. (Debits the merchant's account, Credits the customer's account)
- *
- * @package PaymentGatewayJson\Client\Transaction
  */
-class Payout extends AbstractTransactionWithReference
-             implements AmountableInterface,
-                        CustomerInterface,
-                        ItemsInterface,
-                        OffsiteInterface
+class Payout extends AbstractTransactionWithReference implements AmountableInterface, CustomerInterface, ItemsInterface, OffsiteInterface
 {
-
     use AmountableTrait;
     use CustomerTrait;
     use ItemsTrait;
@@ -44,7 +37,7 @@ class Payout extends AbstractTransactionWithReference
     }
 
     /**
-     * @param string $transactionToken
+     * @param  string  $transactionToken
      */
     public function setTransactionToken($transactionToken)
     {
@@ -60,11 +53,10 @@ class Payout extends AbstractTransactionWithReference
     }
 
     /**
-     * @param string $language
+     * @param  string  $language
      */
     public function setLanguage($language)
     {
         $this->language = $language;
     }
-
 }

@@ -3,10 +3,9 @@
 namespace App\Jobs\Banking;
 
 use App\Abstracts\Job;
-use App\Jobs\Banking\CreateTransaction;
-use App\Jobs\Document\CreateDocumentHistory;
 use App\Events\Document\PaidAmountCalculated;
 use App\Interfaces\Job\ShouldCreate;
+use App\Jobs\Document\CreateDocumentHistory;
 use App\Models\Banking\Transaction;
 use App\Models\Document\Document;
 use App\Traits\Currencies;
@@ -51,19 +50,19 @@ class CreateBankingDocumentTransaction extends Job implements ShouldCreate
 
     protected function prepareRequest(): void
     {
-        if (!isset($this->request['amount'])) {
+        if (! isset($this->request['amount'])) {
             $this->model->paid_amount = $this->model->paid;
             event(new PaidAmountCalculated($this->model));
 
             $this->request['amount'] = $this->model->amount - $this->model->paid_amount;
         }
 
-        $currency_code = !empty($this->request['currency_code']) ? $this->request['currency_code'] : $this->model->currency_code;
+        $currency_code = ! empty($this->request['currency_code']) ? $this->request['currency_code'] : $this->model->currency_code;
 
         $this->request['company_id'] = $this->model->company_id;
         $this->request['currency_code'] = isset($this->request['currency_code']) ? $this->request['currency_code'] : $this->model->currency_code;
         $this->request['paid_at'] = isset($this->request['paid_at']) ? $this->request['paid_at'] : Date::now()->format('Y-m-d');
-        $this->request['currency_rate'] = config('money.' . $currency_code . '.rate');
+        $this->request['currency_rate'] = config('money.'.$currency_code.'.rate');
         $this->request['account_id'] = isset($this->request['account_id']) ? $this->request['account_id'] : setting('default.account');
         $this->request['document_id'] = isset($this->request['document_id']) ? $this->request['document_id'] : $this->model->id;
         $this->request['contact_id'] = isset($this->request['contact_id']) ? $this->request['contact_id'] : $this->model->contact_id;
@@ -77,7 +76,7 @@ class CreateBankingDocumentTransaction extends Job implements ShouldCreate
         $code = $this->request['currency_code'];
         $rate = $this->request['currency_rate'];
 
-        $precision = config('money.' . $code . '.precision');
+        $precision = config('money.'.$code.'.precision');
 
         $amount = $this->request['amount'] = round($this->request['amount'], $precision);
 
@@ -118,7 +117,7 @@ class CreateBankingDocumentTransaction extends Job implements ShouldCreate
 
     protected function createHistory(): void
     {
-        $history_desc = money((double) $this->transaction->amount, (string) $this->transaction->currency_code, true)->format() . ' ' . trans_choice('general.payments', 1);
+        $history_desc = money((float) $this->transaction->amount, (string) $this->transaction->currency_code, true)->format().' '.trans_choice('general.payments', 1);
 
         $this->dispatch(new CreateDocumentHistory($this->model, 0, $history_desc));
     }

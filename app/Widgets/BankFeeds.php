@@ -17,8 +17,8 @@ class BankFeeds extends Widget
         $module = $this->getModulesByWidget('bank-feeds');
 
         return $this->view('widgets.bank_feeds', [
-            'module'            => $module,
-            'learn_more_url'    => $this->getCloudBankFeedsUrl(),
+            'module' => $module,
+            'learn_more_url' => $this->getCloudBankFeedsUrl(),
         ]);
     }
 }

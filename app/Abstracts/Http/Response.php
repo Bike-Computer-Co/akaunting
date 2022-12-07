@@ -23,10 +23,10 @@ abstract class Response implements Responsable
     public function toJson()
     {
         return response()->json([
-            'success'   => true,
-            'error'     => false,
-            'data'      => Arr::first($this->data),
-            'message'   => '',
+            'success' => true,
+            'error' => false,
+            'data' => Arr::first($this->data),
+            'message' => '',
         ]);
     }
 
@@ -38,10 +38,10 @@ abstract class Response implements Responsable
     public function toResponse($request)
     {
         foreach ($this->accepts as $accept) {
-            $request_method = 'expects' . Str::studly($accept);
-            $response_method = 'to' . Str::studly($accept);
+            $request_method = 'expects'.Str::studly($accept);
+            $response_method = 'to'.Str::studly($accept);
 
-            if (!method_exists($request, $request_method) || !method_exists($this, $response_method)) {
+            if (! method_exists($request, $request_method) || ! method_exists($this, $response_method)) {
                 continue;
             }
 

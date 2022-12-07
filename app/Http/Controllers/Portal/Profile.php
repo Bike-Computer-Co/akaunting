@@ -36,9 +36,8 @@ class Profile extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  User $user
-     * @param  Request $request
-     *
+     * @param  User  $user
+     * @param  Request  $request
      * @return Response
      */
     public function update(User $user, Request $request)

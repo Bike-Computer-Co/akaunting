@@ -52,7 +52,7 @@ class Disable extends Component
     public function __construct(
         $position = 'right', $icon = 'unpublished', $iconType = '-round', $text = '', $disableText = ''
     ) {
-        $this->id = 'tooltip-disable-' . mt_rand(1, time());
+        $this->id = 'tooltip-disable-'.mt_rand(1, time());
         $this->position = $position;
         $this->icon = $icon;
         $this->iconType = $iconType;

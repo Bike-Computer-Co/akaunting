@@ -76,17 +76,17 @@ return [
         'payment' => 'Основен начин на плаќање',
         'language' => 'Поставен јазик за сајт',
 
-        'description'                   => 'Стандардна корисничка сметка, валута, јазик на Вашата компанија',
-        'search_keywords'               => 'account, currency, language, tax, payment, method, pagination',
-        'list_limit'                    => 'ставки на страница',
-        'use_gravatar'                  => 'Користи Граватар',
-        'income_category'               => 'Категорија за Приход ',
-        'expense_category'              => 'Категорија за Трошок',
+        'description' => 'Стандардна корисничка сметка, валута, јазик на Вашата компанија',
+        'search_keywords' => 'account, currency, language, tax, payment, method, pagination',
+        'list_limit' => 'ставки на страница',
+        'use_gravatar' => 'Користи Граватар',
+        'income_category' => 'Категорија за Приход ',
+        'expense_category' => 'Категорија за Трошок',
 
         'form_description' => [
-            'general'                   => 'Одбери ја стандардната корисничка сметка, данок и платежен метод за да започнете. Корисничката табла и Извештаите се прикажани под стандардната валута.',
-            'category'                  => 'Одбери го стандардните категории за Вашата компанија.',
-            'other'                     => 'Прилагоди ги стандардните опции нза јазикот на вашата компанија и работењето со страници. ',
+            'general' => 'Одбери ја стандардната корисничка сметка, данок и платежен метод за да започнете. Корисничката табла и Извештаите се прикажани под стандардната валута.',
+            'category' => 'Одбери го стандардните категории за Вашата компанија.',
+            'other' => 'Прилагоди ги стандардните опции нза јазикот на вашата компанија и работењето со страници. ',
         ],
 
     ],
@@ -105,35 +105,35 @@ return [
         'sendmail' => 'Sendmail',
         'sendmail_path' => 'Патека до праќач на писма',
         'log' => 'Лог од е-маил пораки',
-        'email_templates'               => 'Емаил шаблони',
+        'email_templates' => 'Емаил шаблони',
 
-        'description'                   => 'Промени го протоколот за испраќање',
-        'search_keywords'               => 'email, send, protocol, smtp, host, password',
+        'description' => 'Промени го протоколот за испраќање',
+        'search_keywords' => 'email, send, protocol, smtp, host, password',
 
-        'email_service'                 => 'Емаил сервис',
+        'email_service' => 'Емаил сервис',
 
         'form_description' => [
-            'general'                   => 'Send regular emails to your team and contacts. You can set the protocol and SMTP settings.',
+            'general' => 'Send regular emails to your team and contacts. You can set the protocol and SMTP settings.',
         ],
 
         'templates' => [
-            'description'               => 'Change the email templates',
-            'search_keywords'           => 'email, template, subject, body, tag',
-            'subject'                   => 'Subject',
-            'body'                      => 'Body',
-            'tags'                      => '<strong>Available Tags:</strong> :tag_list',
-            'invoice_new_customer'      => 'New Invoice Template (sent to customer)',
-            'invoice_remind_customer'   => 'Invoice Reminder Template (sent to customer)',
-            'invoice_remind_admin'      => 'Invoice Reminder Template (sent to admin)',
-            'invoice_recur_customer'    => 'Invoice Recurring Template (sent to customer)',
-            'invoice_recur_admin'       => 'Invoice Recurring Template (sent to admin)',
-            'invoice_view_admin'        => 'Invoice View Template (sent to admin)',
-            'invoice_payment_customer'  => 'Invoice Payment Receipt Template (sent to customer)',
-            'invoice_payment_admin'     => 'Invoice Payment Received Template (sent to admin)',
-            'bill_remind_admin'         => 'Bill Reminder Template (sent to admin)',
-            'bill_recur_admin'          => 'Bill Recurring Template (sent to admin)',
+            'description' => 'Change the email templates',
+            'search_keywords' => 'email, template, subject, body, tag',
+            'subject' => 'Subject',
+            'body' => 'Body',
+            'tags' => '<strong>Available Tags:</strong> :tag_list',
+            'invoice_new_customer' => 'New Invoice Template (sent to customer)',
+            'invoice_remind_customer' => 'Invoice Reminder Template (sent to customer)',
+            'invoice_remind_admin' => 'Invoice Reminder Template (sent to admin)',
+            'invoice_recur_customer' => 'Invoice Recurring Template (sent to customer)',
+            'invoice_recur_admin' => 'Invoice Recurring Template (sent to admin)',
+            'invoice_view_admin' => 'Invoice View Template (sent to admin)',
+            'invoice_payment_customer' => 'Invoice Payment Receipt Template (sent to customer)',
+            'invoice_payment_admin' => 'Invoice Payment Received Template (sent to admin)',
+            'bill_remind_admin' => 'Bill Reminder Template (sent to admin)',
+            'bill_recur_admin' => 'Bill Recurring Template (sent to admin)',
             'payment_received_customer' => 'Payment Receipt Template (sent to customer)',
-            'payment_made_vendor'       => 'Payment Made Template (sent to vendor)',
+            'payment_made_vendor' => 'Payment Made Template (sent to vendor)',
         ],
     ],
     'scheduling' => [
@@ -155,7 +155,7 @@ return [
             'invoice' => 'Овозможи или оневозможи, или постави потсетници за вашита фактури кога доспеваат.',
             'bill' => 'Овозможи или оневозможи, или постави потсетници за вашите сметки пред да доспеат.',
             'cron' => 'Copy the cron command that your server should run. Set the time to trigger the event.',
-        ]
+        ],
     ],
     'appearance' => [
         'tab' => 'Изглед',
@@ -176,6 +176,5 @@ return [
         'file_size' => 'Максимална големина на фајл (MB)',
         'file_types' => 'Дозволени типови на фајлови',
     ],
-
 
 ];

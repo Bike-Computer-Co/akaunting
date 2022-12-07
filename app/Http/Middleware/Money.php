@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use OutOfBoundsException;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use OutOfBoundsException;
 use UnexpectedValueException;
 
 class Money
@@ -37,13 +37,13 @@ class Money
         ];
 
         foreach ($parameters as $parameter) {
-            if (!$request->has($parameter)) {
+            if (! $request->has($parameter)) {
                 continue;
             }
 
             $money_format = $request->get($parameter);
 
-            if (!preg_match("/^(?=.*?[0-9])[0-9.,]+$/", $money_format)) {
+            if (! preg_match('/^(?=.*?[0-9])[0-9.,]+$/', $money_format)) {
                 continue;
             }
 
@@ -60,7 +60,7 @@ class Money
                     }
                 }
 
-                $money_format = (double) $money_format;
+                $money_format = (float) $money_format;
             }
 
             $amount = $this->getAmount($money_format, $currency_code);
@@ -71,20 +71,20 @@ class Money
         $document_number = $request->get('document_number');
         $items = $request->get('items');
 
-        if (isset($document_number) || !empty($items)) {
-            if (!empty($items)) {
+        if (isset($document_number) || ! empty($items)) {
+            if (! empty($items)) {
                 foreach ($items as $key => $item) {
-                    if (!isset($item['price'])) {
+                    if (! isset($item['price'])) {
                         continue;
                     }
 
-                    if (!preg_match("/^(?=.*?[0-9])[0-9.,]+$/", $item['price'])) {
+                    if (! preg_match('/^(?=.*?[0-9])[0-9.,]+$/', $item['price'])) {
                         continue;
                     }
 
                     $amount = $item['price'];
 
-                    if (strpos($item['price'], config('money.' . $currency_code . '.symbol')) !== false) {
+                    if (strpos($item['price'], config('money.'.$currency_code.'.symbol')) !== false) {
                         $amount = $this->getAmount($item['price'], $currency_code);
                     }
 
@@ -101,12 +101,12 @@ class Money
     protected function getAmount($money_format, $currency_code)
     {
         try {
-            if (config('money.' . $currency_code . '.decimal_mark') !== '.') {
-                $money_format = Str::replaceFirst('.', config('money.' . $currency_code . '.decimal_mark'), $money_format);
+            if (config('money.'.$currency_code.'.decimal_mark') !== '.') {
+                $money_format = Str::replaceFirst('.', config('money.'.$currency_code.'.decimal_mark'), $money_format);
             }
 
             $amount = money($money_format, $currency_code)->getAmount();
-        } catch (InvalidArgumentException | OutOfBoundsException | UnexpectedValueException $e) {
+        } catch (InvalidArgumentException|OutOfBoundsException|UnexpectedValueException $e) {
             report($e);
 
             $amount = 0;

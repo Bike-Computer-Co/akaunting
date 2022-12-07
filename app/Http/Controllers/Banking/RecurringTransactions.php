@@ -37,7 +37,7 @@ class RecurringTransactions extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with('category', 'recurring')->isRecurring()->collect(['paid_at'=> 'desc']);
+        $transactions = Transaction::with('category', 'recurring')->isRecurring()->collect(['paid_at' => 'desc']);
 
         return $this->response('banking.recurring_transactions.index', compact('transactions'));
     }
@@ -65,7 +65,7 @@ class RecurringTransactions extends Controller
     {
         $type = request()->get('type', 'income-recurring');
         $real_type = request()->get('real_type', $this->getRealTypeOfRecurringTransaction($type));
-        $contact_type = config('type.transaction.' . $real_type . '.contact_type');
+        $contact_type = config('type.transaction.'.$real_type.'.contact_type');
 
         $number = $this->getNextTransactionNumber('-recurring');
 
@@ -87,7 +87,6 @@ class RecurringTransactions extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -115,7 +114,6 @@ class RecurringTransactions extends Controller
      * Duplicate the specified resource.
      *
      * @param  Transaction  $recurring_transaction
-     *
      * @return Response
      */
     public function duplicate(Transaction $recurring_transaction)
@@ -133,14 +131,13 @@ class RecurringTransactions extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Transaction  $recurring_transaction
-     *
      * @return Response
      */
     public function edit(Transaction $recurring_transaction)
     {
         $type = $recurring_transaction->type;
         $real_type = request()->get('real_type', $this->getRealTypeOfRecurringTransaction($type));
-        $contact_type = config('type.transaction.' . $real_type . '.contact_type');
+        $contact_type = config('type.transaction.'.$real_type.'.contact_type');
 
         $number = $this->getNextTransactionNumber('-recurring');
 
@@ -162,9 +159,8 @@ class RecurringTransactions extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Transaction $recurring_transaction
-     * @param  Request $request
-     *
+     * @param  Transaction  $recurring_transaction
+     * @param  Request  $request
      * @return Response
      */
     public function update(Transaction $recurring_transaction, Request $request)

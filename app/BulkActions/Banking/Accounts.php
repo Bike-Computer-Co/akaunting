@@ -19,23 +19,23 @@ class Accounts extends BulkAction
     ];
 
     public $actions = [
-        'enable'    => [
-            'icon'          => 'check_circle',
-            'name'          => 'general.enable',
-            'message'       => 'bulk_actions.message.enable',
-            'permission'    => 'update-banking-accounts',
+        'enable' => [
+            'icon' => 'check_circle',
+            'name' => 'general.enable',
+            'message' => 'bulk_actions.message.enable',
+            'permission' => 'update-banking-accounts',
         ],
-        'disable'   => [
-            'icon'          => 'hide_source',
-            'name'          => 'general.disable',
-            'message'       => 'bulk_actions.message.disable',
-            'permission'    => 'update-banking-accounts',
+        'disable' => [
+            'icon' => 'hide_source',
+            'name' => 'general.disable',
+            'message' => 'bulk_actions.message.disable',
+            'permission' => 'update-banking-accounts',
         ],
-        'delete'    => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-banking-accounts',
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-banking-accounts',
         ],
     ];
 

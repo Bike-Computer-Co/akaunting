@@ -2,7 +2,7 @@
 
 return [
 
-    'sale_price'           => 'Sotish Narxi',
-    'purchase_price'        => 'Sotib olish narxi',
+    'sale_price' => 'Sotish Narxi',
+    'purchase_price' => 'Sotib olish narxi',
 
 ];

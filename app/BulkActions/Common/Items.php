@@ -19,33 +19,33 @@ class Items extends BulkAction
     ];
 
     public $actions = [
-        'enable'    => [
-            'icon'          => 'check_circle',
-            'name'          => 'general.enable',
-            'message'       => 'bulk_actions.message.enable',
-            'path'          => ['group' => 'common', 'type' => 'items'],
-            'type'          => '*',
-            'permission'    => 'update-common-items',
+        'enable' => [
+            'icon' => 'check_circle',
+            'name' => 'general.enable',
+            'message' => 'bulk_actions.message.enable',
+            'path' => ['group' => 'common', 'type' => 'items'],
+            'type' => '*',
+            'permission' => 'update-common-items',
         ],
-        'disable'   => [
-            'icon'          => 'hide_source',
-            'name'          => 'general.disable',
-            'message'       => 'bulk_actions.message.disable',
-            'path'          => ['group' => 'common', 'type' => 'items'],
-            'type'          => '*',
-            'permission'    => 'update-common-items',
+        'disable' => [
+            'icon' => 'hide_source',
+            'name' => 'general.disable',
+            'message' => 'bulk_actions.message.disable',
+            'path' => ['group' => 'common', 'type' => 'items'],
+            'type' => '*',
+            'permission' => 'update-common-items',
         ],
-        'delete'    => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-common-items',
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-common-items',
         ],
-        'export'    => [
-            'icon'          => 'file_download',
-            'name'          => 'general.export',
-            'message'       => 'bulk_actions.message.export',
-            'type'          => 'download',
+        'export' => [
+            'icon' => 'file_download',
+            'name' => 'general.export',
+            'message' => 'bulk_actions.message.export',
+            'type' => 'download',
         ],
     ];
 

@@ -8,7 +8,6 @@ use App\Models\Setting\EmailTemplate;
 use App\Traits\Transactions;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
 
 class Transaction extends Notification
 {
@@ -83,8 +82,8 @@ class Transaction extends Notification
 
         return [
             'template_alias' => $this->template->alias,
-            'title' => trans('notifications.menu.' . $this->template->alias . '.title'),
-            'description' => trans('notifications.menu.' . $this->template->alias . '.description', $this->getTagsBinding()),
+            'title' => trans('notifications.menu.'.$this->template->alias.'.title'),
+            'description' => trans('notifications.menu.'.$this->template->alias.'.description', $this->getTagsBinding()),
             'transaction_id' => $this->transaction->id,
             'contact_name' => $this->transaction->contact->name,
             'amount' => $this->transaction->amount,

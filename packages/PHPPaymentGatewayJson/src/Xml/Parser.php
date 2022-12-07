@@ -2,6 +2,7 @@
 
 namespace PaymentGatewayJson\Client\Xml;
 
+use PaymentGatewayJson\Client\Callback\Result as CallbackResult;
 use PaymentGatewayJson\Client\Data\ChargebackData;
 use PaymentGatewayJson\Client\Data\ChargebackReversalData;
 use PaymentGatewayJson\Client\Data\Customer;
@@ -11,27 +12,26 @@ use PaymentGatewayJson\Client\Data\Result\PhoneData;
 use PaymentGatewayJson\Client\Data\Result\ResultData;
 use PaymentGatewayJson\Client\Data\Result\WalletData;
 use PaymentGatewayJson\Client\Exception\ClientException;
-use PaymentGatewayJson\Client\Schedule\ScheduleResult;
 use PaymentGatewayJson\Client\Exception\InvalidValueException;
 use PaymentGatewayJson\Client\Schedule\ScheduleError;
+use PaymentGatewayJson\Client\Schedule\ScheduleResult;
 use PaymentGatewayJson\Client\StatusApi\StatusResult;
 use PaymentGatewayJson\Client\Transaction\Error;
 use PaymentGatewayJson\Client\Transaction\Result;
-use PaymentGatewayJson\Client\Callback\Result as CallbackResult;
 
 /**
  * Class Parser
- *
- * @package PaymentGatewayJson\Client\Xml
  */
-class Parser {
-
+class Parser
+{
     /**
-     * @param string $xml
+     * @param  string  $xml
      * @return Result
+     *
      * @throws InvalidValueException
      */
-    public function parseResult($xml) {
+    public function parseResult($xml)
+    {
         $result = new Result();
 
         $document = new \DOMDocument('1.0', 'utf-8');
@@ -49,7 +49,7 @@ class Parser {
              */
             switch ($child->localName) {
                 case 'success':
-                    if ($child->nodeValue == 'false' || !$child->nodeValue) {
+                    if ($child->nodeValue == 'false' || ! $child->nodeValue) {
                         $result->setSuccess(false);
                     } else {
                         $result->setSuccess(true);
@@ -65,7 +65,7 @@ class Parser {
                 case 'scheduleId':
                 case 'scheduleStatus':
                     if (method_exists($result, 'set'.ucfirst($child->localName))) {
-                        $result->{'set' . ucfirst($child->localName)}($child->nodeValue);
+                        $result->{'set'.ucfirst($child->localName)}($child->nodeValue);
                     }
                     break;
                 case 'scheduledAt':
@@ -89,7 +89,7 @@ class Parser {
                     $result->setErrors($this->parseErrors($child));
                     break;
                 case 'extraData':
-                    list($key, $value) = $this->parseExtraData($child);
+                    [$key, $value] = $this->parseExtraData($child);
                     $result->addExtraData($key, $value);
                     break;
                 default:
@@ -98,15 +98,16 @@ class Parser {
         }
 
         return $result;
-
     }
 
     /**
-     * @param string $xml
+     * @param  string  $xml
      * @return CallbackResult
+     *
      * @throws InvalidValueException
      */
-    public function parseCallback($xml) {
+    public function parseCallback($xml)
+    {
         $result = new CallbackResult();
 
         $document = new \DOMDocument('1.0', 'utf-8');
@@ -145,7 +146,7 @@ class Parser {
                     $result->setErrors($this->parseErrors($child));
                     break;
                 case 'extraData':
-                    list($key, $value) = $this->parseExtraData($child);
+                    [$key, $value] = $this->parseExtraData($child);
                     $result->addExtraData($key, $value);
                     break;
                 case 'merchantMetaData':
@@ -166,7 +167,7 @@ class Parser {
                     $result->setCustomer($this->parseCustomerData($child));
                     break;
                 case 'amount':
-                    $result->setAmount((double)$child->nodeValue);
+                    $result->setAmount((float) $child->nodeValue);
                     break;
                 case 'currency':
                     $result->setCurrency($child->nodeValue);
@@ -189,11 +190,13 @@ class Parser {
     }
 
     /**
-     * @param string $xml
+     * @param  string  $xml
      * @return StatusResult
+     *
      * @throws InvalidValueException
      */
-    public function parseStatusResult($xml) {
+    public function parseStatusResult($xml)
+    {
         $statusResult = new StatusResult();
 
         $document = new \DOMDocument('1.0', 'utf-8');
@@ -235,7 +238,7 @@ class Parser {
                     $statusResult->setErrors($this->parseErrors($child));
                     break;
                 case 'extraData':
-                    list($key, $value) = $this->parseExtraData($child);
+                    [$key, $value] = $this->parseExtraData($child);
                     $statusResult->addExtraData($key, $value);
                     break;
                 case 'merchantMetaData':
@@ -256,7 +259,7 @@ class Parser {
                     $statusResult->setCustomer($this->parseCustomerData($child));
                     break;
                 case 'amount':
-                    $statusResult->setAmount((double)$child->nodeValue);
+                    $statusResult->setAmount((float) $child->nodeValue);
                     break;
                 case 'currency':
                     $statusResult->setCurrency($child->nodeValue);
@@ -270,13 +273,15 @@ class Parser {
     }
 
     /**
-     * @param string $xml
+     * @param  string  $xml
      * @return mixed
+     *
      * @throws ClientException
      * @throws InvalidValueException
      */
-    public function parseOptionsResult($xml) {
-        $result = array();
+    public function parseOptionsResult($xml)
+    {
+        $result = [];
         $success = false;
         $error = null;
 
@@ -308,9 +313,9 @@ class Parser {
                     } elseif ($val === 'false') {
                         $val = false;
                     } elseif (ctype_digit($val)) {
-                        $val = (int)$val;
+                        $val = (int) $val;
                     } elseif (is_numeric($val)) {
-                        $val = (double)$val;
+                        $val = (float) $val;
                     } else {
                         $json = json_decode($val, true);
                         if ($json !== null) {
@@ -335,13 +340,13 @@ class Parser {
     }
 
     /**
-     * @param string $xml
-     *
+     * @param  string  $xml
      * @return ScheduleResult
      *
      * @throws InvalidValueException
      */
-    public function parseScheduleResult($xml) {
+    public function parseScheduleResult($xml)
+    {
         $scheduleResult = new ScheduleResult();
 
         $document = new \DOMDocument('1.0', 'utf-8');
@@ -359,7 +364,7 @@ class Parser {
              */
             switch ($childNode->localName) {
                 case 'operationSuccess':
-                    if ($childNode->nodeValue == 'false' || !$childNode->nodeValue) {
+                    if ($childNode->nodeValue == 'false' || ! $childNode->nodeValue) {
                         $scheduleResult->setOperationSuccess(false);
                     } else {
                         $scheduleResult->setOperationSuccess(true);
@@ -372,7 +377,7 @@ class Parser {
                 case 'scheduledAt':
                 case 'merchantMetaData':
                     if (method_exists($scheduleResult, 'set'.ucfirst($childNode->localName))) {
-                        $scheduleResult->{'set' . ucfirst($childNode->localName)}($childNode->nodeValue);
+                        $scheduleResult->{'set'.ucfirst($childNode->localName)}($childNode->nodeValue);
                     }
                     break;
                 case 'errors':
@@ -384,15 +389,16 @@ class Parser {
         }
 
         return $scheduleResult;
-
     }
 
     /**
-     * @param \DOMNode $node
+     * @param  \DOMNode  $node
      * @return string
+     *
      * @throws InvalidValueException
      */
-    protected function parseReturnType(\DOMNode $node) {
+    protected function parseReturnType(\DOMNode $node)
+    {
         switch ($node->nodeValue) {
             case 'FINISHED':
                 return Result::RETURN_TYPE_FINISHED;
@@ -416,34 +422,38 @@ class Parser {
     }
 
     /**
-     * @param \DOMNode $node
+     * @param  \DOMNode  $node
      * @return string
      */
-    protected function parseRedirectType(\DOMNode $node) {
+    protected function parseRedirectType(\DOMNode $node)
+    {
         if ($node && $node->attributes) {
             $attr = $node->attributes->getNamedItem('redirectType');
             if ($attr) {
                 return $attr->nodeValue;
             }
         }
+
         return null;
     }
 
     /**
-     * @param \DOMNode $node
+     * @param  \DOMNode  $node
      * @return ResultData|null
+     *
      * @throws InvalidValueException
      */
-    protected function parseReturnData(\DOMNode $node) {
+    protected function parseReturnData(\DOMNode $node)
+    {
         $type = $node->attributes->getNamedItem('type');
         //dd($node->attributes->item(0));
-        if (!$type) {
+        if (! $type) {
             return null;
         }
 
         if ($type->firstChild->nodeValue == 'creditcardData') {
             $node = $node->firstChild;
-            while($node->nodeName == '#text') {
+            while ($node->nodeName == '#text') {
                 $node = $node->nextSibling;
             }
             if ($node->localName != 'creditcardData') {
@@ -471,23 +481,24 @@ class Parser {
                     case 'threeDSecure':
                     case 'eci':
                         if (method_exists($cc, 'set'.ucfirst($child->localName))) {
-                            $cc->{'set' . ucfirst($child->localName)}($child->nodeValue);
+                            $cc->{'set'.ucfirst($child->localName)}($child->nodeValue);
                         }
                         break;
                     case 'expiryMonth':
                     case 'expiryYear':
                         if (method_exists($cc, 'set'.ucfirst($child->localName))) {
-                            $cc->{'set' . ucfirst($child->localName)}((int)$child->nodeValue);
+                            $cc->{'set'.ucfirst($child->localName)}((int) $child->nodeValue);
                         }
                         break;
                     default:
                         break;
                 }
             }
+
             return $cc;
         } elseif ($type->firstChild->nodeValue == 'phoneData') {
             $node = $node->firstChild;
-            while($node->nodeName == '#text') {
+            while ($node->nodeName == '#text') {
                 $node = $node->nextSibling;
             }
             if ($node->localName != 'phoneData') {
@@ -512,10 +523,11 @@ class Parser {
                         break;
                 }
             }
+
             return $phone;
         } elseif ($type->firstChild->nodeValue == 'ibanData') {
             $node = $node->firstChild;
-            while($node->nodeName == '#text') {
+            while ($node->nodeName == '#text') {
                 $node = $node->nextSibling;
             }
             if ($node->localName != 'ibanData') {
@@ -546,10 +558,11 @@ class Parser {
                         break;
                 }
             }
+
             return $ibanData;
         } elseif ($type->firstChild->nodeValue == 'walletData') {
             $node = $node->firstChild;
-            while($node->nodeName == '#text') {
+            while ($node->nodeName == '#text') {
                 $node = $node->nextSibling;
             }
             if ($node->localName != 'walletData') {
@@ -574,18 +587,22 @@ class Parser {
                         break;
                 }
             }
+
             return $walletData;
         }
+
         return null;
     }
 
     /**
-     * @param \DOMNode $node
+     * @param  \DOMNode  $node
      * @return Error[]
+     *
      * @throws InvalidValueException
      */
-    protected function parseErrors(\DOMNode $node) {
-        $errors = array();
+    protected function parseErrors(\DOMNode $node)
+    {
+        $errors = [];
 
         foreach ($node->childNodes as $child) {
             /**
@@ -622,20 +639,20 @@ class Parser {
 
             $error = new Error($message, $code, $adapterMessage, $adapterCode);
             $errors[] = $error;
-
         }
+
         return $errors;
     }
 
     /**
-     * @param \DOMNode $node
-     *
+     * @param  \DOMNode  $node
      * @return ScheduleError[]
      *
      * @throws InvalidValueException
      */
-    protected function parseScheduleErrors(\DOMNode $node) {
-        $errors = array();
+    protected function parseScheduleErrors(\DOMNode $node)
+    {
+        $errors = [];
 
         foreach ($node->childNodes as $child) {
             /**
@@ -666,27 +683,29 @@ class Parser {
 
             $error = new ScheduleError($message, $code);
             $errors[] = $error;
-
         }
+
         return $errors;
     }
 
     /**
-     * @param \DOMNode $node
+     * @param  \DOMNode  $node
      * @return array
      */
-    protected function parseExtraData(\DOMNode $node) {
+    protected function parseExtraData(\DOMNode $node)
+    {
         $key = $node->attributes->getNamedItem('key')->nodeValue;
         $value = $node->nodeValue;
 
-        return array($key, $value);
+        return [$key, $value];
     }
 
     /**
-     * @param \DOMNode $node
+     * @param  \DOMNode  $node
      * @return ChargebackData
      */
-    protected function parseChargebackData(\DOMNode $node) {
+    protected function parseChargebackData(\DOMNode $node)
+    {
         $data = new ChargebackData();
 
         foreach ($node->childNodes as $child) {
@@ -704,7 +723,7 @@ class Parser {
                     $data->setOriginalTransactionId($child->nodeValue);
                     break;
                 case 'amount':
-                    $data->setAmount((double)$child->nodeValue);
+                    $data->setAmount((float) $child->nodeValue);
                     break;
                 case 'currency':
                     $data->setCurrency($child->nodeValue);
@@ -724,10 +743,11 @@ class Parser {
     }
 
     /**
-     * @param \DOMNode $node
+     * @param  \DOMNode  $node
      * @return ChargebackReversalData
      */
-    protected function parseChargebackReversalData(\DOMNode $node) {
+    protected function parseChargebackReversalData(\DOMNode $node)
+    {
         $data = new ChargebackReversalData();
 
         foreach ($node->childNodes as $child) {
@@ -748,7 +768,7 @@ class Parser {
                     $data->setChargebackReferenceId($child->nodeValue);
                     break;
                 case 'amount':
-                    $data->setAmount((double)$child->nodeValue);
+                    $data->setAmount((float) $child->nodeValue);
                     break;
                 case 'currency':
                     $data->setCurrency($child->nodeValue);
@@ -768,10 +788,11 @@ class Parser {
     }
 
     /**
-     * @param \DOMNode $node
+     * @param  \DOMNode  $node
      * @return Customer
      */
-    protected function parseCustomerData(\DOMNode $node) {
+    protected function parseCustomerData(\DOMNode $node)
+    {
         $customer = new Customer();
 
         foreach ($node->childNodes as $child) {
@@ -809,7 +830,7 @@ class Parser {
                 case 'ipAddress':
                 case 'nationalId':
                     if (method_exists($customer, 'set'.ucfirst($child->localName))) {
-                        $customer->{'set' . ucfirst($child->localName)}($child->nodeValue);
+                        $customer->{'set'.ucfirst($child->localName)}($child->nodeValue);
                     }
                     break;
                 case 'emailVerified':

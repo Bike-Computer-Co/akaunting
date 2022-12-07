@@ -36,7 +36,7 @@ abstract class Import implements HasLocalePreference, ShouldQueue, SkipsEmptyRow
     {
         $row['company_id'] = company_id();
         $row['created_by'] = $this->user->id;
-        $row['created_from'] = $this->getSourcePrefix() . 'import';
+        $row['created_from'] = $this->getSourcePrefix().'import';
 
         // Make enabled field integer
         if (isset($row['enabled'])) {
@@ -50,14 +50,14 @@ abstract class Import implements HasLocalePreference, ShouldQueue, SkipsEmptyRow
 
         $date_fields = ['paid_at', 'invoiced_at', 'billed_at', 'due_at', 'issued_at', 'created_at', 'transferred_at'];
         foreach ($date_fields as $date_field) {
-            if (!isset($row[$date_field])) {
+            if (! isset($row[$date_field])) {
                 continue;
             }
 
             try {
                 $row[$date_field] = Date::parse(ExcelDate::excelToDateTimeObject($row[$date_field]))
                                         ->format('Y-m-d H:i:s');
-            } catch (InvalidFormatException | \Exception $e) {
+            } catch (InvalidFormatException|\Exception $e) {
                 Log::info($e->getMessage());
             }
         }
@@ -90,7 +90,7 @@ abstract class Import implements HasLocalePreference, ShouldQueue, SkipsEmptyRow
         $fields = Arr::wrap($fields);
 
         foreach ($fields as $field) {
-            if (!empty($row[$field])) {
+            if (! empty($row[$field])) {
                 continue;
             }
 

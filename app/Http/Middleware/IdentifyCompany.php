@@ -47,7 +47,7 @@ class IdentifyCompany
         $company->makeCurrent();
 
         // Fix file/folder paths
-        config(['filesystems.disks.' . config('filesystems.default') . '.url' => url('/' . $company_id)  . '/uploads']);
+        config(['filesystems.disks.'.config('filesystems.default').'.url' => url('/'.$company_id).'/uploads']);
 
         // Fix routes
         if ($this->request->isNotApi()) {

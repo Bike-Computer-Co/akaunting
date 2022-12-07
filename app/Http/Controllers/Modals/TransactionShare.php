@@ -24,21 +24,20 @@ class TransactionShare extends Controller
      * Show the form for creating a new resource.
      *
      * @param  Transaction  $transaction
-     *
      * @return Response
      */
     public function create(Transaction $transaction)
     {
-        $alias = config('type.transaction.' . $transaction->type . '.alias');
+        $alias = config('type.transaction.'.$transaction->type.'.alias');
 
         $route = '';
 
         if (! empty($alias)) {
-            $route .= $alias . '.';
+            $route .= $alias.'.';
         }
 
-        $preview_route = $route . 'preview.payments.show';
-        $signed_route = $route . 'signed.payments.show';
+        $preview_route = $route.'preview.payments.show';
+        $signed_route = $route.'signed.payments.show';
 
         try {
             $previewUrl = route($preview_route, $transaction->id);
@@ -73,8 +72,8 @@ class TransactionShare extends Controller
                         'text' => trans('general.copy_link'),
                         'class' => 'disabled:bg-blue-100',
                     ],
-                ]
-            ]
+                ],
+            ],
         ]);
     }
 }

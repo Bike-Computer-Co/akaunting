@@ -6,10 +6,7 @@ use PaymentGatewayJson\Client\Json\ResponseObject;
 
 /**
  * Class DeleteProfileResponse
- *
- * @package PaymentGatewayJson\Client\CustomerProfile
- *
  */
-class DeleteProfileResponse extends ResponseObject {
-
+class DeleteProfileResponse extends ResponseObject
+{
 }

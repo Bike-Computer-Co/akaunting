@@ -11,7 +11,7 @@ class UpdateCacheCleared extends Event
     /**
      * Create a new event instance.
      *
-     * @param  $company_id
+     * @param    $company_id
      */
     public function __construct($company_id)
     {

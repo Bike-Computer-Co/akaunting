@@ -46,7 +46,7 @@ class UpdateAll extends Command
             $alias = $module->get('alias');
 
             if ($this->runUpdate($alias) !== true) {
-                $this->error('Not able to update ' . $alias . '!');
+                $this->error('Not able to update '.$alias.'!');
             }
         }
 
@@ -55,14 +55,14 @@ class UpdateAll extends Command
 
     protected function runUpdate($alias)
     {
-        $this->info('Updating ' . $alias . '...');
+        $this->info('Updating '.$alias.'...');
 
         $company_id = $this->argument('company');
 
         $command = "update {$alias} {$company_id}";
 
         if (true !== $result = Console::run($command)) {
-            $message = !empty($result) ? $result : trans('modules.errors.finish', ['module' => $alias]);
+            $message = ! empty($result) ? $result : trans('modules.errors.finish', ['module' => $alias]);
 
             $this->error($message);
 

@@ -6,8 +6,8 @@ use App\Abstracts\Http\ApiController;
 use App\Http\Requests\Banking\Transfer as Request;
 use App\Http\Resources\Banking\Transfer as Resource;
 use App\Jobs\Banking\CreateTransfer;
-use App\Jobs\Banking\UpdateTransfer;
 use App\Jobs\Banking\DeleteTransfer;
+use App\Jobs\Banking\UpdateTransfer;
 use App\Models\Banking\Transfer;
 
 class Transfers extends ApiController
@@ -68,7 +68,7 @@ class Transfers extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -81,8 +81,8 @@ class Transfers extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $transfer
-     * @param  $request
+     * @param    $transfer
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Transfer $transfer, Request $request)

@@ -40,17 +40,17 @@ class TransactionsTest extends FeatureTestCase
     }
 
    public function testItShouldCreateTransaction()
-    {
-        $request = $this->getRequest();
+   {
+       $request = $this->getRequest();
 
-        $this->loginAs()
-            ->post(route('transactions.store'), $request)
-            ->assertStatus(200);
+       $this->loginAs()
+           ->post(route('transactions.store'), $request)
+           ->assertStatus(200);
 
-        $this->assertFlashLevel('success');
+       $this->assertFlashLevel('success');
 
-        $this->assertDatabaseHas('transactions', $request);
-    }
+       $this->assertDatabaseHas('transactions', $request);
+   }
 
     public function testItShouldCreateTransactionWithRecurring()
     {
@@ -69,17 +69,17 @@ class TransactionsTest extends FeatureTestCase
         ]);
     }
 
-	public function testItShouldSeeTransactionUpdatePage()
-	{
+    public function testItShouldSeeTransactionUpdatePage()
+    {
         $request = $this->getRequest();
 
         $transaction = $this->dispatch(new CreateTransaction($request));
 
-		$this->loginAs()
-			->get(route('transactions.edit', $transaction->id))
-			->assertStatus(200)
-			->assertSee($transaction->amount);
-	}
+        $this->loginAs()
+            ->get(route('transactions.edit', $transaction->id))
+            ->assertStatus(200)
+            ->assertSee($transaction->amount);
+    }
 
     public function testItShouldUpdateTransaction()
     {
@@ -92,7 +92,7 @@ class TransactionsTest extends FeatureTestCase
         $this->loginAs()
             ->patch(route('transactions.update', $transaction->id), $request)
             ->assertStatus(200)
-			->assertSee($request['amount']);
+            ->assertSee($request['amount']);
 
         $this->assertFlashLevel('success');
 
@@ -128,7 +128,7 @@ class TransactionsTest extends FeatureTestCase
         \Excel::matchByRegex();
 
         \Excel::assertDownloaded(
-            '/' . \Str::filename(trans_choice('general.transactions', 2)) . '-\d{10}\.xlsx/',
+            '/'.\Str::filename(trans_choice('general.transactions', 2)).'-\d{10}\.xlsx/',
             function (Export $export) use ($count) {
                 // Assert that the correct export is downloaded.
                 return $export->collection()->count() === $count;
@@ -155,7 +155,7 @@ class TransactionsTest extends FeatureTestCase
         \Excel::matchByRegex();
 
         \Excel::assertDownloaded(
-            '/' . \Str::filename(trans_choice('general.transactions', 2)) . '-\d{10}\.xlsx/',
+            '/'.\Str::filename(trans_choice('general.transactions', 2)).'-\d{10}\.xlsx/',
             function (Export $export) use ($select_count) {
                 return $export->collection()->count() === $select_count;
             }

@@ -19,9 +19,9 @@ class UninstallModule extends Job
     /**
      * Create a new job instance.
      *
-     * @param  $alias
-     * @param  $company_id
-     * @param  $locale
+     * @param    $alias
+     * @param    $company_id
+     * @param    $locale
      */
     public function __construct($alias, $company_id, $locale = null)
     {

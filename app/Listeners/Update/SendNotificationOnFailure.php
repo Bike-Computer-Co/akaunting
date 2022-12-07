@@ -13,7 +13,7 @@ class SendNotificationOnFailure
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -22,14 +22,15 @@ class SendNotificationOnFailure
 
         try {
             $notifiable->notify(new Notification($event));
-        } catch (Exception | RequestException $e) {
+        } catch (Exception|RequestException $e) {
             report($e);
         }
     }
 
     protected function getNotifiableClass()
     {
-        return new class() {
+        return new class()
+        {
             use Notifiable;
 
             public function routeNotificationForMail()

@@ -19,7 +19,7 @@ class AddAccounts extends Listener
     /**
      * Handle filter showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleFilterShowing(FilterShowing $event)
@@ -36,7 +36,7 @@ class AddAccounts extends Listener
     /**
      * Handle group showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleGroupShowing(GroupShowing $event)
@@ -51,7 +51,7 @@ class AddAccounts extends Listener
     /**
      * Handle group applying event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleGroupApplying(GroupApplying $event)
@@ -66,7 +66,7 @@ class AddAccounts extends Listener
     /**
      * Handle rows showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleRowsShowing(RowsShowing $event)

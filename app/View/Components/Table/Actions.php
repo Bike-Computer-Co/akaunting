@@ -42,7 +42,7 @@ class Actions extends Component
 
         $actions = [];
 
-        if ($this->model && !empty($this->model->line_actions)) {
+        if ($this->model && ! empty($this->model->line_actions)) {
             $actions = $this->model->line_actions;
         }
 
@@ -62,8 +62,7 @@ class Actions extends Component
     /**
      * Build an HTML attribute string from an array.
      *
-     * @param array $attributes
-     *
+     * @param  array  $attributes
      * @return string
      */
     public function getAttributes($attributes)
@@ -78,15 +77,14 @@ class Actions extends Component
             }
         }
 
-        return count($html) > 0 ? ' ' . implode(' ', $html) : '';
+        return count($html) > 0 ? ' '.implode(' ', $html) : '';
     }
 
     /**
      * Build a single attribute element.
      *
-     * @param string $key
-     * @param string $value
-     *
+     * @param  string  $key
+     * @param  string  $value
      * @return string
      */
     protected function attributeElement($key, $value)
@@ -106,11 +104,11 @@ class Actions extends Component
         }
 
         if (is_array($value) && $key === 'class') {
-            return 'class=' . implode(' ', $value);
+            return 'class='.implode(' ', $value);
         }
 
         if (! is_null($value)) {
-            return $key . '=' . e($value, false);
+            return $key.'='.e($value, false);
         }
     }
 }

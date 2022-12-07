@@ -10,7 +10,9 @@ abstract class Form extends Component
     use ViewComponents;
 
     public const OBJECT_TYPE = 'contact';
+
     public const DEFAULT_TYPE = 'customer';
+
     public const DEFAULT_PLURAL_TYPE = 'customers';
 
     /* -- Main Start -- */

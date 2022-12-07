@@ -27,7 +27,7 @@ class DocumentTransactions extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param  $document_id
+     * @param    $document_id
      * @return \Illuminate\Http\JsonResponse
      */
     public function index($document_id)
@@ -40,8 +40,8 @@ class DocumentTransactions extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  $document_id
-     * @param  $id
+     * @param    $document_id
+     * @param    $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($document_id, $id)
@@ -49,7 +49,7 @@ class DocumentTransactions extends ApiController
         $transaction = Transaction::documentId($document_id)->find($id);
 
         if (! $transaction instanceof Transaction) {
-            return $this->errorInternal('No query results for model [' . Transaction::class . '] ' . $id);
+            return $this->errorInternal('No query results for model ['.Transaction::class.'] '.$id);
         }
 
         return new Resource($transaction);
@@ -58,8 +58,8 @@ class DocumentTransactions extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $document_id
-     * @param  $request
+     * @param    $document_id
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($document_id, Request $request)
@@ -74,8 +74,8 @@ class DocumentTransactions extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $document_id
-     * @param  $id
+     * @param    $document_id
+     * @param    $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($document_id, $id)

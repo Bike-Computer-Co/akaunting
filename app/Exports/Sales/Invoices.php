@@ -2,10 +2,10 @@
 
 namespace App\Exports\Sales;
 
-use App\Exports\Sales\Sheets\Invoices as Base;
+use App\Exports\Sales\Sheets\InvoiceHistories;
 use App\Exports\Sales\Sheets\InvoiceItems;
 use App\Exports\Sales\Sheets\InvoiceItemTaxes;
-use App\Exports\Sales\Sheets\InvoiceHistories;
+use App\Exports\Sales\Sheets\Invoices as Base;
 use App\Exports\Sales\Sheets\InvoiceTotals;
 use App\Exports\Sales\Sheets\InvoiceTransactions;
 use Maatwebsite\Excel\Concerns\Exportable;

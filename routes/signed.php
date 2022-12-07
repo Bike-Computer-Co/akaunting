@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
  * @see \App\Providers\Route::mapSignedRoutes
  * @see \modules\OfflinePayments\Routes\signed.php for module example
  */
-
 Route::get('invoices/{invoice}', 'Portal\Invoices@signed')->name('signed.invoices.show');
 Route::get('invoices/{invoice}/print', 'Portal\Invoices@printInvoice')->name('signed.invoices.print');
 Route::get('invoices/{invoice}/pdf', 'Portal\Invoices@pdfInvoice')->name('signed.invoices.pdf');

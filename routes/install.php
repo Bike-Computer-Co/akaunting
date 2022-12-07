@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
  *
  * @see \App\Providers\Route::mapInstallRoutes
  */
-
 Route::get('/', 'Install\Requirements@show');
 Route::get('requirements', 'Install\Requirements@show')->name('install.requirements');
 

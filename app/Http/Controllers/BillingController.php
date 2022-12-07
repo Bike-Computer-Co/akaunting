@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Abstracts\Http\Controller;
-use App\Models\Auth\Permission;
 use Illuminate\Http\Request;
 
 class BillingController extends Controller
@@ -12,17 +11,19 @@ class BillingController extends Controller
     {
         $company = company();
         $company->createOrGetStripeCustomer();
+
         return $company->redirectToBillingPortal(route('billing.subscription'));
     }
 
     public function subscription(Request $request)
     {
         $yearly = $request->has('yearly');
+
         return view('billing.subscription', [
             'stripeKey' => config('cashier.key'),
             'packages' => config('packages'),
             'yearly' => $yearly,
-            'keyword' => $yearly ? 'yearly' : 'monthly'
+            'keyword' => $yearly ? 'yearly' : 'monthly',
         ]);
     }
 
@@ -30,7 +31,10 @@ class BillingController extends Controller
     {
         $monthly = collect(config('packages'))->where('monthly_stripe_id', $request->price_id)->first();
         $yearly = collect(config('packages'))->where('yearly_stripe_id', $request->price_id)->first();
-        if (!$monthly && !$yearly) abort(400);
+        if (! $monthly && ! $yearly) {
+            abort(400);
+        }
+
         return $monthly ?? $yearly;
     }
 
@@ -38,21 +42,23 @@ class BillingController extends Controller
     {
         $request->validate([
             'price_id' => 'required',
-            'trial' => 'required|boolean'
+            'trial' => 'required|boolean',
         ]);
         abort_if(company()->subscribed(), 400, 'Already subscribed');
         $package = $this->getPackage($request);
 
         $checkout = company()->newSubscription('default', $request->price_id);
 
-        if ($request->trial && $package['trial_days'])
+        if ($request->trial && $package['trial_days']) {
             $checkout = $checkout->trialDays($package['trial_days'] + 1);
+        }
 
         $checkout = $checkout
             ->checkout([
-                'success_url' => route('billing.subscription') . '?checkout=success',
-                'cancel_url' => route('billing.subscription') . '?checkout=cancelled',
+                'success_url' => route('billing.subscription').'?checkout=success',
+                'cancel_url' => route('billing.subscription').'?checkout=cancelled',
             ]);
+
         return response()->json([
             'session_id' => $checkout->id,
         ]);
@@ -65,21 +71,23 @@ class BillingController extends Controller
         ]);
         $package = $this->getPackage($request);
         company()->subscription()->swap($request->price_id);
-        return back();
 
+        return back();
     }
 
     public function cancel(Request $request)
     {
-        abort_if(!company()->subscribed(), 400);
+        abort_if(! company()->subscribed(), 400);
         company()->subscription()->cancel();
+
         return back();
     }
 
     public function resume(Request $request)
     {
-        abort_if(!company()->subscription()->onGracePeriod(), 400);
+        abort_if(! company()->subscription()->onGracePeriod(), 400);
         company()->subscription()->resume();
+
         return back();
     }
 }

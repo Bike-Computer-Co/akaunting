@@ -18,7 +18,7 @@ class AddSearchString extends Listener
     /**
      * Handle filter applying event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleFilterApplying(FilterApplying $event)
@@ -40,7 +40,7 @@ class AddSearchString extends Listener
             }
 
             foreach ($old as $key => $value) {
-                $filter = $key . ':' . $value;
+                $filter = $key.':'.$value;
 
                 if (! in_array($filter, $filters)) {
                     $filters[] = $filter;
@@ -52,11 +52,11 @@ class AddSearchString extends Listener
                     continue;
                 }
 
-                $filters[] = $key . ':' . $value;
+                $filters[] = $key.':'.$value;
             }
 
             request()->merge([
-                'search' => implode(' ', $filters)
+                'search' => implode(' ', $filters),
             ]);
         }
 

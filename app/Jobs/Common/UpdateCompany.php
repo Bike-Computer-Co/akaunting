@@ -90,7 +90,7 @@ class UpdateCompany extends Job implements ShouldUpdate
 
         event(new CompanyUpdated($this->model, $this->request));
 
-        if (!empty($this->current_company_id)) {
+        if (! empty($this->current_company_id)) {
             company($this->current_company_id)->makeCurrent();
         }
 

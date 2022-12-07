@@ -27,7 +27,7 @@ class Search extends Component
     public function render()
     {
         $this->user = user();
-        
+
         $this->search();
 
         return view('livewire.common.search');
@@ -90,7 +90,7 @@ class Search extends Component
      */
     public function searchOnAccounts()
     {
-        if (!$this->user->can('read-banking-accounts')) {
+        if (! $this->user->can('read-banking-accounts')) {
             return;
         }
 
@@ -121,7 +121,7 @@ class Search extends Component
      */
     public function searchOnItems()
     {
-        if (!$this->user->can('read-common-items')) {
+        if (! $this->user->can('read-common-items')) {
             return;
         }
 
@@ -152,7 +152,7 @@ class Search extends Component
      */
     public function searchOnInvoices()
     {
-        if (!$this->user->can('read-sales-invoices')) {
+        if (! $this->user->can('read-sales-invoices')) {
             return;
         }
 
@@ -168,7 +168,7 @@ class Search extends Component
         foreach ($invoices as $invoice) {
             $this->results[] = (object) [
                 'id' => $invoice->id,
-                'name' => $invoice->document_number . ' - ' . $invoice->contact_name,
+                'name' => $invoice->document_number.' - '.$invoice->contact_name,
                 'type' => trans_choice('general.invoices', 1),
                 'color' => '#6da252',
                 'href' => route('invoices.show', $invoice->id),
@@ -183,7 +183,7 @@ class Search extends Component
      */
     public function searchOnCustomers()
     {
-        if (!$this->user->can('read-sales-customers')) {
+        if (! $this->user->can('read-sales-customers')) {
             return;
         }
 
@@ -215,7 +215,7 @@ class Search extends Component
      */
     public function searchOnBills()
     {
-        if (!$this->user->can('read-purchases-bills')) {
+        if (! $this->user->can('read-purchases-bills')) {
             return;
         }
 
@@ -231,7 +231,7 @@ class Search extends Component
         foreach ($bills as $bill) {
             $this->results[] = (object) [
                 'id' => $bill->id,
-                'name' => $bill->document_number . ' - ' . $bill->contact_name,
+                'name' => $bill->document_number.' - '.$bill->contact_name,
                 'type' => trans_choice('general.bills', 1),
                 'color' => '#ef3232',
                 'href' => route('bills.show', $bill->id),
@@ -246,7 +246,7 @@ class Search extends Component
      */
     public function searchOnVendors()
     {
-        if (!$this->user->can('read-purchases-vendors')) {
+        if (! $this->user->can('read-purchases-vendors')) {
             return;
         }
 

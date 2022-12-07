@@ -2,11 +2,10 @@
 
 namespace App\Listeners\Menu;
 
-use App\Traits\Permissions;
 use App\Events\Menu\AdminCreated as Event;
+use App\Traits\Permissions;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-use function Symfony\Component\Translation\t;
 
 class ShowInAdmin
 {
@@ -15,7 +14,7 @@ class ShowInAdmin
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -67,7 +66,6 @@ class ShowInAdmin
         }
         $menu->addDivider(70);
 
-
         $title = trim(trans('general.title.new', ['type' => trans_choice('general.expenses', 1)]));
         if ($this->canAccessMenuItem($title, 'create-banking-transactions')) {
             $menu->route('transactions.create', $title, ['type' => 'expense'], 70, ['icon' => 'control_point']);
@@ -84,7 +82,6 @@ class ShowInAdmin
         }
 
         $menu->addDivider(110);
-
 
         // Purchases
         $title = trim(trans_choice('general.bills', 2));
@@ -104,7 +101,6 @@ class ShowInAdmin
                 if ($this->canAccessMenuItem($title, 'read-banking-accounts')) {
                     $sub->route('accounts.index', $title, [], 10, $attr);
                 }
-
 
                 $title = trim(trans_choice('general.transfers', 2));
                 if ($this->canAccessMenuItem($title, 'read-banking-transfers')) {

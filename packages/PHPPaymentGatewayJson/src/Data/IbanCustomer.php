@@ -2,17 +2,15 @@
 
 namespace PaymentGatewayJson\Client\Data;
 
-
 use PaymentGatewayJson\Client\Exception\InvalidValueException;
 
 /**
  * Class IbanCustomer
  *
  * @deprecated see PaymentGatewayJson\Client\Data\PaymentData\IbanData
- * @package PaymentGatewayJson\Client\Data
  */
-class IbanCustomer extends Customer {
-
+class IbanCustomer extends Customer
+{
     /**
      * @var string
      */
@@ -36,67 +34,76 @@ class IbanCustomer extends Customer {
     /**
      * @return string
      */
-    public function getIban() {
+    public function getIban()
+    {
         return $this->iban;
     }
 
     /**
-     * @param string $iban
-     *
+     * @param  string  $iban
      * @return $this
      */
-    public function setIban($iban) {
+    public function setIban($iban)
+    {
         $this->iban = $iban;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getBic() {
+    public function getBic()
+    {
         return $this->bic;
     }
 
     /**
-     * @param string $bic
-     *
+     * @param  string  $bic
      * @return $this
      */
-    public function setBic($bic) {
+    public function setBic($bic)
+    {
         $this->bic = $bic;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getMandateId() {
+    public function getMandateId()
+    {
         return $this->mandateId;
     }
 
     /**
-     * @param string $mandateId
+     * @param  string  $mandateId
      * @return IbanCustomer
      */
-    public function setMandateId($mandateId) {
+    public function setMandateId($mandateId)
+    {
         $this->mandateId = $mandateId;
+
         return $this;
     }
 
     /**
      * @return \DateTime
      */
-    public function getMandateDate() {
+    public function getMandateDate()
+    {
         return $this->mandateDate;
     }
 
     /**
-     * @param \DateTime|string $mandateDate
-     *
+     * @param  \DateTime|string  $mandateDate
      * @return IbanCustomer
+     *
      * @throws InvalidValueException
      */
-    public function setMandateDate($mandateDate) {
+    public function setMandateDate($mandateDate)
+    {
         if (\is_string($mandateDate)) {
             $mandateDate = \DateTime::createFromFormat('Y-m-d', $mandateDate);
 
@@ -106,7 +113,7 @@ class IbanCustomer extends Customer {
         }
 
         $this->mandateDate = $mandateDate;
+
         return $this;
     }
-
 }

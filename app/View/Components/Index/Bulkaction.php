@@ -55,7 +55,7 @@ class Bulkaction extends Component
             if (is_array($bulk_action->path)) {
                 $this->path = route('bulk-actions.action', $bulk_action->path);
             } else {
-                $this->path = url('common/bulk-actions/' . $bulk_action->path);
+                $this->path = url('common/bulk-actions/'.$bulk_action->path);
             }
         } else {
             $bulk_action = new \stdClass();
@@ -69,7 +69,7 @@ class Bulkaction extends Component
             if (is_array($bulk_action->path)) {
                 $this->path = route('bulk-actions.action', $bulk_action->path);
             } else {
-                $this->path = url('common/bulk-actions/' . $bulk_action->path);
+                $this->path = url('common/bulk-actions/'.$bulk_action->path);
             }
         }
 

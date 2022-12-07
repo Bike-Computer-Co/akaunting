@@ -22,7 +22,7 @@ class EmailTemplates extends Controller
     {
         $templates = [];
 
-        EmailTemplate::all()->reject(function($template) {
+        EmailTemplate::all()->reject(function ($template) {
             if (Str::startsWith($template->class, 'App')) {
                 return false;
             }
@@ -42,8 +42,7 @@ class EmailTemplates extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function update(Request $request)
@@ -53,13 +52,13 @@ class EmailTemplates extends Controller
         $response = $this->ajaxDispatch(new UpdateEmailTemplate($template, $request));
 
         if ($response['success']) {
-            $response['redirect'] = url()->previous();;
+            $response['redirect'] = url()->previous();
 
             $message = trans('messages.success.updated', ['type' => trans($template->name)]);
 
             flash($message)->success();
         } else {
-            $response['redirect'] = url()->previous();;
+            $response['redirect'] = url()->previous();
 
             $message = $response['message'];
 
@@ -73,12 +72,12 @@ class EmailTemplates extends Controller
     {
         $template = EmailTemplate::find(request()->id);
 
-        $template->tags = trans('settings.email.templates.tags', ['tag_list'=> implode(', ', app($template->class)->getTags())]);
+        $template->tags = trans('settings.email.templates.tags', ['tag_list' => implode(', ', app($template->class)->getTags())]);
 
         return response()->json([
             'errors' => false,
             'success' => true,
-            'data'    => $template,
+            'data' => $template,
         ]);
     }
 }

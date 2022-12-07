@@ -48,7 +48,8 @@ class Date extends Component
             return $format;
         }
 
-        $date_time = new class() {
+        $date_time = new class()
+        {
             use DateTime;
         };
 

@@ -43,9 +43,9 @@ class Settings extends Seeder
         ];
 
         setting()->set([
-            'invoice.title'                     => trans_choice('general.invoices', 1),
-            'wizard.completed'                  => '0',
-            'offline-payments.methods'          => json_encode($offline_payments),
+            'invoice.title' => trans_choice('general.invoices', 1),
+            'wizard.completed' => '0',
+            'offline-payments.methods' => json_encode($offline_payments),
         ]);
     }
 }

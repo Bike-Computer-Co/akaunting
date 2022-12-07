@@ -11,7 +11,9 @@ class Recurring extends Model
     use RecurringTrait;
 
     public const ACTIVE_STATUS = 'active';
+
     public const END_STATUS = 'ended';
+
     public const COMPLETE_STATUS = 'completed';
 
     protected $table = 'recurring';

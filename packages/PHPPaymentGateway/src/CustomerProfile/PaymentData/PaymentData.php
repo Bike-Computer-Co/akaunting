@@ -6,9 +6,7 @@ use PaymentGateway\Client\Json\DataObject;
 
 /**
  * Class PaymentData
- *
- * @package PaymentGateway\Client\CustomerProfile\PaymentData
  */
-abstract class PaymentData extends DataObject {
-
+abstract class PaymentData extends DataObject
+{
 }

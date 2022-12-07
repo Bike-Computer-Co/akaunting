@@ -8,32 +8,32 @@
 <BODY style="background-color:#CCAACC" >
 
 
-<form id="payment_form" method="POST" action="<?php echo($_POST['TranType']. '.php'); ?>"  onsubmit="interceptSubmit(); return false;">
+<form id="payment_form" method="POST" action="<?php echo $_POST['TranType'].'.php'; ?>"  onsubmit="interceptSubmit(); return false;">
     <input type="hidden" name="transaction_token" id="transaction_token" />
-    <input type="hidden" name="Language" value="<?php echo($_POST["Language"]); ?>"/>
-    <input type="hidden" name="numInstalment" value="<?php echo($_POST["numInstalment"]); ?>"/>
-    <input type="hidden" name="initialStoreTrans" value="<?php echo($_POST["initialStoreTrans"]); ?>"/>
-    <input type="hidden" name="subSeqentTrans" value="<?php echo($_POST["subSeqentTrans"]); ?>"/>
-    <input type="hidden" name="gatewaySchadule" value="<?php echo($_POST["gatewaySchadule"]); ?>"/>
-    <input type="hidden" name="scheduleUnit" value="<?php echo($_POST["scheduleUnit"]); ?>"/>
-    <input type="hidden" name="schedulePeriod" value="<?php echo($_POST["schedulePeriod"]); ?>"/>
-    <input type="hidden" name="scheduleDelay" value="<?php echo($_POST["scheduleDelay"]); ?>"/>
-    <input type="hidden" name="refTranId" value="<?php echo($_POST["refTranId"]); ?>"/>
-    <input type="hidden" name="first_name" value="<?php echo($_POST["first_name"]); ?>"/>
-    <input type="hidden" name="last_name" value="<?php echo($_POST["last_name"]); ?>"/> 
-    <input type="hidden" name="email" value="<?php echo($_POST["email"]); ?>"/>
-    <input type="hidden" name="descr" value="<?php echo($_POST["descr"]); ?>"/>
+    <input type="hidden" name="Language" value="<?php echo $_POST['Language']; ?>"/>
+    <input type="hidden" name="numInstalment" value="<?php echo $_POST['numInstalment']; ?>"/>
+    <input type="hidden" name="initialStoreTrans" value="<?php echo $_POST['initialStoreTrans']; ?>"/>
+    <input type="hidden" name="subSeqentTrans" value="<?php echo $_POST['subSeqentTrans']; ?>"/>
+    <input type="hidden" name="gatewaySchadule" value="<?php echo $_POST['gatewaySchadule']; ?>"/>
+    <input type="hidden" name="scheduleUnit" value="<?php echo $_POST['scheduleUnit']; ?>"/>
+    <input type="hidden" name="schedulePeriod" value="<?php echo $_POST['schedulePeriod']; ?>"/>
+    <input type="hidden" name="scheduleDelay" value="<?php echo $_POST['scheduleDelay']; ?>"/>
+    <input type="hidden" name="refTranId" value="<?php echo $_POST['refTranId']; ?>"/>
+    <input type="hidden" name="first_name" value="<?php echo $_POST['first_name']; ?>"/>
+    <input type="hidden" name="last_name" value="<?php echo $_POST['last_name']; ?>"/> 
+    <input type="hidden" name="email" value="<?php echo $_POST['email']; ?>"/>
+    <input type="hidden" name="descr" value="<?php echo $_POST['descr']; ?>"/>
     <div>
     <div>
-        <?php if(isset($_POST["TranType"])){
-            echo("<p style='color:green; font-size: 20px'>". $_POST["TranType"]."</p><br>");
-            }
-        ?>
+        <?php if (isset($_POST['TranType'])) {
+            echo "<p style='color:green; font-size: 20px'>".$_POST['TranType'].'</p><br>';
+        }
+?>
     </div>
     <div>
         <label style="color:green; font-size: 20px">Amount</label><br>
-        <input type="text" name = "Amount" id="Amount" value="<?php echo $_POST["Amount"];?>" readonly style="font-family: Comic Sans MS, cursive, sans-serif; color: #555; border: 1px solid #ccc; border-radius: 4px; transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; width:50px; outline:none " /> 
-        <input type="text" name = "Currency" id="Currency" value="<?php echo $_POST["Currency"];?>" readonly style="font-family: Comic Sans MS, cursive, sans-serif; color: #555; border: 1px solid #ccc; border-radius: 4px; transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; width:50px; outline:none" />
+        <input type="text" name = "Amount" id="Amount" value="<?php echo $_POST['Amount']; ?>" readonly style="font-family: Comic Sans MS, cursive, sans-serif; color: #555; border: 1px solid #ccc; border-radius: 4px; transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; width:50px; outline:none " /> 
+        <input type="text" name = "Currency" id="Currency" value="<?php echo $_POST['Currency']; ?>" readonly style="font-family: Comic Sans MS, cursive, sans-serif; color: #555; border: 1px solid #ccc; border-radius: 4px; transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; width:50px; outline:none" />
         <br><br>
     </div>
 
@@ -67,7 +67,7 @@
     var payment = new PaymentJs("1.3");
 
    // payment.init('PublicIntegrationKey', 'number_div', 'cvv_div', function(payment){    
-    <?php $ini_array = parse_ini_file("config.ini", true);  ?>
+    <?php $ini_array = parse_ini_file('config.ini', true); ?>
     payment.init('<?= $ini_array['Credentials']['publicIntegrationKey']?>', 'number_div', 'cvv_div', function(payment){   
     //    payment.init('O5mjuzscJPcLQZS6j3KH', 'number_div', 'cvv_div', function(payment){ 
         var numberFocused = false;

@@ -52,19 +52,19 @@ class Queue extends Provider
             if (empty($company)) {
                 $event->job->delete();
 
-                throw new \Exception('Company not found. Payload: ' . json_encode($payload));
+                throw new \Exception('Company not found. Payload: '.json_encode($payload));
             }
 
             $company->makeCurrent();
         });
 
         app('events')->listen(JobFailed::class, function ($event) {
-            if (!$event->exception instanceof \Maatwebsite\Excel\Validators\ValidationException) {
+            if (! $event->exception instanceof \Maatwebsite\Excel\Validators\ValidationException) {
                 return;
             }
 
             $body = $event->job->getRawBody();
-            if (empty($body) || !is_string($body)) {
+            if (empty($body) || ! is_string($body)) {
                 return;
             }
 
@@ -74,7 +74,7 @@ class Queue extends Provider
             }
 
             $excel_job = unserialize($payload->data->command);
-            if (!$excel_job instanceof \Maatwebsite\Excel\Jobs\ReadChunk) {
+            if (! $excel_job instanceof \Maatwebsite\Excel\Jobs\ReadChunk) {
                 return;
             }
 
@@ -84,7 +84,7 @@ class Queue extends Provider
             // Get import class
             $class = $ref->getValue($excel_job);
 
-            if (!$class instanceof \App\Abstracts\Import && !$class instanceof \App\Abstracts\ImportMultipleSheets) {
+            if (! $class instanceof \App\Abstracts\Import && ! $class instanceof \App\Abstracts\ImportMultipleSheets) {
                 return;
             }
 
@@ -92,15 +92,15 @@ class Queue extends Provider
 
             foreach ($event->exception->failures() as $failure) {
                 $message = trans('messages.error.import_column', [
-                    'message'   => collect($failure->errors())->first(),
-                    'column'    => $failure->attribute(),
-                    'line'      => $failure->row(),
+                    'message' => collect($failure->errors())->first(),
+                    'column' => $failure->attribute(),
+                    'line' => $failure->row(),
                 ]);
 
                 $errors[] = $message;
             }
 
-            if (!empty($errors)) {
+            if (! empty($errors)) {
                 $class->user->notify(new ImportFailed($errors));
             }
         });

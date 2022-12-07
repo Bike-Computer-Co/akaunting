@@ -8,11 +8,9 @@ use PaymentGatewayJson\Client\Data\IbanCustomer;
 
 /**
  * Class ThreeDSecureTrait
- *
- * @package PaymentGatewayJson\Client\Transaction\Base
  */
-trait CustomerTrait {
-
+trait CustomerTrait
+{
     /** @var Customer */
     protected $customer;
 
@@ -26,14 +24,14 @@ trait CustomerTrait {
 
     /**
      * with backward compatibility for IbanCustomer/CreditCardCustomer
-     * @param IbanCustomer|CreditCardCustomer|Customer $customer
      *
+     * @param  IbanCustomer|CreditCardCustomer|Customer  $customer
      * @return $this
      */
     public function setCustomer($customer)
     {
         $this->customer = $customer;
+
         return $this;
     }
-
 }

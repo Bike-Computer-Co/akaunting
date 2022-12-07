@@ -17,7 +17,7 @@ class Profile extends Component
 
             event(new ProfileCreated($menu));
 
-            foreach($menu->getItems() as $item) {
+            foreach ($menu->getItems() as $item) {
                 if ($item->isActive()) {
                     $this->active_menu = 1;
                 }

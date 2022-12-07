@@ -19,7 +19,7 @@ class Contact extends FormRequest
 
         $type = $this->request->get('type', 'customer');
 
-        if (empty(config('type.contact.' . $type))) {
+        if (empty(config('type.contact.'.$type))) {
             $type = null;
         }
 
@@ -34,41 +34,41 @@ class Contact extends FormRequest
             $id = null;
         }
 
-        if (!empty($this->request->get('email'))) {
+        if (! empty($this->request->get('email'))) {
             $email .= 'email:rfc,dns|unique:contacts,NULL,'
-                      . $id . ',id'
-                      . ',company_id,' . $company_id
-                      . ',type,' . $type
-                      . ',deleted_at,NULL';
+                      .$id.',id'
+                      .',company_id,'.$company_id
+                      .',type,'.$type
+                      .',deleted_at,NULL';
 
             if (isset($model) && $this->$model->user_id) {
-                $email .= '|unique:users,NULL,' . $this->$model->user_id . ',id,deleted_at,NULL';
+                $email .= '|unique:users,NULL,'.$this->$model->user_id.',id,deleted_at,NULL';
             }
         }
 
         if ($this->files->get('logo')) {
-            $logo = 'mimes:' . config('filesystems.mimes')
-                    . '|between:0,' . config('filesystems.max_size') * 1024
-                    . '|dimensions:max_width=' . config('filesystems.max_width') . ',max_height=' . config('filesystems.max_height');
+            $logo = 'mimes:'.config('filesystems.mimes')
+                    .'|between:0,'.config('filesystems.max_size') * 1024
+                    .'|dimensions:max_width='.config('filesystems.max_width').',max_height='.config('filesystems.max_height');
         }
 
         return [
-            'type'          => 'required|string',
-            'name'          => 'required|string',
-            'email'         => $email,
-            'user_id'       => 'integer|nullable',
+            'type' => 'required|string',
+            'name' => 'required|string',
+            'email' => $email,
+            'user_id' => 'integer|nullable',
             'currency_code' => 'required|string|currency',
-            'enabled'       => 'integer|boolean',
-            'logo'          => $logo,
+            'enabled' => 'integer|boolean',
+            'logo' => $logo,
         ];
     }
 
     public function messages()
     {
         $logo_dimensions = trans('validation.custom.invalid_dimension', [
-            'attribute'     => Str::lower(trans_choice('general.pictures', 1)),
-            'width'         => config('filesystems.max_width'),
-            'height'        => config('filesystems.max_height'),
+            'attribute' => Str::lower(trans_choice('general.pictures', 1)),
+            'width' => config('filesystems.max_width'),
+            'height' => config('filesystems.max_height'),
         ]);
 
         return [

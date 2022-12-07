@@ -15,8 +15,8 @@ class UnzipFile extends Job
     /**
      * Create a new job instance.
      *
-     * @param  $alias
-     * @param  $path
+     * @param    $alias
+     * @param    $path
      */
     public function __construct($alias, $path)
     {
@@ -35,14 +35,14 @@ class UnzipFile extends Job
             throw new \Exception(trans('modules.errors.unzip', ['module' => $this->alias]));
         }
 
-        $temp_path = storage_path('app/temp/' . $this->path);
+        $temp_path = storage_path('app/temp/'.$this->path);
 
-        $file = $temp_path . '/upload.zip';
+        $file = $temp_path.'/upload.zip';
 
         // Unzip the file
         $zip = new ZipArchive();
 
-        if (!$zip->open($file) || !$zip->extractTo($temp_path)) {
+        if (! $zip->open($file) || ! $zip->extractTo($temp_path)) {
             throw new \Exception(trans('modules.errors.unzip', ['module' => $this->alias]));
         }
 

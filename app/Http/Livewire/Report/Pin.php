@@ -17,13 +17,13 @@ class Pin extends Component
 
     public function render(): View
     {
-        $pins = setting('favorites.report.' . user()->id, []);
+        $pins = setting('favorites.report.'.user()->id, []);
 
-        if (!empty($pins)) {
+        if (! empty($pins)) {
             $pins = json_decode($pins, true);
 
             foreach ($this->categories as $category) {
-                foreach($category['reports'] as $report) {
+                foreach ($category['reports'] as $report) {
                     if (is_array($report)) {
                         $report = Report::find($report['id']);
                     }
@@ -61,9 +61,9 @@ class Pin extends Component
 
     public function addPin($report_id)
     {
-        $pins = setting('favorites.report.' . user()->id, []);
+        $pins = setting('favorites.report.'.user()->id, []);
 
-        if (!empty($pins)) {
+        if (! empty($pins)) {
             $pins = json_decode($pins, true);
         }
 
@@ -79,16 +79,16 @@ class Pin extends Component
 
         $this->pinned = true;
 
-        setting(['favorites.report.' . user()->id => json_encode($pins)])->save();
+        setting(['favorites.report.'.user()->id => json_encode($pins)])->save();
 
         $this->emit('addedPin');
     }
 
     public function removePin($report_id)
     {
-        $pins = setting('favorites.report.' . user()->id, []);
+        $pins = setting('favorites.report.'.user()->id, []);
 
-        if (!empty($pins)) {
+        if (! empty($pins)) {
             $pins = json_decode($pins, true);
         }
 
@@ -103,7 +103,7 @@ class Pin extends Component
             break;
         }
 
-        setting(['favorites.report.' . user()->id => json_encode($pins)])->save();
+        setting(['favorites.report.'.user()->id => json_encode($pins)])->save();
 
         $this->emit('removedPin');
     }

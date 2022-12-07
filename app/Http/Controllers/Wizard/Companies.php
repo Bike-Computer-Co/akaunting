@@ -40,7 +40,6 @@ class Companies extends Controller
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function update(Request $request)
@@ -62,16 +61,16 @@ class Companies extends Controller
 
             switch ($key) {
                 case 'api_key':
-                    $real_key = 'apps.' . $key;
+                    $real_key = 'apps.'.$key;
                     break;
                 case 'financial_start':
-                    $real_key = 'localisation.' . $key;
+                    $real_key = 'localisation.'.$key;
                     break;
                 case 'country':
-                    $real_key = 'company.' . $key;
+                    $real_key = 'company.'.$key;
                     break;
                 default:
-                    $real_key = 'company.' . $key;
+                    $real_key = 'company.'.$key;
             }
 
             // change dropzone middleware already uploaded file
@@ -79,8 +78,8 @@ class Companies extends Controller
                 continue;
             }
 
-             // Process file uploads
-             if (in_array($real_key, $file_keys)) {
+            // Process file uploads
+            if (in_array($real_key, $file_keys)) {
                 // Upload attachment
                 if ($request->file($key)) {
                     $media = $this->getMedia($request->file($key), 'settings');

@@ -41,7 +41,7 @@ class Attachment extends Form
         $file_types = [];
 
         foreach ($file_type_mimes as $mime) {
-            $file_types[] = '.' . $mime;
+            $file_types[] = '.'.$mime;
         }
 
         $this->file_types = implode(',', $file_types);

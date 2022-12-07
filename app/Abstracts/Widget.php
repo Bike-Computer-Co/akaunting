@@ -6,7 +6,6 @@ use App\Models\Common\Report;
 use App\Traits\Charts;
 use App\Utilities\Date;
 use App\Utilities\Reports;
-use Illuminate\Support\Str;
 
 abstract class Widget
 {
@@ -60,10 +59,10 @@ abstract class Widget
             $alias = Reports::getModuleAlias($this->report_class);
 
             return route('apps.app.show', [
-                'alias'         => $alias,
-                'utm_source'    => 'widget',
-                'utm_medium'    => 'app',
-                'utm_campaign'  => str_replace('-', '_', $alias),
+                'alias' => $alias,
+                'utm_source' => 'widget',
+                'utm_medium' => 'app',
+                'utm_campaign' => str_replace('-', '_', $alias),
             ]);
         }
 
@@ -104,8 +103,8 @@ abstract class Widget
             return $model;
         }
 
-        $start_date = request()->get('start_date') . ' 00:00:00';
-        $end_date = request()->get('end_date') . ' 23:59:59';
+        $start_date = request()->get('start_date').' 00:00:00';
+        $end_date = request()->get('end_date').' 23:59:59';
 
         return $model->whereBetween($args['date_field'], [$start_date, $end_date]);
     }

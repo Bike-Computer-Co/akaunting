@@ -10,7 +10,9 @@ class Script extends Component
     use ViewComponents;
 
     public const OBJECT_TYPE = 'transfer';
+
     public const DEFAULT_TYPE = 'transfer';
+
     public const DEFAULT_PLURAL_TYPE = 'transfers';
 
     public $model;

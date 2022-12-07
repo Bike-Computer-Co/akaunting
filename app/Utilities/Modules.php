@@ -25,7 +25,7 @@ class Modules
             $payment_methods = Cache::get($cache_customer);
         }
 
-        if (!empty($payment_methods)) {
+        if (! empty($payment_methods)) {
             return $payment_methods;
         }
 
@@ -37,7 +37,7 @@ class Modules
         // Fire the event to get the list of payment methods
         event(new PaymentMethodShowing($modules));
         foreach ((array) $modules->payment_methods as $method) {
-            if (!isset($method['name']) || !isset($method['code'])) {
+            if (! isset($method['name']) || ! isset($method['code'])) {
                 continue;
             }
 
@@ -71,7 +71,7 @@ class Modules
 
     public static function getPaymentMethodsCacheKey($type)
     {
-        return 'payment_methods.' . company_id() . '.' . $type;
+        return 'payment_methods.'.company_id().'.'.$type;
     }
 
     protected static function sortPaymentMethods(&$list)
@@ -79,7 +79,7 @@ class Modules
         $sort_order = [];
 
         foreach ($list as $key => $value) {
-            $sort_order[$key] = !empty($value['order']) ? $value['order'] : 0;
+            $sort_order[$key] = ! empty($value['order']) ? $value['order'] : 0;
         }
 
         if (empty($sort_order)) {

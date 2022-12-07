@@ -14,10 +14,9 @@ use PaymentGateway\Client\Transaction\Base\ScheduleTrait;
  * Register: Register the customer's payment data for recurring charges.
  *
  * The registered customer payment data will be available for recurring transaction without user interaction.
- *
- * @package PaymentGateway\Client\Transaction
  */
-class Register extends AbstractTransaction implements OffsiteInterface, ScheduleInterface, AddToCustomerProfileInterface {
+class Register extends AbstractTransaction implements OffsiteInterface, ScheduleInterface, AddToCustomerProfileInterface
+{
     use OffsiteTrait;
     use ScheduleTrait;
     use AddToCustomerProfileTrait;

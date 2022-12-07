@@ -46,7 +46,7 @@ class Register extends Controller
     {
         $invitation = UserInvitation::token($request->get('token'))->first();
 
-        if (!$invitation) {
+        if (! $invitation) {
             abort(403);
         }
 

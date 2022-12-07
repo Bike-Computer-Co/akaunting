@@ -3,8 +3,6 @@
 namespace App\BulkActions;
 
 use App\Abstracts\BulkAction;
-use App\Jobs\Banking\DeleteAccount;
-use App\Jobs\Banking\UpdateAccount;
 use App\Jobs\Employees\DeleteEmployee;
 use App\Models\Employees\Employee;
 
@@ -16,30 +14,29 @@ class Employees extends BulkAction
 
     public $path = [
         'type' => 'employees',
-        'group'=> 'employees'
+        'group' => 'employees',
     ];
 
     public $actions = [
-//        'enable'    => [
-//            'icon'          => 'check_circle',
-//            'name'          => 'general.enable',
-//            'message'       => 'bulk_actions.message.enable',
-//            'permission'    => 'update-banking-accounts',
-//        ],
-//        'disable'   => [
-//            'icon'          => 'hide_source',
-//            'name'          => 'general.disable',
-//            'message'       => 'bulk_actions.message.disable',
-//            'permission'    => 'update-banking-accounts',
-//        ],
-        'delete'    => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-employee',
+        //        'enable'    => [
+        //            'icon'          => 'check_circle',
+        //            'name'          => 'general.enable',
+        //            'message'       => 'bulk_actions.message.enable',
+        //            'permission'    => 'update-banking-accounts',
+        //        ],
+        //        'disable'   => [
+        //            'icon'          => 'hide_source',
+        //            'name'          => 'general.disable',
+        //            'message'       => 'bulk_actions.message.disable',
+        //            'permission'    => 'update-banking-accounts',
+        //        ],
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-employee',
         ],
     ];
-
 
     public function destroy($request)
     {

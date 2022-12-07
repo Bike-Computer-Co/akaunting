@@ -4,11 +4,9 @@ namespace PaymentGatewayJson\Client\Http;
 
 /**
  * Interface ResponseInterface
- *
- * @package PaymentGatewayJson\Client\Http
  */
-interface ResponseInterface {
-
+interface ResponseInterface
+{
     /**
      * @return int
      */
@@ -25,10 +23,8 @@ interface ResponseInterface {
     public function getHeaders();
 
     /**
-     * @param array $config
-     *
+     * @param  array  $config
      * @return mixed
      */
-    public function json(array $config = array());
-
+    public function json(array $config = []);
 }

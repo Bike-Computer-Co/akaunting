@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'niestandardowy-komunikat',
         ],
-        'invalid_currency'      => 'Kod :attribute jest nieprawidłowy.',
-        'invalid_amount'        => 'Kwota :attribute jest nieprawidłowa.',
-        'invalid_extension'     => 'Rozszerzenie pliku jest nieprawidłowe.',
+        'invalid_currency' => 'Kod :attribute jest nieprawidłowy.',
+        'invalid_amount' => 'Kwota :attribute jest nieprawidłowa.',
+        'invalid_extension' => 'Rozszerzenie pliku jest nieprawidłowe.',
     ],
 
     /*

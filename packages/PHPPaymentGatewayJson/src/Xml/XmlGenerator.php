@@ -7,11 +7,12 @@ use PaymentGatewayJson\Client\Data\Customer;
 use PaymentGatewayJson\Client\Data\IbanCustomer;
 use PaymentGatewayJson\Client\Data\Request;
 use PaymentGatewayJson\Client\Exception\InvalidValueException;
-use PaymentGatewayJson\Client\Schedule\ScheduleData;
 use PaymentGatewayJson\Client\Exception\TypeException;
+use PaymentGatewayJson\Client\Schedule\ScheduleData;
 use PaymentGatewayJson\Client\StatusApi\StatusRequestData;
 use PaymentGatewayJson\Client\Transaction\Base\AbstractTransaction;
 use PaymentGatewayJson\Client\Transaction\Base\AbstractTransactionWithReference;
+use PaymentGatewayJson\Client\Transaction\Base\AddToCustomerProfileInterface;
 use PaymentGatewayJson\Client\Transaction\Base\AmountableInterface;
 use PaymentGatewayJson\Client\Transaction\Base\ItemsInterface;
 use PaymentGatewayJson\Client\Transaction\Base\OffsiteInterface;
@@ -23,15 +24,14 @@ use PaymentGatewayJson\Client\Transaction\Preauthorize;
 use PaymentGatewayJson\Client\Transaction\Refund;
 use PaymentGatewayJson\Client\Transaction\Register;
 use PaymentGatewayJson\Client\Transaction\VoidTransaction;
-use PaymentGatewayJson\Client\Transaction\Base\AddToCustomerProfileInterface;
 
 /**
  * Class XmlGenerator
+ *
  * @deprecated use Json instead
- * @package PaymentGatewayJson\Client\Xml
  */
-class XmlGenerator {
-
+class XmlGenerator
+{
     /**
      * @var \DOMDocument
      */
@@ -44,24 +44,26 @@ class XmlGenerator {
     //protected $namespaceRoot = 'https://bankart.paymentsandbox.cloud/';
 
     /**
-     * @param string $namespaceRoot
+     * @param  string  $namespaceRoot
      */
-    public function setNamespaceRoot($namespaceRoot) {
+    public function setNamespaceRoot($namespaceRoot)
+    {
         $this->namespaceRoot = $namespaceRoot;
     }
 
     /**
-     * @param string $method
-     * @param AbstractTransaction $transaction
-     * @param string $username
-     * @param string $password
-     * @param string $language
+     * @param  string  $method
+     * @param  AbstractTransaction  $transaction
+     * @param  string  $username
+     * @param  string  $password
+     * @param  string  $language
      * @return \DOMDocument
      */
-    public function generateTransaction($method, AbstractTransaction $transaction, $username, $password, $language=null) {
+    public function generateTransaction($method, AbstractTransaction $transaction, $username, $password, $language = null)
+    {
         $this->document = new \DOMDocument('1.0', 'utf-8');
         $this->document->formatOutput = true;
-        $root = $this->document->createElementNS($this->namespaceRoot . '/Schema/V2/Transaction', 'transaction');
+        $root = $this->document->createElementNS($this->namespaceRoot.'/Schema/V2/Transaction', 'transaction');
 
         $this->_appendTextNode($root, 'username', $username);
         $this->_appendTextNode($root, 'password', $password);
@@ -76,7 +78,6 @@ class XmlGenerator {
             $node = $this->document->createElement($method);
             $this->appendAbstractTransactionNodes($node, $transaction);
         } else {
-
             switch (true) {
                 case $transaction instanceof Debit:
                     $node = $this->generateDebitNode($transaction, $method);
@@ -115,37 +116,37 @@ class XmlGenerator {
     }
 
     /**
-     * @param string              $method
-     * @param AbstractTransaction $transaction
-     * @param string              $username
-     * @param string              $password
-     * @param string|null          $language
-     *
+     * @param  string  $method
+     * @param  AbstractTransaction  $transaction
+     * @param  string  $username
+     * @param  string  $password
+     * @param  string|null  $language
      * @return string
      */
-    public function generateTransactionXml($method, AbstractTransaction $transaction, $username, $password, $language=null) {
+    public function generateTransactionXml($method, AbstractTransaction $transaction, $username, $password, $language = null)
+    {
         return $this->generateTransaction($method, $transaction, $username, $password, $language)->saveXML();
     }
 
     /**
-     * @param string       $scheduleAction
-     * @param ScheduleData $schedule
-     * @param string       $username
-     * @param string       $password
-     *
+     * @param  string  $scheduleAction
+     * @param  ScheduleData  $schedule
+     * @param  string  $username
+     * @param  string  $password
      * @return string
+     *
      * @throws TypeException
      */
-    public function generateScheduleXml($scheduleAction, ScheduleData $schedule, $username, $password) {
-
+    public function generateScheduleXml($scheduleAction, ScheduleData $schedule, $username, $password)
+    {
         $this->document = new \DOMDocument('1.0', 'utf-8');
         $this->document->formatOutput = true;
-        $root = $this->document->createElementNS($this->namespaceRoot . '/Schema/V2/ScheduleResultData', 'schedule');
+        $root = $this->document->createElementNS($this->namespaceRoot.'/Schema/V2/ScheduleResultData', 'schedule');
 
         $this->_appendTextNode($root, 'username', $username);
         $this->_appendTextNode($root, 'password', $password);
 
-        if (!in_array($scheduleAction, ['startSchedule', 'showSchedule', 'pauseSchedule', 'continueSchedule', 'cancelSchedule'])) {
+        if (! in_array($scheduleAction, ['startSchedule', 'showSchedule', 'pauseSchedule', 'continueSchedule', 'cancelSchedule'])) {
             throw new TypeException('One of the following nodes is required: startSchedule, showSchedule, pauseSchedule, continueSchedule, cancelSchedule');
         }
 
@@ -168,10 +169,8 @@ class XmlGenerator {
             if ($schedule->getMerchantMetaData()) {
                 $this->_appendTextNode($scheduleNode, 'merchantMetaData', $schedule->getMerchantMetaData());
             }
-
         } else {
             $this->_appendTextNode($scheduleNode, 'scheduleId', $schedule->getScheduleId());
-
         }
 
         if ($scheduleAction === 'continueSchedule') {
@@ -186,18 +185,18 @@ class XmlGenerator {
     }
 
     /**
-     * @param StatusRequestData $statusRequestData
-     * @param                   $username
-     * @param                   $password
-     *
+     * @param  StatusRequestData  $statusRequestData
+     * @param    $username
+     * @param    $password
      * @return string
+     *
      * @throws TypeException
      */
-    public function generateStatusRequestXml(StatusRequestData $statusRequestData, $username, $password) {
-
+    public function generateStatusRequestXml(StatusRequestData $statusRequestData, $username, $password)
+    {
         $this->document = new \DOMDocument('1.0', 'utf-8');
         $this->document->formatOutput = true;
-        $root = $this->document->createElementNS($this->namespaceRoot . '/Schema/V2/Status', 'status');
+        $root = $this->document->createElementNS($this->namespaceRoot.'/Schema/V2/Status', 'status');
 
         $this->_appendTextNode($root, 'username', $username);
         $this->_appendTextNode($root, 'password', $password);
@@ -217,16 +216,17 @@ class XmlGenerator {
     }
 
     /**
-     * @param string $username
-     * @param string $password
-     * @param string $identifier
-     * @param array $parameters
+     * @param  string  $username
+     * @param  string  $password
+     * @param  string  $identifier
+     * @param  array  $parameters
      * @return \DOMDocument
      */
-    public function generateOptions($username, $password, $identifier, $parameters=array()) {
+    public function generateOptions($username, $password, $identifier, $parameters = [])
+    {
         $this->document = new \DOMDocument('1.0', 'utf-8');
         $this->document->formatOutput = true;
-        $root = $this->document->createElementNS($this->namespaceRoot . '/Schema/V2/Options', 'options');
+        $root = $this->document->createElementNS($this->namespaceRoot.'/Schema/V2/Options', 'options');
         $this->document->appendChild($root);
 
         $this->_appendTextNode($root, 'username', $username);
@@ -238,7 +238,7 @@ class XmlGenerator {
         $this->_appendTextNode($requestNode, 'identifier', $identifier);
 
         if ($parameters) {
-            foreach ($parameters as $k=>$v) {
+            foreach ($parameters as $k => $v) {
                 if (is_array($v)) {
                     $v = json_encode($v);
                 } elseif (is_object($v)) {
@@ -254,14 +254,14 @@ class XmlGenerator {
         }
 
         return $this->document;
-
     }
 
     /**
-     * @param \DOMNode $parentNode
-     * @param AbstractTransaction $transaction
+     * @param  \DOMNode  $parentNode
+     * @param  AbstractTransaction  $transaction
      */
-    protected function appendAbstractTransactionNodes(\DOMNode $parentNode, AbstractTransaction $transaction) {
+    protected function appendAbstractTransactionNodes(\DOMNode $parentNode, AbstractTransaction $transaction)
+    {
         if (method_exists($transaction, 'getTransactionToken')) {
             $this->_appendTextNode($parentNode, 'transactionToken', $transaction->getTransactionToken());
         }
@@ -286,10 +286,11 @@ class XmlGenerator {
     }
 
     /**
-     * @param \DOMNode $parentNode
-     * @param AbstractTransactionWithReference $transaction
+     * @param  \DOMNode  $parentNode
+     * @param  AbstractTransactionWithReference  $transaction
      */
-    protected function appendAbstractTransactionWithReferenceNodes(\DOMNode $parentNode, AbstractTransactionWithReference $transaction) {
+    protected function appendAbstractTransactionWithReferenceNodes(\DOMNode $parentNode, AbstractTransactionWithReference $transaction)
+    {
         $this->appendAbstractTransactionNodes($parentNode, $transaction);
         $this->_appendTextNode($parentNode, 'referenceTransactionId', $transaction->getReferenceTransactionId());
         $this->_appendTextNode($parentNode, 'referenceCustomerId', $transaction->getReferenceCustomerId());
@@ -299,13 +300,13 @@ class XmlGenerator {
     }
 
     /**
-     * @param \DOMNode     $parentNode
-     * @param ScheduleData $scheduleData
+     * @param  \DOMNode  $parentNode
+     * @param  ScheduleData  $scheduleData
      *
      * @throws TypeException
      */
-    protected function appendScheduleNode(\DOMNode $parentNode, $scheduleData) {
-
+    protected function appendScheduleNode(\DOMNode $parentNode, $scheduleData)
+    {
         $scheduleNode = $this->document->createElement('startSchedule');
 
         $this->verifyAmountType($scheduleData->getAmount(), 'amount');
@@ -329,11 +330,13 @@ class XmlGenerator {
     }
 
     /**
-     * @param \DOMNode $parentNode
-     * @param AddToCustomerProfileInterface $transaction
+     * @param  \DOMNode  $parentNode
+     * @param  AddToCustomerProfileInterface  $transaction
+     *
      * @throws InvalidValueException
      */
-    protected function appendAddToCustomerProfileNode(\DOMNode $parentNode, AddToCustomerProfileInterface $transaction) {
+    protected function appendAddToCustomerProfileNode(\DOMNode $parentNode, AddToCustomerProfileInterface $transaction)
+    {
         $profileNode = $this->document->createElement('addToCustomerProfile');
 
         if ($transaction->getCustomerProfileGuid() && $transaction->getCustomerProfileIdentification()) {
@@ -345,34 +348,32 @@ class XmlGenerator {
             if ($transaction->getMarkAsPreferred()) {
                 $this->_appendTextNode($profileNode, 'markAsPreferred', 'true');
             }
-            
+
             $parentNode->appendChild($profileNode);
-            
         } elseif ($transaction->getCustomerProfileIdentification()) {
             $this->_appendTextNode($profileNode, 'customerIdentification', $transaction->getCustomerProfileIdentification());
             if ($transaction->getMarkAsPreferred()) {
                 $this->_appendTextNode($profileNode, 'markAsPreferred', 'true');
             }
-            
+
             $parentNode->appendChild($profileNode);
         }
-
-
     }
 
     /**
-     * @param \DOMNode $parentNode
-     * @param OffsiteInterface $transaction
+     * @param  \DOMNode  $parentNode
+     * @param  OffsiteInterface  $transaction
+     *
      * @throws TypeException
      */
-    protected function appendOffsiteNodes(\DOMNode $parentNode, OffsiteInterface $transaction) {
+    protected function appendOffsiteNodes(\DOMNode $parentNode, OffsiteInterface $transaction)
+    {
         if ($transaction instanceof AbstractTransactionWithReference && $transaction->getReferenceTransactionId()) {
             if ($transaction->getSuccessUrl()) {
                 $this->verifyUrl($transaction->getSuccessUrl(), 'successUrl');
             }
         } else {
             $this->verifyUrl($transaction->getSuccessUrl(), 'successUrl');
-
         }
 
         $this->verifyUrl($transaction->getCallbackUrl(), 'callbackUrl');
@@ -391,24 +392,28 @@ class XmlGenerator {
     }
 
     /**
-     * @param \DOMNode $parentNode
-     * @param AmountableInterface $transaction
+     * @param  \DOMNode  $parentNode
+     * @param  AmountableInterface  $transaction
+     *
      * @throws TypeException
      */
-    protected function appendAmountableNodes(\DOMNode $parentNode, AmountableInterface $transaction) {
+    protected function appendAmountableNodes(\DOMNode $parentNode, AmountableInterface $transaction)
+    {
         $this->verifyAmountType($transaction->getAmount(), 'amount');
         $this->verifyCurrencyType($transaction->getCurrency(), 'currency');
-		
+
         $this->_appendTextNode($parentNode, 'amount', number_format($transaction->getAmount(), 2, '.', ''));
         $this->_appendTextNode($parentNode, 'currency', $transaction->getCurrency());
     }
 
     /**
-     * @param \DOMNode $parentNode
-     * @param Customer $customer
+     * @param  \DOMNode  $parentNode
+     * @param  Customer  $customer
+     *
      * @throws TypeException
      */
-    protected function appendCustomerNode(\DOMNode $parentNode, Customer $customer) {
+    protected function appendCustomerNode(\DOMNode $parentNode, Customer $customer)
+    {
         if ($customer instanceof IbanCustomer) {
             $node = $this->document->createElement('ibanCustomer');
         } elseif ($customer instanceof CreditCardCustomer) {
@@ -476,13 +481,14 @@ class XmlGenerator {
     }
 
     /**
-     * @param \DOMNode $parentNode
-     * @param string $nodeName
-     * @param array $extraData
+     * @param  \DOMNode  $parentNode
+     * @param  string  $nodeName
+     * @param  array  $extraData
      */
-    protected function appendExtraDataNodes(\DOMNode $parentNode, $nodeName, $extraData) {
+    protected function appendExtraDataNodes(\DOMNode $parentNode, $nodeName, $extraData)
+    {
         if (is_array($extraData)) {
-            foreach ($extraData as $k=>$v) {
+            foreach ($extraData as $k => $v) {
                 $node = $this->_appendTextNode($parentNode, $nodeName, $v === false ? 'false' : $v, false);
                 $node->setAttribute('key', $k);
             }
@@ -490,11 +496,12 @@ class XmlGenerator {
     }
 
     /**
-     * @param \DOMNode $parentNode
+     * @param  \DOMNode  $parentNode
      * @param $nodeName
-     * @param Request $request
+     * @param  Request  $request
      */
-    protected function appendRequestNode(\DOMNode $parentNode, $nodeName, Request $request) {
+    protected function appendRequestNode(\DOMNode $parentNode, $nodeName, Request $request)
+    {
         $node = $this->document->createElement($nodeName);
 
         if ($request->getGet()) {
@@ -512,10 +519,11 @@ class XmlGenerator {
     }
 
     /**
-     * @param \DOMNode $parentNode
-     * @param ItemsInterface $transaction
+     * @param  \DOMNode  $parentNode
+     * @param  ItemsInterface  $transaction
      */
-    protected function appendItemsNode(\DOMNode $parentNode, ItemsInterface $transaction) {
+    protected function appendItemsNode(\DOMNode $parentNode, ItemsInterface $transaction)
+    {
         if ($transaction->getItems()) {
             $node = $this->document->createElement('items');
 
@@ -544,12 +552,12 @@ class XmlGenerator {
     }
 
     /**
-     * @param Debit $transaction
-     * @param string $method
-     *
+     * @param  Debit  $transaction
+     * @param  string  $method
      * @return \DOMElement
      */
-    protected function generateDebitNode(Debit $transaction, $method) {
+    protected function generateDebitNode(Debit $transaction, $method)
+    {
         $node = $this->document->createElement($method);
         $this->appendAbstractTransactionWithReferenceNodes($node, $transaction);
         $this->appendAmountableNodes($node, $transaction);
@@ -572,13 +580,14 @@ class XmlGenerator {
     }
 
     /**
-     * @param Register $transaction
-     * @param          $method
-     *
+     * @param  Register  $transaction
+     * @param    $method
      * @return \DOMElement
+     *
      * @throws TypeException
      */
-    protected function generateRegisterNode(Register $transaction, $method) {
+    protected function generateRegisterNode(Register $transaction, $method)
+    {
         $node = $this->document->createElement($method);
         $this->appendAbstractTransactionNodes($node, $transaction);
         $this->appendOffsiteNodes($node, $transaction);
@@ -597,11 +606,12 @@ class XmlGenerator {
     }
 
     /**
-     * @param Deregister $transaction
+     * @param  Deregister  $transaction
      * @param $method
      * @return \DOMElement
      */
-    protected function generateDeregisterNode(Deregister $transaction, $method) {
+    protected function generateDeregisterNode(Deregister $transaction, $method)
+    {
         $node = $this->document->createElement($method);
         $this->appendAbstractTransactionWithReferenceNodes($node, $transaction);
 
@@ -609,13 +619,14 @@ class XmlGenerator {
     }
 
     /**
-     * @param Preauthorize $transaction
-     * @param              $method
-     *
+     * @param  Preauthorize  $transaction
+     * @param    $method
      * @return \DOMElement
+     *
      * @throws TypeException
      */
-    protected function generatePreauthorizeNode(Preauthorize $transaction, $method) {
+    protected function generatePreauthorizeNode(Preauthorize $transaction, $method)
+    {
         $node = $this->document->createElement($method);
         $this->appendAbstractTransactionWithReferenceNodes($node, $transaction);
         $this->appendAmountableNodes($node, $transaction);
@@ -637,11 +648,12 @@ class XmlGenerator {
     }
 
     /**
-     * @param Capture $transaction
+     * @param  Capture  $transaction
      * @param $method
      * @return \DOMElement
      */
-    protected function generateCaptureNode(Capture $transaction, $method) {
+    protected function generateCaptureNode(Capture $transaction, $method)
+    {
         $node = $this->document->createElement($method);
         $this->appendAbstractTransactionWithReferenceNodes($node, $transaction);
         $this->appendAmountableNodes($node, $transaction);
@@ -651,12 +663,12 @@ class XmlGenerator {
     }
 
     /**
-     * @param \PaymentGatewayJson\Client\Transaction\VoidTransaction $transaction
+     * @param  \PaymentGatewayJson\Client\Transaction\VoidTransaction  $transaction
      * @param $method
-     *
      * @return \DOMElement
      */
-    protected function generateVoidNode(VoidTransaction $transaction, $method) {
+    protected function generateVoidNode(VoidTransaction $transaction, $method)
+    {
         $node = $this->document->createElement($method);
         $this->appendAbstractTransactionWithReferenceNodes($node, $transaction);
 
@@ -664,11 +676,12 @@ class XmlGenerator {
     }
 
     /**
-     * @param Refund $transaction
+     * @param  Refund  $transaction
      * @param $method
      * @return \DOMElement
      */
-    protected function generateRefundNode(Refund $transaction, $method) {
+    protected function generateRefundNode(Refund $transaction, $method)
+    {
         $node = $this->document->createElement($method);
         $this->appendAbstractTransactionWithReferenceNodes($node, $transaction);
         $this->appendAmountableNodes($node, $transaction);
@@ -685,11 +698,12 @@ class XmlGenerator {
     }
 
     /**
-     * @param Payout $transaction
-     * @param string $method
+     * @param  Payout  $transaction
+     * @param  string  $method
      * @return \DOMElement
      */
-    protected function generatePayoutNode(Payout $transaction, $method) {
+    protected function generatePayoutNode(Payout $transaction, $method)
+    {
         $node = $this->document->createElement($method);
         $this->appendAbstractTransactionWithReferenceNodes($node, $transaction);
         $this->appendAmountableNodes($node, $transaction);
@@ -704,110 +718,126 @@ class XmlGenerator {
     }
 
     /**
-     * @param string $value
-     * @param string $elementName
+     * @param  string  $value
+     * @param  string  $elementName
+     *
      * @throws TypeException
      */
-    private function verifyCurrencyType($value, $elementName) {
-        if ($value == null || !is_string($value) || strlen($value) != 3) {
+    private function verifyCurrencyType($value, $elementName)
+    {
+        if ($value == null || ! is_string($value) || strlen($value) != 3) {
             throw new TypeException('Value of '.$elementName.' must by of type string and exactly 3 characters long');
         }
     }
 
     /**
-     * @param string $value
-     * @param string $elementName
+     * @param  string  $value
+     * @param  string  $elementName
+     *
      * @throws TypeException
      */
-    private function verifyCountryType($value, $elementName) {
-        if ($value == null || !is_string($value) || strlen($value) != 2) {
+    private function verifyCountryType($value, $elementName)
+    {
+        if ($value == null || ! is_string($value) || strlen($value) != 2) {
             throw new TypeException('Value of '.$elementName.' must by of type string and exactly 2 characters long');
         }
     }
 
     /**
-     * @param string $value
-     * @param string $elementName
+     * @param  string  $value
+     * @param  string  $elementName
+     *
      * @throws TypeException
      */
-    private function verifyLanguageType($value, $elementName) {
-        if ($value == null || !is_string($value) || strlen($value) != 2) {
+    private function verifyLanguageType($value, $elementName)
+    {
+        if ($value == null || ! is_string($value) || strlen($value) != 2) {
             throw new TypeException('Value of '.$elementName.' must by of type string and exactly 2 characters long');
         }
     }
 
     /**
-     * @param float|int $value
-     * @param string $elementName
+     * @param  float|int  $value
+     * @param  string  $elementName
+     *
      * @throws TypeException
      */
-    private function verifyAmountType($value, $elementName) {
-        if ($value == null || !is_numeric($value)) {
+    private function verifyAmountType($value, $elementName)
+    {
+        if ($value == null || ! is_numeric($value)) {
             throw new TypeException('Value of '.$elementName.' must by of type numeric');
         }
     }
 
     /**
-     * @param string $value
-     * @param string $elementName
+     * @param  string  $value
+     * @param  string  $elementName
+     *
      * @throws TypeException
      */
-    private function verifyUrl($value, $elementName) {
-        if ($value == null || !preg_match("/\b(?:(?:https?):\/\/)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$value)) {
+    private function verifyUrl($value, $elementName)
+    {
+        if ($value == null || ! preg_match("/\b(?:(?:https?):\/\/)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $value)) {
             throw new TypeException('Value of '.$elementName.' must by a valid url starting with "http" or "https"');
         }
     }
 
     /**
-     * @param string $value
-     * @param string $elementName
+     * @param  string  $value
+     * @param  string  $elementName
+     *
      * @throws TypeException
      */
-    private function verifyPeriodLengthType($value, $elementName) {
-        if (!ctype_digit((string)$value)) {
+    private function verifyPeriodLengthType($value, $elementName)
+    {
+        if (! ctype_digit((string) $value)) {
             throw new TypeException('Value of '.$elementName.' must be a positive integer');
         }
     }
 
     /**
-     * @param string $value
-     * @param string $elementName
+     * @param  string  $value
+     * @param  string  $elementName
+     *
      * @throws TypeException
      */
-    private function verifyPeriodUnitType($value, $elementName) {
-        if (!in_array($value, ScheduleData::getValidPeriodUnits())) {
+    private function verifyPeriodUnitType($value, $elementName)
+    {
+        if (! in_array($value, ScheduleData::getValidPeriodUnits())) {
             throw new TypeException('Value of '.$elementName.' must match one of the following values: "'.implode('", "', ScheduleData::getValidPeriodUnits()).'"');
         }
     }
 
     /**
-     * @param \DateTime $startDateTime
-     * @param string $elementName
+     * @param  \DateTime  $startDateTime
+     * @param  string  $elementName
+     *
      * @throws TypeException
      */
-    private function verifyFutureDateTime($startDateTime, $elementName) {
-        if (!($startDateTime instanceof \DateTime) || $startDateTime < new \DateTime()) {
+    private function verifyFutureDateTime($startDateTime, $elementName)
+    {
+        if (! ($startDateTime instanceof \DateTime) || $startDateTime < new \DateTime()) {
             throw new TypeException('Value of '.$elementName.' must be a Date/Time object in future');
         }
     }
-    
+
     /**
-     * @param \DOMNode $parentNode
-     * @param string $nodeName
-     * @param string $nodeValue
-     * @param bool $skipNullValue
-     *
+     * @param  \DOMNode  $parentNode
+     * @param  string  $nodeName
+     * @param  string  $nodeValue
+     * @param  bool  $skipNullValue
      * @return \DOMElement|null
-     *
      */
-    private function _appendTextNode(\DOMNode $parentNode, $nodeName, $nodeValue, $skipNullValue=true) {
-        if (!$skipNullValue || $nodeValue !== null) {
+    private function _appendTextNode(\DOMNode $parentNode, $nodeName, $nodeValue, $skipNullValue = true)
+    {
+        if (! $skipNullValue || $nodeValue !== null) {
             $node = $this->document->createElement($nodeName);
             $node->appendChild($this->document->createTextNode($nodeValue));
             $parentNode->appendChild($node);
-            return $node;
 
+            return $node;
         }
+
         return null;
     }
 }

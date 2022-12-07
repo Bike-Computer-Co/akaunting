@@ -89,7 +89,7 @@ class VendorsTest extends FeatureTestCase
         $this->loginAs()
             ->patch(route('vendors.update', $vendor->id), $request)
             ->assertStatus(200)
-			->assertSee($request['email']);
+            ->assertSee($request['email']);
 
         $this->assertFlashLevel('success');
 
@@ -125,7 +125,7 @@ class VendorsTest extends FeatureTestCase
         \Excel::matchByRegex();
 
         \Excel::assertDownloaded(
-            '/' . \Str::filename(trans_choice('general.vendors', 2)) . '-\d{10}\.xlsx/',
+            '/'.\Str::filename(trans_choice('general.vendors', 2)).'-\d{10}\.xlsx/',
             function (Export $export) use ($count) {
                 // Assert that the correct export is downloaded.
                 return $export->collection()->count() === $count;
@@ -152,7 +152,7 @@ class VendorsTest extends FeatureTestCase
         \Excel::matchByRegex();
 
         \Excel::assertDownloaded(
-            '/' . \Str::filename(trans_choice('general.vendors', 2)) . '-\d{10}\.xlsx/',
+            '/'.\Str::filename(trans_choice('general.vendors', 2)).'-\d{10}\.xlsx/',
             function (Export $export) use ($select_count) {
                 return $export->collection()->count() === $select_count;
             }

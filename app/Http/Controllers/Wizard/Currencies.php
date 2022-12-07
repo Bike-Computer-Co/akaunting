@@ -61,7 +61,6 @@ class Currencies extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -84,7 +83,6 @@ class Currencies extends Controller
      *
      * @param  Currency  $currency
      * @param  Request  $request
-     *
      * @return Response
      */
     public function update(Currency $currency, Request $request)
@@ -98,7 +96,7 @@ class Currencies extends Controller
         }
 
         $response['message'] = $message;
-        
+
         return response()->json($response);
     }
 
@@ -106,7 +104,6 @@ class Currencies extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Currency  $currency
-     *
      * @return Response
      */
     public function destroy(Currency $currency)
