@@ -322,6 +322,11 @@ class Company extends Eloquent implements Ownable
         return $this->hasMany('App\Models\Common\Widget');
     }
 
+    public function stripe_plan()
+    {
+        return $this->belongsTo('App\Models\StripePlan');
+    }
+
     public function setCommonSettingsAsAttributes()
     {
         try { // TODO will optimize..

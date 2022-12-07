@@ -133,6 +133,11 @@ export default {
                     name: 'Корисници',
                     icon: 'fa-users',
                     link: 'super.users.index',
+                },
+                {
+                    name: 'Stripe планови',
+                    icon: 'fa-money',
+                    link: 'super.stripe-plans.index',
                 }
             ],
         };

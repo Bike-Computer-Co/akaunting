@@ -9,7 +9,7 @@
             </Link>
         </div>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
