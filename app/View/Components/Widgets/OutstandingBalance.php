@@ -3,7 +3,6 @@
 namespace App\View\Components\Widgets;
 
 use App\Abstracts\View\Component;
-use Illuminate\Support\Str;
 
 class OutstandingBalance extends Component
 {

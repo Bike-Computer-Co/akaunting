@@ -7,13 +7,13 @@ use PaymentGateway\Client\Http\Exception\ClientException;
 
 /**
  * Class CurlClient
- *
- * @package PaymentGateway\Client\Http
  */
-class CurlClient implements ClientInterface {
-
+class CurlClient implements ClientInterface
+{
     const METHOD_GET = 'get';
+
     const METHOD_POST = 'post';
+
     const METHOD_PUT = 'put';
 
     /**
@@ -38,106 +38,110 @@ class CurlClient implements ClientInterface {
     /**
      * @var array
      */
-    protected $additionalHeaders = array();
+    protected $additionalHeaders = [];
 
     /**
      * @var array
      */
-    protected $customHeaders = array();
+    protected $customHeaders = [];
 
     /**
      * @var array
      */
-    protected $customOptions = array();
+    protected $customOptions = [];
 
-    /**
-     *
-     */
-    public function __construct() {
+    public function __construct()
+    {
         $this->handle = curl_init();
         $this->setOptionArray(self::$defaultOptions);
     }
 
     /**
-     * @param string $serviceName
+     * @param  string  $serviceName
      */
-    public function setServiceName($serviceName) {
+    public function setServiceName($serviceName)
+    {
         $this->serviceName = $serviceName;
     }
 
     /**
-     * @param string $option
-     * @param mixed  $value
-     *
+     * @param  string  $option
+     * @param  mixed  $value
      * @return void
      */
-    public static function setDefaultOption($option, $value) {
+    public static function setDefaultOption($option, $value)
+    {
         self::$defaultOptions[$option] = $value;
     }
 
     /**
-     * @param array $options
-     *
+     * @param  array  $options
      * @return void
      */
-    public static function setDefaultOptions(array $options) {
+    public static function setDefaultOptions(array $options)
+    {
         self::$defaultOptions = $options;
     }
 
     /**
-     * @param string $option
-     * @param mixed  $value
-     *
+     * @param  string  $option
+     * @param  mixed  $value
      * @return $this
      */
-    public function setOption($option, $value) {
+    public function setOption($option, $value)
+    {
         curl_setopt($this->handle, $option, $value);
+
         return $this;
     }
 
     /**
-     * @param array $options
-     *
+     * @param  array  $options
      * @return $this
      */
-    public function setOptionArray(array $options) {
+    public function setOptionArray(array $options)
+    {
         curl_setopt_array($this->handle, $options);
+
         return $this;
     }
 
     /**
-     * @param string $username
-     * @param string $password
-     *
+     * @param  string  $username
+     * @param  string  $password
      * @return $this
      */
-    public function setAuthentication($username, $password) {
-        curl_setopt($this->handle, CURLOPT_USERPWD, $username . ':' . $password);
+    public function setAuthentication($username, $password)
+    {
+        curl_setopt($this->handle, CURLOPT_USERPWD, $username.':'.$password);
+
         return $this;
     }
 
     /**
-     * @param array $customHeaders
+     * @param  array  $customHeaders
      * @return $this
      */
-    public function setCustomHeaders(array $customHeaders){
+    public function setCustomHeaders(array $customHeaders)
+    {
         $this->customHeaders = $customHeaders;
+
         return $this;
     }
 
     /**
-     * @param array $customOptions
+     * @param  array  $customOptions
      * @return $this
      */
-    public function setCustomCurlOptions(array $customOptions){
+    public function setCustomCurlOptions(array $customOptions)
+    {
         $this->customOptions = $customOptions;
+
         return $this;
     }
 
-    /**
-     *
-     */
-    public function __destruct() {
+    public function __destruct()
+    {
         if (is_resource($this->handle)) {
             curl_close($this->handle);
         }
@@ -146,36 +150,36 @@ class CurlClient implements ClientInterface {
     /**
      * Execute the request and return the response
      *
-     * @param string $method
-     * @param string $url
-     * @param array  $headers
-     *
+     * @param  string  $method
+     * @param  string  $url
+     * @param  array  $headers
      * @return mixed
      */
-    public function send($method, $url, array $headers = []) {
+    public function send($method, $url, array $headers = [])
+    {
         $this->setOption(CURLOPT_URL, $url);
 
-        $allHeaders = array();
+        $allHeaders = [];
         foreach ($this->mergeHeaders($headers, $this->additionalHeaders) as $k => $v) {
-            $allHeaders[] = $k . ': ' . $v;
+            $allHeaders[] = $k.': '.$v;
         }
 
-        if($this->customHeaders){
+        if ($this->customHeaders) {
             foreach ($this->mergeHeaders($headers, $this->customHeaders) as $k => $v) {
-                $allHeaders[] = $k . ': ' . $v;
+                $allHeaders[] = $k.': '.$v;
             }
         }
         $allHeaders[] = 'X-SDK-Type: Gateway PHP Client';
         $allHeaders[] = 'X-SDK-Version: '.Client::VERSION;
         if (phpversion()) {
-            $allHeaders[] = 'X-SDK-PlatformVersion: ' . phpversion();
+            $allHeaders[] = 'X-SDK-PlatformVersion: '.phpversion();
         }
 
-        if (!empty($allHeaders)) {
+        if (! empty($allHeaders)) {
             $this->setOption(CURLOPT_HTTPHEADER, $allHeaders);
         }
 
-        if($this->customOptions){
+        if ($this->customOptions) {
             $this->setOptionArray($this->customOptions);
         }
 
@@ -190,31 +194,30 @@ class CurlClient implements ClientInterface {
         );
 
         return $response;
-
     }
 
     /**
-     * @param string $url
-     * @param array  $headers
-     *
+     * @param  string  $url
+     * @param  array  $headers
      * @return mixed
      */
-    public function get($url, array $headers = []) {
+    public function get($url, array $headers = [])
+    {
         return $this->send(self::METHOD_GET, $url, $headers);
     }
 
     /**
-     * @param string       $url
-     * @param string|array $body
-     * @param array        $headers
-     *
+     * @param  string  $url
+     * @param  string|array  $body
+     * @param  array  $headers
      * @return Response
+     *
      * @throws ClientException
      */
-    public function post($url, $body, array $headers = []) {
-
+    public function post($url, $body, array $headers = [])
+    {
         if ($body && is_string($body)) {
-            $this->setOption(CURLOPT_CUSTOMREQUEST, "POST");
+            $this->setOption(CURLOPT_CUSTOMREQUEST, 'POST');
             $this->setOption(CURLOPT_POSTFIELDS, $body);
         } elseif ($body && is_array($body)) {
             $this->setOption(CURLOPT_POST, 1);
@@ -227,19 +230,20 @@ class CurlClient implements ClientInterface {
     }
 
     /**
-     * @param string       $url
-     * @param string|array $body
-     * @param array        $headers
-     *
+     * @param  string  $url
+     * @param  string|array  $body
+     * @param  array  $headers
      * @return mixed
+     *
      * @throws ClientException
      */
-    public function put($url, $body, array $headers = []) {
+    public function put($url, $body, array $headers = [])
+    {
         if (is_string($body)) {
-            $this->setOption(CURLOPT_CUSTOMREQUEST, "PUT");
+            $this->setOption(CURLOPT_CUSTOMREQUEST, 'PUT');
             $this->setOption(CURLOPT_POSTFIELDS, $body);
         } elseif ($body && is_array($body)) {
-            $this->setOption(CURLOPT_CUSTOMREQUEST, "PUT");
+            $this->setOption(CURLOPT_CUSTOMREQUEST, 'PUT');
             $this->setOption(CURLOPT_POSTFIELDS, http_build_query($body));
         } else {
             throw new ClientException('invalid body datatype allowed: string and array');
@@ -249,122 +253,126 @@ class CurlClient implements ClientInterface {
     }
 
     /**
-     * @param int    $apiId @todo int?
-     * @param string $sharedSecret
-     * @param string $url
-     * @param string $body
-     * @param array  $headers
-     *
+     * @param  int  $apiId @todo int?
+     * @param  string  $sharedSecret
+     * @param  string  $url
+     * @param  string  $body
+     * @param  array  $headers
      * @return $this
      */
-    public function sign($apiId, $sharedSecret, $url, $body, $headers = array()) {
+    public function sign($apiId, $sharedSecret, $url, $body, $headers = [])
+    {
         $timestamp = (new \DateTime('now', new \DateTimeZone('UTC')))->format('D, d M Y H:i:s T');
 
         $path = parse_url($url, PHP_URL_PATH);
         $query = parse_url($url, PHP_URL_QUERY);
         $anchor = parse_url($url, PHP_URL_FRAGMENT);
 
-        $requestUri = $path . ($query ? '?' . $query : '') . ($anchor ? '#' . $anchor : '');
+        $requestUri = $path.($query ? '?'.$query : '').($anchor ? '#'.$anchor : '');
 
         $contentType = 'text/xml; charset=utf-8';
 
         $signature = $this->createSignature($sharedSecret, 'POST', $body, $contentType, $timestamp, $requestUri);
-        $authHeader = $this->serviceName . ' ' . $apiId . ':' . $signature;
+        $authHeader = $this->serviceName.' '.$apiId.':'.$signature;
 
-        $this->additionalHeaders = array(
+        $this->additionalHeaders = [
             'Date' => $timestamp,
             'X-Date' => $timestamp,
             'Authorization' => $authHeader,
             'X-Authorization' => $authHeader,
-            'Content-Type' => $contentType
-        );
+            'Content-Type' => $contentType,
+        ];
 
         return $this;
     }
 
     /**
-     * @param int    $apiId @todo int?
-     * @param string $sharedSecret
-     * @param string $url
-     * @param string $body
-     * @param array  $headers
-     *
+     * @param  int  $apiId @todo int?
+     * @param  string  $sharedSecret
+     * @param  string  $url
+     * @param  string  $body
+     * @param  array  $headers
      * @return $this
      */
-    public function signJson($sharedSecret, $url, $body, $headers = array()) {
+    public function signJson($sharedSecret, $url, $body, $headers = [])
+    {
         $timestamp = (new \DateTime('now', new \DateTimeZone('UTC')))->format('D, d M Y H:i:s T');
 
         $path = parse_url($url, PHP_URL_PATH);
         $query = parse_url($url, PHP_URL_QUERY);
         $anchor = parse_url($url, PHP_URL_FRAGMENT);
 
-        $requestUri = $path . ($query ? '?' . $query : '') . ($anchor ? '#' . $anchor : '');
+        $requestUri = $path.($query ? '?'.$query : '').($anchor ? '#'.$anchor : '');
 
         $contentType = 'application/json; charset=utf-8';
 
-        $parts = array('POST', md5($body), $contentType, $timestamp, $requestUri);
+        $parts = ['POST', md5($body), $contentType, $timestamp, $requestUri];
 
-        $str = join("\n", $parts);
+        $str = implode("\n", $parts);
         $digest = hash_hmac('sha512', $str, $sharedSecret, true);
         $signature = base64_encode($digest);
 
-        $this->additionalHeaders = array(
+        $this->additionalHeaders = [
             'Date' => $timestamp,
             'X-Date' => $timestamp,
             'X-Signature' => $signature,
-            'Content-Type' => $contentType
-        );
+            'Content-Type' => $contentType,
+        ];
 
         return $this;
     }
 
     /**
-     * @param string $sharedSecret
-     * @param string $method
-     * @param string $body
-     * @param string $contentType
-     * @param string $timestamp
-     * @param string $requestUri
-     *
+     * @param  string  $sharedSecret
+     * @param  string  $method
+     * @param  string  $body
+     * @param  string  $contentType
+     * @param  string  $timestamp
+     * @param  string  $requestUri
      * @return string
      */
-    public function createSignature($sharedSecret, $method, $body, $contentType, $timestamp, $requestUri) {
-        $parts = array($method, md5($body), $contentType, $timestamp, '', $requestUri);
+    public function createSignature($sharedSecret, $method, $body, $contentType, $timestamp, $requestUri)
+    {
+        $parts = [$method, md5($body), $contentType, $timestamp, '', $requestUri];
 
-        $str = join("\n", $parts);
+        $str = implode("\n", $parts);
         $digest = hash_hmac('sha512', $str, $sharedSecret, true);
+
         return base64_encode($digest);
     }
 
     /**
      * @return int
      */
-    private function getResponseCode() {
-        return (int)curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
+    private function getResponseCode()
+    {
+        return (int) curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
     }
 
     /**
      * @return int
      */
-    private function getErrno() {
+    private function getErrno()
+    {
         return curl_errno($this->handle);
     }
 
     /**
      * @return string
      */
-    private function getError() {
+    private function getError()
+    {
         return curl_error($this->handle);
     }
 
     /**
-     * @param array $headers1
-     * @param array $headers2
-     *
+     * @param  array  $headers1
+     * @param  array  $headers2
      * @return array
      */
-    private function mergeHeaders($headers1, $headers2) {
-        $ret = array();
+    private function mergeHeaders($headers1, $headers2)
+    {
+        $ret = [];
         foreach ($headers1 as $k => $v) {
             if (is_numeric($k)) {
                 $name = substr($v, 0, strpos($v, ':'));
@@ -383,6 +391,7 @@ class CurlClient implements ClientInterface {
                 $ret[$k] = $v;
             }
         }
+
         return $ret;
     }
 }

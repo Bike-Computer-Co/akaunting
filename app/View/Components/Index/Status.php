@@ -49,7 +49,7 @@ class Status extends Component
             return $textStatus;
         }
 
-        $textStatus = trans('documents.statuses.' . $this->status);
+        $textStatus = trans('documents.statuses.'.$this->status);
 
         return $textStatus;
     }

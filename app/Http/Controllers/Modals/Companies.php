@@ -21,7 +21,6 @@ class Companies extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Company  $company
-     *
      * @return Response
      */
     public function edit(Company $company)

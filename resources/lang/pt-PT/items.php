@@ -2,7 +2,7 @@
 
 return [
 
-    'sale_price'           => 'Preço de Venda',
-    'purchase_price'        => 'Preço de Compra',
+    'sale_price' => 'Preço de Venda',
+    'purchase_price' => 'Preço de Compra',
 
 ];

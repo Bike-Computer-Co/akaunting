@@ -49,8 +49,8 @@ class Tooltip extends Component
         $this->borderColor = $this->getBorderColor($borderColor);
 
         $this->message = $this->getMessage($message);
-        $this->size =  $this->getSize($size);  
-        $this->whitespace =  $this->getWhiteSpace($whitespace);  
+        $this->size = $this->getSize($size);
+        $this->whitespace = $this->getWhiteSpace($whitespace);
         $this->width = $width;
     }
 
@@ -70,7 +70,7 @@ class Tooltip extends Component
             return $id;
         }
 
-        return 'tooltip-' . Str::random(19);
+        return 'tooltip-'.Str::random(19);
     }
 
     protected function getPlacement($placement)
@@ -90,17 +90,17 @@ class Tooltip extends Component
 
         switch ($this->placement) {
             case 'bottom':
-                $tooltipPosition = "-top-1 before:border-b-0 before:border-r-0";
+                $tooltipPosition = '-top-1 before:border-b-0 before:border-r-0';
                 break;
             case 'left':
-                $tooltipPosition = "-right-1 before:border-b-0 before:border-l-0";
+                $tooltipPosition = '-right-1 before:border-b-0 before:border-l-0';
                 break;
             case 'right':
-                $tooltipPosition = "-left-1 before:border-t-0 before:border-r-0";
+                $tooltipPosition = '-left-1 before:border-t-0 before:border-r-0';
                 break;
             case 'top':
             default:
-                $tooltipPosition = "-bottom-1 before:border-t-0 before:border-l-0";
+                $tooltipPosition = '-bottom-1 before:border-t-0 before:border-l-0';
                 break;
         }
 

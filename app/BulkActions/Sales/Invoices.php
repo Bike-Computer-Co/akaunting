@@ -6,7 +6,6 @@ use App\Abstracts\BulkAction;
 use App\Events\Document\DocumentCancelled;
 use App\Events\Document\DocumentCreated;
 use App\Events\Document\DocumentMarkedSent;
-use App\Events\Document\PaymentReceived;
 use App\Exports\Sales\Invoices as Export;
 use App\Jobs\Document\DeleteDocument;
 use App\Models\Document\Document;
@@ -23,29 +22,29 @@ class Invoices extends BulkAction
     ];
 
     public $actions = [
-        'sent'      => [
-            'icon'          => 'send',
-            'name'          => 'invoices.mark_sent',
-            'message'       => 'bulk_actions.message.sent',
-            'permission'    => 'update-sales-invoices',
+        'sent' => [
+            'icon' => 'send',
+            'name' => 'invoices.mark_sent',
+            'message' => 'bulk_actions.message.sent',
+            'permission' => 'update-sales-invoices',
         ],
         'cancelled' => [
-            'icon'          => 'cancel',
-            'name'          => 'general.cancel',
-            'message'       => 'bulk_actions.message.cancelled',
-            'permission'    => 'update-sales-invoices',
+            'icon' => 'cancel',
+            'name' => 'general.cancel',
+            'message' => 'bulk_actions.message.cancelled',
+            'permission' => 'update-sales-invoices',
         ],
-        'delete'    => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-sales-invoices',
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-sales-invoices',
         ],
-        'export'    => [
-            'icon'          => 'file_download',
-            'name'          => 'general.export',
-            'message'       => 'bulk_actions.message.export',
-            'type'          => 'download',
+        'export' => [
+            'icon' => 'file_download',
+            'name' => 'general.export',
+            'message' => 'bulk_actions.message.export',
+            'type' => 'download',
         ],
     ];
 
@@ -89,7 +88,7 @@ class Invoices extends BulkAction
     public function destroy($request)
     {
         $invoices = $this->getSelectedRecords($request, [
-            'items', 'item_taxes', 'histories', 'transactions', 'recurring', 'totals'
+            'items', 'item_taxes', 'histories', 'transactions', 'recurring', 'totals',
         ]);
 
         foreach ($invoices as $invoice) {

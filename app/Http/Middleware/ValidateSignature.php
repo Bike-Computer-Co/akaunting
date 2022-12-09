@@ -50,11 +50,11 @@ class ValidateSignature
      */
     public function hasCorrectSignature(Request $request, $absolute = true)
     {
-        $url = $absolute ? $request->url() : '/' . $request->path();
+        $url = $absolute ? $request->url() : '/'.$request->path();
 
-        $original = rtrim($url . '?' . Arr::query(
+        $original = rtrim($url.'?'.Arr::query(
             Arr::only($request->query(), ['company_id'])
-        ) . Arr::query(
+        ).Arr::query(
             Arr::only($request->query(), ['expires'])
         ), '?');
 
@@ -75,6 +75,6 @@ class ValidateSignature
     {
         $expires = $request->query('expires');
 
-        return !($expires && Carbon::now()->getTimestamp() > $expires);
+        return ! ($expires && Carbon::now()->getTimestamp() > $expires);
     }
 }

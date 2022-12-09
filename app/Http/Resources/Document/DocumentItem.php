@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Document;
 
-use App\Http\Resources\Document\DocumentItemTax;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DocumentItem extends JsonResource

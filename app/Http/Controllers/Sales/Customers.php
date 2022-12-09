@@ -39,7 +39,6 @@ class Customers extends Controller
      * Show the form for viewing the specified resource.
      *
      * @param  Contact  $customer
-     *
      * @return Response
      */
     public function show(Contact $customer)
@@ -61,7 +60,6 @@ class Customers extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -89,7 +87,6 @@ class Customers extends Controller
      * Duplicate the specified resource.
      *
      * @param  Contact  $customer
-     *
      * @return Response
      */
     public function duplicate(Contact $customer)
@@ -107,7 +104,6 @@ class Customers extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -131,7 +127,6 @@ class Customers extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Contact  $customer
-     *
      * @return Response
      */
     public function edit(Contact $customer)
@@ -142,9 +137,8 @@ class Customers extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Contact $customer
-     * @param  Request $request
-     *
+     * @param  Contact  $customer
+     * @param  Request  $request
      * @return Response
      */
     public function update(Contact $customer, Request $request)
@@ -171,8 +165,7 @@ class Customers extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Contact $customer
-     *
+     * @param  Contact  $customer
      * @return Response
      */
     public function enable(Contact $customer)
@@ -189,8 +182,7 @@ class Customers extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Contact $customer
-     *
+     * @param  Contact  $customer
      * @return Response
      */
     public function disable(Contact $customer)
@@ -207,8 +199,7 @@ class Customers extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Contact $customer
-     *
+     * @param  Contact  $customer
      * @return Response
      */
     public function destroy(Contact $customer)

@@ -2,12 +2,12 @@
 
 return [
 
-    'can_login'             => '
+    'can_login' => '
 Bejelentkezhet?',
-    'user_created'          => 'Felhasználó létrehozva',
+    'user_created' => 'Felhasználó létrehozva',
 
     'error' => [
-        'email'             => 'Ez az email cím már használatban van.',
+        'email' => 'Ez az email cím már használatban van.',
     ],
 
 ];

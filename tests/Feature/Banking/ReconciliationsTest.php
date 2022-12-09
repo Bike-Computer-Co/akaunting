@@ -51,7 +51,7 @@ class ReconciliationsTest extends FeatureTestCase
     {
         $request = $this->getRequest();
 
-        $reconciliation= $this->dispatch(new CreateReconciliation($request));
+        $reconciliation = $this->dispatch(new CreateReconciliation($request));
 
         $request['description'] = $this->faker->text(10);
 

@@ -26,7 +26,7 @@ class UpdateTransfer extends Job implements ShouldUpdate
 
                     $this->model->attachMedia($media, 'attachment');
                 }
-            } elseif (!$this->request->file('attachment') && $this->model->attachment) {
+            } elseif (! $this->request->file('attachment') && $this->model->attachment) {
                 $this->deleteMediaModel($this->model, 'attachment', $this->request);
             }
 
@@ -88,10 +88,10 @@ class UpdateTransfer extends Job implements ShouldUpdate
 
     protected function getCurrencyCode($type)
     {
-        $currency_code = $this->request->get($type . '_account_currency_code');
+        $currency_code = $this->request->get($type.'_account_currency_code');
 
         if (empty($currency_code)) {
-            $currency_code = Account::where('id', $this->request->get($type . '_account_id'))->pluck('currency_code')->first();
+            $currency_code = Account::where('id', $this->request->get($type.'_account_id'))->pluck('currency_code')->first();
         }
 
         return $currency_code;
@@ -99,10 +99,10 @@ class UpdateTransfer extends Job implements ShouldUpdate
 
     protected function getCurrencyRate($type)
     {
-        $currency_rate = $this->request->get($type . '_account_rate');
+        $currency_rate = $this->request->get($type.'_account_rate');
 
         if (empty($currency_rate)) {
-            $currency_rate = config('money.' . $this->getCurrencyCode($type) . '.rate');
+            $currency_rate = config('money.'.$this->getCurrencyCode($type).'.rate');
         }
 
         return $currency_rate;

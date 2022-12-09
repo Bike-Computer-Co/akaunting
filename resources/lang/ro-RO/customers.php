@@ -2,11 +2,11 @@
 
 return [
 
-    'can_login'             => 'Se poate autentifica?',
-    'user_created'          => 'Utilizator creat',
+    'can_login' => 'Se poate autentifica?',
+    'user_created' => 'Utilizator creat',
 
     'error' => [
-        'email'             => 'Acest email a fost deja folosit.',
+        'email' => 'Acest email a fost deja folosit.',
     ],
 
 ];

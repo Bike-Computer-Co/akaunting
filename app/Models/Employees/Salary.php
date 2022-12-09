@@ -6,7 +6,6 @@ use App\Abstracts\Model;
 
 class Salary extends Model
 {
-
     protected $fillable = ['month', 'employee_id', 'amount', 'currency_code'];
 
     public function getLineActionsAttribute()
@@ -30,5 +29,4 @@ class Salary extends Model
 
         return $actions;
     }
-
 }

@@ -2,50 +2,46 @@
 
 namespace Livewire;
 
-use Illuminate\View\View;
-use Illuminate\Testing\TestView;
-use Illuminate\Testing\TestResponse;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
+use Illuminate\Foundation\Http\Middleware\TrimStrings;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route as RouteFacade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Testing\TestResponse;
+use Illuminate\Testing\TestView;
 use Illuminate\View\ComponentAttributeBag;
-use Livewire\Controllers\FileUploadHandler;
+use Illuminate\View\View;
+use Livewire\Commands\ComponentParser;
+use Livewire\Commands\CopyCommand;
+use Livewire\Commands\CpCommand;
+use Livewire\Commands\DeleteCommand;
+use Livewire\Commands\DiscoverCommand;
+use Livewire\Commands\MakeCommand;
+use Livewire\Commands\MakeLivewireCommand;
+use Livewire\Commands\MoveCommand;
+use Livewire\Commands\MvCommand;
+use Livewire\Commands\PublishCommand;
+use Livewire\Commands\RmCommand;
+use Livewire\Commands\S3CleanupCommand;
+use Livewire\Commands\StubsCommand;
+use Livewire\Commands\TouchCommand;
 use Livewire\Controllers\FilePreviewHandler;
+use Livewire\Controllers\FileUploadHandler;
 use Livewire\Controllers\HttpConnectionHandler;
 use Livewire\Controllers\LivewireJavaScriptAssets;
-use Illuminate\Support\Facades\Route as RouteFacade;
-use Illuminate\Foundation\Http\Middleware\TrimStrings;
-use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
-use Livewire\Commands\{
-    CpCommand,
-    MvCommand,
-    RmCommand,
-    CopyCommand,
-    MakeCommand,
-    MoveCommand,
-    StubsCommand,
-    TouchCommand,
-    DeleteCommand,
-    PublishCommand,
-    ComponentParser,
-    DiscoverCommand,
-    S3CleanupCommand,
-    MakeLivewireCommand,
-};
+use Livewire\HydrationMiddleware\CallHydrationHooks;
+use Livewire\HydrationMiddleware\CallPropertyHydrationHooks;
+use Livewire\HydrationMiddleware\HashDataPropertiesForDirtyDetection;
+use Livewire\HydrationMiddleware\HydratePublicProperties;
+use Livewire\HydrationMiddleware\NormalizeComponentPropertiesForJavaScript;
+use Livewire\HydrationMiddleware\NormalizeServerMemoSansDataForJavaScript;
+use Livewire\HydrationMiddleware\PerformActionCalls;
+use Livewire\HydrationMiddleware\PerformDataBindingUpdates;
+use Livewire\HydrationMiddleware\PerformEventEmissions;
+use Livewire\HydrationMiddleware\RenderView;
+use Livewire\HydrationMiddleware\SecureHydrationWithChecksum;
 use Livewire\Macros\ViewMacros;
-use Livewire\HydrationMiddleware\{
-    RenderView,
-    PerformActionCalls,
-    CallHydrationHooks,
-    PerformEventEmissions,
-    HydratePublicProperties,
-    PerformDataBindingUpdates,
-    CallPropertyHydrationHooks,
-    SecureHydrationWithChecksum,
-    HashDataPropertiesForDirtyDetection,
-    NormalizeServerMemoSansDataForJavaScript,
-    NormalizeComponentPropertiesForJavaScript,
-};
 
 class LivewireServiceProvider extends ServiceProvider
 {
@@ -148,7 +144,9 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function registerCommands()
     {
-        if (! $this->app->runningInConsole()) return;
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
 
         $this->commands([
             MakeLivewireCommand::class, // make:livewire
@@ -304,7 +302,6 @@ class LivewireServiceProvider extends ServiceProvider
         // Livewire views. Things like letting certain exceptions bubble
         // to the handler, and registering custom directives like: "@this".
         $this->app->make('view.engine.resolver')->register('blade', function () {
-
             // If the application is using Ignition, make sure Livewire's view compiler
             // uses a version that extends Ignition's so it can continue to report errors
             // correctly. Don't change this class without first submitting a PR to Ignition.
@@ -381,7 +378,7 @@ class LivewireServiceProvider extends ServiceProvider
 
         LifecycleManager::registerInitialHydrationMiddleware([
 
-                [CallHydrationHooks::class, 'initialHydrate'],
+            [CallHydrationHooks::class, 'initialHydrate'],
 
         ]);
     }
@@ -417,7 +414,9 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function bypassTheseMiddlewaresDuringLivewireRequests(array $middlewareToExclude)
     {
-        if (! Livewire::isProbablyLivewireRequest()) return;
+        if (! Livewire::isProbablyLivewireRequest()) {
+            return;
+        }
 
         $kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
 

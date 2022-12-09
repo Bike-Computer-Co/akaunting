@@ -13,7 +13,7 @@ class AddIncomeExpenseCategories extends Listener
     /**
      * Handle filter showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleFilterShowing(FilterShowing $event)
@@ -22,7 +22,7 @@ class AddIncomeExpenseCategories extends Listener
             'App\Reports\IncomeExpenseSummary',
         ];
 
-        if (empty($event->class) || !in_array(get_class($event->class), $classes)) {
+        if (empty($event->class) || ! in_array(get_class($event->class), $classes)) {
             return;
         }
 
@@ -33,7 +33,7 @@ class AddIncomeExpenseCategories extends Listener
     /**
      * Handle group showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleGroupShowing(GroupShowing $event)
@@ -43,7 +43,7 @@ class AddIncomeExpenseCategories extends Listener
             'App\Reports\ProfitLoss',
         ];
 
-        if (empty($event->class) || !in_array(get_class($event->class), $classes)) {
+        if (empty($event->class) || ! in_array(get_class($event->class), $classes)) {
             return;
         }
 
@@ -53,7 +53,7 @@ class AddIncomeExpenseCategories extends Listener
     /**
      * Handle records showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleRowsShowing(RowsShowing $event)

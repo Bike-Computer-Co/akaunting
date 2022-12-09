@@ -64,7 +64,7 @@ class Date extends Carbon
     /**
      * Get the language portion of the locale.
      *
-     * @param string $locale
+     * @param  string  $locale
      * @return string
      */
     public static function getLanguageFromLocale($locale)

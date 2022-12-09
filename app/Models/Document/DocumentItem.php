@@ -6,8 +6,6 @@ use App\Abstracts\Model;
 use App\Traits\Currencies;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DocumentItem extends Model
 {
@@ -100,9 +98,9 @@ class DocumentItem extends Model
     public function getDiscountAttribute(): string
     {
         if (setting('localisation.percent_position', 'after') === 'after') {
-            $text = ($this->discount_type === 'normal') ? $this->discount_rate . '%' : $this->discount_rate;
+            $text = ($this->discount_type === 'normal') ? $this->discount_rate.'%' : $this->discount_rate;
         } else {
-            $text = ($this->discount_type === 'normal') ? '%' . $this->discount_rate : $this->discount_rate;
+            $text = ($this->discount_type === 'normal') ? '%'.$this->discount_rate : $this->discount_rate;
         }
 
         return $text;

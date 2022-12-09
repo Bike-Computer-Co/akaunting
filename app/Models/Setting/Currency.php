@@ -104,8 +104,8 @@ class Currency extends Model
     /**
      * Scope currency by code.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $code
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $code
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCode($query, $code)
@@ -121,7 +121,7 @@ class Currency extends Model
     public function getPrecisionAttribute($value)
     {
         if (is_null($value)) {
-            return config('money.' . $this->code . '.precision');
+            return config('money.'.$this->code.'.precision');
         }
 
         return (int) $value;
@@ -135,7 +135,7 @@ class Currency extends Model
     public function getSymbolAttribute($value)
     {
         if (is_null($value)) {
-            return config('money.' . $this->code . '.symbol');
+            return config('money.'.$this->code.'.symbol');
         }
 
         return $value;
@@ -149,7 +149,7 @@ class Currency extends Model
     public function getSymbolFirstAttribute($value)
     {
         if (is_null($value)) {
-            return config('money.' . $this->code . '.symbol_first');
+            return config('money.'.$this->code.'.symbol_first');
         }
 
         return $value;
@@ -163,7 +163,7 @@ class Currency extends Model
     public function getDecimalMarkAttribute($value)
     {
         if (is_null($value)) {
-            return config('money.' . $this->code . '.decimal_mark');
+            return config('money.'.$this->code.'.decimal_mark');
         }
 
         return $value;
@@ -177,7 +177,7 @@ class Currency extends Model
     public function getThousandsSeparatorAttribute($value)
     {
         if (is_null($value)) {
-            return config('money.' . $this->code . '.thousands_separator');
+            return config('money.'.$this->code.'.thousands_separator');
         }
 
         return $value;

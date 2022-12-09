@@ -23,7 +23,7 @@ trait Omnipay
         try {
             $response = $this->gateway->authorize($options)->send();
         } catch (\Exception $e) {
-            $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Error: '. $e->getMessage());
+            $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Error: '.$e->getMessage());
 
             $message = $e->getMessage();
 
@@ -74,7 +74,7 @@ trait Omnipay
         try {
             $response = $this->gateway->purchase($options)->send();
         } catch (\Exception $e) {
-            $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Error: '. $e->getMessage());
+            $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Error: '.$e->getMessage());
 
             $message = $e->getMessage();
 
@@ -138,9 +138,9 @@ trait Omnipay
         $message = $response->getMessage();
 
         if (isset($data['error'])) {
-            $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Error Type: ' . $data['error']['type'] . ' - Error Message: ' . $message);
+            $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Error Type: '.$data['error']['type'].' - Error Message: '.$message);
         } else {
-            $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Error Message: ' . $message);
+            $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Error Message: '.$message);
         }
 
         $invoice_url = $this->getInvoiceUrl($invoice);
@@ -185,7 +185,7 @@ trait Omnipay
     {
         $factory = $this->getFactory();
 
-        return call_user_func_array(array($factory, $method), (array) $parameters);
+        return call_user_func_array([$factory, $method], (array) $parameters);
     }
 
     public function getFactory()
@@ -199,10 +199,10 @@ trait Omnipay
 
     public function setCardFirstLastName(&$request)
     {
-        $contact = explode(" ", $request['cardName']);
+        $contact = explode(' ', $request['cardName']);
 
         $last_name = array_pop($contact);
-        $first_name = implode(" ", $contact);
+        $first_name = implode(' ', $contact);
 
         $request['cardFirstName'] = $first_name;
         $request['cardLastName'] = $last_name;

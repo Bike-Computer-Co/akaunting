@@ -14,8 +14,6 @@ use App\Jobs\Document\UpdateDocument;
 use App\Models\Document\Document;
 use App\Notifications\Sale\Invoice as Notification;
 use App\Traits\Documents;
-use AshAllenDesign\ShortURL\Facades\ShortURL;
-use Illuminate\Support\Facades\URL;
 
 class Invoices extends Controller
 {
@@ -33,7 +31,7 @@ class Invoices extends Controller
      */
     public function index()
     {
-        $invoices = Document::invoice()->with('contact', 'transactions')->collect(['document_number'=> 'desc']);
+        $invoices = Document::invoice()->with('contact', 'transactions')->collect(['document_number' => 'desc']);
 
         return $this->response('sales.invoices.index', compact('invoices'));
     }
@@ -41,8 +39,7 @@ class Invoices extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function show(Document $invoice)
@@ -64,7 +61,6 @@ class Invoices extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -97,8 +93,7 @@ class Invoices extends Controller
     /**
      * Duplicate the specified resource.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function duplicate(Document $invoice)
@@ -116,7 +111,6 @@ class Invoices extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -139,8 +133,7 @@ class Invoices extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function edit(Document $invoice)
@@ -151,9 +144,8 @@ class Invoices extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Document $invoice
+     * @param  Document  $invoice
      * @param  Request  $request
-     *
      * @return Response
      */
     public function update(Document $invoice, Request $request)
@@ -180,8 +172,7 @@ class Invoices extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function destroy(Document $invoice)
@@ -216,8 +207,7 @@ class Invoices extends Controller
     /**
      * Mark the invoice as sent.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function markSent(Document $invoice)
@@ -234,8 +224,7 @@ class Invoices extends Controller
     /**
      * Mark the invoice as cancelled.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function markCancelled(Document $invoice)
@@ -252,8 +241,7 @@ class Invoices extends Controller
     /**
      * Download the PDF file of invoice.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function emailInvoice(Document $invoice)
@@ -275,8 +263,7 @@ class Invoices extends Controller
     /**
      * Print the invoice.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function printInvoice(Document $invoice)
@@ -288,12 +275,10 @@ class Invoices extends Controller
         return mb_convert_encoding($view, 'HTML-ENTITIES', 'UTF-8');
     }
 
-
     /**
      * Download the PDF file of invoice.
      *
-     * @param  Document $invoice
-     *
+     * @param  Document  $invoice
      * @return Response
      */
     public function pdfInvoice(Document $invoice)

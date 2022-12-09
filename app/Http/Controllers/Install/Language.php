@@ -21,7 +21,6 @@ class Language extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)

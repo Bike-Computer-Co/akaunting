@@ -2,7 +2,7 @@
 
 return [
 
-    'sale_price'           => 'Harga Jualan',
-    'purchase_price'        => 'Harga Beli',
+    'sale_price' => 'Harga Jualan',
+    'purchase_price' => 'Harga Beli',
 
 ];

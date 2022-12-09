@@ -88,7 +88,7 @@ class Transaction extends Factory
     public function recurring()
     {
         return $this->state([
-            'type' => $this->getRawAttribute('type') . '-recurring',
+            'type' => $this->getRawAttribute('type').'-recurring',
             'number' => $this->getNextTransactionNumber('-recurring'),
             'recurring_started_at' => $this->getRawAttribute('paid_at'),
             'recurring_frequency' => 'daily',
@@ -96,8 +96,8 @@ class Transaction extends Factory
             'recurring_interval' => '1',
             'recurring_limit' => 'date',
             'recurring_limit_date' => Date::now()->addDay(7)->format('Y-m-d'),
-            'disabled_transaction_paid' => "Auto-generated",
-            'disabled_transaction_number' => "Auto-generated",
+            'disabled_transaction_paid' => 'Auto-generated',
+            'disabled_transaction_number' => 'Auto-generated',
             'real_type' => $this->getRawAttribute('type'),
         ]);
     }

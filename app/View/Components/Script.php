@@ -53,19 +53,18 @@ class Script extends Component
                 $module = module($alias);
 
                 if ($module) {
-                    $path = 'modules/' . $module->getStudlyName() . '/Resources/assets/js/';
+                    $path = 'modules/'.$module->getStudlyName().'/Resources/assets/js/';
                     $version = module_version($alias);
                 }
             } catch (\Exception $e) {
-
             }
         }
 
         if (! empty($folder)) {
-            $path .= $folder . '/';
+            $path .= $folder.'/';
         }
 
-        $path .= $file . '.min.js?v=' . $version;
+        $path .= $file.'.min.js?v='.$version;
 
         return $path;
     }

@@ -3,29 +3,29 @@
 return [
 
     'accounts' => [
-        'cash'              => '現金',
+        'cash' => '現金',
     ],
 
     'categories' => [
-        'deposit'           => '預金',
-        'sales'             => '売上高',
+        'deposit' => '預金',
+        'sales' => '売上高',
     ],
 
     'currencies' => [
-        'usd'               => '米ドル',
+        'usd' => '米ドル',
     ],
 
     'offline_payments' => [
-        'cash'              => '現金',
-        'bank'              => '銀行振込',
+        'cash' => '現金',
+        'bank' => '銀行振込',
     ],
 
     'reports' => [
-        'income'            => 'カテゴリー別の月間収入サマリー。',
-        'expense'           => 'カテゴリ別の月間経費の概要。',
-        'income_expense'    => 'カテゴリ別の月収と費用。',
-        'tax'               => '四半期の税の概要。',
-        'profit_loss'       => '四半期ごとのカテゴリごとの損益。',
+        'income' => 'カテゴリー別の月間収入サマリー。',
+        'expense' => 'カテゴリ別の月間経費の概要。',
+        'income_expense' => 'カテゴリ別の月収と費用。',
+        'tax' => '四半期の税の概要。',
+        'profit_loss' => '四半期ごとのカテゴリごとの損益。',
     ],
 
 ];

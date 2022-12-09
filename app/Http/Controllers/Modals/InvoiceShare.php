@@ -24,22 +24,21 @@ class InvoiceShare extends Controller
      * Show the form for creating a new resource.
      *
      * @param  Document  $invoice
-     *
      * @return Response
      */
     public function create(Document $invoice)
     {
-        $page = config('type.document.' . $invoice->type . '.route.prefix');
-        $alias = config('type.document.' . $invoice->type . '.alias');
+        $page = config('type.document.'.$invoice->type.'.route.prefix');
+        $alias = config('type.document.'.$invoice->type.'.alias');
 
         $route = '';
 
         if (! empty($alias)) {
-            $route .= $alias . '.';
+            $route .= $alias.'.';
         }
 
-        $preview_route = $route . 'preview.' . $page . '.show';
-        $signed_route = $route . 'signed.' . $page . '.show';
+        $preview_route = $route.'preview.'.$page.'.show';
+        $signed_route = $route.'signed.'.$page.'.show';
 
         try {
             $previewUrl = route($preview_route, $invoice->id);
@@ -74,8 +73,8 @@ class InvoiceShare extends Controller
                         'text' => trans('general.copy_link'),
                         'class' => 'disabled:bg-blue-100',
                     ],
-                ]
-            ]
+                ],
+            ],
         ]);
     }
 }

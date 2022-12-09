@@ -17,6 +17,6 @@ return [
     'reset' => 'Sizning kalit so‘zingiz tiklandi!',
     'sent' => 'Kalit so‘zni tiklash havolasini elektron pochta orqali yubordik!',
     'token' => 'Ushbu kalit so‘zni qayta tiklash belgisi (token) noto‘g‘ri.',
-    'user' => "Ushbu elektron pochta manzilli foydalanuvchi topilmadi.",
+    'user' => 'Ushbu elektron pochta manzilli foydalanuvchi topilmadi.',
 
 ];

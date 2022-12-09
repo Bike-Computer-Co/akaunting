@@ -93,7 +93,7 @@ class Category extends Component
                 return $backgroundColor;
             }
 
-            $backgroundColor = 'bg-' . $model->color;
+            $backgroundColor = 'bg-'.$model->color;
         }
 
         return $backgroundColor;
@@ -111,7 +111,7 @@ class Category extends Component
             $textColor = 'text-black';
 
             if ($x[1] >= 500) {
-               $textColor = 'text-white';
+                $textColor = 'text-white';
             }
         }
 

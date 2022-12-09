@@ -1,9 +1,8 @@
 <?php
 
 spl_autoload_register(function ($class) {
-
     $baseNamespace = 'PaymentGateway\\Client\\';
-    $srcDir = __DIR__ . '/src/';
+    $srcDir = __DIR__.'/src/';
 
     $len = strlen($baseNamespace);
 
@@ -16,6 +15,6 @@ spl_autoload_register(function ($class) {
     $file = $srcDir.str_replace('\\', '/', $relClass).'.php';
 
     if (file_exists($file)) {
-        require_once($file);
+        require_once $file;
     }
 });

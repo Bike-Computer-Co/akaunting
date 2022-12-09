@@ -19,6 +19,6 @@ class DocumentCreated extends Event
     public function __construct($document, $request)
     {
         $this->document = $document;
-        $this->request  = $request;
+        $this->request = $request;
     }
 }

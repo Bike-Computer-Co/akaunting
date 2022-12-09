@@ -6,7 +6,6 @@ use App\Abstracts\Factory;
 use App\Models\Banking\Account;
 use App\Models\Banking\Transaction;
 use App\Models\Banking\Transfer as Model;
-use App\Models\Setting\Category;
 use App\Traits\Categories;
 
 class Transfer extends Factory

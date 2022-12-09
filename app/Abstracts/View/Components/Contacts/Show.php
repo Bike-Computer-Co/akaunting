@@ -10,7 +10,9 @@ abstract class Show extends Component
     use ViewComponents;
 
     public const OBJECT_TYPE = 'contact';
+
     public const DEFAULT_TYPE = 'customer';
+
     public const DEFAULT_PLURAL_TYPE = 'customers';
 
     /* -- Main Start -- */
@@ -112,7 +114,7 @@ abstract class Show extends Component
         bool $hideButtonDelete = false, $routeButtonDelete = '', $textDeleteModal = '',
         bool $hideTopLeft = false, bool $hideAvatar = false, bool $hideEmail = false, bool $hidePhone = false,
         bool $hideTopRight = false, bool $hideOverdue = false, bool $hideOpen = false, bool $hidePaid = false,
-        bool $hideBottomLeft = false, bool $hideAddress = false, bool $hideTaxNumber = false , bool $hideWebsite = false, bool $hideReference = false, bool $hideUser = false,
+        bool $hideBottomLeft = false, bool $hideAddress = false, bool $hideTaxNumber = false, bool $hideWebsite = false, bool $hideReference = false, bool $hideUser = false,
         bool $hideBottomRight = false
     ) {
         /* -- Main Start -- */
@@ -180,30 +182,30 @@ abstract class Show extends Component
             return $permissionCreateDocument;
         }
 
-        $document_type = config('type.contact.' . $type . '.document_type', 'invoice');
+        $document_type = config('type.contact.'.$type.'.document_type', 'invoice');
 
         $permission = '';
         $config_key = 'create';
 
         // if set config trasnlation config_key
-        if ($permission = config('type.document.' . $document_type . '.permission.' . $config_key)) {
+        if ($permission = config('type.document.'.$document_type.'.permission.'.$config_key)) {
             return $permission;
         }
 
-        $alias = config('type.document.' . $document_type . '.alias');
-        $group = config('type.document.' . $document_type . '.group');
-        $prefix = config('type.document.' . $document_type . '.permission.prefix');
+        $alias = config('type.document.'.$document_type.'.alias');
+        $group = config('type.document.'.$document_type.'.group');
+        $prefix = config('type.document.'.$document_type.'.permission.prefix');
 
-        $permission = $config_key . '-';
+        $permission = $config_key.'-';
 
         // if use module set module alias
         if (! empty($alias)) {
-            $permission .= $alias . '-';
+            $permission .= $alias.'-';
         }
 
         // if controller in folder it must
         if (! empty($group)) {
-            $permission .= $group . '-';
+            $permission .= $group.'-';
         }
 
         $permission .= $prefix;
@@ -230,10 +232,10 @@ abstract class Show extends Component
             return $routeButtonDocument;
         }
 
-        $prefix = config('type.contact.' . $type . '.route.prefix');
-        $document_type = config('type.contact.' . $type . '.document_type');
+        $prefix = config('type.contact.'.$type.'.route.prefix');
+        $document_type = config('type.contact.'.$type.'.document_type');
 
-        return $prefix . '.create-' . $document_type;
+        return $prefix.'.create-'.$document_type;
     }
 
     protected function getCreateTransactionRoute($type, $routeButtonDocument)
@@ -242,10 +244,10 @@ abstract class Show extends Component
             return $routeButtonDocument;
         }
 
-        $prefix = config('type.contact.' . $type . '.route.prefix');
-        $transaction_type = config('type.contact.' . $type . '.transaction_type');
+        $prefix = config('type.contact.'.$type.'.route.prefix');
+        $transaction_type = config('type.contact.'.$type.'.transaction_type');
 
-        return $prefix . '.create-' . $transaction_type;
+        return $prefix.'.create-'.$transaction_type;
     }
 
     protected function getTextDocument($type, $textDocument)
@@ -254,7 +256,7 @@ abstract class Show extends Component
             return $textDocument;
         }
 
-        $document_type = config('type.contact.' . $type . '.document_type');
+        $document_type = config('type.contact.'.$type.'.document_type');
 
         switch ($document_type) {
             case 'invoice':
@@ -264,7 +266,7 @@ abstract class Show extends Component
                 $text = 'general.bills';
                 break;
             default:
-                $text = config('type.contact.' . $type . '.translation.prefix') . '.' . config('type.contact.' . $type . '.route.prefix');
+                $text = config('type.contact.'.$type.'.translation.prefix').'.'.config('type.contact.'.$type.'.route.prefix');
         }
 
         return $text;
@@ -276,7 +278,7 @@ abstract class Show extends Component
             return $textTransaction;
         }
 
-        $document_type = config('type.contact.' . $type . '.document_type');
+        $document_type = config('type.contact.'.$type.'.document_type');
 
         switch ($document_type) {
             case 'invoice':
@@ -286,7 +288,7 @@ abstract class Show extends Component
                 $text = 'general.expenses';
                 break;
             default:
-                $text = config('type.contact.' . $type . '.translation.prefix') . '.' . config('type.contact.' . $type . '.transaction_type') . 's';
+                $text = config('type.contact.'.$type.'.translation.prefix').'.'.config('type.contact.'.$type.'.transaction_type').'s';
         }
 
         return $text;
@@ -298,7 +300,7 @@ abstract class Show extends Component
             return $textDeleteModal;
         }
 
-        $document_type = config('type.contact.' . $type . '.document_type');
+        $document_type = config('type.contact.'.$type.'.document_type');
 
         switch ($document_type) {
             case 'invoice':
@@ -308,7 +310,7 @@ abstract class Show extends Component
                 $text = 'general.expenses';
                 break;
             default:
-                $text = config('type.contact.' . $type . '.translation.prefix') . '.' . config('type.contact.' . $type . '.transaction_type') . 's';
+                $text = config('type.contact.'.$type.'.translation.prefix').'.'.config('type.contact.'.$type.'.transaction_type').'s';
         }
 
         return $text;

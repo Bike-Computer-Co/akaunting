@@ -21,7 +21,6 @@ use App\Models\Document\Document;
 use App\Models\Setting\Category;
 use App\Models\Setting\Currency;
 use App\Models\Setting\Tax;
-use App\Traits\Jobs;
 use Illuminate\Support\Facades\Validator;
 
 trait Import
@@ -32,15 +31,15 @@ trait Import
     {
         $id = isset($row['account_id']) ? $row['account_id'] : null;
 
-        if (empty($id) && !empty($row['account_name'])) {
+        if (empty($id) && ! empty($row['account_name'])) {
             $id = $this->getAccountIdFromName($row);
         }
 
-        if (empty($id) && !empty($row['account_number'])) {
+        if (empty($id) && ! empty($row['account_number'])) {
             $id = $this->getAccountIdFromNumber($row);
         }
 
-        if (empty($id) && !empty($row['currency_code'])) {
+        if (empty($id) && ! empty($row['currency_code'])) {
             $id = $this->getAccountIdFromCurrency($row);
         }
 
@@ -51,9 +50,9 @@ trait Import
     {
         $id = isset($row['category_id']) ? $row['category_id'] : null;
 
-        $type = !empty($type) ? $type : (!empty($row['type']) ? $row['type'] : 'income');
+        $type = ! empty($type) ? $type : (! empty($row['type']) ? $row['type'] : 'income');
 
-        if (empty($id) && !empty($row['category_name'])) {
+        if (empty($id) && ! empty($row['category_name'])) {
             $id = $this->getCategoryIdFromName($row, $type);
         }
 
@@ -64,13 +63,13 @@ trait Import
     {
         $id = isset($row['contact_id']) ? $row['contact_id'] : null;
 
-        $type = !empty($type) ? $type : (!empty($row['type']) ? (($row['type'] == 'income') ? 'customer' : 'vendor') : 'customer');
+        $type = ! empty($type) ? $type : (! empty($row['type']) ? (($row['type'] == 'income') ? 'customer' : 'vendor') : 'customer');
 
-        if (empty($row['contact_id']) && !empty($row['contact_email'])) {
+        if (empty($row['contact_id']) && ! empty($row['contact_email'])) {
             $id = $this->getContactIdFromEmail($row, $type);
         }
 
-        if (empty($id) && !empty($row['contact_name'])) {
+        if (empty($id) && ! empty($row['contact_name'])) {
             $id = $this->getContactIdFromName($row, $type);
         }
 
@@ -81,20 +80,20 @@ trait Import
     {
         $currency = Currency::where('code', $row['currency_code'])->first();
 
-        if (!empty($currency)) {
+        if (! empty($currency)) {
             return $currency->code;
         }
 
         $data = [
-            'company_id'    => company_id(),
-            'code'          => $row['currency_code'],
-            'name'          => isset($row['currency_name']) ? $row['currency_name'] : config('money.' . $row['currency_code'] . '.name'),
-            'rate'          => isset($row['currency_rate']) ? $row['currency_rate'] : 1,
-            'symbol'        => isset($row['currency_symbol']) ? $row['currency_symbol'] : config('money.' . $row['currency_code'] . '.symbol'),
-            'precision'     => isset($row['currency_precision']) ? $row['currency_precision'] : config('money.' . $row['currency_code'] . '.precision'),
-            'decimal_mark'  => isset($row['currency_decimal_mark']) ? $row['currency_decimal_mark'] : config('money.' . $row['currency_code'] . '.decimal_mark'),
-            'created_from'  => $row['created_from'],
-            'created_by'    => $row['created_by'],
+            'company_id' => company_id(),
+            'code' => $row['currency_code'],
+            'name' => isset($row['currency_name']) ? $row['currency_name'] : config('money.'.$row['currency_code'].'.name'),
+            'rate' => isset($row['currency_rate']) ? $row['currency_rate'] : 1,
+            'symbol' => isset($row['currency_symbol']) ? $row['currency_symbol'] : config('money.'.$row['currency_code'].'.symbol'),
+            'precision' => isset($row['currency_precision']) ? $row['currency_precision'] : config('money.'.$row['currency_code'].'.precision'),
+            'decimal_mark' => isset($row['currency_decimal_mark']) ? $row['currency_decimal_mark'] : config('money.'.$row['currency_code'].'.decimal_mark'),
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new CurrencyRequest)->rules()]);
@@ -108,19 +107,19 @@ trait Import
     {
         $id = isset($row['document_id']) ? $row['document_id'] : null;
 
-        if (empty($id) && !empty($row['document_number'])) {
+        if (empty($id) && ! empty($row['document_number'])) {
             $id = Document::number($row['document_number'])->pluck('id')->first();
         }
 
-        if (empty($id) && !empty($row['invoice_number'])) {
+        if (empty($id) && ! empty($row['invoice_number'])) {
             $id = Document::invoice()->number($row['invoice_number'])->pluck('id')->first();
         }
 
-        if (empty($id) && !empty($row['bill_number'])) {
+        if (empty($id) && ! empty($row['bill_number'])) {
             $id = Document::bill()->number($row['bill_number'])->pluck('id')->first();
         }
 
-        if (empty($id) && !empty($row['invoice_bill_number'])) {
+        if (empty($id) && ! empty($row['invoice_bill_number'])) {
             if ($row['type'] == 'income') {
                 $id = Document::invoice()->number($row['invoice_bill_number'])->pluck('id')->first();
             } else {
@@ -135,7 +134,7 @@ trait Import
     {
         $id = isset($row['item_id']) ? $row['item_id'] : null;
 
-        if (empty($id) && !empty($row['item_name'])) {
+        if (empty($id) && ! empty($row['item_name'])) {
             $id = $this->getItemIdFromName($row);
         }
 
@@ -146,11 +145,11 @@ trait Import
     {
         $id = isset($row['tax_id']) ? $row['tax_id'] : null;
 
-        if (empty($id) && !empty($row['tax_name'])) {
+        if (empty($id) && ! empty($row['tax_name'])) {
             $id = Tax::name($row['tax_name'])->pluck('id')->first();
         }
 
-        if (empty($id) && !empty($row['tax_rate'])) {
+        if (empty($id) && ! empty($row['tax_rate'])) {
             $id = $this->getTaxIdFromRate($row);
         }
 
@@ -161,19 +160,19 @@ trait Import
     {
         $account_id = Account::where('currency_code', $row['currency_code'])->pluck('id')->first();
 
-        if (!empty($account_id)) {
+        if (! empty($account_id)) {
             return $account_id;
         }
 
         $data = [
-            'company_id'        => company_id(),
-            'currency_code'     => $row['currency_code'],
-            'name'              => !empty($row['account_name']) ? $row['account_name'] : $row['currency_code'],
-            'number'            => !empty($row['account_number']) ? $row['account_number'] : (string) rand(1, 10000),
-            'opening_balance'   => !empty($row['opening_balance']) ? $row['opening_balance'] : 0,
-            'enabled'           => 1,
-            'created_from'      => $row['created_from'],
-            'created_by'        => $row['created_by'],
+            'company_id' => company_id(),
+            'currency_code' => $row['currency_code'],
+            'name' => ! empty($row['account_name']) ? $row['account_name'] : $row['currency_code'],
+            'number' => ! empty($row['account_number']) ? $row['account_number'] : (string) rand(1, 10000),
+            'opening_balance' => ! empty($row['opening_balance']) ? $row['opening_balance'] : 0,
+            'enabled' => 1,
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new AccountRequest)->rules()]);
@@ -187,19 +186,19 @@ trait Import
     {
         $account_id = Account::where('name', $row['account_name'])->pluck('id')->first();
 
-        if (!empty($account_id)) {
+        if (! empty($account_id)) {
             return $account_id;
         }
 
         $data = [
-            'company_id'        => company_id(),
-            'name'              => $row['account_name'],
-            'number'            => !empty($row['account_number']) ? $row['account_number'] : (string) rand(1, 10000),
-            'currency_code'     => !empty($row['currency_code']) ? $row['currency_code'] : setting('default.currency'),
-            'opening_balance'   => !empty($row['opening_balance']) ? $row['opening_balance'] : 0,
-            'enabled'           => 1,
-            'created_from'      => $row['created_from'],
-            'created_by'        => $row['created_by'],
+            'company_id' => company_id(),
+            'name' => $row['account_name'],
+            'number' => ! empty($row['account_number']) ? $row['account_number'] : (string) rand(1, 10000),
+            'currency_code' => ! empty($row['currency_code']) ? $row['currency_code'] : setting('default.currency'),
+            'opening_balance' => ! empty($row['opening_balance']) ? $row['opening_balance'] : 0,
+            'enabled' => 1,
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new AccountRequest)->rules()]);
@@ -213,19 +212,19 @@ trait Import
     {
         $account_id = Account::where('account_number', $row['account_number'])->pluck('id')->first();
 
-        if (!empty($account_id)) {
+        if (! empty($account_id)) {
             return $account_id;
         }
 
         $data = [
-            'company_id'        => company_id(),
-            'number'            => $row['account_number'],
-            'name'              => !empty($row['account_name']) ? $row['account_name'] : $row['account_number'],
-            'currency_code'     => !empty($row['currency_code']) ? $row['currency_code'] : setting('default.currency'),
-            'opening_balance'   => !empty($row['opening_balance']) ? $row['opening_balance'] : 0,
-            'enabled'           => 1,
-            'created_from'      => $row['created_from'],
-            'created_by'        => $row['created_by'],
+            'company_id' => company_id(),
+            'number' => $row['account_number'],
+            'name' => ! empty($row['account_name']) ? $row['account_name'] : $row['account_number'],
+            'currency_code' => ! empty($row['currency_code']) ? $row['currency_code'] : setting('default.currency'),
+            'opening_balance' => ! empty($row['opening_balance']) ? $row['opening_balance'] : 0,
+            'enabled' => 1,
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new AccountRequest)->rules()]);
@@ -239,18 +238,18 @@ trait Import
     {
         $category_id = Category::withSubCategory()->where('name', $row['category_name'])->pluck('id')->first();
 
-        if (!empty($category_id)) {
+        if (! empty($category_id)) {
             return $category_id;
         }
 
         $data = [
-            'company_id'        => company_id(),
-            'name'              => $row['category_name'],
-            'type'              => $type,
-            'color'             => !empty($row['category_color']) ? $row['category_color'] : '#' . dechex(rand(0x000000, 0xFFFFFF)),
-            'enabled'           => 1,
-            'created_from'      => $row['created_from'],
-            'created_by'        => $row['created_by'],
+            'company_id' => company_id(),
+            'name' => $row['category_name'],
+            'type' => $type,
+            'color' => ! empty($row['category_color']) ? $row['category_color'] : '#'.dechex(rand(0x000000, 0xFFFFFF)),
+            'enabled' => 1,
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new CategoryRequest)->rules()]);
@@ -264,19 +263,19 @@ trait Import
     {
         $contact_id = Contact::where('email', $row['contact_email'])->pluck('id')->first();
 
-        if (!empty($contact_id)) {
+        if (! empty($contact_id)) {
             return $contact_id;
         }
 
         $data = [
-            'company_id'        => company_id(),
-            'email'             => $row['contact_email'],
-            'type'              => $type,
-            'name'              => !empty($row['contact_name']) ? $row['contact_name'] : $row['contact_email'],
-            'currency_code'     => !empty($row['contact_currency']) ? $row['contact_currency'] : setting('default.currency'),
-            'enabled'           => 1,
-            'created_from'      => $row['created_from'],
-            'created_by'        => $row['created_by'],
+            'company_id' => company_id(),
+            'email' => $row['contact_email'],
+            'type' => $type,
+            'name' => ! empty($row['contact_name']) ? $row['contact_name'] : $row['contact_email'],
+            'currency_code' => ! empty($row['contact_currency']) ? $row['contact_currency'] : setting('default.currency'),
+            'enabled' => 1,
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new ContactRequest)->rules()]);
@@ -290,19 +289,19 @@ trait Import
     {
         $contact_id = Contact::where('name', $row['contact_name'])->pluck('id')->first();
 
-        if (!empty($contact_id)) {
+        if (! empty($contact_id)) {
             return $contact_id;
         }
 
         $data = [
-            'company_id'        => company_id(),
-            'name'              => $row['contact_name'],
-            'type'              => $type,
-            'email'             => !empty($row['contact_email']) ? $row['contact_email'] : null,
-            'currency_code'     => !empty($row['contact_currency']) ? $row['contact_currency'] : setting('default.currency'),
-            'enabled'           => 1,
-            'created_from'      => $row['created_from'],
-            'created_by'        => $row['created_by'],
+            'company_id' => company_id(),
+            'name' => $row['contact_name'],
+            'type' => $type,
+            'email' => ! empty($row['contact_email']) ? $row['contact_email'] : null,
+            'currency_code' => ! empty($row['contact_currency']) ? $row['contact_currency'] : setting('default.currency'),
+            'enabled' => 1,
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new ContactRequest)->rules()]);
@@ -316,18 +315,18 @@ trait Import
     {
         $item_id = Item::where('name', $row['item_name'])->pluck('id')->first();
 
-        if (!empty($item_id)) {
+        if (! empty($item_id)) {
             return $item_id;
         }
 
         $data = [
-            'company_id'        => company_id(),
-            'name'              => $row['item_name'],
-            'sale_price'        => !empty($row['sale_price']) ? $row['sale_price'] : (!empty($row['price']) ? $row['price'] : 0),
-            'purchase_price'    => !empty($row['purchase_price']) ? $row['purchase_price'] : (!empty($row['price']) ? $row['price'] : 0),
-            'enabled'           => 1,
-            'created_from'      => $row['created_from'],
-            'created_by'        => $row['created_by'],
+            'company_id' => company_id(),
+            'name' => $row['item_name'],
+            'sale_price' => ! empty($row['sale_price']) ? $row['sale_price'] : (! empty($row['price']) ? $row['price'] : 0),
+            'purchase_price' => ! empty($row['purchase_price']) ? $row['purchase_price'] : (! empty($row['price']) ? $row['price'] : 0),
+            'enabled' => 1,
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new ItemRequest())->rules()]);
@@ -341,18 +340,18 @@ trait Import
     {
         $tax_id = Tax::where('rate', $row['tax_rate'])->pluck('id')->first();
 
-        if (!empty($tax_id)) {
+        if (! empty($tax_id)) {
             return $tax_id;
         }
 
         $data = [
-            'company_id'        => company_id(),
-            'rate'              => $row['tax_rate'],
-            'type'              => $type,
-            'name'              => !empty($row['tax_name']) ? $row['tax_name'] : $row['tax_rate'],
-            'enabled'           => 1,
-            'created_from'      => $row['created_from'],
-            'created_by'        => $row['created_by'],
+            'company_id' => company_id(),
+            'rate' => $row['tax_rate'],
+            'type' => $type,
+            'name' => ! empty($row['tax_name']) ? $row['tax_name'] : $row['tax_rate'],
+            'enabled' => 1,
+            'created_from' => $row['created_from'],
+            'created_by' => $row['created_by'],
         ];
 
         Validator::validate($data, [(new TaxRequest())->rules()]);

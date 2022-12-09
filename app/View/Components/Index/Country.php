@@ -25,7 +25,8 @@ class Country extends Component
      *
      * @return void
      */
-    public function __construct($code) {
+    public function __construct($code)
+    {
         $this->code = $code;
         $this->country = trans('general.na');
     }
@@ -38,7 +39,7 @@ class Country extends Component
     public function render()
     {
         if (! empty($this->code)) {
-            $this->country = trans('countries.' . $this->code);
+            $this->country = trans('countries.'.$this->code);
         }
 
         return view('components.index.country');

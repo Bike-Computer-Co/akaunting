@@ -2,10 +2,10 @@
 
 return [
 
-    'whoops'              => 'Ups!',
-    'hello'               => 'Tere!',
-    'salutation'          => 'Parimate soovidega,<br> :company_name',
-    'subcopy'             => 'Kui teil on probleeme lingile ":text" klõpsamisega, kopeerige ja kleepige allolev URL oma veebibrauserisse: [:url](:url)',
+    'whoops' => 'Ups!',
+    'hello' => 'Tere!',
+    'salutation' => 'Parimate soovidega,<br> :company_name',
+    'subcopy' => 'Kui teil on probleeme lingile ":text" klõpsamisega, kopeerige ja kleepige allolev URL oma veebibrauserisse: [:url](:url)',
 
     'update' => [
 
@@ -27,26 +27,26 @@ return [
     'import' => [
 
         'completed' => [
-            'subject'           => 'Importimine lõpetatud',
-            'description'       => 'Import on lõpule viidud ja kirjed on teie kuvaril saadaval.',
+            'subject' => 'Importimine lõpetatud',
+            'description' => 'Import on lõpule viidud ja kirjed on teie kuvaril saadaval.',
         ],
 
         'failed' => [
-            'subject'           => 'Import ebaõnnestus',
-            'description'       => 'Faili ei saa importida järgmiste probleemide tõttu:',
+            'subject' => 'Import ebaõnnestus',
+            'description' => 'Faili ei saa importida järgmiste probleemide tõttu:',
         ],
     ],
 
     'export' => [
 
         'completed' => [
-            'subject'           => 'Export on valmis',
-            'description'       => 'Ekspordifail on allalaadimiseks valmis järgmiselt lingilt:',
+            'subject' => 'Export on valmis',
+            'description' => 'Ekspordifail on allalaadimiseks valmis järgmiselt lingilt:',
         ],
 
         'failed' => [
-            'subject'           => 'Export ebaõnnestus',
-            'description'       => 'Ekspordifaili ei saa luua järgmise probleemi tõttu:',
+            'subject' => 'Export ebaõnnestus',
+            'description' => 'Ekspordifaili ei saa luua järgmise probleemi tõttu:',
         ],
 
     ],

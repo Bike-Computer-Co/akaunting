@@ -10,7 +10,7 @@ class SendDocumentPaymentNotification
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -23,7 +23,7 @@ class SendDocumentPaymentNotification
         $transaction = $document->transactions()->latest()->first();
 
         // Notify the customer
-        if ($document->contact && !empty($document->contact_email)) {
+        if ($document->contact && ! empty($document->contact_email)) {
             $document->contact->notify(new Notification($document, $transaction, "{$document->type}_payment_customer"), true);
         }
 

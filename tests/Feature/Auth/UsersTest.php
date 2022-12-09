@@ -29,7 +29,7 @@ class UsersTest extends FeatureTestCase
             ->assertOk()
             ->assertSeeTextInOrder([
                 $user->name,
-                trans('documents.statuses.pending')
+                trans('documents.statuses.pending'),
             ])
             ->assertSee(route('users.invite', $user->id));
     }

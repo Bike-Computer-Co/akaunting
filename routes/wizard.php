@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
  *
  * @see \App\Providers\Route::mapWizardRoutes
  */
-
 Route::group(['as' => 'wizard.'], function () {
     Route::get('companies', 'Wizard\Companies@edit')->name('companies.edit');
     Route::post('companies', 'Wizard\Companies@update')->middleware('dropzone')->name('companies.update');

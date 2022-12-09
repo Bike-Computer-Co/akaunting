@@ -3,9 +3,9 @@
 namespace App\BulkActions\Banking;
 
 use App\Abstracts\BulkAction;
+use App\Exports\Banking\Transfers as Export;
 use App\Jobs\Banking\DeleteTransfer;
 use App\Models\Banking\Transfer;
-use App\Exports\Banking\Transfers as Export;
 
 class Transfers extends BulkAction
 {
@@ -19,24 +19,24 @@ class Transfers extends BulkAction
     ];
 
     public $actions = [
-        'delete'    => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-banking-transfers',
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-banking-transfers',
         ],
-        'export'    => [
-            'icon'          => 'file_download',
-            'name'          => 'general.export',
-            'message'       => 'bulk_actions.message.export',
-            'type'          => 'download',
+        'export' => [
+            'icon' => 'file_download',
+            'name' => 'general.export',
+            'message' => 'bulk_actions.message.export',
+            'type' => 'download',
         ],
     ];
 
     public function destroy($request)
     {
         $transfers = $this->getSelectedRecords($request, [
-            'expense_transaction', 'income_transaction'
+            'expense_transaction', 'income_transaction',
         ]);
 
         foreach ($transfers as $transfer) {

@@ -4,8 +4,6 @@ namespace App\Traits;
 
 use App\Models\Auth\Permission;
 use App\Models\Auth\Role;
-use App\Traits\SearchString;
-use App\Traits\Translations;
 use App\Utilities\Reports;
 use App\Utilities\Widgets;
 use Illuminate\Routing\Route;
@@ -79,8 +77,8 @@ trait Permissions
     public function applyPermissionsToRoles($roles, $apply, $permissions)
     {
         $roles->each(function ($role) use ($apply, $permissions) {
-            $f1 = $apply . 'PermissionsByAction';
-            $f2 = $apply . 'Permission';
+            $f1 = $apply.'PermissionsByAction';
+            $f2 = $apply.'Permission';
 
             foreach ($permissions as $id => $permission) {
                 if ($this->isActionList($permission)) {
@@ -100,7 +98,7 @@ trait Permissions
 
         foreach ($permissions as $old => $new) {
             foreach ($actions as $action) {
-                $old_name = $action . '-' . $old;
+                $old_name = $action.'-'.$old;
 
                 $permission = Permission::where('name', $old_name)->first();
 
@@ -108,7 +106,7 @@ trait Permissions
                     continue;
                 }
 
-                $new_name = $action . '-' . $new;
+                $new_name = $action.'-'.$new;
                 $new_display_name = $this->getPermissionDisplayName($new_name);
 
                 $permission->update([
@@ -141,7 +139,7 @@ trait Permissions
         $permissions = [];
 
         foreach ($module->get('reports') as $class) {
-            if (!class_exists($class)) {
+            if (! class_exists($class)) {
                 continue;
             }
 
@@ -166,7 +164,7 @@ trait Permissions
         $permissions = [];
 
         foreach ($module->get('widgets') as $class) {
-            if (!class_exists($class)) {
+            if (! class_exists($class)) {
                 continue;
             }
 
@@ -204,12 +202,12 @@ trait Permissions
             $module = module($module);
         }
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             return;
         }
 
         $name = Reports::getPermission($class);
-        $display_name = 'Read ' . $module->getName() . ' Reports ' . Reports::getDefaultName($class);
+        $display_name = 'Read '.$module->getName().' Reports '.Reports::getDefaultName($class);
 
         return $this->createPermission($name, $display_name);
     }
@@ -220,12 +218,12 @@ trait Permissions
             $module = module($module);
         }
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             return;
         }
 
         $name = Widgets::getPermission($class);
-        $display_name = 'Read ' . $module->getName() . ' Widgets ' . Widgets::getDefaultName($class);
+        $display_name = 'Read '.$module->getName().' Widgets '.Widgets::getDefaultName($class);
 
         return $this->createPermission($name, $display_name);
     }
@@ -241,21 +239,21 @@ trait Permissions
             $module = module($module);
         }
 
-        $name = $action . '-' . $module->getAlias() . '-' . $controller;
-        $display_name = Str::title($action) . ' ' . $module->getName() . ' ' . Str::title($controller);
+        $name = $action.'-'.$module->getAlias().'-'.$controller;
+        $display_name = Str::title($action).' '.$module->getName().' '.Str::title($controller);
 
         return $this->createPermission($name, $display_name);
     }
 
     public function createRole($name, $display_name = null, $description = null)
     {
-        $alias = !empty($this->alias) ? $this->alias : $name;
+        $alias = ! empty($this->alias) ? $this->alias : $name;
 
         if (empty($display_name)) {
             $display_name = $this->findTranslation([
-                'auth.roles.' . Str::replace('-', '_', $name) . '.name',
-                $alias . '::permissions.roles.' . Str::replace('-', '_', $name) . '.name',
-                $alias . '::auth.roles.' . Str::replace('-', '_', $name) . '.name',
+                'auth.roles.'.Str::replace('-', '_', $name).'.name',
+                $alias.'::permissions.roles.'.Str::replace('-', '_', $name).'.name',
+                $alias.'::auth.roles.'.Str::replace('-', '_', $name).'.name',
             ]);
 
             if (empty($display_name)) {
@@ -265,9 +263,9 @@ trait Permissions
 
         if (empty($description)) {
             $description = $this->findTranslation([
-                'auth.roles.' . Str::replace('-', '_', $name) . '.description',
-                $alias . '::permissions.roles.' . Str::replace('-', '_', $name) . '.description',
-                $alias . '::auth.roles.' . Str::replace('-', '_', $name) . '.description',
+                'auth.roles.'.Str::replace('-', '_', $name).'.description',
+                $alias.'::permissions.roles.'.Str::replace('-', '_', $name).'.description',
+                $alias.'::auth.roles.'.Str::replace('-', '_', $name).'.description',
             ]);
 
             if (empty($description)) {
@@ -339,7 +337,7 @@ trait Permissions
 
     public function isActionList($permission)
     {
-        if (!is_string($permission)) {
+        if (! is_string($permission)) {
             return false;
         }
 
@@ -359,7 +357,7 @@ trait Permissions
 
     public function applyPermissionsByAction($apply, $role, $page, $action_list)
     {
-        $function = $apply . 'Permission';
+        $function = $apply.'Permission';
 
         $actions_map = collect($this->getActionsMap());
 
@@ -368,7 +366,7 @@ trait Permissions
         foreach ($actions as $short_action) {
             $action = $actions_map->get($short_action);
 
-            $name = $action . '-' . $page;
+            $name = $action.'-'.$page;
 
             $this->$function($role, $name);
         }
@@ -376,13 +374,13 @@ trait Permissions
 
     public function getPermissionDisplayName($name)
     {
-        if (!empty($this->alias)) {
+        if (! empty($this->alias)) {
             $name = str_replace($this->alias, '{Module Placeholder}', $name);
         }
 
         $name = Str::title(str_replace('-', ' ', $name));
 
-        if (!empty($this->alias)) {
+        if (! empty($this->alias)) {
             $name = str_replace('{Module Placeholder}', module($this->alias)->getName(), $name);
         }
 
@@ -440,18 +438,18 @@ trait Permissions
             $type = $this->getSearchStringValue('type');
 
             if (! empty($type)) {
-                $alias = config('type.' . Str::singular($table) . '.' . $type . '.alias');
-                $group = config('type.' . Str::singular($table) . '.' . $type . '.group');
-                $prefix = config('type.' . Str::singular($table) . '.' . $type . '.permission.prefix');
+                $alias = config('type.'.Str::singular($table).'.'.$type.'.alias');
+                $group = config('type.'.Str::singular($table).'.'.$type.'.group');
+                $prefix = config('type.'.Str::singular($table).'.'.$type.'.permission.prefix');
 
                 // if use module set module alias
                 if (! empty($alias)) {
-                    $controller .= $alias . '-';
+                    $controller .= $alias.'-';
                 }
 
                 // if controller in folder it must
                 if (! empty($group)) {
-                    $controller .= $group . '-';
+                    $controller .= $group.'-';
                 }
 
                 $controller .= $prefix;
@@ -467,15 +465,15 @@ trait Permissions
             // Add module
             if (isset($arr[3]) && isset($arr[4])) {
                 if (strtolower($arr[4]) == 'modules') {
-                    $controller .= Str::kebab($arr[3]) . '-';
+                    $controller .= Str::kebab($arr[3]).'-';
                 } elseif (isset($arr[5]) && (strtolower($arr[5]) == 'modules')) {
-                    $controller .= Str::kebab($arr[4]) . '-';
+                    $controller .= Str::kebab($arr[4]).'-';
                 }
             }
 
             // Add folder
             if (! in_array(strtolower($arr[1]), ['api', 'controllers'])) {
-                $controller .= Str::kebab($arr[1]) . '-';
+                $controller .= Str::kebab($arr[1]).'-';
             }
 
             // Add file
@@ -494,10 +492,10 @@ trait Permissions
         }
 
         // Add CRUD permission check
-        $this->middleware('permission:create-' . $controller)->only('create', 'store', 'duplicate', 'import');
-        $this->middleware('permission:read-' . $controller)->only('index', 'show', 'edit', 'export');
-        $this->middleware('permission:update-' . $controller)->only('update', 'enable', 'disable');
-        $this->middleware('permission:delete-' . $controller)->only('destroy');
+        $this->middleware('permission:create-'.$controller)->only('create', 'store', 'duplicate', 'import');
+        $this->middleware('permission:read-'.$controller)->only('index', 'show', 'edit', 'export');
+        $this->middleware('permission:update-'.$controller)->only('update', 'enable', 'disable');
+        $this->middleware('permission:delete-'.$controller)->only('destroy');
     }
 
     public function canAccessMenuItem($title, $permissions)

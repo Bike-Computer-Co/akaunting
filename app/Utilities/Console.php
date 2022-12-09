@@ -13,7 +13,7 @@ class Console
     {
         $command = Application::formatCommandString($string);
 
-        logger('Console command:: ' . $command);
+        logger('Console command:: '.$command);
 
         try {
             $process = Process::fromShellCommandline($command, base_path());
@@ -30,7 +30,7 @@ class Console
             $output = $e->getMessage();
         }
 
-        logger('Console output:: ' . $output);
+        logger('Console output:: '.$output);
 
         return static::formatOutput($output);
     }
@@ -51,6 +51,6 @@ class Console
             'CSRF token mismatch',
         ];
 
-        return !Str::contains($output, $errors);
+        return ! Str::contains($output, $errors);
     }
 }

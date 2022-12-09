@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Abstracts\Http\Controller;
 use App\Http\Requests\Auth\Login as Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
 class Login extends Controller
@@ -33,14 +32,14 @@ class Login extends Controller
     {
         if (app()->environment('production'))
             return redirect('https://digitalhub.mk/login');
-        return redirect("http://localhost:3000/login");
-//        return view('auth.login.create');
+//        return redirect("http://localhost:3000/login");
+        return view('auth.login.create');
     }
 
     public function store(Request $request)
     {
         // Attempt to login
-        if (!auth()->attempt($request->only('email', 'password'), $request->get('remember', false))) {
+        if (! auth()->attempt($request->only('email', 'password'), $request->get('remember', false))) {
             return response()->json([
                 'status' => null,
                 'success' => false,
@@ -55,7 +54,7 @@ class Login extends Controller
         $user = user();
 
         // Check if user is enabled
-        if (!$user->enabled) {
+        if (! $user->enabled) {
             $this->logout();
 
             return response()->json([
@@ -73,7 +72,7 @@ class Login extends Controller
         });
 
         // Logout if no company assigned
-        if (!$company) {
+        if (! $company) {
             $this->logout();
 
             return response()->json([
@@ -91,7 +90,7 @@ class Login extends Controller
             $path = session('url.intended', '');
 
             // Path must start with company id and 'portal' prefix
-            if (!Str::startsWith($path, $company->id . '/portal')) {
+            if (! Str::startsWith($path, $company->id.'/portal')) {
                 $path = route('portal.dashboard', ['company_id' => $company->id]);
             }
 

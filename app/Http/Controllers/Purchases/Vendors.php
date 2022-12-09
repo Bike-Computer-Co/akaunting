@@ -39,7 +39,6 @@ class Vendors extends Controller
      * Show the form for viewing the specified resource.
      *
      * @param  Contact  $vendor
-     *
      * @return Response
      */
     public function show(Contact $vendor)
@@ -61,7 +60,6 @@ class Vendors extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -89,7 +87,6 @@ class Vendors extends Controller
      * Duplicate the specified resource.
      *
      * @param  Contact  $vendor
-     *
      * @return Response
      */
     public function duplicate(Contact $vendor)
@@ -107,7 +104,6 @@ class Vendors extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -131,7 +127,6 @@ class Vendors extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Contact  $vendor
-     *
      * @return Response
      */
     public function edit(Contact $vendor)
@@ -142,9 +137,8 @@ class Vendors extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Contact $vendor
-     * @param  Request $request
-     *
+     * @param  Contact  $vendor
+     * @param  Request  $request
      * @return Response
      */
     public function update(Contact $vendor, Request $request)
@@ -171,8 +165,7 @@ class Vendors extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Contact $vendor
-     *
+     * @param  Contact  $vendor
      * @return Response
      */
     public function enable(Contact $vendor)
@@ -189,8 +182,7 @@ class Vendors extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Contact $vendor
-     *
+     * @param  Contact  $vendor
      * @return Response
      */
     public function disable(Contact $vendor)
@@ -207,8 +199,7 @@ class Vendors extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Contact $vendor
-     *
+     * @param  Contact  $vendor
      * @return Response
      */
     public function destroy(Contact $vendor)

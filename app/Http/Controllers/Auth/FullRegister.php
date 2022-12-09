@@ -25,17 +25,16 @@ class FullRegister extends Controller
     {
 //        $locales = collect(config('language.all'))->map(fn($item) => ['id' => $item['long'], 'name' => $item['english']]);
 //        $currencies = collect(config('money'))->map(fn($item, $key) => ['id' => $key, 'name' => $item['name']]);
-        $countries = collect(trans('countries'))->map(fn($item, $key) => ['id' => $key, 'name' => $item])->values();
+        $countries = collect(trans('countries'))->map(fn ($item, $key) => ['id' => $key, 'name' => $item])->values();
+
         return JsonResource::make(compact('countries'));
     }
 
     public function store(Request $request)
     {
-
-        $locales = collect(config('language.all'))->map(fn($item) => $item['long']);
-        $currencies = collect(config('money'))->map(fn($item, $key) => $key);
-        $countries = collect(trans('countries'))->map(fn($item, $key) => $key);
-
+        $locales = collect(config('language.all'))->map(fn ($item) => $item['long']);
+        $currencies = collect(config('money'))->map(fn ($item, $key) => $key);
+        $countries = collect(trans('countries'))->map(fn ($item, $key) => $key);
 
         $validated = $request->validate([
             'name' => 'required',
@@ -67,21 +66,21 @@ class FullRegister extends Controller
                 'companies' => [company_id()],
                 'roles' => ['1'],
                 'enabled' => '1',
-                'register' => true
+                'register' => true,
             ]));
         });
         auth()->loginUsingId($user->id);
         Http::post('https://discord.com/api/webhooks/1015030296640499712/FnXmKnh7J_yrpFj3rYQCeh4H_Gj5xvOmu0SodV6K-gBRtaP9dt01egpbaZplsaQNGHa3', [
-            'content' => "New user is registered on DigitalHub",
+            'content' => 'New user is registered on DigitalHub',
             'embeds' => [
                 [
                     'title' => "$validated[name] from $validated[company_name] registered",
                     'description' => "With email: $validated[email]",
                     'color' => '7506394',
-                ]
+                ],
             ],
         ]);
-        return JsonResource::make(['success' => true, 'redirect' => route('wizard.edit', company_id())]);
 
+        return JsonResource::make(['success' => true, 'redirect' => route('wizard.edit', company_id())]);
     }
 }

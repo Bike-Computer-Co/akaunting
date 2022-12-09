@@ -152,10 +152,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'अनुकूल-संदेश',
         ],
-        'invalid_currency'      => ':attribute कोड अमान्य है।',
-        'invalid_amount'        => 'राशि :attribute अमान्य है।',
-        'invalid_extension'     => 'फ़ाइल एक्सटेंशन अमान्य है।',
-        'invalid_dimension'     => ':attribute आयाम अधिकतम :width px :height px होना चाहिए।',
+        'invalid_currency' => ':attribute कोड अमान्य है।',
+        'invalid_amount' => 'राशि :attribute अमान्य है।',
+        'invalid_extension' => 'फ़ाइल एक्सटेंशन अमान्य है।',
+        'invalid_dimension' => ':attribute आयाम अधिकतम :width px :height px होना चाहिए।',
     ],
 
     /*

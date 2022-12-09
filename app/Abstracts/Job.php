@@ -91,11 +91,13 @@ abstract class Job
 
     public function getRequestInstance($request)
     {
-        if (!is_array($request)) {
+        if (! is_array($request)) {
             return $request;
         }
 
-        $class = new class() extends FormRequest {};
+        $class = new class() extends FormRequest
+        {
+        };
 
         return $class->merge($request);
     }

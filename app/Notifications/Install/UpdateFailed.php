@@ -2,9 +2,9 @@
 
 namespace App\Notifications\Install;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Notification;
 
 class UpdateFailed extends Notification
 {
@@ -67,11 +67,11 @@ class UpdateFailed extends Notification
         ]);
 
         $message = trans('notifications.update.mail.description', [
-            'alias'             => $this->getAliasName(),
-            'current_version'   => $this->event->old,
-            'new_version'       => $this->event->new,
-            'step'              => $this->event->step,
-            'error_message'     => $this->event->message,
+            'alias' => $this->getAliasName(),
+            'current_version' => $this->event->old,
+            'new_version' => $this->event->new,
+            'step' => $this->event->step,
+            'error_message' => $this->event->message,
         ]);
 
         return (new MailMessage)
@@ -99,11 +99,11 @@ class UpdateFailed extends Notification
             ->content($message)
             ->attachment(function ($attachment) {
                 $attachment->fields([
-                    'Alias'             => $this->getAliasName(),
-                    'Current Version'   => $this->event->old,
-                    'New Version'       => $this->event->new,
-                    'Step'              => $this->event->step,
-                    'Error Message'     => $this->event->message,
+                    'Alias' => $this->getAliasName(),
+                    'Current Version' => $this->event->old,
+                    'New Version' => $this->event->new,
+                    'Step' => $this->event->step,
+                    'Error Message' => $this->event->message,
                 ]);
             });
     }

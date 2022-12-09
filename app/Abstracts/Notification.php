@@ -40,7 +40,6 @@ abstract class Notification extends BaseNotification implements ShouldQueue
 
     /**
      * Initialise the mail representation of the notification.
-     *
      */
     public function initMailMessage(): MailMessage
     {
@@ -51,7 +50,7 @@ abstract class Notification extends BaseNotification implements ShouldQueue
             ->subject($this->getSubject())
             ->view('components.email.body', ['body' => $this->getBody()]);
 
-        if (!empty($this->custom_mail['cc'])) {
+        if (! empty($this->custom_mail['cc'])) {
             $message->cc($this->custom_mail['cc']);
         }
 
@@ -60,7 +59,6 @@ abstract class Notification extends BaseNotification implements ShouldQueue
 
     /**
      * Initialise the array representation of the notification.
-     *
      */
     public function initArrayMessage(): void
     {
@@ -69,16 +67,16 @@ abstract class Notification extends BaseNotification implements ShouldQueue
 
     public function getSubject(): string
     {
-        return !empty($this->custom_mail['subject'])
+        return ! empty($this->custom_mail['subject'])
                 ? $this->custom_mail['subject']
                 : $this->replaceTags($this->template->subject);
     }
 
     public function getBody()
     {
-        $body = !empty($this->custom_mail['body']) ? $this->custom_mail['body'] : $this->replaceTags($this->template->body);
+        $body = ! empty($this->custom_mail['body']) ? $this->custom_mail['body'] : $this->replaceTags($this->template->body);
 
-        return $body . $this->getFooter();
+        return $body.$this->getFooter();
     }
 
     public function replaceTags(string $content): string
@@ -91,9 +89,9 @@ abstract class Notification extends BaseNotification implements ShouldQueue
 
     public function getFooter()
     {
-        $url = 'https://akaunting.com/lp/accounting-software?utm_source=email&utm_medium=footer&utm_campaign=plg&utm_content=' . $this->template->alias;
+        $url = 'https://akaunting.com/lp/accounting-software?utm_source=email&utm_medium=footer&utm_campaign=plg&utm_content='.$this->template->alias;
 
-        $get_started = '<a href="' . $url . '" style="color: #676ba2; text-decoration: none;">' . trans('footer.get_started') . '</a>';
+        $get_started = '<a href="'.$url.'" style="color: #676ba2; text-decoration: none;">'.trans('footer.get_started').'</a>';
 
         return view('components.email.footer', compact('url', 'get_started'));
     }
@@ -102,8 +100,8 @@ abstract class Notification extends BaseNotification implements ShouldQueue
     {
         $pattern = [];
 
-        foreach($this->getTags() as $tag) {
-            $pattern[] = "/" . $tag . "/";
+        foreach ($this->getTags() as $tag) {
+            $pattern[] = '/'.$tag.'/';
         }
 
         return $pattern;

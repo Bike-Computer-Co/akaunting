@@ -72,7 +72,6 @@ class Currencies extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -100,7 +99,6 @@ class Currencies extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Currency  $currency
-     *
      * @return Response
      */
     public function edit(Currency $currency)
@@ -138,9 +136,8 @@ class Currencies extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Currency $currency
-     * @param  Request $request
-     *
+     * @param  Currency  $currency
+     * @param  Request  $request
      * @return Response
      */
     public function update(Currency $currency, Request $request)
@@ -167,8 +164,7 @@ class Currencies extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Currency $currency
-     *
+     * @param  Currency  $currency
      * @return Response
      */
     public function enable(Currency $currency)
@@ -185,8 +181,7 @@ class Currencies extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Currency $currency
-     *
+     * @param  Currency  $currency
      * @return Response
      */
     public function disable(Currency $currency)
@@ -203,8 +198,7 @@ class Currencies extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Currency $currency
-     *
+     * @param  Currency  $currency
      * @return Response
      */
     public function destroy(Currency $currency)
@@ -235,7 +229,7 @@ class Currencies extends Controller
         $currencies = Currency::all()->pluck('rate', 'code');
 
         if ($code) {
-            $currency = config('money.' . $code);
+            $currency = config('money.'.$code);
 
             $currency['rate'] = isset($currencies[$code]) ? $currencies[$code] : null;
             $currency['symbol_first'] = $currency['symbol_first'] ? 1 : 0;

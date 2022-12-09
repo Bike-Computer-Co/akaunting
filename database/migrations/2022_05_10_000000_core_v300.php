@@ -34,21 +34,21 @@ return new class extends Migration
             $table->foreign('parent_id')->references('id')->on('categories');
         });
 
-        Schema::table('items', function(Blueprint $table) {
+        Schema::table('items', function (Blueprint $table) {
             $table->dropColumn('tax_id');
         });
 
-        Schema::table('items', function(Blueprint $table) {
+        Schema::table('items', function (Blueprint $table) {
             $table->dropColumn('quantity');
         });
 
-        Schema::table('items', function(Blueprint $table) {
+        Schema::table('items', function (Blueprint $table) {
             $table->string('type')->default('product')->after('company_id');
             $table->double('sale_price', 15, 4)->nullable()->change();
             $table->double('purchase_price', 15, 4)->nullable()->change();
         });
 
-        Schema::table('recurring', function(Blueprint $table) {
+        Schema::table('recurring', function (Blueprint $table) {
             $table->renameColumn('count', 'limit_count')->nullable();
         });
 
@@ -67,7 +67,7 @@ return new class extends Migration
             }
         });
 
-        Schema::table('accounts', function(Blueprint $table) {
+        Schema::table('accounts', function (Blueprint $table) {
             $table->string('type')->default('bank')->after('company_id');
         });
 

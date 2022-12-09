@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'aangepast bericht',
         ],
-        'invalid_currency'      => ':attribute code is ongeldig.',
-        'invalid_amount'        => 'De hoeveelheid :attribute is ongeldig.',
-        'invalid_extension'     => 'De bestandsextensie is ongeldig.',
+        'invalid_currency' => ':attribute code is ongeldig.',
+        'invalid_amount' => 'De hoeveelheid :attribute is ongeldig.',
+        'invalid_extension' => 'De bestandsextensie is ongeldig.',
     ],
 
     /*

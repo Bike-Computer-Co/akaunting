@@ -19,7 +19,7 @@ class AddDate extends Listener
     /**
      * Handle filter showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleFilterShowing(FilterShowing $event)
@@ -34,7 +34,7 @@ class AddDate extends Listener
     /**
      * Handle filter applying event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleFilterApplying(FilterApplying $event)

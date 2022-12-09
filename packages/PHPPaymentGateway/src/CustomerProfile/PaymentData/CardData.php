@@ -5,7 +5,6 @@ namespace PaymentGateway\Client\CustomerProfile\PaymentData;
 /**
  * Class CardData
  *
- * @package PaymentGateway\Client\CustomerProfile\PaymentData
  *
  * @property string $brand
  * @property string $cardHolder
@@ -14,6 +13,6 @@ namespace PaymentGateway\Client\CustomerProfile\PaymentData;
  * @property int $expiryMonth
  * @property int $expiryYear
  */
-class CardData extends PaymentData {
-
+class CardData extends PaymentData
+{
 }

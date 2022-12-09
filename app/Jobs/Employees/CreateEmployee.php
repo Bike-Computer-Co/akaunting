@@ -11,6 +11,7 @@ class CreateEmployee extends Job implements ShouldCreate
     public function handle()
     {
         $this->model = Employee::create($this->request->all());
+
         return $this->model;
     }
 }

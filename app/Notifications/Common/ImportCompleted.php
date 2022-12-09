@@ -4,8 +4,8 @@ namespace App\Notifications\Common;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ImportCompleted extends Notification implements ShouldQueue
 {
@@ -64,7 +64,7 @@ class ImportCompleted extends Notification implements ShouldQueue
         return [
             'title' => trans('notifications.menu.import_completed.title'),
             'description' => trans('notifications.menu.import_completed.description', [
-                'type'  => $this->translation,
+                'type' => $this->translation,
                 'count' => $this->total_rows,
             ]),
             'translation' => $this->translation,

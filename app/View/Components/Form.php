@@ -2,8 +2,8 @@
 
 namespace App\View\Components;
 
-use Illuminate\Support\Str;
 use App\Abstracts\View\Components\Form as BaseForm;
+use Illuminate\Support\Str;
 
 class Form extends BaseForm
 {
@@ -77,15 +77,15 @@ class Form extends BaseForm
 
     protected function getAction($action, $route, $url)
     {
-        if (!empty($action)) {
+        if (! empty($action)) {
             return $action;
         }
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $this->getRouteAction($route);
         }
 
-        if (!empty($url)) {
+        if (! empty($url)) {
             return $this->getUrlAction($url);
         }
 
@@ -95,8 +95,7 @@ class Form extends BaseForm
     /**
      * Get the action for a "url" option.
      *
-     * @param  array|string $options
-     *
+     * @param  array|string  $options
      * @return string
      */
     protected function getUrlAction($options)
@@ -111,8 +110,7 @@ class Form extends BaseForm
     /**
      * Get the action for a "route" option.
      *
-     * @param  array|string $options
-     *
+     * @param  array|string  $options
      * @return string
      */
     protected function getRouteAction($options)

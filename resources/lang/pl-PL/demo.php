@@ -3,29 +3,29 @@
 return [
 
     'accounts' => [
-        'cash'              => 'Gotówka',
+        'cash' => 'Gotówka',
     ],
 
     'categories' => [
-        'deposit'           => 'Wpłata',
-        'sales'             => 'Sprzedaż',
+        'deposit' => 'Wpłata',
+        'sales' => 'Sprzedaż',
     ],
 
     'currencies' => [
-        'usd'               => 'Dolar amerykański',
+        'usd' => 'Dolar amerykański',
     ],
 
     'offline_payments' => [
-        'cash'              => 'Płatność gotówką',
-        'bank'              => 'Przelew bankowy',
+        'cash' => 'Płatność gotówką',
+        'bank' => 'Przelew bankowy',
     ],
 
     'reports' => [
-        'income'            => 'Przychody miesięczne według kategorii.',
-        'expense'           => 'Wydatki miesięczne według kategorii.',
-        'income_expense'    => 'Miesięczny przychód i wydatki według kategorii.',
-        'tax'               => 'Kwartalne podsumowanie podatku.',
-        'profit_loss'       => 'Kwartalne zyski i straty według kategorii.',
+        'income' => 'Przychody miesięczne według kategorii.',
+        'expense' => 'Wydatki miesięczne według kategorii.',
+        'income_expense' => 'Miesięczny przychód i wydatki według kategorii.',
+        'tax' => 'Kwartalne podsumowanie podatku.',
+        'profit_loss' => 'Kwartalne zyski i straty według kategorii.',
     ],
 
 ];

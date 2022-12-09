@@ -19,10 +19,10 @@ use App\Utilities\Overrider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use function Illuminate\Events\queueable;
 use Laratrust\Contracts\Ownable;
 use Laravel\Cashier\Billable;
 use Lorisleiva\LaravelSearchString\Concerns\SearchString;
-use function Illuminate\Events\queueable;
 
 class Company extends Eloquent implements Ownable
 {
@@ -39,7 +39,7 @@ class Company extends Eloquent implements Ownable
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['domain', 'enabled', 'created_from', 'created_by'];
+    protected $fillable = ['domain', 'enabled', 'created_from', 'created_by', 'accountant_price', 'lawyer_price', 'comment'];
 
     protected $casts = [
         'enabled' => 'boolean',
@@ -53,27 +53,6 @@ class Company extends Eloquent implements Ownable
      * @var array
      */
     public $sortable = ['id', 'name', 'domain', 'email', 'enabled', 'created_at', 'tax_number', 'country', 'currency'];
-
-
-    public function getPackage()
-    {
-        if (!$this->subscribed()) return config('packages')[0];
-        foreach (config('packages') as $package) {
-            if (!isset($package['monthly_stripe_id']) || !isset($package['yearly_stripe_id']))
-                continue;
-            if ($this->subscribedToPrice([$package['monthly_stripe_id'], $package['yearly_stripe_id']]))
-                return $package;
-        }
-        return null;
-    }
-
-    public function haveOption($option): bool
-    {
-        $package = $this->getPackage();
-        if (!$package) return false;
-
-        return in_array($option, $package['feature_keys']);
-    }
 
 
     /**
@@ -107,11 +86,11 @@ class Company extends Eloquent implements Ownable
 
         try {
             // TODO will optimize..
-            static::retrieved(function($model) {
+            static::retrieved(function ($model) {
                 $model->setCommonSettingsAsAttributes();
             });
 
-            static::saving(function($model) {
+            static::saving(function ($model) {
                 $model->unsetCommonSettingsFromAttributes();
             });
 
@@ -124,7 +103,6 @@ class Company extends Eloquent implements Ownable
                 $company->createAsStripeCustomer();
             }));
         } catch(\Throwable $e) {
-
         }
     }
 
@@ -318,6 +296,11 @@ class Company extends Eloquent implements Ownable
         return $this->hasMany('App\Models\Common\Widget');
     }
 
+    public function stripe_plan()
+    {
+        return $this->belongsTo('App\Models\StripePlan');
+    }
+
     public function setCommonSettingsAsAttributes()
     {
         try { // TODO will optimize..
@@ -329,7 +312,7 @@ class Company extends Eloquent implements Ownable
             ];
 
             foreach ($settings as $setting) {
-                list($group, $key) = explode('.', $setting->getAttribute('key'));
+                [$group, $key] = explode('.', $setting->getAttribute('key'));
 
                 // Load only general settings
                 if (! in_array($group, $groups)) {
@@ -355,7 +338,6 @@ class Company extends Eloquent implements Ownable
                 $this->setAttribute('currency', config('setting.fallback.default.currency'));
             }
         } catch(\Throwable $e) {
-
         }
     }
 
@@ -370,7 +352,7 @@ class Company extends Eloquent implements Ownable
             ];
 
             foreach ($settings as $setting) {
-                list($group, $key) = explode('.', $setting->getAttribute('key'));
+                [$group, $key] = explode('.', $setting->getAttribute('key'));
 
                 // Load only general settings
                 if (! in_array($group, $groups)) {
@@ -383,16 +365,14 @@ class Company extends Eloquent implements Ownable
             $this->offsetUnset('logo');
             $this->offsetUnset('currency');
         } catch(\Throwable $e) {
-
         }
     }
 
     /**
      * Scope to get all rows filtered, sorted and paginated.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $sort
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCollect($query, $sort = 'name')
@@ -415,8 +395,8 @@ class Company extends Eloquent implements Ownable
     /**
      * Scope to only include companies of a given enabled value.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $value
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $value
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeEnabled($query, $value = 1)
@@ -427,8 +407,8 @@ class Company extends Eloquent implements Ownable
     /**
      * Scope to only include companies of a given user id.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $user_id
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  int  $user_id
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeUserId($query, $user_id)
@@ -441,9 +421,8 @@ class Company extends Eloquent implements Ownable
     /**
      * Sort by company name
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $direction
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function nameSortable($query, $direction)
@@ -457,9 +436,8 @@ class Company extends Eloquent implements Ownable
     /**
      * Sort by company email
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $direction
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function emailSortable($query, $direction)
@@ -473,9 +451,8 @@ class Company extends Eloquent implements Ownable
     /**
      * Sort by company tax number
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $direction
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function taxNumberSortable($query, $direction)
@@ -489,9 +466,8 @@ class Company extends Eloquent implements Ownable
     /**
      * Sort by company country
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $direction
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function countrySortable($query, $direction)
@@ -505,9 +481,8 @@ class Company extends Eloquent implements Ownable
     /**
      * Sort by company currency
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $direction
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function currencySortable($query, $direction)
@@ -521,8 +496,8 @@ class Company extends Eloquent implements Ownable
     /**
      * Scope autocomplete.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param array $filter
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  array  $filter
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAutocomplete($query, $filter)
@@ -532,12 +507,12 @@ class Company extends Eloquent implements Ownable
                 foreach ($filter as $key => $value) {
                     $column = $key;
 
-                    if (!in_array($key, $this->fillable)) {
-                        $column = 'company.' . $key;
+                    if (! in_array($key, $this->fillable)) {
+                        $column = 'company.'.$key;
                         $query->orWhere('key', $column);
-                        $query->Where('value', 'LIKE', "%" . $value  . "%");
+                        $query->Where('value', 'LIKE', '%'.$value.'%');
                     } else {
-                        $query->orWhere($column, 'LIKE', "%" . $value  . "%");
+                        $query->orWhere($column, 'LIKE', '%'.$value.'%');
                     }
                 }
             })
@@ -571,7 +546,7 @@ class Company extends Eloquent implements Ownable
         }
 
         if (setting('company.country')) {
-            $location[] = trans('countries.' . setting('company.country'));
+            $location[] = trans('countries.'.setting('company.country'));
         }
 
         return implode(', ', $location);
@@ -615,7 +590,7 @@ class Company extends Eloquent implements Ownable
 
     public function makeCurrent($force = false)
     {
-        if (!$force && $this->isCurrent()) {
+        if (! $force && $this->isCurrent()) {
             return $this;
         }
 
@@ -647,12 +622,12 @@ class Company extends Eloquent implements Ownable
 
     public function isNotCurrent()
     {
-        return !$this->isCurrent();
+        return ! $this->isCurrent();
     }
 
     public static function getCurrent()
     {
-        if (!app()->has(static::class)) {
+        if (! app()->has(static::class)) {
             return null;
         }
 

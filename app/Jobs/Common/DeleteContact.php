@@ -11,7 +11,7 @@ class DeleteContact extends Job implements ShouldDelete
 {
     use Contacts;
 
-    public function handle() :bool
+    public function handle(): bool
     {
         $this->authorize();
 

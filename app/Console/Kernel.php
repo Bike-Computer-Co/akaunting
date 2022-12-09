@@ -23,7 +23,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Not installed yet
-        if (!config('app.installed')) {
+        if (! config('app.installed')) {
             return;
         }
 
@@ -45,7 +45,7 @@ class Kernel extends ConsoleKernel
     {
         require base_path('routes/console.php');
 
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
     }
 
     /**

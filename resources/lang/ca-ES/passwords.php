@@ -17,6 +17,6 @@ return [
     'sent' => 'T\'hem enviat un correu electrònic amb un enllaç per a reiniciar la teva contrasenya!',
     'throttled' => 'Si us plau, espera\'t una mica abans de tornar-ho a intentar.',
     'token' => 'Aquest codi de recuperació de contrasenya és invàlid.',
-    'user' => "No hi ha cap usuari amb aquest correu.",
+    'user' => 'No hi ha cap usuari amb aquest correu.',
 
 ];

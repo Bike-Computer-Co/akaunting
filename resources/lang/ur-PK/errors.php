@@ -3,16 +3,16 @@
 return [
 
     'forbidden_access' => 'رسائی ممنوع',
-    'error_page'       => 'ایرر پیج',
-    'page_not_found'   => 'پیج نہیں ملا',
+    'error_page' => 'ایرر پیج',
+    'page_not_found' => 'پیج نہیں ملا',
 
-    'body'   => [
+    'body' => [
         'forbidden_access' => 'رسائ ممنوع ہے.',
         'error_page' => 'کچھ غلط ہو گیا.',
         'page_not_found' => 'پیج نہیں ملا.',
     ],
 
-    'messages'   => [
+    'messages' => [
         'forbidden_access' => 'آپ اس صفحہ تک رسائی حاصل کر سکتے ہیں.
 دریں اثناء آپ <a href=":link">ڈیش بورڈ پر واپس جا سکتے ہیں</a>.',
         'error_page' => 'ہم اسے فورا ٹھیک کرنے پر کام کریں گے.

@@ -6,23 +6,21 @@ use PaymentGatewayJson\Client\Data\CustomerProfileData;
 
 /**
  * Interface AddToCustomerProfileInterface
- * @package PaymentGatewayJson\Client\Transaction\Base
  */
-interface AddToCustomerProfileInterface {
-
-
+interface AddToCustomerProfileInterface
+{
     /**
      * @return CustomerProfileData|null
      */
     public function getCustomerProfileData();
 
     /**
-     * @param CustomerProfileData $customerProfileData
+     * @param  CustomerProfileData  $customerProfileData
      */
     public function setCustomerProfileData(CustomerProfileData $customerProfileData = null);
-    
+
     /**
-     * @param bool $addToCustomerProfile
+     * @param  bool  $addToCustomerProfile
      */
     public function setAddToCustomerProfile($addToCustomerProfile);
 
@@ -32,7 +30,7 @@ interface AddToCustomerProfileInterface {
     public function getAddToCustomerProfile();
 
     /**
-     * @param string $profileGuid
+     * @param  string  $profileGuid
      */
     public function setCustomerProfileGuid($profileGuid);
 
@@ -42,7 +40,7 @@ interface AddToCustomerProfileInterface {
     public function getCustomerProfileGuid();
 
     /**
-     * @param string $identification
+     * @param  string  $identification
      */
     public function setCustomerProfileIdentification($identification);
 
@@ -50,14 +48,14 @@ interface AddToCustomerProfileInterface {
      * @return string
      */
     public function getCustomerProfileIdentification();
-    
+
     /**
      * @return bool
      */
     public function getMarkAsPreferred();
 
     /**
-     * @param bool $markAsPreferred
+     * @param  bool  $markAsPreferred
      */
     public function setMarkAsPreferred($markAsPreferred);
 }

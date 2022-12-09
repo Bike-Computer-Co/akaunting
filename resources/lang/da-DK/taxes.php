@@ -2,11 +2,11 @@
 
 return [
 
-    'rate'                  => 'Sats',
-    'rate_percent'          => 'Sats (%)',
-    'normal'                => 'Normal',
-    'inclusive'             => 'Inklusiv',
-    'compound'              => 'Sammensatte',
-    'fixed'                 => 'Fast',
-    'withholding'           => 'Tilbageholdt',
+    'rate' => 'Sats',
+    'rate_percent' => 'Sats (%)',
+    'normal' => 'Normal',
+    'inclusive' => 'Inklusiv',
+    'compound' => 'Sammensatte',
+    'fixed' => 'Fast',
+    'withholding' => 'Tilbageholdt',
 ];

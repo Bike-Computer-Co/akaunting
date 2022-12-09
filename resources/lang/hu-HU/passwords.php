@@ -17,6 +17,6 @@ return [
     'sent' => 'Jelszó-emlékeztető elküldve!',
     'throttled' => 'Kérem várjon, mielőtt újra próbálkozna.',
     'token' => 'A jelszóvisszaállító token érvénytelen.',
-    'user' => "Nem találtunk felhasználót a megadott email címmel.",
+    'user' => 'Nem találtunk felhasználót a megadott email címmel.',
 
 ];

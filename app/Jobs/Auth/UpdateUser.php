@@ -59,7 +59,7 @@ class UpdateUser extends Job implements ShouldUpdate
                 $this->model->contact->update($this->request->input());
             }
 
-            if (isset($sync) && !empty($sync['attached'])) {
+            if (isset($sync) && ! empty($sync['attached'])) {
                 foreach ($sync['attached'] as $id) {
                     $company = Company::find($id);
 

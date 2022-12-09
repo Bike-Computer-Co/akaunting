@@ -15,7 +15,7 @@ class Radio extends Form
     public $inputGroupClass = 'grid grid-cols-2 gap-3 sm:grid-cols-4';
 
     public $except = [
-        
+
     ];
 
     /**

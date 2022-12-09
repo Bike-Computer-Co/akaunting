@@ -2,8 +2,8 @@
 
 namespace App\Notifications\Auth;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class Reset extends Notification
 {

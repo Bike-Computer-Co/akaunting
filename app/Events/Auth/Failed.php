@@ -15,9 +15,9 @@ class Failed extends Event
     /**
      * Create a new event instance.
      *
-     * @param  $alias
-     * @param  $company_id
-     * @param  $protocol
+     * @param    $alias
+     * @param    $company_id
+     * @param    $protocol
      */
     public function __construct($alias, $company_id = null, $protocol = 'basic')
     {

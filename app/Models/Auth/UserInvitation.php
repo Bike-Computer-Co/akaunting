@@ -26,7 +26,7 @@ class UserInvitation extends Model
     {
         return $this->belongsTo('App\Models\Auth\User');
     }
- 
+
     /**
      * Scope a query to only include given token value.
      *

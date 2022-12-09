@@ -24,7 +24,7 @@ class SendDocumentAsCustomMail extends Job
             $custom_mail['cc'] = user()->email;
         }
 
-        $notification = config('type.document.' . $document->type . '.notification.class');
+        $notification = config('type.document.'.$document->type.'.notification.class');
 
         // Notify the contact
         $document->contact->notify(new $notification($document, $this->template_alias, true, $custom_mail));

@@ -7,7 +7,6 @@ use App\Exports\Purchases\Bills as Export;
 use App\Http\Requests\Common\Import as ImportRequest;
 use App\Http\Requests\Document\Document as Request;
 use App\Imports\Purchases\Bills as Import;
-use App\Jobs\Banking\CreateBankingDocumentTransaction;
 use App\Jobs\Document\CreateDocument;
 use App\Jobs\Document\DeleteDocument;
 use App\Jobs\Document\DuplicateDocument;
@@ -39,8 +38,7 @@ class Bills extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Document $bill
-     *
+     * @param  Document  $bill
      * @return Response
      */
     public function show(Document $bill)
@@ -62,7 +60,6 @@ class Bills extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -89,8 +86,7 @@ class Bills extends Controller
     /**
      * Duplicate the specified resource.
      *
-     * @param  Document $bill
-     *
+     * @param  Document  $bill
      * @return Response
      */
     public function duplicate(Document $bill)
@@ -108,7 +104,6 @@ class Bills extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -131,8 +126,7 @@ class Bills extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Document $bill
-     *
+     * @param  Document  $bill
      * @return Response
      */
     public function edit(Document $bill)
@@ -143,9 +137,8 @@ class Bills extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Document $bill
+     * @param  Document  $bill
      * @param  Request  $request
-     *
      * @return Response
      */
     public function update(Document $bill, Request $request)
@@ -172,8 +165,7 @@ class Bills extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $bill
-     *
+     * @param    $bill
      * @return Response
      */
     public function destroy(Document $bill)
@@ -208,8 +200,7 @@ class Bills extends Controller
     /**
      * Mark the bill as received.
      *
-     * @param  Document $bill
-     *
+     * @param  Document  $bill
      * @return Response
      */
     public function markReceived(Document $bill)
@@ -226,8 +217,7 @@ class Bills extends Controller
     /**
      * Mark the bill as cancelled.
      *
-     * @param  Document $bill
-     *
+     * @param  Document  $bill
      * @return Response
      */
     public function markCancelled(Document $bill)
@@ -244,8 +234,7 @@ class Bills extends Controller
     /**
      * Print the bill.
      *
-     * @param  Document $bill
-     *
+     * @param  Document  $bill
      * @return Response
      */
     public function printBill(Document $bill)
@@ -260,8 +249,7 @@ class Bills extends Controller
     /**
      * Download the PDF file of bill.
      *
-     * @param  Document $bill
-     *
+     * @param  Document  $bill
      * @return Response
      */
     public function pdfBill(Document $bill)

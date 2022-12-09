@@ -47,7 +47,7 @@ class SearchString extends Component
 
             $this->filters = [];
 
-            if (!empty($search_string[$this->model])) {
+            if (! empty($search_string[$this->model])) {
                 $columns = $search_string[$this->model]['columns'];
 
                 foreach ($columns as $column => $options) {
@@ -61,11 +61,11 @@ class SearchString extends Component
                         continue;
                     }
 
-                    if (!is_array($options)) {
+                    if (! is_array($options)) {
                         $column = $options;
                     }
 
-                    if (!$this->isFilter($column, $options)) {
+                    if (! $this->isFilter($column, $options)) {
                         continue;
                     }
 
@@ -87,7 +87,7 @@ class SearchString extends Component
     {
         $filter = true;
 
-        if (empty($this->getFilterUrl($column, $options)) && (!isset($options['date']) && !isset($options['boolean']) && !isset($options['values']))) {
+        if (empty($this->getFilterUrl($column, $options)) && (! isset($options['date']) && ! isset($options['boolean']) && ! isset($options['values']))) {
             $filter = false;
         }
 
@@ -101,7 +101,7 @@ class SearchString extends Component
         }
 
         if (isset($options['relationship']) && isset($options['foreign_key']) && ! empty($options['foreign_key'])) {
-            $column .= '.' . $options['foreign_key'];
+            $column .= '.'.$options['foreign_key'];
         }
 
         if (isset($options['relationship']) && ! isset($options['foreign_key'])) {
@@ -115,7 +115,7 @@ class SearchString extends Component
     {
         if (strpos($column, '_id') !== false) {
             $column = str_replace('_id', '', $column);
-        } else if (strpos($column, '_code') !== false) {
+        } elseif (strpos($column, '_code') !== false) {
             $column = str_replace('_code', '', $column);
         }
 
@@ -123,7 +123,7 @@ class SearchString extends Component
             return $options['translation'];
         }
 
-        if (!empty($options['key'])) {
+        if (! empty($options['key'])) {
             $column = $options['key'];
         }
 
@@ -132,22 +132,22 @@ class SearchString extends Component
         if (strpos($this->model, 'Modules') !== false) {
             $module_class = explode('\\', $this->model);
 
-            $prefix = Str::kebab($module_class[1]) . '::';
+            $prefix = Str::kebab($module_class[1]).'::';
 
-            $translation_keys[] = $prefix . 'general.';
-            $translation_keys[] = $prefix . 'search_string.columns.';
+            $translation_keys[] = $prefix.'general.';
+            $translation_keys[] = $prefix.'search_string.columns.';
         }
 
         $translation_keys[] = 'general.';
         $translation_keys[] = 'search_string.columns.';
 
         foreach ($translation_keys as $translation_key) {
-            if (trans_choice($translation_key . $plural, 1) !== $translation_key . $plural) {
-                return trans_choice($translation_key . $plural, 1);
+            if (trans_choice($translation_key.$plural, 1) !== $translation_key.$plural) {
+                return trans_choice($translation_key.$plural, 1);
             }
 
-            if (trans($translation_key . $column) !== $translation_key . $column) {
-                return trans($translation_key . $column);
+            if (trans($translation_key.$column) !== $translation_key.$column) {
+                return trans($translation_key.$column);
             }
         }
 
@@ -177,7 +177,7 @@ class SearchString extends Component
             return $url;
         }
 
-        if (!empty($options['route'])) {
+        if (! empty($options['route'])) {
             if (is_array($options['route'])) {
                 $url = route($options['route'][0], $options['route'][1]);
             } else {
@@ -187,7 +187,7 @@ class SearchString extends Component
             if (strpos($this->model, 'Modules') !== false) {
                 $module_class = explode('\\', $this->model);
 
-                $url .= Str::kebab($module_class[1]) . '::';
+                $url .= Str::kebab($module_class[1]).'::';
             }
 
             if (strpos($column, '_id') !== false) {
@@ -197,7 +197,7 @@ class SearchString extends Component
             $plural = Str::plural($column, 2);
 
             try {
-                $url = route($url . $plural . '.index');
+                $url = route($url.$plural.'.index');
             } catch (\Exception $e) {
                 $url = '';
             }
@@ -221,11 +221,11 @@ class SearchString extends Component
                     'value' => empty($options['translation']) ? trans('general.yes') : $this->findTranslation($options['translation'][1], 1),
                 ],
             ];
-        } else if (isset($options['values'])) {
+        } elseif (isset($options['values'])) {
             foreach ($options['values'] as $key => $value) {
                 $values[$key] = $this->findTranslation($value, 1);
             }
-        } else if ($search = request()->get('search', false)) {
+        } elseif ($search = request()->get('search', false)) {
             $fields = explode(' ', $search);
 
             foreach ($fields as $field) {

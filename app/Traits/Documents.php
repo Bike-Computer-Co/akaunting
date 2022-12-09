@@ -2,10 +2,9 @@
 
 namespace App\Traits;
 
-use App\Models\Document\Document;
 use App\Abstracts\View\Components\Documents\Document as DocumentComponent;
+use App\Models\Document\Document;
 use App\Utilities\Date;
-use App\Traits\Transactions;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
@@ -31,26 +30,26 @@ trait Documents
 
     public function getNextDocumentNumber(string $type): string
     {
-        if ($alias = config('type.document.' . $type . '.alias')) {
-            $type = $alias . '.' . str_replace('-', '_', $type);
+        if ($alias = config('type.document.'.$type.'.alias')) {
+            $type = $alias.'.'.str_replace('-', '_', $type);
         }
 
-        $prefix = setting($type . '.number_prefix');
-        $next = setting($type . '.number_next');
-        $digit = setting($type . '.number_digit');
+        $prefix = setting($type.'.number_prefix');
+        $next = setting($type.'.number_next');
+        $digit = setting($type.'.number_digit');
 
-        return $prefix . str_pad($next, $digit, '0', STR_PAD_LEFT);
+        return $prefix.str_pad($next, $digit, '0', STR_PAD_LEFT);
     }
 
     public function increaseNextDocumentNumber(string $type): void
     {
-        if ($alias = config('type.document.' . $type . '.alias')) {
-            $type = $alias . '.' . str_replace('-', '_', $type);
+        if ($alias = config('type.document.'.$type.'.alias')) {
+            $type = $alias.'.'.str_replace('-', '_', $type);
         }
 
-        $next = setting($type . '.number_next', 1) + 1;
+        $next = setting($type.'.number_next', 1) + 1;
 
-        setting([$type . '.number_next' => $next]);
+        setting([$type.'.number_next' => $next]);
         setting()->save();
     }
 
@@ -68,7 +67,7 @@ trait Documents
                 'unpaid',
                 'cancelled',
             ],
-            'bill'    => [
+            'bill' => [
                 'draft',
                 'received',
                 'partial',
@@ -83,10 +82,10 @@ trait Documents
         //$trans_key = $this->getTextDocumentStatuses($type);
         $trans_key = 'documents.statuses.';
 
-        $statuses = collect($list[$type])->each(function ($code) use ($type, $trans_key) {
+        $statuses = collect($list[$type])->each(function ($code) use ($trans_key) {
             $item = new \stdClass();
             $item->code = $code;
-            $item->name = trans($trans_key . $code);
+            $item->name = trans($trans_key.$code);
 
             return $item;
         });
@@ -107,7 +106,7 @@ trait Documents
 
     public function getDocumentFileName(Document $document, string $separator = '-', string $extension = 'pdf'): string
     {
-        return $this->getSafeDocumentNumber($document, $separator) . $separator . time() . '.' . $extension;
+        return $this->getSafeDocumentNumber($document, $separator).$separator.time().'.'.$extension;
     }
 
     public function getSafeDocumentNumber(Document $document, string $separator = '-'): string
@@ -117,21 +116,21 @@ trait Documents
 
     protected function getTextDocumentStatuses($type)
     {
-        $default_key = config('type.document.' . $type . '.translation.prefix') . '.statuses.';
+        $default_key = config('type.document.'.$type.'.translation.prefix').'.statuses.';
 
         $translation = DocumentComponent::getTextFromConfig($type, 'document_status', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
-        $alias = config('type.document.' . $type . '.alias');
+        $alias = config('type.document.'.$type.'.alias');
 
-        if (!empty($alias)) {
-            $translation = $alias . '::' . config('type.document.' . $type . '.translation.prefix') . '.statuses';
+        if (! empty($alias)) {
+            $translation = $alias.'::'.config('type.document.'.$type.'.translation.prefix').'.statuses';
 
             if (is_array(trans($translation))) {
-                return $translation . '.';
+                return $translation.'.';
             }
         }
 
@@ -141,16 +140,15 @@ trait Documents
     protected function getSettingKey($type, $setting_key)
     {
         $key = '';
-        $alias = config('type.document.' . $type . '.alias');
+        $alias = config('type.document.'.$type.'.alias');
 
         if (! empty($alias)) {
-            $key .= $alias . '.';
+            $key .= $alias.'.';
         }
 
-        $prefix = config('type.document.' . $type . '.setting.prefix');
+        $prefix = config('type.document.'.$type.'.setting.prefix');
 
-
-        $key .= $prefix . '.' . $setting_key;
+        $key .= $prefix.'.'.$setting_key;
 
         return $key;
     }
@@ -167,7 +165,7 @@ trait Documents
 
         $file_name = $this->getDocumentFileName($document);
 
-        $pdf_path = storage_path('app/temp/' . $file_name);
+        $pdf_path = storage_path('app/temp/'.$file_name);
 
         // Save the PDF file into temp folder
         $pdf->save($pdf_path);
@@ -178,9 +176,9 @@ trait Documents
     public function getTotalsForFutureDocuments($type = 'invoice', $documents = null)
     {
         $totals = [
-            'overdue'   => 0,
-            'open'      => 0,
-            'draft'     => 0,
+            'overdue' => 0,
+            'open' => 0,
+            'draft' => 0,
         ];
 
         $today = Date::today()->toDateString();
@@ -188,7 +186,7 @@ trait Documents
         $documents = $documents ?: Document::type($type)->with('transactions')->future();
 
         $documents->each(function ($document) use (&$totals, $today) {
-            if (!in_array($document->status, $this->getDocumentStatusesForFuture())) {
+            if (! in_array($document->status, $this->getDocumentStatusesForFuture())) {
                 return;
             }
 
@@ -219,7 +217,7 @@ trait Documents
 
     public function canNotifyTheContactOfDocument(Document $document): bool
     {
-        $config = config('type.document.' . $document->type . '.notification');
+        $config = config('type.document.'.$document->type.'.notification');
 
         if (! $config['notify_contact']) {
             return false;

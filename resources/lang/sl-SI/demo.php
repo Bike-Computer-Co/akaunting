@@ -3,32 +3,32 @@
 return [
 
     'accounts' => [
-        'cash'              => 'Gotovina',
+        'cash' => 'Gotovina',
     ],
 
     'categories' => [
-        'deposit'           => 'Polog',
-        'sales'             => 'Prodaja',
+        'deposit' => 'Polog',
+        'sales' => 'Prodaja',
     ],
 
     'currencies' => [
-        'usd'               => 'USD',
+        'usd' => 'USD',
     ],
 
     'offline_payments' => [
-        'cash'              => 'Gotovina',
-        'bank'              => 'Bančno nakazilo',
+        'cash' => 'Gotovina',
+        'bank' => 'Bančno nakazilo',
     ],
 
     'reports' => [
-        'income'            => '
+        'income' => '
 Mesečni povzetek dohodka po kategorijah.',
-        'expense'           => '
+        'expense' => '
 Mesečni povzetek stroškov po kategorijah.',
-        'income_expense'    => '
+        'income_expense' => '
 Mesečni prihodek v primerjavi z odhodki po kategorijah.',
-        'tax'               => 'Četrtletni povzetek davka.',
-        'profit_loss'       => 'Četrtletni dobiček in izguba po kategorijah.',
+        'tax' => 'Četrtletni povzetek davka.',
+        'profit_loss' => 'Četrtletni dobiček in izguba po kategorijah.',
     ],
 
 ];

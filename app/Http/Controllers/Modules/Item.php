@@ -33,8 +33,7 @@ class Item extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $alias
-     *
+     * @param    $alias
      * @return Response
      */
     public function show($alias)
@@ -65,7 +64,7 @@ class Item extends Controller
                 $character = '&';
             }
 
-            $module->action_url .= $character . http_build_query($parameters);
+            $module->action_url .= $character.http_build_query($parameters);
         }
 
         if ($module->status_type == 'pre_sale') {
@@ -78,8 +77,7 @@ class Item extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function steps(InstallRequest $request)
@@ -93,31 +91,31 @@ class Item extends Controller
             // Install
             $steps[] = [
                 'text' => trans('modules.installation.install', ['module' => $name]),
-                'url'  => route('apps.install')
+                'url' => route('apps.install'),
             ];
         } else {
             // Download
             $steps[] = [
                 'text' => trans('modules.installation.download', ['module' => $name]),
-                'url'  => route('apps.download')
+                'url' => route('apps.download'),
             ];
 
             // Unzip
             $steps[] = [
                 'text' => trans('modules.installation.unzip', ['module' => $name]),
-                'url'  => route('apps.unzip')
+                'url' => route('apps.unzip'),
             ];
 
             // Copy
             $steps[] = [
                 'text' => trans('modules.installation.file_copy', ['module' => $name]),
-                'url'  => route('apps.copy')
+                'url' => route('apps.copy'),
             ];
 
             // Install
             $steps[] = [
                 'text' => trans('modules.installation.install', ['module' => $name]),
-                'url'  => route('apps.install')
+                'url' => route('apps.install'),
             ];
         }
 
@@ -125,15 +123,14 @@ class Item extends Controller
             'success' => true,
             'error' => false,
             'data' => $steps,
-            'message' => null
+            'message' => null,
         ]);
     }
 
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function download(InstallRequest $request)
@@ -164,8 +161,7 @@ class Item extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function unzip(InstallRequest $request)
@@ -196,8 +192,7 @@ class Item extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function copy(InstallRequest $request)
@@ -230,8 +225,7 @@ class Item extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function install(InstallRequest $request)
@@ -335,7 +329,7 @@ class Item extends Controller
         $data = [
             'query' => [
                 'page' => $request->get('page', 1),
-            ]
+            ],
         ];
 
         $releases = $this->getModuleReleases($alias, $data);
@@ -356,7 +350,7 @@ class Item extends Controller
         $data = [
             'query' => [
                 'page' => $request->get('page', 1),
-            ]
+            ],
         ];
 
         $reviews = $this->getModuleReviews($alias, $data);

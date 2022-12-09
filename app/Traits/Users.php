@@ -19,9 +19,8 @@ trait Users
     /**
      * Check user company assignment
      *
-     * @param  $id
-     *
-     * @return boolean
+     * @param    $id
+     * @return bool
      */
     public function isUserCompany($id)
     {
@@ -35,20 +34,19 @@ trait Users
             return $user->companies()->where('id', $id)->first();
         });
 
-        return !empty($company);
+        return ! empty($company);
     }
 
     public function isNotUserCompany($id)
     {
-        return !$this->isUserCompany($id);
+        return ! $this->isUserCompany($id);
     }
 
     /**
      * Check user dashboard assignment
      *
-     * @param  $id
-     *
-     * @return boolean
+     * @param    $id
+     * @return bool
      */
     public function isUserDashboard($id)
     {
@@ -62,12 +60,12 @@ trait Users
             return $user->dashboards()->where('id', $id)->first();
         });
 
-        return !empty($dashboard);
+        return ! empty($dashboard);
     }
 
     public function isNotUserDashboard($id)
     {
-        return !$this->isUserDashboard($id);
+        return ! $this->isUserDashboard($id);
     }
 
     /**

@@ -24,8 +24,11 @@ class Document extends Model
     use HasFactory, Documents, Cloneable, Currencies, DateTime, Media, Recurring;
 
     public const INVOICE_TYPE = 'invoice';
+
     public const INVOICE_RECURRING_TYPE = 'invoice-recurring';
+
     public const BILL_TYPE = 'bill';
+
     public const BILL_RECURRING_TYPE = 'bill-recurring';
 
     protected $table = 'documents';
@@ -132,7 +135,7 @@ class Document extends Model
     {
         return $this->hasOne('App\Models\Document\DocumentHistory', 'document_id')->latest()->withDefault([
             'description' => trans('messages.success.added', ['type' => $this->document_number]),
-            'created_at' => $this->created_at
+            'created_at' => $this->created_at,
         ]);
     }
 
@@ -155,9 +158,10 @@ class Document extends Model
     {
         $url = URL::signedRoute('signed.invoices.show', [$this->id]);
         $shortUrl = \AshAllenDesign\ShortURL\Models\ShortURL::where('destination_url', $url)->first();
-        if (!$shortUrl) {
+        if (! $shortUrl) {
             $shortUrl = ShortURL::destinationUrl($url)->make();
         }
+
         return $shortUrl->default_short_url;
     }
 
@@ -242,10 +246,10 @@ class Document extends Model
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     * @param Document $src
-     * @param boolean $child
+     * @param  Document  $src
+     * @param  bool  $child
      */
     public function onCloning($src, $child = null)
     {
@@ -280,9 +284,9 @@ class Document extends Model
      */
     public function getAttachmentAttribute($value = null)
     {
-        if (!empty($value) && !$this->hasMedia('attachment')) {
+        if (! empty($value) && ! $this->hasMedia('attachment')) {
             return $value;
-        } elseif (!$this->hasMedia('attachment')) {
+        } elseif (! $this->hasMedia('attachment')) {
             return false;
         }
 
@@ -333,7 +337,7 @@ class Document extends Model
 
         $code = $this->currency_code;
         $rate = $this->currency_rate;
-        $precision = config('money.' . $code . '.precision');
+        $precision = config('money.'.$code.'.precision');
 
         if ($this->transactions->count()) {
             foreach ($this->transactions as $transaction) {
@@ -353,7 +357,7 @@ class Document extends Model
     /**
      * Get the reconcilation status.
      *
-     * @return integer
+     * @return int
      */
     public function getReconciledAttribute()
     {
@@ -365,7 +369,7 @@ class Document extends Model
 
         $code = $this->currency_code;
         $rate = $this->currency_rate;
-        $precision = config('money.' . $code . '.precision');
+        $precision = config('money.'.$code.'.precision');
 
         if ($this->transactions->count()) {
             foreach ($this->transactions as $transaction) {
@@ -395,7 +399,7 @@ class Document extends Model
      */
     public function getAmountDueAttribute()
     {
-        $precision = config('money.' . $this->currency_code . '.precision');
+        $precision = config('money.'.$this->currency_code.'.precision');
 
         return round($this->amount - $this->paid, $precision);
     }
@@ -444,7 +448,7 @@ class Document extends Model
         $this->totals->where('code', 'tax')->each(function ($total) use (&$amount) {
             $tax = Tax::name($total->name)->first();
 
-            if (!empty($tax) && ($tax->type == 'withholding')) {
+            if (! empty($tax) && ($tax->type == 'withholding')) {
                 return;
             }
 
@@ -456,7 +460,7 @@ class Document extends Model
 
     public function getTemplatePathAttribute($value = null)
     {
-        return $value ?: 'sales.invoices.print_' . setting('invoice.template');
+        return $value ?: 'sales.invoices.print_'.setting('invoice.template');
     }
 
     public function getContactLocationAttribute()
@@ -476,7 +480,7 @@ class Document extends Model
         }
 
         if ($this->contact_country) {
-            $location[] = trans('countries.' . $this->contact_country);
+            $location[] = trans('countries.'.$this->contact_country);
         }
 
         return implode(', ', $location);
@@ -491,10 +495,10 @@ class Document extends Model
     {
         $actions = [];
 
-        $group = config('type.document.' . $this->type . '.group');
-        $prefix = config('type.document.' . $this->type . '.route.prefix');
-        $permission_prefix = config('type.document.' . $this->type . '.permission.prefix');
-        $translation_prefix = config('type.document.' . $this->type . '.translation.prefix');
+        $group = config('type.document.'.$this->type.'.group');
+        $prefix = config('type.document.'.$this->type.'.route.prefix');
+        $permission_prefix = config('type.document.'.$this->type.'.permission.prefix');
+        $translation_prefix = config('type.document.'.$this->type.'.translation.prefix');
 
         if (empty($prefix)) {
             return $actions;
@@ -504,24 +508,24 @@ class Document extends Model
             $actions[] = [
                 'title' => trans('general.show'),
                 'icon' => 'visibility',
-                'url' => route($prefix . '.show', $this->id),
-                'permission' => 'read-' . $group . '-' . $permission_prefix,
+                'url' => route($prefix.'.show', $this->id),
+                'permission' => 'read-'.$group.'-'.$permission_prefix,
                 'attributes' => [
-                    'id' => 'index-more-actions-show-' . $this->id,
+                    'id' => 'index-more-actions-show-'.$this->id,
                 ],
             ];
         } catch (\Exception $e) {
         }
 
         try {
-            if (!$this->reconciled) {
+            if (! $this->reconciled) {
                 $actions[] = [
                     'title' => trans('general.edit'),
                     'icon' => 'edit',
-                    'url' => route($prefix . '.edit', $this->id),
-                    'permission' => 'update-' . $group . '-' . $permission_prefix,
+                    'url' => route($prefix.'.edit', $this->id),
+                    'permission' => 'update-'.$group.'-'.$permission_prefix,
                     'attributes' => [
-                        'id' => 'index-more-actions-edit-' . $this->id,
+                        'id' => 'index-more-actions-edit-'.$this->id,
                     ],
                 ];
             }
@@ -532,10 +536,10 @@ class Document extends Model
             $actions[] = [
                 'title' => trans('general.duplicate'),
                 'icon' => 'file_copy',
-                'url' => route($prefix . '.duplicate', $this->id),
-                'permission' => 'create-' . $group . '-' . $permission_prefix,
+                'url' => route($prefix.'.duplicate', $this->id),
+                'permission' => 'create-'.$group.'-'.$permission_prefix,
                 'attributes' => [
-                    'id' => 'index-more-actions-duplicate-' . $this->id,
+                    'id' => 'index-more-actions-duplicate-'.$this->id,
                 ],
             ];
         } catch (\Exception $e) {
@@ -546,10 +550,10 @@ class Document extends Model
                 $actions[] = [
                     'title' => trans('general.print'),
                     'icon' => 'print',
-                    'url' => route($prefix . '.print', $this->id),
-                    'permission' => 'read-' . $group . '-' . $permission_prefix,
+                    'url' => route($prefix.'.print', $this->id),
+                    'permission' => 'read-'.$group.'-'.$permission_prefix,
                     'attributes' => [
-                        'id' => 'index-more-actions-print-' . $this->id,
+                        'id' => 'index-more-actions-print-'.$this->id,
                         'target' => '_blank',
                     ],
                 ];
@@ -561,17 +565,17 @@ class Document extends Model
             $actions[] = [
                 'title' => trans('general.download_pdf'),
                 'icon' => 'picture_as_pdf',
-                'url' => route($prefix . '.pdf', $this->id),
-                'permission' => 'read-' . $group . '-' . $permission_prefix,
+                'url' => route($prefix.'.pdf', $this->id),
+                'permission' => 'read-'.$group.'-'.$permission_prefix,
                 'attributes' => [
-                    'id' => 'index-more-actions-pdf-' . $this->id,
+                    'id' => 'index-more-actions-pdf-'.$this->id,
                     'target' => '_blank',
                 ],
             ];
         } catch (\Exception $e) {
         }
 
-        if (!str_contains($this->type, 'recurring')) {
+        if (! str_contains($this->type, 'recurring')) {
             if ($this->status != 'cancelled') {
                 $actions[] = [
                     'type' => 'divider',
@@ -582,27 +586,27 @@ class Document extends Model
                         'type' => 'button',
                         'title' => trans('general.share_link'),
                         'icon' => 'share',
-                        'url' => route('modals.' . $prefix . '.share.create', $this->id),
-                        'permission' => 'read-' . $group . '-' . $permission_prefix,
+                        'url' => route('modals.'.$prefix.'.share.create', $this->id),
+                        'permission' => 'read-'.$group.'-'.$permission_prefix,
                         'attributes' => [
-                            'id' => 'index-more-actions-share-link-' . $this->id,
-                            '@click' => 'onShareLink("' . route('modals.' . $prefix . '.share.create', $this->id) . '")',
+                            'id' => 'index-more-actions-share-link-'.$this->id,
+                            '@click' => 'onShareLink("'.route('modals.'.$prefix.'.share.create', $this->id).'")',
                         ],
                     ];
                 } catch (\Exception $e) {
                 }
 
                 try {
-                    if (!empty($this->contact) && $this->contact->email && $this->type == 'invoice') {
+                    if (! empty($this->contact) && $this->contact->email && $this->type == 'invoice') {
                         $actions[] = [
                             'type' => 'button',
                             'title' => trans('invoices.send_mail'),
                             'icon' => 'email',
-                            'url' => route('modals.' . $prefix . '.emails.create', $this->id),
-                            'permission' => 'read-' . $group . '-' . $permission_prefix,
+                            'url' => route('modals.'.$prefix.'.emails.create', $this->id),
+                            'permission' => 'read-'.$group.'-'.$permission_prefix,
                             'attributes' => [
-                                'id' => 'index-more-actions-send-email-' . $this->id,
-                                '@click' => 'onEmail("' . route('modals.' . $prefix . '.emails.create', $this->id) . '")',
+                                'id' => 'index-more-actions-send-email-'.$this->id,
+                                '@click' => 'onEmail("'.route('modals.'.$prefix.'.emails.create', $this->id).'")',
                             ],
                         ];
                     }
@@ -619,10 +623,10 @@ class Document extends Model
                     $actions[] = [
                         'title' => trans('general.cancel'),
                         'icon' => 'cancel',
-                        'url' => route($prefix . '.cancelled', $this->id),
-                        'permission' => 'update-' . $group . '-' . $permission_prefix,
+                        'url' => route($prefix.'.cancelled', $this->id),
+                        'permission' => 'update-'.$group.'-'.$permission_prefix,
                         'attributes' => [
-                            'id' => 'index-more-actions-cancel-' . $this->id,
+                            'id' => 'index-more-actions-cancel-'.$this->id,
                         ],
                     ];
                 } catch (\Exception $e) {
@@ -638,8 +642,8 @@ class Document extends Model
                     'type' => 'delete',
                     'icon' => 'delete',
                     'title' => $translation_prefix,
-                    'route' => $prefix . '.destroy',
-                    'permission' => 'delete-' . $group . '-' . $permission_prefix,
+                    'route' => $prefix.'.destroy',
+                    'permission' => 'delete-'.$group.'-'.$permission_prefix,
                     'model' => $this,
                 ];
             } catch (\Exception $e) {
@@ -649,8 +653,8 @@ class Document extends Model
                 $actions[] = [
                     'title' => trans('general.end'),
                     'icon' => 'block',
-                    'url' => route($prefix . '.end', $this->id),
-                    'permission' => 'update-' . $group . '-' . $permission_prefix,
+                    'url' => route($prefix.'.end', $this->id),
+                    'permission' => 'update-'.$group.'-'.$permission_prefix,
                 ];
             } catch (\Exception $e) {
             }
@@ -662,8 +666,8 @@ class Document extends Model
     /**
      * Retrieve the model for a bound value.
      *
-     * @param mixed $value
-     * @param string|null $field
+     * @param  mixed  $value
+     * @param  string|null  $field
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function resolveRouteBinding($value, $field = null)

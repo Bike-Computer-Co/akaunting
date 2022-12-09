@@ -49,7 +49,6 @@ class Taxes extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -72,7 +71,6 @@ class Taxes extends Controller
      *
      * @param  Tax  $tax
      * @param  Request  $request
-     *
      * @return Response
      */
     public function update(Tax $tax, Request $request)
@@ -86,7 +84,7 @@ class Taxes extends Controller
         }
 
         $response['message'] = $message;
-        
+
         return response()->json($response);
     }
 
@@ -94,7 +92,6 @@ class Taxes extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Tax  $tax
-     *
      * @return Response
      */
     public function destroy(Tax $tax)

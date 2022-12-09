@@ -66,9 +66,8 @@ class Role extends LaratrustRole
     /**
      * Scope to get all rows filtered, sorted and paginated.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $sort
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCollect($query, $sort = 'display_name')
@@ -82,13 +81,13 @@ class Role extends LaratrustRole
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     * @param  Document $src
-     * @param  boolean $child
+     * @param  Document  $src
+     * @param  bool  $child
      */
     public function onCloning($src, $child = null)
     {
-        $this->name = $src->name . '-' . Role::max('id') + 1;
+        $this->name = $src->name.'-'.Role::max('id') + 1;
     }
 }

@@ -20,12 +20,12 @@ trait Relationships
         $counter = [];
 
         foreach ((array) $record->relationships as $relationship => $text) {
-            if (!$c = $model->$relationship()->count()) {
+            if (! $c = $model->$relationship()->count()) {
                 continue;
             }
 
-            $text = Str::contains($text, '::') ? $text : 'general.' . $text;
-            $counter[] = $c . ' ' . strtolower(trans_choice($text, ($c > 1) ? 2 : 1));
+            $text = Str::contains($text, '::') ? $text : 'general.'.$text;
+            $counter[] = $c.' '.strtolower(trans_choice($text, ($c > 1) ? 2 : 1));
         }
 
         return $counter;
@@ -34,9 +34,9 @@ trait Relationships
     /**
      * Mass delete relationships with events being fired.
      *
-     * @param  $model
-     * @param  $relationships
-     * @param  $permanently
+     * @param    $model
+     * @param    $relationships
+     * @param    $permanently
      */
     public function deleteRelationships($model, $relationships, $permanently = false): void
     {

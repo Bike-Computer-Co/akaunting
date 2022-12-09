@@ -26,7 +26,7 @@ class Neww extends Component
 
             event(new NewwCreated($menu));
 
-            foreach($menu->getItems() as $item) {
+            foreach ($menu->getItems() as $item) {
                 if ($this->availableInSearch($item)) {
                     $this->neww[] = $item;
 
@@ -63,7 +63,7 @@ class Neww extends Component
             }
 
             if (
-                !empty($item->attributes['search_keywords'])
+                ! empty($item->attributes['search_keywords'])
                 && Str::contains(Str::lower($item->attributes['search_keywords']), Str::lower($keyword))
             ) {
                 $status = true;

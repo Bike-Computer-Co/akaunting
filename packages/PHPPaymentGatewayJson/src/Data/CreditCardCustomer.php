@@ -6,12 +6,12 @@ namespace PaymentGatewayJson\Client\Data;
  * Specialized class to represent a customer with credit card data.
  *
  * @deprecated
- * @package PaymentGatewayJson\Client\Data
  */
-class CreditCardCustomer extends Customer {
-
+class CreditCardCustomer extends Customer
+{
     /**
      * @deprecated use $firstSix, $lastFour
+     *
      * @var string
      */
     protected $number;
@@ -20,30 +20,40 @@ class CreditCardCustomer extends Customer {
      * @var int
      */
     protected $expiryMonth;
+
     /**
      * @var int
      */
     protected $expiryYear;
+
     /**
      * @deprecated
+     *
      * @var int
      */
     protected $startMonth;
+
     /**
      * @deprecated
+     *
      * @var int
      */
     protected $startYear;
+
     /**
      * @deprecated
+     *
      * @var string
      */
     protected $cvv;
+
     /**
      * @deprecated
+     *
      * @var string
      */
     protected $issueNumber;
+
     /**
      * @var string
      */
@@ -71,149 +81,177 @@ class CreditCardCustomer extends Customer {
 
     /**
      * @deprecated
-     * @param $number
      *
+     * @param $number
      * @return $this
      */
-    public function setNumber($number) {
+    public function setNumber($number)
+    {
         $this->number = $number;
+
         return $this;
     }
 
     /**
      * @deprecated
+     *
      * @return string
      */
-    public function getNumber() {
+    public function getNumber()
+    {
         return $this->number;
     }
 
     /**
-     * @param int $expiryMonth
-     *
+     * @param  int  $expiryMonth
      * @return $this
      */
-    public function setExpiryMonth($expiryMonth) {
+    public function setExpiryMonth($expiryMonth)
+    {
         $this->expiryMonth = $expiryMonth;
+
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getExpiryMonth() {
+    public function getExpiryMonth()
+    {
         return $this->expiryMonth;
     }
 
     /**
-     * @param int $expiryYear
-     *
+     * @param  int  $expiryYear
      * @return $this
      */
-    public function setExpiryYear($expiryYear) {
+    public function setExpiryYear($expiryYear)
+    {
         $this->expiryYear = $expiryYear;
+
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getExpiryYear() {
+    public function getExpiryYear()
+    {
         return $this->expiryYear;
     }
 
     /**
      * @deprecated
-     * @param int $startMonth
      *
+     * @param  int  $startMonth
      * @return $this
      */
-    public function setStartMonth($startMonth) {
+    public function setStartMonth($startMonth)
+    {
         $this->startMonth = $startMonth;
+
         return $this;
     }
 
     /**
      * @deprecated
+     *
      * @return int
      */
-    public function getStartMonth() {
+    public function getStartMonth()
+    {
         return $this->startMonth;
     }
 
     /**
      * @deprecated
-     * @param int $startYear
      *
+     * @param  int  $startYear
      * @return $this
      */
-    public function setStartYear($startYear) {
+    public function setStartYear($startYear)
+    {
         $this->startYear = $startYear;
+
         return $this;
     }
 
     /**
      * @deprecated
+     *
      * @return int
      */
-    public function getStartYear() {
+    public function getStartYear()
+    {
         return $this->startYear;
     }
 
     /**
      * @deprecated
-     * @param int $cvv
      *
+     * @param  int  $cvv
      * @return $this
      */
-    public function setCvv($cvv) {
+    public function setCvv($cvv)
+    {
         $this->cvv = $cvv;
+
         return $this;
     }
 
     /**
      * @deprecated
+     *
      * @return string
      */
-    public function getCvv() {
+    public function getCvv()
+    {
         return $this->cvv;
     }
 
     /**
      * @deprecated
-     * @param string $issueNumber
      *
+     * @param  string  $issueNumber
      * @return $this
      */
-    public function setIssueNumber($issueNumber) {
+    public function setIssueNumber($issueNumber)
+    {
         $this->issueNumber = $issueNumber;
+
         return $this;
     }
 
     /**
      * @deprecated
+     *
      * @return string
      */
-    public function getIssueNumber() {
+    public function getIssueNumber()
+    {
         return $this->issueNumber;
     }
 
     /**
      * @deprecated
-     * @param string $type
      *
+     * @param  string  $type
      * @return $this
      */
-    public function setType($type) {
+    public function setType($type)
+    {
         $this->type = $type;
+
         return $this;
     }
 
     /**
      * @deprecated
+     *
      * @return string
      */
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
@@ -226,13 +264,13 @@ class CreditCardCustomer extends Customer {
     }
 
     /**
-     * @param string $brand
-     *
+     * @param  string  $brand
      * @return CreditCardCustomer
      */
     public function setBrand($brand)
     {
         $this->brand = $brand;
+
         return $this;
     }
 
@@ -245,13 +283,13 @@ class CreditCardCustomer extends Customer {
     }
 
     /**
-     * @param string $cardHolder
-     *
+     * @param  string  $cardHolder
      * @return CreditCardCustomer
      */
     public function setCardHolder($cardHolder)
     {
         $this->cardHolder = $cardHolder;
+
         return $this;
     }
 
@@ -264,13 +302,13 @@ class CreditCardCustomer extends Customer {
     }
 
     /**
-     * @param string $firstSixDigits
-     *
+     * @param  string  $firstSixDigits
      * @return CreditCardCustomer
      */
     public function setFirstSixDigits($firstSixDigits)
     {
         $this->firstSixDigits = $firstSixDigits;
+
         return $this;
     }
 
@@ -283,14 +321,13 @@ class CreditCardCustomer extends Customer {
     }
 
     /**
-     * @param string $lastFourDigits
-     *
+     * @param  string  $lastFourDigits
      * @return CreditCardCustomer
      */
     public function setLastFourDigits($lastFourDigits)
     {
         $this->lastFourDigits = $lastFourDigits;
+
         return $this;
     }
-
 }

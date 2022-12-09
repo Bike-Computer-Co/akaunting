@@ -40,7 +40,7 @@ class Currencies extends ApiController
         }
 
         if (! $currency instanceof Currency) {
-            return $this->errorInternal('No query results for model [' . Currency::class . '] ' . $id);
+            return $this->errorInternal('No query results for model ['.Currency::class.'] '.$id);
         }
 
         return new Resource($currency);
@@ -49,7 +49,7 @@ class Currencies extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -62,8 +62,8 @@ class Currencies extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $currency
-     * @param  $request
+     * @param    $currency
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Currency $currency, Request $request)

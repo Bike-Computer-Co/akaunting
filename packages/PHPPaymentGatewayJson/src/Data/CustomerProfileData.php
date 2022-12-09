@@ -6,11 +6,9 @@ use PaymentGatewayJson\Client\Json\DataObject;
 
 /**
  * Class CustomerProfileData
- *
- * @package PaymentGatewayJson\Client\Data
  */
-class CustomerProfileData extends DataObject {
-
+class CustomerProfileData extends DataObject
+{
     /**
      * @var string
      */
@@ -22,7 +20,7 @@ class CustomerProfileData extends DataObject {
     protected $customerIdentification;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $markAsPreferred;
 
@@ -35,13 +33,13 @@ class CustomerProfileData extends DataObject {
     }
 
     /**
-     * @param string $profileGuid
-     *
+     * @param  string  $profileGuid
      * @return CustomerProfileData
      */
     public function setProfileGuid($profileGuid)
     {
         $this->profileGuid = $profileGuid;
+
         return $this;
     }
 
@@ -54,13 +52,13 @@ class CustomerProfileData extends DataObject {
     }
 
     /**
-     * @param string $customerIdentification
-     *
+     * @param  string  $customerIdentification
      * @return CustomerProfileData
      */
     public function setCustomerIdentification($customerIdentification)
     {
         $this->customerIdentification = $customerIdentification;
+
         return $this;
     }
 
@@ -73,14 +71,13 @@ class CustomerProfileData extends DataObject {
     }
 
     /**
-     * @param bool $markAsPreferred
-     *
+     * @param  bool  $markAsPreferred
      * @return CustomerProfileData
      */
     public function setMarkAsPreferred($markAsPreferred)
     {
         $this->markAsPreferred = $markAsPreferred;
+
         return $this;
     }
-
 }

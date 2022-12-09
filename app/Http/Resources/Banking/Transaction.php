@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Banking;
 
-use App\Http\Resources\Banking\Account;
 use App\Http\Resources\Common\Contact;
 use App\Http\Resources\Setting\Category;
 use App\Http\Resources\Setting\Currency;

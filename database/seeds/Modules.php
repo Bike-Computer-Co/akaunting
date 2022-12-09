@@ -27,10 +27,9 @@ class Modules extends Seeder
         $company_id = $this->command->argument('company');
 
         Artisan::call('module:install', [
-            'alias'     => 'offline-payments',
-            'company'   => $company_id,
-            'locale'    => session('locale', company($company_id)->locale),
+            'alias' => 'offline-payments',
+            'company' => $company_id,
+            'locale' => session('locale', company($company_id)->locale),
         ]);
-
     }
 }

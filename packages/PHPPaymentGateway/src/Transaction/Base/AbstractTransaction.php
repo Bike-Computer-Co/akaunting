@@ -7,11 +7,9 @@ use PaymentGateway\Client\Data\Request;
 
 /**
  * Class AbstractTransaction
- *
- * @package PaymentGateway\Client\Transaction
  */
-class AbstractTransaction {
-
+class AbstractTransaction
+{
     /**
      * @var string
      */
@@ -40,7 +38,7 @@ class AbstractTransaction {
     /**
      * @var array
      */
-    protected $extraData = array();
+    protected $extraData = [];
 
     /**
      * @var string
@@ -55,26 +53,29 @@ class AbstractTransaction {
     /**
      * @return string
      */
-    public function getTransactionToken() {
+    public function getTransactionToken()
+    {
         return $this->transactionToken;
     }
 
     /**
      * set a required transaction token (if described by the documentation of a payment method)
      *
-     * @param string $transactionToken
-     *
+     * @param  string  $transactionToken
      * @return $this
      */
-    public function setTransactionToken($transactionToken) {
+    public function setTransactionToken($transactionToken)
+    {
         $this->transactionToken = $transactionToken;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getTransactionId() {
+    public function getTransactionId()
+    {
         return $this->transactionId;
     }
 
@@ -82,88 +83,97 @@ class AbstractTransaction {
      * this is your own transaction id
      * NOTE: your transaction ids MUST be unique
      *
-     * @param string $transactionId
-     *
+     * @param  string  $transactionId
      * @return $this
      */
-    public function setTransactionId($transactionId) {
+    public function setTransactionId($transactionId)
+    {
         $this->transactionId = $transactionId;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getAdditionalId1() {
+    public function getAdditionalId1()
+    {
         return $this->additionalId1;
     }
 
     /**
      * any additional id if required by the payment method
      *
-     * @param string $additionalId1
-     *
+     * @param  string  $additionalId1
      * @return $this
      */
-    public function setAdditionalId1($additionalId1) {
+    public function setAdditionalId1($additionalId1)
+    {
         $this->additionalId1 = $additionalId1;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getAdditionalId2() {
+    public function getAdditionalId2()
+    {
         return $this->additionalId2;
     }
 
     /**
      * any additional id if required by the payment method
      *
-     * @param string $additionalId2
-     *
+     * @param  string  $additionalId2
      * @return $this
      */
-    public function setAdditionalId2($additionalId2) {
+    public function setAdditionalId2($additionalId2)
+    {
         $this->additionalId2 = $additionalId2;
+
         return $this;
     }
 
     /**
      * @return Customer
      */
-    public function getCustomer() {
+    public function getCustomer()
+    {
         return $this->customer;
     }
 
     /**
      * customer information
      *
-     * @param Customer $customer
-     *
+     * @param  Customer  $customer
      * @return $this
      */
-    public function setCustomer($customer) {
+    public function setCustomer($customer)
+    {
         $this->customer = $customer;
+
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getExtraData() {
+    public function getExtraData()
+    {
         return $this->extraData;
     }
 
     /**
      * any additional data if required by the payment method
      *
-     * @param array $extraData
-     *
+     * @param  array  $extraData
      * @return $this
      */
-    public function setExtraData($extraData) {
+    public function setExtraData($extraData)
+    {
         $this->extraData = $extraData;
+
         return $this;
     }
 
@@ -176,56 +186,61 @@ class AbstractTransaction {
     }
 
     /**
-     * @param string $merchantMetaData
+     * @param  string  $merchantMetaData
      * @return AbstractTransaction
      */
     public function setMerchantMetaData($merchantMetaData)
     {
         $this->merchantMetaData = $merchantMetaData;
+
         return $this;
     }
 
     /**
-     * @param string $key
-     * @param mixed  $value
-     *
+     * @param  string  $key
+     * @param  mixed  $value
      * @return $this
      */
-    public function addExtraData($key, $value) {
+    public function addExtraData($key, $value)
+    {
         $this->extraData[$key] = $value;
+
         return $this;
     }
 
     /**
      * @return Request
      */
-    public function getRequest() {
+    public function getRequest()
+    {
         return $this->request;
     }
 
     /**
      * provider request information here (if required by the payment method)
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return $this
      */
-    public function setRequest($request) {
+    public function setRequest($request)
+    {
         $this->request = $request;
+
         return $this;
     }
 
     /**
      * get data from extra data
      *
-     * @param string $key
-     *
+     * @param  string  $key
      * @return mixed|null
      */
-    public function __get($key) {
+    public function __get($key)
+    {
         if (array_key_exists($key, $this->extraData)) {
             return $this->extraData[$key];
         }
+
         return null;
     }
 }

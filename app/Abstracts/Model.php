@@ -68,8 +68,7 @@ abstract class Model extends Eloquent implements Ownable
     /**
      * Scope to only include company data.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAllCompanies($query)
@@ -80,9 +79,8 @@ abstract class Model extends Eloquent implements Ownable
     /**
      * Scope to only include company data.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $company_id
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCompanyId($query, $company_id)
@@ -93,9 +91,8 @@ abstract class Model extends Eloquent implements Ownable
     /**
      * Scope to get all rows filtered, sorted and paginated.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $sort
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCollect($query, $sort = 'name')
@@ -127,18 +124,17 @@ abstract class Model extends Eloquent implements Ownable
     /**
      * Scope to export the rows of the current page filtered and sorted.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $ids
      * @param $sort
      * @param $id_field
-     *
      * @return \Illuminate\Support\LazyCollection
      */
     public function scopeCollectForExport($query, $ids = [], $sort = 'name', $id_field = 'id')
     {
         $request = request();
 
-        if (!empty($ids)) {
+        if (! empty($ids)) {
             $query->whereIn($id_field, (array) $ids);
         }
 
@@ -158,7 +154,7 @@ abstract class Model extends Eloquent implements Ownable
     /**
      * Scope to only include active models.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeEnabled($query)
@@ -169,7 +165,7 @@ abstract class Model extends Eloquent implements Ownable
     /**
      * Scope to only include passive models.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeDisabled($query)
@@ -180,7 +176,7 @@ abstract class Model extends Eloquent implements Ownable
     /**
      * Scope to only include reconciled models.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $value
      * @return \Illuminate\Database\Eloquent\Builder
      */

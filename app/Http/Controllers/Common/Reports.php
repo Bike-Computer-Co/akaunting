@@ -65,7 +65,7 @@ class Reports extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Report $report
+     * @param  Report  $report
      * @return Response
      */
     public function show(Report $report)
@@ -94,7 +94,7 @@ class Reports extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return Response
      */
     public function store(Request $request)
@@ -122,7 +122,6 @@ class Reports extends Controller
      * Duplicate the specified resource.
      *
      * @param  Report  $report
-     *
      * @return Response
      */
     public function duplicate(Report $report)
@@ -140,7 +139,6 @@ class Reports extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Report  $report
-     *
      * @return Response
      */
     public function edit(Report $report)
@@ -155,8 +153,8 @@ class Reports extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Report $report
-     * @param  $request
+     * @param  Report  $report
+     * @param    $request
      * @return Response
      */
     public function update(Report $report, Request $request)
@@ -183,8 +181,7 @@ class Reports extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Report $report
-     *
+     * @param  Report  $report
      * @return Response
      */
     public function destroy(Report $report)
@@ -209,7 +206,7 @@ class Reports extends Controller
     /**
      * Print the report.
      *
-     * @param  Report $report
+     * @param  Report  $report
      * @return Response
      */
     public function print(Report $report)
@@ -224,7 +221,7 @@ class Reports extends Controller
     /**
      * Export the report.
      *
-     * @param  Report $report
+     * @param  Report  $report
      * @return Response
      */
     public function export(Report $report)
@@ -245,7 +242,7 @@ class Reports extends Controller
     {
         $class = request('class');
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             return response()->json([
                 'success' => false,
                 'error' => true,

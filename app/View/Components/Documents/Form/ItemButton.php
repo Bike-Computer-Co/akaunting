@@ -43,23 +43,23 @@ class ItemButton extends Component
         $price_type = $this->getPriceType($this->type, $this->isSale, $this->isPurchase);
 
         foreach ($items as $item) {
-            $price = $item->{$price_type . '_price'};
+            $price = $item->{$price_type.'_price'};
 
             $item->price = $price;
         }
 
-        $price = $price_type . '_price';
+        $price = $price_type.'_price';
 
         return view('components.documents.form.item-button', compact('items', 'price'));
     }
 
     protected function getPriceType($type, $is_sale, $is_purchase)
     {
-        if (!empty($is_sale)) {
+        if (! empty($is_sale)) {
             return 'sale';
         }
 
-        if (!empty($is_purchase)) {
+        if (! empty($is_purchase)) {
             return 'purchase';
         }
 

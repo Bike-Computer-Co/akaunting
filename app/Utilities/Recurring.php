@@ -4,7 +4,6 @@ namespace App\Utilities;
 
 use App\Models\Document\Document;
 use App\Traits\DateTime;
-use App\Utilities\Date;
 
 class Recurring
 {
@@ -16,7 +15,7 @@ class Recurring
 
         foreach ($items as $key => $item) {
             // @todo cache recurrings
-            if (! $item->recurring || !empty($item->parent_id)) {
+            if (! $item->recurring || ! empty($item->parent_id)) {
                 continue;
             }
 

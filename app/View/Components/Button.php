@@ -3,7 +3,6 @@
 namespace App\View\Components;
 
 use App\Abstracts\View\Component;
-use Illuminate\Support\Str;
 
 class Button extends Component
 {
@@ -23,7 +22,7 @@ class Button extends Component
     public function __construct(
         string $type = '', string $class = '', string $override = '', string $kind = ''
     ) {
-        $this->type = !empty($type) ? $type : 'button';
+        $this->type = ! empty($type) ? $type : 'button';
         $this->override = $this->getOverride($override);
 
         $this->kind = $kind;

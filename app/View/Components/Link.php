@@ -3,7 +3,6 @@
 namespace App\View\Components;
 
 use App\Abstracts\View\Component;
-use Illuminate\Support\Str;
 
 class Link extends Component
 {

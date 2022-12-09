@@ -11,7 +11,7 @@ trait Jobs
     /**
      * Dispatch a job to its appropriate handler.
      *
-     * @param mixed $job
+     * @param  mixed  $job
      * @return mixed
      */
     public function dispatch($job)
@@ -49,8 +49,8 @@ trait Jobs
     /**
      * Dispatch a command to its appropriate handler in the current process.
      *
-     * @param mixed $job
-     * @param mixed $handler
+     * @param  mixed  $job
+     * @param  mixed  $handler
      * @return mixed
      *
      * @deprecated Will be removed in a future Laravel version.
@@ -63,7 +63,7 @@ trait Jobs
     /**
      * Dispatch a job to its appropriate handler and return a response array for ajax calls.
      *
-     * @param mixed $job
+     * @param  mixed  $job
      * @return mixed
      */
     public function ajaxDispatch($job)
@@ -77,7 +77,7 @@ trait Jobs
                 'data' => $data,
                 'message' => '',
             ];
-        } catch (Exception | Throwable $e) {
+        } catch (Exception|Throwable $e) {
             $response = [
                 'success' => false,
                 'error' => true,

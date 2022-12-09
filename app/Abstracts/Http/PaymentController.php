@@ -7,8 +7,8 @@ use App\Http\Requests\Portal\InvoicePayment as PaymentRequest;
 use App\Models\Document\Document;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\URL;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 abstract class PaymentController extends BaseController
 {
@@ -47,18 +47,18 @@ abstract class PaymentController extends BaseController
 
         $confirm_url = $this->getConfirmUrl($invoice);
 
-        $html = view('components.payment_method.' . $this->type, [
+        $html = view('components.payment_method.'.$this->type, [
             'setting' => $this->setting,
             'invoice' => $invoice,
             'confirm_url' => $confirm_url,
-            'store_card' => !empty($this->setting['store_card']) ? true : false,
+            'store_card' => ! empty($this->setting['store_card']) ? true : false,
             'cards' => $cards,
         ])->render();
 
         return response()->json([
             'code' => $this->setting['code'],
             'name' => $this->setting['name'],
-            'description' => trans($this->alias . '::general.description'),
+            'description' => trans($this->alias.'::general.description'),
             'redirect' => false,
             'html' => $html,
         ]);
@@ -71,9 +71,9 @@ abstract class PaymentController extends BaseController
 
     public function cancel(Document $invoice, $force_redirect = false)
     {
-        $message = trans('messages.warning.payment_cancel', ['method' => setting($this->alias . '.name')]);
+        $message = trans('messages.warning.payment_cancel', ['method' => setting($this->alias.'.name')]);
 
-        $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Cancel Message: ' . $message);
+        $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Cancel Message: '.$message);
 
         flash($message)->warning()->important();
 
@@ -99,7 +99,7 @@ abstract class PaymentController extends BaseController
 
         $message = trans('messages.success.added', ['type' => trans_choice('general.payments', 1)]);
 
-        $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Success Message: ' . $message);
+        $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Success Message: '.$message);
 
         flash($message)->success();
 
@@ -148,20 +148,20 @@ abstract class PaymentController extends BaseController
 
     public function getNotifyUrl($invoice)
     {
-        return route('portal.' . $this->alias . '.invoices.notify', $invoice->id);
+        return route('portal.'.$this->alias.'.invoices.notify', $invoice->id);
     }
 
     public function getModuleUrl($invoice, $suffix)
     {
         return request()->isPortal($invoice->company_id)
-                ? route('portal.' . $this->alias . '.invoices.' . $suffix, $invoice->id)
-                : URL::signedRoute('signed.' . $this->alias . '.invoices.' . $suffix, [$invoice->id]);
+                ? route('portal.'.$this->alias.'.invoices.'.$suffix, $invoice->id)
+                : URL::signedRoute('signed.'.$this->alias.'.invoices.'.$suffix, [$invoice->id]);
     }
 
     public function getLogger()
     {
         $log = new Logger($this->alias);
-        $log->pushHandler(new StreamHandler(storage_path('logs/' . $this->alias . '.log')), Logger::INFO);
+        $log->pushHandler(new StreamHandler(storage_path('logs/'.$this->alias.'.log')), Logger::INFO);
 
         return $log;
     }
@@ -169,7 +169,7 @@ abstract class PaymentController extends BaseController
     public function dispatchPaidEvent($invoice, $request)
     {
         $request['company_id'] = $invoice->company_id;
-        $request['account_id'] = setting($this->alias . '.account_id', setting('default.account'));
+        $request['account_id'] = setting($this->alias.'.account_id', setting('default.account'));
         $request['amount'] = $invoice->amount;
         $request['payment_method'] = $this->alias;
         $request['reference'] = $this->getReference($invoice);
@@ -181,26 +181,26 @@ abstract class PaymentController extends BaseController
     public function setReference($invoice, $reference)
     {
         session([
-            $this->alias . '_' . $invoice->id . '_reference' => $reference
+            $this->alias.'_'.$invoice->id.'_reference' => $reference,
         ]);
     }
 
     public function getReference($invoice)
     {
-        return session($this->alias . '_' . $invoice->id . '_reference');
+        return session($this->alias.'_'.$invoice->id.'_reference');
     }
 
     public function forgetReference($invoice)
     {
-        session()->forget($this->alias . '_' . $invoice->id . '_reference');
+        session()->forget($this->alias.'_'.$invoice->id.'_reference');
     }
 
     public function setContactFirstLastName(&$invoice)
     {
-        $contact = explode(" ", $invoice->contact_name);
+        $contact = explode(' ', $invoice->contact_name);
 
         $last_name = array_pop($contact);
-        $first_name = implode(" ", $contact);
+        $first_name = implode(' ', $contact);
 
         $invoice->first_name = $first_name;
         $invoice->last_name = $last_name;

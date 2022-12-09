@@ -28,7 +28,7 @@ class Receivables extends Widget
         $query = Document::invoice()->with('transactions')->accrued()->notPaid();
 
         $this->applyFilters($query, ['date_field' => 'issued_at'])->each(function ($invoice) use (&$open, &$overdue, &$periods) {
-            list($open_tmp, $overdue_tmp) = $this->calculateDocumentTotals($invoice);
+            [$open_tmp, $overdue_tmp] = $this->calculateDocumentTotals($invoice);
 
             $open += $open_tmp;
             $overdue += $overdue_tmp;
@@ -40,8 +40,8 @@ class Receivables extends Widget
                     $arr[2] = '9999';
                 }
 
-                $start = Date::today()->subDays($arr[2])->toDateString() . ' 00:00:00';
-                $end = Date::today()->subDays($arr[1])->toDateString() . ' 23:59:59';
+                $start = Date::today()->subDays($arr[2])->toDateString().' 00:00:00';
+                $end = Date::today()->subDays($arr[1])->toDateString().' 23:59:59';
 
                 if (! Date::parse($invoice->due_at)->isBetween($start, $end)) {
                     continue;
@@ -55,25 +55,25 @@ class Receivables extends Widget
             $periods[$period_name] = money($period_amount, setting('default.currency'), true);
         }
 
-        $has_progress = !empty($open) || !empty($overdue);
-        $progress = !empty($open) ? (int) ($open * 100) / ($open + $overdue) : 0;
+        $has_progress = ! empty($open) || ! empty($overdue);
+        $progress = ! empty($open) ? (int) ($open * 100) / ($open + $overdue) : 0;
 
         $grand = $open + $overdue;
 
         $totals = [
-            'grand'     => money($grand, setting('default.currency'), true),
-            'open'      => money($open, setting('default.currency'), true),
-            'overdue'   => money($overdue, setting('default.currency'), true),
+            'grand' => money($grand, setting('default.currency'), true),
+            'open' => money($open, setting('default.currency'), true),
+            'overdue' => money($overdue, setting('default.currency'), true),
         ];
 
         $grand_total_text = trans('widgets.total_unpaid_invoices');
 
         return $this->view('widgets.receivables_payables', [
-            'totals'            => $totals,
-            'has_progress'      => $has_progress,
-            'progress'          => $progress,
-            'periods'           => $periods,
-            'grand_total_text'  => $grand_total_text,
+            'totals' => $totals,
+            'has_progress' => $has_progress,
+            'progress' => $progress,
+            'periods' => $periods,
+            'grand_total_text' => $grand_total_text,
         ]);
     }
 }

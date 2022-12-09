@@ -44,19 +44,19 @@ class CashFlow extends Widget
 
         $options = [
             'chart' => [
-                'stacked'           => true,
+                'stacked' => true,
             ],
             'plotOptions' => [
                 'bar' => [
-                    'columnWidth'   => '40%',
+                    'columnWidth' => '40%',
                 ],
             ],
             'legend' => [
-                'position'          => 'top',
+                'position' => 'top',
             ],
             'yaxis' => [
                 'labels' => [
-                    'formatter'     => $this->getFormatLabel(),
+                    'formatter' => $this->getFormatLabel(),
                 ],
             ],
         ];
@@ -72,9 +72,9 @@ class CashFlow extends Widget
             ->setDataset(trans_choice('general.profits', 1), 'line', $profit);
 
         $totals = [
-            'incoming'  => money(array_sum($income), setting('default.currency'), true),
-            'outgoing'  => money(abs(array_sum($expense)), setting('default.currency'), true),
-            'profit'    => money(array_sum($profit), setting('default.currency'), true),
+            'incoming' => money(array_sum($income), setting('default.currency'), true),
+            'outgoing' => money(abs(array_sum($expense)), setting('default.currency'), true),
+            'profit' => money(array_sum($profit), setting('default.currency'), true),
         ];
 
         return $this->view('widgets.cash_flow', [
@@ -110,10 +110,10 @@ class CashFlow extends Widget
         $s = clone $this->start_date;
 
         if ($range == 'last_12_months') {
-            $end_month   = 12;
+            $end_month = 12;
             $start_month = 0;
         } elseif ($range == 'custom') {
-            $end_month   = $this->end_date->diffInMonths($this->start_date);
+            $end_month = $this->end_date->diffInMonths($this->start_date);
             $start_month = 0;
         }
 
@@ -195,14 +195,14 @@ class CashFlow extends Widget
                 $i = Date::parse($item->paid_at)->quarter;
             }
 
-            if (!isset($totals[$i])) {
+            if (! isset($totals[$i])) {
                 continue;
             }
 
             $totals[$i] += $item->getAmountConvertedToDefault();
         }
 
-        $precision = config('money.' . setting('default.currency') . '.precision');
+        $precision = config('money.'.setting('default.currency').'.precision');
 
         foreach ($totals as $key => $value) {
             if ($type == 'expense') {
@@ -217,7 +217,7 @@ class CashFlow extends Widget
     {
         $profit = [];
 
-        $precision = config('money.' . setting('default.currency') . '.precision');
+        $precision = config('money.'.setting('default.currency').'.precision');
 
         foreach ($incomes as $key => $income) {
             $value = $income - abs($expenses[$key]);

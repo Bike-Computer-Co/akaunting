@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Common;
 
 use App\Abstracts\Http\Controller;
 use App\Exports\Common\Items as Export;
-use App\Http\Requests\Common\Item as Request;
 use App\Http\Requests\Common\Import as ImportRequest;
+use App\Http\Requests\Common\Item as Request;
 use App\Imports\Common\Items as Import;
 use App\Jobs\Common\CreateItem;
 use App\Jobs\Common\DeleteItem;
@@ -55,7 +55,7 @@ class Items extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return Response
      */
     public function store(Request $request)
@@ -83,7 +83,6 @@ class Items extends Controller
      * Duplicate the specified resource.
      *
      * @param  Item  $item
-     *
      * @return Response
      */
     public function duplicate(Item $item)
@@ -101,7 +100,6 @@ class Items extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -125,7 +123,6 @@ class Items extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Item  $item
-     *
      * @return Response
      */
     public function edit(Item $item)
@@ -138,8 +135,8 @@ class Items extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  $item
-     * @param  $request
+     * @param    $item
+     * @param    $request
      * @return Response
      */
     public function update(Item $item, Request $request)
@@ -166,8 +163,7 @@ class Items extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Item $item
-     *
+     * @param  Item  $item
      * @return Response
      */
     public function enable(Item $item)
@@ -184,8 +180,7 @@ class Items extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Item $item
-     *
+     * @param  Item  $item
      * @return Response
      */
     public function disable(Item $item)
@@ -202,8 +197,7 @@ class Items extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Item $item
-     *
+     * @param  Item  $item
      * @return Response
      */
     public function destroy(Item $item)
@@ -241,12 +235,12 @@ class Items extends Controller
         $query = request('query');
         $currency_code = request('currency_code');
 
-        if (empty($currency_code) || (strtolower($currency_code)  == 'null')) {
+        if (empty($currency_code) || (strtolower($currency_code) == 'null')) {
             $currency_code = setting('default.currency');
         }
 
         $autocomplete = Item::autocomplete([
-            'name' => $query
+            'name' => $query,
         ]);
 
         $items = $autocomplete->get();
@@ -259,7 +253,7 @@ class Items extends Controller
                 if ($item->taxes->count()) {
                     $inclusives = $compounds = [];
 
-                    foreach($item->taxes as $item_tax) {
+                    foreach ($item->taxes as $item_tax) {
                         $tax = $item_tax->tax;
 
                         switch ($tax->type) {

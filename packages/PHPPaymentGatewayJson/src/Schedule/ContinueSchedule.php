@@ -4,12 +4,9 @@ namespace PaymentGatewayJson\Client\Schedule;
 
 /**
  * Class StartSchedule
- *
- * @package PaymentGatewayJson\Client\Data
- *
  */
-class ContinueSchedule {
-
+class ContinueSchedule
+{
     /**
      * reference UUID of initial register
      *
@@ -31,13 +28,13 @@ class ContinueSchedule {
     }
 
     /**
-     * @param string $scheduleId
-     *
+     * @param  string  $scheduleId
      * @return ContinueSchedule
      */
     public function setScheduleId($scheduleId)
     {
         $this->scheduleId = $scheduleId;
+
         return $this;
     }
 
@@ -50,7 +47,7 @@ class ContinueSchedule {
     }
 
     /**
-     * @param string $format
+     * @param  string  $format
      * @return string
      */
     public function getContinueDateTimeFormatted($format = null)
@@ -59,18 +56,18 @@ class ContinueSchedule {
     }
 
     /**
-     * @param \DateTime|string $continueDateTime
-     *
+     * @param  \DateTime|string  $continueDateTime
      * @return ContinueSchedule
+     *
      * @throws \Exception
      */
     public function setContinueDateTime($continueDateTime)
     {
-        if (!empty($continueDateTime) && is_string($continueDateTime)) {
+        if (! empty($continueDateTime) && is_string($continueDateTime)) {
             $continueDateTime = new \DateTime($continueDateTime);
         }
         $this->continueDateTime = $continueDateTime;
+
         return $this;
     }
-
 }

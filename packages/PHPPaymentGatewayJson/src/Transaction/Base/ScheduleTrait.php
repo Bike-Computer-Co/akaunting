@@ -7,11 +7,9 @@ use PaymentGatewayJson\Client\Schedule\ScheduleWithTransaction;
 
 /**
  * Trait ScheduleTrait
- *
- * @package PaymentGatewayJson\Client\Transaction\Base
  */
-trait ScheduleTrait {
-
+trait ScheduleTrait
+{
     /**
      * @var ScheduleWithTransaction
      */
@@ -22,21 +20,21 @@ trait ScheduleTrait {
      *
      * @return ScheduleData|ScheduleWithTransaction
      */
-    public function getSchedule() {
+    public function getSchedule()
+    {
         return $this->schedule;
     }
 
     /**
      * ScheduleResultData for backward compatibility
      *
-     * @param ScheduleData|ScheduleWithTransaction $schedule
-     *
+     * @param  ScheduleData|ScheduleWithTransaction  $schedule
      * @return $this
      */
-    public function setSchedule($schedule = null) {
+    public function setSchedule($schedule = null)
+    {
         $this->schedule = $schedule;
 
         return $this;
     }
-
 }

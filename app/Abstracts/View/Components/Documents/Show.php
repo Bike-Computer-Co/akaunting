@@ -2,26 +2,28 @@
 
 namespace App\Abstracts\View\Components\Documents;
 
+use App\Abstracts\View\Component;
+use App\Models\Common\Media;
 use App\Traits\DateTime;
 use App\Traits\Documents;
-use App\Models\Common\Media;
 use App\Traits\Tailwind;
 use App\Traits\ViewComponents;
-use App\Abstracts\View\Component;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
-use Intervention\Image\Exception\NotReadableException;
 use Image;
+use Intervention\Image\Exception\NotReadableException;
 
 abstract class Show extends Component
 {
     use DateTime, Documents, Tailwind, ViewComponents;
 
     public const OBJECT_TYPE = 'document';
+
     public const DEFAULT_TYPE = 'invoice';
+
     public const DEFAULT_PLURAL_TYPE = 'invoices';
 
     /* -- Main Start -- */
@@ -456,7 +458,7 @@ abstract class Show extends Component
 
         if (! empty($attachment)) {
             $this->attachment = $attachment;
-        } else if (! empty($document)) {
+        } elseif (! empty($document)) {
             $this->attachment = $document->attachment;
         }
         /* -- Content End -- */
@@ -518,7 +520,7 @@ abstract class Show extends Component
             return $textCreate;
         }
 
-        return trans('general.new') . ' ' . ucfirst($type);
+        return trans('general.new').' '.ucfirst($type);
     }
 
     protected function getHideButtonStatuses($type, $hideButtonStatuses)
@@ -529,7 +531,7 @@ abstract class Show extends Component
 
         $hideButtonStatuses = ['paid', 'cancelled'];
 
-        if ($button_statuses = config('type.' . static::OBJECT_TYPE . '.' . $type . '.button_statuses')) {
+        if ($button_statuses = config('type.'.static::OBJECT_TYPE.'.'.$type.'.button_statuses')) {
             $hideButtonStatuses = $button_statuses;
         }
 
@@ -578,16 +580,16 @@ abstract class Show extends Component
             return $signedUrl;
         }
 
-        $page = config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix');
-        $alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias');
+        $page = config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix');
+        $alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias');
 
         $route = '';
 
         if (! empty($alias)) {
-            $route .= $alias . '.';
+            $route .= $alias.'.';
         }
 
-        $route .= 'signed.' . $page . '.show';
+        $route .= 'signed.'.$page.'.show';
 
         try {
             route($route, [$this->document->id, 'company_id' => company_id()]);
@@ -682,19 +684,19 @@ abstract class Show extends Component
 
     protected function getCustomizeRoute($type, $customizeRoute)
     {
-        if (!empty($customizeRoute)) {
+        if (! empty($customizeRoute)) {
             return $customizeRoute;
         }
 
         $route = '';
 
-        $alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias');
+        $alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias');
 
-        if (!empty($alias)) {
-            $route .= $alias . '.';
+        if (! empty($alias)) {
+            $route .= $alias.'.';
         }
 
-        $route .= 'settings.' . $type . '.edit';
+        $route .= 'settings.'.$type.'.edit';
 
         try {
             route($route);
@@ -707,7 +709,7 @@ abstract class Show extends Component
 
     protected function getEndRoute($type, $endButton)
     {
-        if (!empty($endButton)) {
+        if (! empty($endButton)) {
             return $endButton;
         }
 
@@ -716,7 +718,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'end', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -729,7 +731,7 @@ abstract class Show extends Component
             return $accordionActive;
         }
 
-        $status_workflow = $alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.status_workflow');
+        $status_workflow = $alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.status_workflow');
 
         $status = false;
 
@@ -746,7 +748,7 @@ abstract class Show extends Component
             return $textRecurringType;
         }
 
-        $default_key = config('type.' . static::OBJECT_TYPE . '.' . $type . '.translation.prefix');
+        $default_key = config('type.'.static::OBJECT_TYPE.'.'.$type.'.translation.prefix');
 
         $translation = $this->getTextFromConfig($type, 'recurring_tye', $default_key);
 
@@ -811,7 +813,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'sent', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -855,7 +857,7 @@ abstract class Show extends Component
 
         $route = $this->getRouteFromConfig($type, 'received', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
@@ -886,7 +888,7 @@ abstract class Show extends Component
             return $transactionEmailTemplate;
         }
 
-        return config('type.' . static::OBJECT_TYPE . '.' . $type . '.transaction.email_template', false);
+        return config('type.'.static::OBJECT_TYPE.'.'.$type.'.transaction.email_template', false);
     }
 
     protected function getHideRestore($hideRestore)
@@ -910,11 +912,11 @@ abstract class Show extends Component
             return $documentTemplate;
         }
 
-        if ($template = config('type.' . static::OBJECT_TYPE . '.' . $type . '.template', false)) {
+        if ($template = config('type.'.static::OBJECT_TYPE.'.'.$type.'.template', false)) {
             return $template;
         }
 
-        $documentTemplate =  setting($this->getSettingKey($type, 'template'), 'default');
+        $documentTemplate = setting($this->getSettingKey($type, 'template'), 'default');
 
         return $documentTemplate;
     }
@@ -940,7 +942,7 @@ abstract class Show extends Component
         }
 
         try {
-            $image = Image::cache(function($image) use ($media, $path) {
+            $image = Image::cache(function ($image) use ($media, $path) {
                 $width = setting('invoice.logo_size_width');
                 $height = setting('invoice.logo_size_height');
 
@@ -950,13 +952,13 @@ abstract class Show extends Component
                     $image->make($path)->resize($width, $height)->encode();
                 }
             });
-        } catch (NotReadableException | \Exception $e) {
-            Log::info('Company ID: ' . company_id() . ' components/documentshow.php exception.');
+        } catch (NotReadableException|\Exception $e) {
+            Log::info('Company ID: '.company_id().' components/documentshow.php exception.');
             Log::info($e->getMessage());
 
             $path = base_path('public/img/company.png');
 
-            $image = Image::cache(function($image) use ($path) {
+            $image = Image::cache(function ($image) use ($path) {
                 $width = setting('invoice.logo_size_width');
                 $height = setting('invoice.logo_size_height');
 
@@ -970,7 +972,7 @@ abstract class Show extends Component
 
         $extension = File::extension($path);
 
-        return 'data:image/' . $extension . ';base64,' . base64_encode($image);
+        return 'data:image/'.$extension.';base64,'.base64_encode($image);
     }
 
     protected function getBackgroundColor($type, $backgroundColor)
@@ -979,12 +981,12 @@ abstract class Show extends Component
             return $backgroundColor;
         }
 
-        if ($background_color = config('type.' . static::OBJECT_TYPE . '.' . $type . '.color', false)) {
+        if ($background_color = config('type.'.static::OBJECT_TYPE.'.'.$type.'.color', false)) {
             return $background_color;
         }
 
-        if (! empty($alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias'))) {
-            $type = $alias . '.' . str_replace('-', '_', $type);
+        if (! empty($alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias'))) {
+            $type = $alias.'.'.str_replace('-', '_', $type);
         }
 
         $backgroundColor = setting($this->getSettingKey($type, 'color'), '#55588b');
@@ -1021,7 +1023,7 @@ abstract class Show extends Component
 
         $key = $this->getSettingKey($type, 'subheading');
 
-        if (!empty(setting($key))) {
+        if (! empty(setting($key))) {
             return setting($key);
         }
 
@@ -1192,7 +1194,7 @@ abstract class Show extends Component
 
     protected function getTextPrice($type, $textPrice)
     {
-        if (!empty($textPrice)) {
+        if (! empty($textPrice)) {
             return $textPrice;
         }
 
@@ -1241,7 +1243,7 @@ abstract class Show extends Component
             return $hide;
         }
 
-        $hideItems = ($this->getHideName($type, $hideName) & $this->getHideDescription($type, $hideDescription)) ? true  : false;
+        $hideItems = ($this->getHideName($type, $hideName) & $this->getHideDescription($type, $hideDescription)) ? true : false;
 
         return $hideItems;
     }

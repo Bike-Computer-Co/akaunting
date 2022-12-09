@@ -8,12 +8,12 @@ use App\Jobs\Common\CreateWidget;
 use App\Jobs\Setting\CreateEmailTemplate;
 use App\Jobs\Setting\UpdateEmailTemplate;
 use App\Models\Auth\User;
+use App\Models\Banking\Transaction;
 use App\Models\Common\Company;
 use App\Models\Common\Dashboard;
+use App\Models\Common\Recurring;
 use App\Models\Document\Document;
 use App\Models\Setting\EmailTemplate;
-use App\Models\Banking\Transaction;
-use App\Models\Common\Recurring;
 use App\Traits\Jobs;
 use App\Traits\Permissions;
 use App\Traits\Transactions;
@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
-use Throwable;
 
 class Version300 extends Listener
 {
@@ -34,7 +33,7 @@ class Version300 extends Listener
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -84,7 +83,7 @@ class Version300 extends Listener
         $companies = Company::cursor();
 
         foreach ($companies as $company) {
-            Log::channel('stdout')->info('Updating company:' . $company->id);
+            Log::channel('stdout')->info('Updating company:'.$company->id);
 
             $company->makeCurrent();
 
@@ -96,7 +95,7 @@ class Version300 extends Listener
 
             $this->updateTransactions();
 
-            Log::channel('stdout')->info('Company updated:' . $company->id);
+            Log::channel('stdout')->info('Company updated:'.$company->id);
         }
 
         company($company_id)->makeCurrent();
@@ -145,19 +144,19 @@ class Version300 extends Listener
 
         Log::channel('stdout')->info('Creating new widgets...');
 
-        Dashboard::whereDoesntHave('widgets')->each(function($dashboard) use ($new_widgets) {
+        Dashboard::whereDoesntHave('widgets')->each(function ($dashboard) use ($new_widgets) {
             $sort = 1;
 
             foreach ($new_widgets as $class_name) {
                 $class = new $class_name();
 
                 $this->dispatch(new CreateWidget([
-                    'company_id'    => $dashboard->company_id,
-                    'dashboard_id'  => $dashboard->id,
-                    'class'         => $class_name,
-                    'name'          => $class->getDefaultName(),
-                    'sort'          => $sort,
-                    'settings'      => $class->getDefaultSettings(),
+                    'company_id' => $dashboard->company_id,
+                    'dashboard_id' => $dashboard->id,
+                    'class' => $class_name,
+                    'name' => $class->getDefaultName(),
+                    'sort' => $sort,
+                    'settings' => $class->getDefaultSettings(),
                 ]));
 
                 $sort++;
@@ -174,47 +173,47 @@ class Version300 extends Listener
         $payment_received_model = EmailTemplate::alias('revenue_new_customer')->first();
 
         $payment_received_request = [
-            'company_id'    => company_id(),
-            'alias'         => 'payment_received_customer',
-            'class'         => 'App\Notifications\Banking\Transaction',
-            'name'          => 'settings.email.templates.payment_received_customer',
+            'company_id' => company_id(),
+            'alias' => 'payment_received_customer',
+            'class' => 'App\Notifications\Banking\Transaction',
+            'name' => 'settings.email.templates.payment_received_customer',
         ];
 
         Log::channel('stdout')->info('Updating old email templates...');
 
-        if (!empty($payment_received_model)) {
+        if (! empty($payment_received_model)) {
             $this->dispatch(new UpdateEmailTemplate($payment_received_model, array_merge($payment_received_request, [
-                'subject'   => $payment_received_model->subject,
-                'body'      => $payment_received_model->body,
+                'subject' => $payment_received_model->subject,
+                'body' => $payment_received_model->body,
             ])));
         } else {
             $this->dispatch(new CreateEmailTemplate(array_merge($payment_received_request, [
-                'subject'       => trans('email_templates.payment_received_customer.subject'),
-                'body'          => trans('email_templates.payment_received_customer.body'),
-                'created_from'  => 'core::seed',
+                'subject' => trans('email_templates.payment_received_customer.subject'),
+                'body' => trans('email_templates.payment_received_customer.body'),
+                'created_from' => 'core::seed',
             ])));
         }
 
         Log::channel('stdout')->info('Creating new email templates...');
 
         $this->dispatch(new CreateEmailTemplate([
-            'company_id'    => company_id(),
-            'alias'         => 'invoice_view_admin',
-            'class'         => 'App\Notifications\Sale\Invoice',
-            'name'          => 'settings.email.templates.invoice_view_admin',
-            'subject'       => trans('email_templates.invoice_view_admin.subject'),
-            'body'          => trans('email_templates.invoice_view_admin.body'),
-            'created_from'  => 'core::seed',
+            'company_id' => company_id(),
+            'alias' => 'invoice_view_admin',
+            'class' => 'App\Notifications\Sale\Invoice',
+            'name' => 'settings.email.templates.invoice_view_admin',
+            'subject' => trans('email_templates.invoice_view_admin.subject'),
+            'body' => trans('email_templates.invoice_view_admin.body'),
+            'created_from' => 'core::seed',
         ]));
 
         $this->dispatch(new CreateEmailTemplate([
-            'company_id'    => company_id(),
-            'alias'         => 'payment_made_vendor',
-            'class'         => 'App\Notifications\Banking\Transaction',
-            'name'          => 'settings.email.templates.payment_made_vendor',
-            'subject'       => trans('email_templates.payment_made_vendor.subject'),
-            'body'          => trans('email_templates.payment_made_vendor.body'),
-            'created_from'  => 'core::seed',
+            'company_id' => company_id(),
+            'alias' => 'payment_made_vendor',
+            'class' => 'App\Notifications\Banking\Transaction',
+            'name' => 'settings.email.templates.payment_made_vendor',
+            'subject' => trans('email_templates.payment_made_vendor.subject'),
+            'body' => trans('email_templates.payment_made_vendor.body'),
+            'created_from' => 'core::seed',
         ]));
 
         Log::channel('stdout')->info('Email templates updated/created.');
@@ -242,7 +241,7 @@ class Version300 extends Listener
 
             // Create the recurring template
             $clone = $model->duplicate();
-            $clone->type = $clone->type . '-recurring';
+            $clone->type = $clone->type.'-recurring';
             $clone->$number_field = $this->getNextTransactionNumber('-recurring');
             $clone->saveQuietly();
 
@@ -294,21 +293,22 @@ class Version300 extends Listener
             $users = User::all();
 
             foreach ($users as $user) {
-               $notifications = $user->unreadNotifications;
+                $notifications = $user->unreadNotifications;
 
                 foreach ($notifications as $notification) {
                     $notification->markAsRead();
                 }
             }
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
     }
 
     public function getTransactionNumber($number): string
     {
         $prefix = setting('transaction.number_prefix');
-        $digit  = setting('transaction.number_digit');
+        $digit = setting('transaction.number_digit');
 
-        return $prefix . str_pad($number, $digit, '0', STR_PAD_LEFT);
+        return $prefix.str_pad($number, $digit, '0', STR_PAD_LEFT);
     }
 
     public function saveNextTransactionNumber($next): void

@@ -77,9 +77,8 @@ class Account extends Model
     /**
      * Sort by balance
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $direction
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function balanceSortable($query, $direction)
@@ -97,7 +96,7 @@ class Account extends Model
     public function getTitleAttribute()
     {
         if ($this->currency->symbol) {
-            return $this->name . ' (' . $this->currency->symbol . ')';
+            return $this->name.' ('.$this->currency->symbol.')';
         }
 
         return $this->name;

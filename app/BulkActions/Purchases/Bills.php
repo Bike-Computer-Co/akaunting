@@ -6,7 +6,6 @@ use App\Abstracts\BulkAction;
 use App\Events\Document\DocumentCancelled;
 use App\Events\Document\DocumentReceived;
 use App\Exports\Purchases\Bills as Export;
-use App\Jobs\Banking\CreateBankingDocumentTransaction;
 use App\Jobs\Document\CreateDocumentHistory;
 use App\Jobs\Document\DeleteDocument;
 use App\Models\Document\Document;
@@ -23,29 +22,29 @@ class Bills extends BulkAction
     ];
 
     public $actions = [
-        'received'  => [
-            'icon'          => 'send',
-            'name'          => 'bills.mark_received',
-            'message'       => 'bulk_actions.message.received',
-            'permission'    => 'update-purchases-bills',
+        'received' => [
+            'icon' => 'send',
+            'name' => 'bills.mark_received',
+            'message' => 'bulk_actions.message.received',
+            'permission' => 'update-purchases-bills',
         ],
         'cancelled' => [
-            'icon'          => 'cancel',
-            'name'          => 'general.cancel',
-            'message'       => 'bulk_actions.message.cancelled',
-            'permission'    => 'update-purchases-bills',
+            'icon' => 'cancel',
+            'name' => 'general.cancel',
+            'message' => 'bulk_actions.message.cancelled',
+            'permission' => 'update-purchases-bills',
         ],
-        'delete'    => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-purchases-bills',
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-purchases-bills',
         ],
-        'export'    => [
-            'icon'          => 'file_download',
-            'name'          => 'general.export',
-            'message'       => 'bulk_actions.message.export',
-            'type'          => 'download',
+        'export' => [
+            'icon' => 'file_download',
+            'name' => 'general.export',
+            'message' => 'bulk_actions.message.export',
+            'type' => 'download',
         ],
     ];
 
@@ -91,7 +90,7 @@ class Bills extends BulkAction
     public function destroy($request)
     {
         $bills = $this->getSelectedRecords($request, [
-            'items', 'item_taxes', 'histories', 'transactions', 'recurring', 'totals'
+            'items', 'item_taxes', 'histories', 'transactions', 'recurring', 'totals',
         ]);
 
         foreach ($bills as $bill) {

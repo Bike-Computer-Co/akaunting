@@ -4,9 +4,9 @@ namespace App\Models\Common;
 
 use App\Abstracts\Model;
 use App\Models\Document\Document;
-use App\Utilities\Str;
 use App\Traits\Currencies;
 use App\Traits\Media;
+use App\Utilities\Str;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -85,7 +85,7 @@ class Item extends Model
 
     public function scopeBilling($query, $billing)
     {
-        return $query->where($billing . '_price', '=', null);
+        return $query->where($billing.'_price', '=', null);
     }
 
     /**
@@ -111,15 +111,15 @@ class Item extends Model
     /**
      * Scope autocomplete.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param array $filter
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  array  $filter
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAutocomplete($query, $filter)
     {
         return $query->where(function ($query) use ($filter) {
             foreach ($filter as $key => $value) {
-                $query->orWhere($key, 'LIKE', "%" . $value  . "%");
+                $query->orWhere($key, 'LIKE', '%'.$value.'%');
             }
         });
     }
@@ -127,9 +127,8 @@ class Item extends Model
     /**
      * Sort by category name
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $direction
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function categorySortable($query, $direction)
@@ -151,9 +150,9 @@ class Item extends Model
      */
     public function getPictureAttribute($value)
     {
-        if (!empty($value) && !$this->hasMedia('picture')) {
+        if (! empty($value) && ! $this->hasMedia('picture')) {
             return $value;
-        } elseif (!$this->hasMedia('picture')) {
+        } elseif (! $this->hasMedia('picture')) {
             return false;
         }
 

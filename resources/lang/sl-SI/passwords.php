@@ -17,6 +17,6 @@ return [
     'sent' => 'Povezava za ponastavitev gesla je poslana!',
     'throttled' => 'Počakaj, preden poskusiš znova.',
     'token' => 'Ponastavitveni žeton je neveljaven.',
-    'user' => "Uporabnika s tem e-poštnim naslovom ni bilo mogoče najti.",
+    'user' => 'Uporabnika s tem e-poštnim naslovom ni bilo mogoče najti.',
 
 ];

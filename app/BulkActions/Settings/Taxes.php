@@ -19,23 +19,23 @@ class Taxes extends BulkAction
     ];
 
     public $actions = [
-        'enable'    => [
-            'icon'          => 'check_circle',
-            'name'          => 'general.enable',
-            'message'       => 'bulk_actions.message.enable',
-            'permission'    => 'update-settings-taxes',
+        'enable' => [
+            'icon' => 'check_circle',
+            'name' => 'general.enable',
+            'message' => 'bulk_actions.message.enable',
+            'permission' => 'update-settings-taxes',
         ],
-        'disable'   => [
-            'icon'          => 'hide_source',
-            'name'          => 'general.disable',
-            'message'       => 'bulk_actions.message.disable',
-            'permission'    => 'update-settings-taxes',
+        'disable' => [
+            'icon' => 'hide_source',
+            'name' => 'general.disable',
+            'message' => 'bulk_actions.message.disable',
+            'permission' => 'update-settings-taxes',
         ],
-        'delete'    => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-settings-taxes',
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-settings-taxes',
         ],
     ];
 

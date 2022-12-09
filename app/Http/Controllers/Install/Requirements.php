@@ -20,7 +20,7 @@ class Requirements extends Controller
 
         if (empty($requirements)) {
             // Create the .env file
-            if (!File::exists(base_path('.env'))) {
+            if (! File::exists(base_path('.env'))) {
                 Installer::createDefaultEnvFile();
             }
 

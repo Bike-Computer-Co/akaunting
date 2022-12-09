@@ -32,13 +32,13 @@ abstract class FeatureTestCase extends TestCase
     /**
      * Empty for default user.
      *
-     * @param User|null $user
-     * @param Company|null $company
+     * @param  User|null  $user
+     * @param  Company|null  $company
      * @return FeatureTestCase
      */
     public function loginAs(User $user = null, Company $company = null)
     {
-        if (!$user) {
+        if (! $user) {
             $user = $this->user;
         }
 

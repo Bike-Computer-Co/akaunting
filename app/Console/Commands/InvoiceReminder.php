@@ -38,33 +38,29 @@ class InvoiceReminder extends Command
 
         $today = Date::today();
 
-        $start_date = $today->copy()->subMonth()->toDateString() . ' 00:00:00';
-        $end_date = $today->copy()->addWeek()->toDateString() . ' 23:59:59';
+        $start_date = $today->copy()->subMonth()->toDateString().' 00:00:00';
+        $end_date = $today->copy()->addWeek()->toDateString().' 23:59:59';
 
         // Get all companies
         $companies = Company::whereHas('invoices', function (Builder $query) use ($start_date, $end_date) {
-                                $query->allCompanies();
-                                $query->whereBetween('due_at', [$start_date, $end_date]);
-                                $query->accrued();
-                                $query->notPaid();
-                            })
+            $query->allCompanies();
+            $query->whereBetween('due_at', [$start_date, $end_date]);
+            $query->accrued();
+            $query->notPaid();
+        })
                             ->enabled()
                             ->cursor();
 
         foreach ($companies as $company) {
-            $this->info('Sending invoice reminders for ' . $company->name . ' company.');
+            $this->info('Sending invoice reminders for '.$company->name.' company.');
 
             // Set company
             $company->makeCurrent();
 
-            if (!$company->haveOption('remind')){
-                $this->info('Company doesnt have package for this');
-                continue;
-            }
 
             // Don't send reminders if disabled
             if (! setting('schedule.send_invoice_reminder')) {
-                $this->info('Invoice reminders disabled by ' . $company->name . '.');
+                $this->info('Invoice reminders disabled by '.$company->name.'.');
 
                 continue;
             }
@@ -90,7 +86,7 @@ class InvoiceReminder extends Command
         $invoices = Document::with('contact')->invoice()->accrued()->notPaid()->due($date)->cursor();
 
         foreach ($invoices as $invoice) {
-            $this->info($invoice->document_number . ' invoice reminded.');
+            $this->info($invoice->document_number.' invoice reminded.');
 
             try {
                 event(new DocumentReminded($invoice, Notification::class));

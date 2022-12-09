@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\Route;
  * @see \App\Providers\Route::mapAdminRoutes
  * @see \modules\OfflinePayments\Routes\admin.php for module example
  */
-
 Route::group(['as' => 'uploads.', 'prefix' => 'uploads'], function () {
     Route::delete('{id}', 'Common\Uploads@destroy')->name('destroy');
 });
-
 
 Route::group(['prefix' => 'common'], function () {
     Route::get('companies/autocomplete', 'Common\Companies@autocomplete')->name('companies.autocomplete');
@@ -51,20 +49,7 @@ Route::group(['prefix' => 'common'], function () {
     Route::get('contacts/index', 'Common\Contacts@index')->name('contacts.index');
 });
 
-// TODO: DISABLED BILLING CONTROLLER FUNCTIONS
-//Route::group(['prefix' => 'billing'], function () {
-////    Route::get('/home', fn()=> '')->name('home');
-//    Route::get('/redirect', 'BillingController@redirect')->name('billing.redirect');
-//    Route::get('/subscription', "BillingController@subscription")->name('billing.subscription');
-//    Route::post('/subscribe', "BillingController@subscribe")->name('billing.subscribe');
-//    Route::patch('/swap', "BillingController@swap")->name('billing.swap');
-//    Route::patch('/cancel', "BillingController@cancel")->name('billing.cancel');
-//    Route::patch('/resume', "BillingController@resume")->name('billing.resume');
-//});
-
-
 Route::group(['prefix' => 'auth'], function () {
-
     Route::get('logout', 'Auth\Login@destroy')->name('logout');
 
     Route::get('users/autocomplete', 'Auth\Users@autocomplete')->name('users.autocomplete');
@@ -246,8 +231,6 @@ Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
     });
 });
 
-
-
 Route::group(['prefix' => 'install'], function () {
     Route::get('updates', 'Install\Updates@index')->name('updates.index');
     Route::get('updates/changelog', 'Install\Updates@changelog')->name('updates.changelog');
@@ -276,7 +259,7 @@ Route::group(['as' => 'modals.', 'prefix' => 'modals'], function () {
     Route::patch('documents/item-columns', 'Modals\DocumentItemColumns@update')->name('documents.item-columns.update');
     Route::resource('documents/{document}/transactions', 'Modals\DocumentTransactions', [
         'names' => 'documents.document.transactions',
-        'middleware' => ['date.format', 'money', 'dropzone']
+        'middleware' => ['date.format', 'money', 'dropzone'],
     ]);
 
     Route::resource('transactions/{transaction}/emails', 'Modals\TransactionEmails', ['names' => 'transactions.emails']);

@@ -17,6 +17,6 @@ return [
     'sent' => 'Poslan vam je e-mail za povrat lozinke!',
     'throttled' => 'Molimo pričekajte prije ponovnog pokušaja.',
     'token' => 'Ovaj token za resetovanje lozinke nije ispravan.',
-    'user' => "Ne može se pronaći korisnik sa tom e-mail adresom.",
+    'user' => 'Ne može se pronaći korisnik sa tom e-mail adresom.',
 
 ];

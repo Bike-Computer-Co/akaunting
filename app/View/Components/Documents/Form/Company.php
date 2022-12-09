@@ -16,7 +16,7 @@ class Company extends Component
     {
         $company = Model::find(company_id());
 
-        $inputNameType = config('type.document.' . $this->type . '.route.parameter');
+        $inputNameType = config('type.document.'.$this->type.'.route.parameter');
 
         return view('components.documents.form.company', compact('company', 'inputNameType'));
     }

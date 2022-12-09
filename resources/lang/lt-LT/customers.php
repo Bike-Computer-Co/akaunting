@@ -2,11 +2,11 @@
 
 return [
 
-    'can_login'             => 'Gali prisijungti?',
-    'user_created'          => 'Vartotojas sukurtas',
+    'can_login' => 'Gali prisijungti?',
+    'user_created' => 'Vartotojas sukurtas',
 
     'error' => [
-        'email'             => 'Šis el. paštas jau užimtas.',
+        'email' => 'Šis el. paštas jau užimtas.',
     ],
 
 ];

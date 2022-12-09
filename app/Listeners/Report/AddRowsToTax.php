@@ -14,7 +14,7 @@ class AddRowsToTax extends Listener
     /**
      * Handle rows showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleRowsShowing(RowsShowing $event)

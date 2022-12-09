@@ -10,9 +10,9 @@ use App\Jobs\Banking\UpdateAccount;
 use App\Models\Banking\Account;
 use App\Models\Banking\Transaction;
 use App\Models\Banking\Transfer;
+use App\Models\Setting\Currency;
 use App\Utilities\Date;
 use App\Utilities\Reports;
-use App\Models\Setting\Currency;
 
 class Accounts extends Controller
 {
@@ -35,7 +35,7 @@ class Accounts extends Controller
      */
     public function show(Account $account)
     {
-        $transactions = Transaction::with('category', 'contact', 'document')->where('account_id', $account->id)->collect(['paid_at'=> 'desc']);
+        $transactions = Transaction::with('category', 'contact', 'document')->where('account_id', $account->id)->collect(['paid_at' => 'desc']);
 
         $transfers = Transfer::with('expense_transaction', 'expense_transaction.account', 'income_transaction', 'income_transaction.account')
                                 ->whereHas('expense_transaction', fn ($query) => $query->where('account_id', $account->id))
@@ -47,12 +47,12 @@ class Accounts extends Controller
         $current_amount = money($account->balance, $account->currency_code, true);
 
         $summary_amounts = [
-            'incoming_exact'        => $incoming_amount->format(),
-            'incoming_for_humans'   => $incoming_amount->formatForHumans(),
-            'outgoing_exact'        => $outgoing_amount->format(),
-            'outgoing_for_humans'   => $outgoing_amount->formatForHumans(),
-            'current_exact'         => $current_amount->format(),
-            'current_for_humans'    => $current_amount->formatForHumans(),
+            'incoming_exact' => $incoming_amount->format(),
+            'incoming_for_humans' => $incoming_amount->formatForHumans(),
+            'outgoing_exact' => $outgoing_amount->format(),
+            'outgoing_for_humans' => $outgoing_amount->formatForHumans(),
+            'current_exact' => $current_amount->format(),
+            'current_for_humans' => $current_amount->formatForHumans(),
         ];
 
         return view('banking.accounts.show', compact('account', 'transactions', 'transfers', 'summary_amounts'));
@@ -74,7 +74,6 @@ class Accounts extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -101,8 +100,7 @@ class Accounts extends Controller
     /**
      * Duplicate the specified resource.
      *
-     * @param  Account $account
-     *
+     * @param  Account  $account
      * @return Response
      */
     public function duplicate(Account $account)
@@ -120,7 +118,6 @@ class Accounts extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Account  $account
-     *
      * @return Response
      */
     public function edit(Account $account)
@@ -135,9 +132,8 @@ class Accounts extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Account $account
-     * @param  Request $request
-     *
+     * @param  Account  $account
+     * @param  Request  $request
      * @return Response
      */
     public function update(Account $account, Request $request)
@@ -164,8 +160,7 @@ class Accounts extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Account $account
-     *
+     * @param  Account  $account
      * @return Response
      */
     public function enable(Account $account)
@@ -182,8 +177,7 @@ class Accounts extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Account $account
-     *
+     * @param  Account  $account
      * @return Response
      */
     public function disable(Account $account)
@@ -200,8 +194,7 @@ class Accounts extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Account $account
-     *
+     * @param  Account  $account
      * @return Response
      */
     public function destroy(Account $account)
@@ -247,9 +240,9 @@ class Accounts extends Controller
     public function seePerformance(Account $account)
     {
         $data = [
-            'year'          => Date::now()->year,
-            'basis'         => 'accrual',
-            'account_id'    => $account->id,
+            'year' => Date::now()->year,
+            'basis' => 'accrual',
+            'account_id' => $account->id,
         ];
 
         $report = Reports::getClassInstance('App\Reports\IncomeExpenseSummary');

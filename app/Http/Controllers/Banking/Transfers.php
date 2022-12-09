@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Banking;
 
 use App\Abstracts\Http\Controller;
-use App\Http\Requests\Banking\Transfer as Request;
 use App\Exports\Banking\Transfers as Export;
+use App\Http\Requests\Banking\Transfer as Request;
 use App\Http\Requests\Common\Import as ImportRequest;
 use App\Imports\Banking\Transfers as Import;
 use App\Jobs\Banking\CreateTransfer;
-use App\Jobs\Banking\UpdateTransfer;
 use App\Jobs\Banking\DeleteTransfer;
+use App\Jobs\Banking\UpdateTransfer;
 use App\Models\Banking\Account;
 use App\Models\Banking\Transfer;
 use App\Models\Setting\Currency;
@@ -59,7 +59,6 @@ class Transfers extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -86,8 +85,7 @@ class Transfers extends Controller
     /**
      * Duplicate the specified resource.
      *
-     * @param  Transfer $transfer
-     *
+     * @param  Transfer  $transfer
      * @return Response
      */
     public function duplicate(Transfer $transfer)
@@ -105,7 +103,6 @@ class Transfers extends Controller
      * Import the specified resource.
      *
      * @param  ImportRequest  $request
-     *
      * @return Response
      */
     public function import(ImportRequest $request)
@@ -129,7 +126,6 @@ class Transfers extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Transfer  $transfer
-     *
      * @return Response
      */
     public function edit(Transfer $transfer)
@@ -146,9 +142,8 @@ class Transfers extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  $id
+     * @param    $id
      * @param  Request  $request
-     *
      * @return Response
      */
     public function update(Transfer $transfer, Request $request)
@@ -175,8 +170,7 @@ class Transfers extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $id
-     *
+     * @param    $id
      * @return Response
      */
     public function destroy(Transfer $transfer)
@@ -211,8 +205,7 @@ class Transfers extends Controller
     /**
      * Print the transfer.
      *
-     * @param  Transfer $transfer
-     *
+     * @param  Transfer  $transfer
      * @return Response
      */
     public function printTransfer(Transfer $transfer)
@@ -227,8 +220,7 @@ class Transfers extends Controller
     /**
      * Download the PDF file of transfer.
      *
-     * @param  Transfer $transfer
-     *
+     * @param  Transfer  $transfer
      * @return Response
      */
     public function pdfTransfer(Transfer $transfer)
@@ -245,7 +237,7 @@ class Transfers extends Controller
 
         //$pdf->setPaper('A4', 'portrait');
 
-        $file_name = trans_choice('general.transfers', 1) . '-' . Str::slug($transfer->id, '-', language()->getShortCode()) . '-' . time() . '.pdf';
+        $file_name = trans_choice('general.transfers', 1).'-'.Str::slug($transfer->id, '-', language()->getShortCode()).'-'.time().'.pdf';
 
         return $pdf->download($file_name);
     }

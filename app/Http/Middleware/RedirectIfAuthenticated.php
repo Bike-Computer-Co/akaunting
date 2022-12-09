@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (!auth()->guard($guard)->check()) {
+            if (! auth()->guard($guard)->check()) {
                 continue;
             }
 

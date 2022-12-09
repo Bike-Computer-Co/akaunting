@@ -2,35 +2,35 @@
 
 return [
 
-    'bulk_actions'      => 'Tömeges művelet | Tömeges műveletek',
-    'selected'          => 'Kiválasztva',
-    'no_action'         => 'Nincs elérhető művelet',
+    'bulk_actions' => 'Tömeges művelet | Tömeges műveletek',
+    'selected' => 'Kiválasztva',
+    'no_action' => 'Nincs elérhető művelet',
 
     'message' => [
-        'duplicate'     => 'Biztos vagy abban, hogy másolni akarod a kiválasztott rekordokat?',
-        'delete'        => '
+        'duplicate' => 'Biztos vagy abban, hogy másolni akarod a kiválasztott rekordokat?',
+        'delete' => '
 Biztosan <b> törli </b> a kiválasztott rekordot? | Biztosan <b> törli </b> a kiválasztott rekordokat?',
-        'export'        => '
+        'export' => '
 Biztosan <b> törli </b> a kiválasztott rekordot? | Biztosan <b> törli </b> a kiválasztott rekordokat?',
-        'enable'        => '
+        'enable' => '
 Biztosan <b> törli </b> a kiválasztott rekordot? | Biztosan <b> törli </b> a kiválasztott rekordokat?',
-        'disable'       => '
+        'disable' => '
 Biztosan <b> törli </b> a kiválasztott rekordot? | Biztosan <b> törli </b> a kiválasztott rekordokat?',
-        'paid'          => '
+        'paid' => '
 Biztosan <b> kifizetettként </b> szeretné megjelölni a kiválasztott számlát? | Biztosan <b> fizetettként </b> jelöli a kiválasztott számlákat?',
-        'sent'          => '
+        'sent' => '
 Biztosan <b> kifizetettként </b> szeretné megjelölni a kiválasztott számlát? | Biztosan <b> fizetettként </b> jelöli a kiválasztott számlákat?',
-        'received'      => '
+        'received' => '
 Biztosan <b> kifizetettként </b> szeretné megjelölni a kiválasztott számlát? | Biztosan <b> fizetettként </b> jelöli a kiválasztott számlákat?',
-        'cancelled'     => '
+        'cancelled' => '
 Biztosan <b> törli </b> a kiválasztott rekordot? | Biztosan <b> törli </b> a kiválasztott rekordokat?',
-        'reconcile'     => '
+        'reconcile' => '
 Biztosan <b> törli </b> a kiválasztott rekordot? | Biztosan <b> törli </b> a kiválasztott rekordokat?',
-        'unreconcile'   => '
+        'unreconcile' => '
 Biztosan <b> törli </b> a kiválasztott rekordot? | Biztosan <b> törli </b> a kiválasztott rekordokat?',
     ],
 
     'success' => [
-        'general'       => ':count rekord :type.',
+        'general' => ':count rekord :type.',
     ],
 ];

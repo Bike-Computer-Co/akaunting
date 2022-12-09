@@ -2,10 +2,10 @@
 
 return [
 
-    'collapse'              => 'Skupi',
+    'collapse' => 'Skupi',
 
     'form_description' => [
-        'general'           => 'Kategorija vam pomaže da klasifikujete svoje stavke, prihode, rashode i druge zapise.',
+        'general' => 'Kategorija vam pomaže da klasifikujete svoje stavke, prihode, rashode i druge zapise.',
     ],
 
 ];

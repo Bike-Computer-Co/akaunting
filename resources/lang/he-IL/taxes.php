@@ -2,7 +2,7 @@
 
 return [
 
-    'rate'                  => 'דירוג',
-    'rate_percent'          => 'דירוג (%)',
+    'rate' => 'דירוג',
+    'rate_percent' => 'דירוג (%)',
 
 ];

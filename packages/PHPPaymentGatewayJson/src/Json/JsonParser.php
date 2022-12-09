@@ -22,35 +22,36 @@ use PaymentGatewayJson\Client\Transaction\Result;
 
 /**
  * Class JsonParser
- *
- * @package PaymentGatewayJson\Client\Json
  */
-class JsonParser {
-
+class JsonParser
+{
     /** @deprecated
-     * @param string $json
+     * @param  string  $json
      */
-    public function parseResult($json){}
+    public function parseResult($json)
+    {
+    }
 
     /**
      * @param $jsonString
-     *
      * @return Result
+     *
      * @throws \Exception
      */
-    public function parseTransactionResult($jsonString) {
-
+    public function parseTransactionResult($jsonString)
+    {
         $json = json_decode($jsonString, true);
 
         $result = new Result();
 
-        if(!$result->isSuccess() && isset($json['errorMessage'])){
+        if (! $result->isSuccess() && isset($json['errorMessage'])) {
             // handle general errors
             $result->setSuccess(false);
             $error = new Error();
             $error->setMessage($this->arrGet($json, 'errorMessage'));
             $error->setCode($this->arrGet($json, 'errorCode'));
             $result->addError($error);
+
             return $result;
         }
 
@@ -66,7 +67,7 @@ class JsonParser {
         $result->setExtraData($this->arrGet($json, 'extraData'));
 
         // process object data
-        if (isset($json['errors'])){
+        if (isset($json['errors'])) {
             $errors = $this->parseErrors($json['errors']);
             $result->setErrors($errors);
         }
@@ -96,25 +97,25 @@ class JsonParser {
         }
 
         return $result;
-
     }
 
     /**
-     * @param string $jsonString
-     *
+     * @param  string  $jsonString
      * @return StatusResult
+     *
      * @throws \Exception
      */
-    public function parseStatusResult($jsonString) {
-
+    public function parseStatusResult($jsonString)
+    {
         $result = new StatusResult();
 
         $json = json_decode($jsonString, true);
 
-        if($this->arrGet($json, 'success') === false){
+        if ($this->arrGet($json, 'success') === false) {
             $result->setSuccess(false);
             $result->setErrorMessage($this->arrGet($json, 'errorMessage'));
             $result->setErrorCode($this->arrGet($json, 'errorCode'));
+
             return $result;
         }
 
@@ -132,41 +133,41 @@ class JsonParser {
         $result->setMerchantMetaData($this->arrGet($json, 'merchantMetaData'));
 
         // process objects
-        if(isset($json['schedules'])) {
+        if (isset($json['schedules'])) {
             $schedules = [];
-            foreach($json['schedules'] as $schedule){
+            foreach ($json['schedules'] as $schedule) {
                 $schedules[] = $this->parseScheduleData($schedule);
             }
 
             $result->setSchedules($schedules);
         }
 
-        if(isset($json['errors'])) {
+        if (isset($json['errors'])) {
             $errors = $this->parseErrors($json['errors']);
             $result->setErrors($errors);
         }
 
-        if(isset($json['chargebackData'])) {
+        if (isset($json['chargebackData'])) {
             $cbData = $this->parseChargebackData($json['chargebackData']);
             $result->setChargebackData($cbData);
         }
 
-        if(isset($json['chargebackReversalData'])) {
+        if (isset($json['chargebackReversalData'])) {
             $cbrData = $this->parseChargebackReversalData($json['chargebackReversalData']);
             $result->setChargebackReversalData($cbrData);
         }
 
-        if(isset($json['returnData'])) {
+        if (isset($json['returnData'])) {
             $returnData = $this->parseReturnData($json['returnData']);
             $result->setReturnData($returnData);
         }
 
-        if(isset($json['customer'])) {
+        if (isset($json['customer'])) {
             $customer = $this->parseCustomer($json['customer']);
             $result->setCustomer($customer);
         }
 
-        if(isset($json['customerProfileData'])) {
+        if (isset($json['customerProfileData'])) {
             $customerProfileData = $this->parseCustomerProfileData($json['customerProfileData']);
             $result->setCustomerProfileData($customerProfileData);
         }
@@ -176,11 +177,10 @@ class JsonParser {
 
     /**
      * @param $jsonString
-     *
      * @return ScheduleResult
      */
-    public function parseScheduleResult($jsonString){
-
+    public function parseScheduleResult($jsonString)
+    {
         $result = new ScheduleResult();
 
         $json = json_decode($jsonString, true);
@@ -200,16 +200,14 @@ class JsonParser {
         }
 
         return $result;
-
     }
 
     /**
      * @param $jsonString
-     *
      * @return OptionsResult
      */
-    public function parseOptionsResult($jsonString){
-
+    public function parseOptionsResult($jsonString)
+    {
         $json = json_decode($jsonString, true);
 
         $result = new OptionsResult();
@@ -222,12 +220,12 @@ class JsonParser {
 
     /**
      * @param $jsonString
-     *
      * @return CallbackResult
+     *
      * @throws \Exception
      */
-    public function parseCallback($jsonString){
-
+    public function parseCallback($jsonString)
+    {
         $json = json_decode($jsonString, true);
 
         $result = new CallbackResult();
@@ -247,7 +245,7 @@ class JsonParser {
         $result->setAdapterCode($this->arrGet($json, 'adapterCode'));
 
         // process objects
-        if(isset($json['scheduleData'])) {
+        if (isset($json['scheduleData'])) {
             $schedule = $this->parseScheduleData($json['scheduleData']);
             $result->setScheduleData($schedule);
         }
@@ -263,27 +261,27 @@ class JsonParser {
             );
         }
 
-        if(isset($json['chargebackData'])) {
+        if (isset($json['chargebackData'])) {
             $cbData = $this->parseChargebackData($json['chargebackData']);
             $result->setChargebackData($cbData);
         }
 
-        if(isset($json['chargebackReversalData'])) {
+        if (isset($json['chargebackReversalData'])) {
             $cbrData = $this->parseChargebackReversalData($json['chargebackReversalData']);
             $result->setChargebackReversalData($cbrData);
         }
 
-        if(isset($json['returnData'])) {
+        if (isset($json['returnData'])) {
             $returnData = $this->parseReturnData($json['returnData']);
             $result->setReturnData($returnData);
         }
 
-        if(isset($json['customer'])) {
+        if (isset($json['customer'])) {
             $customer = $this->parseCustomer($json['customer']);
             $result->setCustomer($customer);
         }
 
-        if(isset($json['customerProfileData'])) {
+        if (isset($json['customerProfileData'])) {
             $customerProfileData = $this->parseCustomerProfileData($json['customerProfileData']);
             $result->setCustomerProfileData($customerProfileData);
         }
@@ -294,13 +292,12 @@ class JsonParser {
     /* data parsers */
 
     /**
-     * @param array $returnData
-     *
+     * @param  array  $returnData
      * @return ResultData|null
      */
-    protected function parseReturnData($returnData) {
-
-        switch($returnData['_TYPE']){
+    protected function parseReturnData($returnData)
+    {
+        switch($returnData['_TYPE']) {
             case 'cardData':
                 $creditcardData = new ReturnCardData();
                 $creditcardData->setType($this->arrGet($returnData, 'type'));
@@ -356,11 +353,12 @@ class JsonParser {
 
     /**
      * @param $data
-     *
      * @return ScheduleResultData
+     *
      * @throws \Exception
      */
-    protected function parseScheduleData($data){
+    protected function parseScheduleData($data)
+    {
         $scheduleData = new ScheduleResultData();
         $scheduleData->setScheduleId($this->arrGet($data, 'scheduleId'));
         $scheduleData->setScheduleStatus($this->arrGet($data, 'scheduleStatus'));
@@ -372,11 +370,12 @@ class JsonParser {
 
     /**
      * @param $data
-     *
      * @return Customer
+     *
      * @throws \Exception
      */
-    protected function parseCustomer($data){
+    protected function parseCustomer($data)
+    {
         $customer = new Customer();
         $customer->setIdentification($this->arrGet($data, 'identification'));
         $customer->setFirstName($this->arrGet($data, 'firstName'));
@@ -412,10 +411,10 @@ class JsonParser {
 
     /**
      * @param $data
-     *
      * @return Error
      */
-    protected function parseError($data){
+    protected function parseError($data)
+    {
         $error = new Error(
             $this->arrGet($data, 'errorMessage'),
             $this->arrGet($data, 'errorCode'),
@@ -428,23 +427,24 @@ class JsonParser {
 
     /**
      * @param $data
-     *
      * @return array
      */
-    protected function parseErrors($data){
+    protected function parseErrors($data)
+    {
         $errors = [];
-        foreach($data as $error){
+        foreach ($data as $error) {
             $errors[] = $this->parseError($error);
         }
+
         return $errors;
     }
 
     /**
      * @param $data
-     *
      * @return ChargebackData
      */
-    protected function parseChargebackData($data){
+    protected function parseChargebackData($data)
+    {
         $cbData = new ChargebackData();
         $cbData->setOriginalUuid($this->arrGet($data, 'originalUuid'));
         $cbData->setOriginalMerchantTransactionId($this->arrGet($data, 'originalMerchantTransactionId'));
@@ -458,10 +458,10 @@ class JsonParser {
 
     /**
      * @param $data
-     *
      * @return ChargebackReversalData
      */
-    protected function parseChargebackReversalData($data){
+    protected function parseChargebackReversalData($data)
+    {
         $cbrData = new ChargebackReversalData();
         $cbrData->setOriginalUuid($this->arrGet($data, 'originalUuid'));
         $cbrData->setOriginalMerchantTransactionId($this->arrGet($data, 'originalMerchantTransactionId'));
@@ -476,10 +476,10 @@ class JsonParser {
 
     /**
      * @param $data
-     *
      * @return CustomerProfileData
      */
-    protected function parseCustomerProfileData($data){
+    protected function parseCustomerProfileData($data)
+    {
         $customerProfileData = new CustomerProfileData();
         $customerProfileData->setProfileGuid($this->arrGet($data, 'profileGuid'));
         $customerProfileData->setCustomerIdentification($this->arrGet($data, 'customerIdentification'));
@@ -491,16 +491,17 @@ class JsonParser {
      * helper function: array get
      * -> returns value at given key if exists
      *
-     * @param      $arr
-     * @param      $key
-     * @param null $default
-     *
+     * @param    $arr
+     * @param    $key
+     * @param  null  $default
      * @return null
      */
-    protected function arrGet($arr, $key, $default=null){
-        if(isset($arr[$key])){
+    protected function arrGet($arr, $key, $default = null)
+    {
+        if (isset($arr[$key])) {
             return $arr[$key];
         }
+
         return $default;
     }
 }

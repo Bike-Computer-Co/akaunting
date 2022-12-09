@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Menu;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
 class Favorites extends Component
 {
@@ -20,9 +20,9 @@ class Favorites extends Component
     {
         $this->favorites = collect();
 
-        $favorites = setting('favorites.menu.' . user()->id, []);
+        $favorites = setting('favorites.menu.'.user()->id, []);
 
-        if (!empty($favorites)) {
+        if (! empty($favorites)) {
             $favorites = json_decode($favorites, true);
 
             foreach ($favorites as $favorite) {
@@ -63,14 +63,14 @@ class Favorites extends Component
                 $url = route($route);
             }
 
-            return str_replace(url('/') . '/', '', $url);
+            return str_replace(url('/').'/', '', $url);
         }
 
         if (empty($favorite['url'])) {
             return '/#';
         }
 
-        return str_replace(url('/') . '/', '', url($favorite['url']));
+        return str_replace(url('/').'/', '', url($favorite['url']));
     }
 
     /**
@@ -83,7 +83,7 @@ class Favorites extends Component
         if (empty($url) || in_array($url, ['/'])) {
             return Request::is($url);
         } else {
-            return Request::is($url, $url . '/*');
+            return Request::is($url, $url.'/*');
         }
     }
 
@@ -96,6 +96,6 @@ class Favorites extends Component
                 ->trim('-')
                 ->squish();
 
-        return 'menu-favorites-' . $id;
+        return 'menu-favorites-'.$id;
     }
 }

@@ -67,7 +67,7 @@ class Company extends Factory
 
             // Company seeds
             Artisan::call('company:seed', [
-                'company' => $company->id
+                'company' => $company->id,
             ]);
 
             $user = User::first();
@@ -81,7 +81,7 @@ class Company extends Factory
             ]);
 
             setting()->set([
-				'company.name' => $this->faker->text(15),
+                'company.name' => $this->faker->text(15),
                 'company.address' => 'New Street 1254',
                 'company.city' => 'London',
                 'company.country' => $this->faker->countryCode,

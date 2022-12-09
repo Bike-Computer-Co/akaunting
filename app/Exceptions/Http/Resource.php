@@ -18,12 +18,11 @@ class Resource extends HttpException
     /**
      * Create a new resource exception instance.
      *
-     * @param string                               $message
-     * @param \Illuminate\Support\MessageBag|array $errors
-     * @param \Exception                           $previous
-     * @param array                                $headers
-     * @param int                                  $code
-     *
+     * @param  string  $message
+     * @param  \Illuminate\Support\MessageBag|array  $errors
+     * @param  \Exception  $previous
+     * @param  array  $headers
+     * @param  int  $code
      * @return void
      */
     public function __construct($message = null, $errors = null, Exception $previous = null, $headers = [], $code = 0)

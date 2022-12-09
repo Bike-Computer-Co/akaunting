@@ -13,8 +13,8 @@ class Uninstalling extends Event
     /**
      * Create a new event instance.
      *
-     * @param  $alias
-     * @param  $company_id
+     * @param    $alias
+     * @param    $company_id
      */
     public function __construct($alias, $company_id)
     {

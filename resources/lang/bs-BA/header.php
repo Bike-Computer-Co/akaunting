@@ -2,15 +2,15 @@
 
 return [
 
-    'change_language'       => 'Promjena jezika',
-    'last_login'            => 'Zadnja prijava :time',
+    'change_language' => 'Promjena jezika',
+    'last_login' => 'Zadnja prijava :time',
 
     'notifications' => [
-        'counter'           => '{0} Nemate obavijesti|{1} Imate :count obavijest | [2,*] Imate :count obavijesti',
-        'new_apps'          => '{1} :count nova aplikacija je objavljena|[2,*] :count novih aplikacija je objavljeno',
-        'overdue_invoices'  => '{1} :count dospjela faktura|[2,*] :count dospjelih faktura',
-        'upcoming_bills'    => '{1} :count nadolazeći račun|[2,*] :count nadolazećih računa',
-        'view_all'          => 'Vidi sve',
+        'counter' => '{0} Nemate obavijesti|{1} Imate :count obavijest | [2,*] Imate :count obavijesti',
+        'new_apps' => '{1} :count nova aplikacija je objavljena|[2,*] :count novih aplikacija je objavljeno',
+        'overdue_invoices' => '{1} :count dospjela faktura|[2,*] :count dospjelih faktura',
+        'upcoming_bills' => '{1} :count nadolazeći račun|[2,*] :count nadolazećih računa',
+        'view_all' => 'Vidi sve',
 
         'exports' => [
             'completed' => '{1} :count zavrsen export|[2,*] :count zavrsenih exporta',
@@ -22,12 +22,12 @@ return [
         ],
     ],
 
-    'docs_link'             => 'https://akaunting.com/docs',
-    'support_link'          => 'https://akaunting.com/support',
+    'docs_link' => 'https://akaunting.com/docs',
+    'support_link' => 'https://akaunting.com/support',
 
     'favorite' => [
-        'added_favorite'    => 'Dodano u favorite',
-        'add_favorite'      => 'Dodaj u favorite',
+        'added_favorite' => 'Dodano u favorite',
+        'add_favorite' => 'Dodaj u favorite',
     ],
 
 ];

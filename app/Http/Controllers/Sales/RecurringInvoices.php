@@ -47,8 +47,7 @@ class RecurringInvoices extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Document $recurring_invoice
-     *
+     * @param  Document  $recurring_invoice
      * @return Response
      */
     public function show(Document $recurring_invoice)
@@ -72,7 +71,6 @@ class RecurringInvoices extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -99,8 +97,7 @@ class RecurringInvoices extends Controller
     /**
      * Duplicate the specified resource.
      *
-     * @param  Document $recurring_invoice
-     *
+     * @param  Document  $recurring_invoice
      * @return Response
      */
     public function duplicate(Document $recurring_invoice)
@@ -117,8 +114,7 @@ class RecurringInvoices extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Document $recurring_invoice
-     *
+     * @param  Document  $recurring_invoice
      * @return Response
      */
     public function edit(Document $recurring_invoice)
@@ -129,9 +125,8 @@ class RecurringInvoices extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Document $recurring_invoice
+     * @param  Document  $recurring_invoice
      * @param  Request  $request
-     *
      * @return Response
      */
     public function update(Document $recurring_invoice, Request $request)

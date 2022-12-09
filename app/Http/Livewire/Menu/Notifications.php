@@ -80,7 +80,7 @@ class Notifications extends Component
 
         foreach ($notifications as $notification) {
             if ($notification->id == $notification_id) {
-                setting()->set('notifications.' . $notification->notifiable_id . '.' . $notification->data['alias'], '1');
+                setting()->set('notifications.'.$notification->notifiable_id.'.'.$notification->data['alias'], '1');
 
                 setting()->save();
                 break;
@@ -132,7 +132,7 @@ class Notifications extends Component
             }
 
             if (
-                !empty($notification->data['description'])
+                ! empty($notification->data['description'])
                 && Str::contains(Str::lower($notification->data['description']), Str::lower($keyword))
             ) {
                 $status = true;

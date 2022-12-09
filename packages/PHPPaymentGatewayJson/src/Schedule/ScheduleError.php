@@ -4,22 +4,32 @@ namespace PaymentGatewayJson\Client\Schedule;
 
 /**
  * Class ScheduleError
+ *
  * @deprecated not used anymore
- * @package PaymentGatewayJson\Client\ScheduleResultData
  */
-class ScheduleError {
-
+class ScheduleError
+{
     //general errors
     const REQUEST_FAILED = 1000;
+
     const INVALID_RESPONSE = 1001;
+
     const INVALID_REQUEST_DATA = 1002;
+
     const PROCESSING_ERROR = 1003;
+
     const INVALID_SIGNATURE = 1004;
+
     const INVALID_XML = 1005;
+
     const LOGICAL_ERROR = 1006;
+
     const INVALID_CONFIGURATION = 1007;
+
     const UNEXPECTED_SYSTEM_ERROR = 1008;
+
     const NOT_ALLOWED = 3002;
+
     const UNKNOWN = 9999;
 
     //schedule errors
@@ -77,10 +87,11 @@ class ScheduleError {
     protected $code;
 
     /**
-     * @param string $message
-     * @param int|null $code
+     * @param  string  $message
+     * @param  int|null  $code
      */
-    public function __construct($message, $code = null) {
+    public function __construct($message, $code = null)
+    {
         $this->message = $message;
         $this->code = $code ?: self::UNKNOWN;
     }
@@ -100,5 +111,4 @@ class ScheduleError {
     {
         return $this->code;
     }
-
 }

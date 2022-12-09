@@ -17,7 +17,7 @@ class Module extends FormRequest
 
         $module = module($this->request->get('module_alias'));
 
-        if (!$fields = $module->get('settings')) {
+        if (! $fields = $module->get('settings')) {
             return $rules;
         }
 

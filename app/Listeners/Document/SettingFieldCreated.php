@@ -16,7 +16,7 @@ class SettingFieldCreated
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -24,7 +24,7 @@ class SettingFieldCreated
         $request = $event->request;
         $document = $event->document;
 
-        if (!$request->has('setting')) {
+        if (! $request->has('setting')) {
             return;
         }
 
@@ -53,7 +53,7 @@ class SettingFieldCreated
             $company = Company::find($document->company_id);
 
             foreach ($files as $key => $value) {
-                // Upload attachment    
+                // Upload attachment
                 $media = $this->getMedia($value, 'settings');
 
                 $company->attachMedia($media, Str::snake($real_key));

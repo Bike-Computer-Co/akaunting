@@ -4,10 +4,9 @@ namespace PaymentGateway\Client\Transaction\Base;
 
 /**
  * Trait AddToCustomerProfileTrait
- * @package PaymentGateway\Client\Transaction\Base
  */
-trait AddToCustomerProfileTrait {
-
+trait AddToCustomerProfileTrait
+{
     /**
      * @var bool
      */
@@ -31,65 +30,76 @@ trait AddToCustomerProfileTrait {
     /**
      * @return bool
      */
-    public function getAddToCustomerProfile() {
+    public function getAddToCustomerProfile()
+    {
         return $this->addToCustomerProfile;
     }
 
     /**
-     * @param bool $addToCustomerProfile
+     * @param  bool  $addToCustomerProfile
      * @return AddToCustomerProfileTrait
      */
-    public function setAddToCustomerProfile($addToCustomerProfile) {
+    public function setAddToCustomerProfile($addToCustomerProfile)
+    {
         $this->addToCustomerProfile = $addToCustomerProfile;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCustomerProfileGuid() {
+    public function getCustomerProfileGuid()
+    {
         return $this->customerProfileGuid;
     }
 
     /**
-     * @param string $customerProfileGuid
+     * @param  string  $customerProfileGuid
      * @return AddToCustomerProfileTrait
      */
-    public function setCustomerProfileGuid($customerProfileGuid) {
+    public function setCustomerProfileGuid($customerProfileGuid)
+    {
         $this->customerProfileGuid = $customerProfileGuid;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCustomerProfileIdentification() {
+    public function getCustomerProfileIdentification()
+    {
         return $this->customerProfileIdentification;
     }
 
     /**
-     * @param string $customerProfileIdentification
+     * @param  string  $customerProfileIdentification
      * @return AddToCustomerProfileTrait
      */
-    public function setCustomerProfileIdentification($customerProfileIdentification) {
+    public function setCustomerProfileIdentification($customerProfileIdentification)
+    {
         $this->customerProfileIdentification = $customerProfileIdentification;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getMarkAsPreferred() {
+    public function getMarkAsPreferred()
+    {
         return $this->markAsPreferred;
     }
 
     /**
-     * @param string $markAsPrefrred
+     * @param  string  $markAsPrefrred
      * @return AddToCustomerProfileTrait
      */
-    public function setMarkAsPreferred($markAsPreferred) {
+    public function setMarkAsPreferred($markAsPreferred)
+    {
         $this->markAsPreferred = $markAsPreferred;
+
         return $this;
     }
-
 }

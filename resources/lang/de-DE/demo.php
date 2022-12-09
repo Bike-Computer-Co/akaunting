@@ -3,29 +3,29 @@
 return [
 
     'accounts' => [
-        'cash'              => 'Bargeld',
+        'cash' => 'Bargeld',
     ],
 
     'categories' => [
-        'deposit'           => 'Einzahlung',
-        'sales'             => 'Vertrieb',
+        'deposit' => 'Einzahlung',
+        'sales' => 'Vertrieb',
     ],
 
     'currencies' => [
-        'usd'               => 'US-Dollar',
+        'usd' => 'US-Dollar',
     ],
 
     'offline_payments' => [
-        'cash'              => 'Bargeld',
-        'bank'              => 'Banküberweisung',
+        'cash' => 'Bargeld',
+        'bank' => 'Banküberweisung',
     ],
 
     'reports' => [
-        'income'            => 'Monatliche Zusammenfassung der Einnahmen nach Kategorie.',
-        'expense'           => 'Monatliche Zusammenfassung der Ausgaben nach Kategorie.',
-        'income_expense'    => 'Monatlicher Vergleich Einkommen vs Ausgaben nach Kategorie.',
-        'tax'               => 'Vierteljährliche Steuerzusammenfassung.',
-        'profit_loss'       => 'Quartalsweise Gewinn & Verlust nach Kategorie.',
+        'income' => 'Monatliche Zusammenfassung der Einnahmen nach Kategorie.',
+        'expense' => 'Monatliche Zusammenfassung der Ausgaben nach Kategorie.',
+        'income_expense' => 'Monatlicher Vergleich Einkommen vs Ausgaben nach Kategorie.',
+        'tax' => 'Vierteljährliche Steuerzusammenfassung.',
+        'profit_loss' => 'Quartalsweise Gewinn & Verlust nach Kategorie.',
     ],
 
 ];

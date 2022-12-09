@@ -4,12 +4,11 @@ namespace App\Notifications\Portal;
 
 use App\Abstracts\Notification;
 use App\Models\Banking\Transaction;
-use App\Models\Setting\EmailTemplate;
 use App\Models\Document\Document;
+use App\Models\Setting\EmailTemplate;
 use App\Traits\Documents;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
 
 class PaymentReceived extends Notification
 {
@@ -86,8 +85,8 @@ class PaymentReceived extends Notification
 
         return [
             'template_alias' => $this->template->alias,
-            'title' => trans('notifications.menu.' . $this->template->alias . '.title'),
-            'description' => trans('notifications.menu.' . $this->template->alias . '.description', $this->getTagsBinding()),
+            'title' => trans('notifications.menu.'.$this->template->alias.'.title'),
+            'description' => trans('notifications.menu.'.$this->template->alias.'.description', $this->getTagsBinding()),
             'invoice_id' => $this->invoice->id,
             'invoice_number' => $this->invoice->document_number,
             'customer_name' => $this->invoice->contact_name,
@@ -126,7 +125,7 @@ class PaymentReceived extends Notification
             $this->invoice->document_number,
             money($this->invoice->amount, $this->invoice->currency_code, true),
             company_date($this->invoice->due_at),
-            trans('documents.statuses.' . $this->invoice->status),
+            trans('documents.statuses.'.$this->invoice->status),
             URL::signedRoute('signed.invoices.show', [$this->invoice->id]),
             route('invoices.show', $this->invoice->id),
             route('portal.invoices.show', $this->invoice->id),

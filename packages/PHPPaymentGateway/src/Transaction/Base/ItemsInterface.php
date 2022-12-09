@@ -1,17 +1,16 @@
 <?php
 
 namespace PaymentGateway\Client\Transaction\Base;
+
 use PaymentGateway\Client\Data\Item;
 
 /**
  * Interface ItemsInterface
- *
- * @package PaymentGateway\Client\Transaction\Base
  */
-interface ItemsInterface {
-
+interface ItemsInterface
+{
     /**
-     * @param Item[] $items
+     * @param  Item[]  $items
      * @return void
      */
     public function setItems($items);
@@ -22,9 +21,8 @@ interface ItemsInterface {
     public function getItems();
 
     /**
-     * @param Item $item
+     * @param  Item  $item
      * @return void
      */
     public function addItem($item);
-
 }

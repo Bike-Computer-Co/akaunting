@@ -28,7 +28,6 @@ class Users extends ApiController
      * Display the specified resource.
      *
      * @param  int|string  $id
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
@@ -41,7 +40,7 @@ class Users extends ApiController
         }
 
         if (! $user instanceof User) {
-            return $this->errorInternal('No query results for model [' . User::class . '] ' . $id);
+            return $this->errorInternal('No query results for model ['.User::class.'] '.$id);
         }
 
         return new Resource($user);
@@ -50,8 +49,7 @@ class Users extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -64,8 +62,8 @@ class Users extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $user
-     * @param  $request
+     * @param    $user
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(User $user, Request $request)
@@ -79,7 +77,6 @@ class Users extends ApiController
      * Enable the specified resource in storage.
      *
      * @param  User  $user
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function enable(User $user)
@@ -93,7 +90,6 @@ class Users extends ApiController
      * Disable the specified resource in storage.
      *
      * @param  User  $user
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function disable(User $user)
@@ -107,10 +103,9 @@ class Users extends ApiController
      * Remove the specified resource from storage.
      *
      * @param  User  $user
+     * @return \Illuminate\Http\Response
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
-     * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {

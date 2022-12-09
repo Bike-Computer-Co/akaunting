@@ -4,11 +4,9 @@ namespace PaymentGateway\Client\Data\Result;
 
 /**
  * Represents a credit card.
- *
- * @package PaymentGateway\Client\Data
  */
-class IbanData extends ResultData {
-
+class IbanData extends ResultData
+{
     /**
      * @var string
      */
@@ -37,83 +35,94 @@ class IbanData extends ResultData {
     /**
      * @return string
      */
-    public function getAccountOwner() {
+    public function getAccountOwner()
+    {
         return $this->accountOwner;
     }
 
     /**
-     * @param string $accountOwner
+     * @param  string  $accountOwner
      */
-    public function setAccountOwner($accountOwner) {
+    public function setAccountOwner($accountOwner)
+    {
         $this->accountOwner = $accountOwner;
     }
 
     /**
      * @return string
      */
-    public function getIban() {
+    public function getIban()
+    {
         return $this->iban;
     }
 
     /**
-     * @param string $iban
+     * @param  string  $iban
      */
-    public function setIban($iban) {
+    public function setIban($iban)
+    {
         $this->iban = $iban;
     }
 
     /**
      * @return string
      */
-    public function getBic() {
+    public function getBic()
+    {
         return $this->bic;
     }
 
     /**
-     * @param string $bic
+     * @param  string  $bic
      */
-    public function setBic($bic) {
+    public function setBic($bic)
+    {
         $this->bic = $bic;
     }
 
     /**
      * @return string
      */
-    public function getBankName() {
+    public function getBankName()
+    {
         return $this->bankName;
     }
 
     /**
-     * @param string $bankName
+     * @param  string  $bankName
      */
-    public function setBankName($bankName) {
+    public function setBankName($bankName)
+    {
         $this->bankName = $bankName;
     }
 
     /**
      * @return string
      */
-    public function getCountry() {
+    public function getCountry()
+    {
         return $this->country;
     }
 
     /**
-     * @param string $country
+     * @param  string  $country
      */
-    public function setCountry($country) {
+    public function setCountry($country)
+    {
         $this->country = $country;
     }
 
     /**
      * @return array
      */
-    public function toArray() {
-        return array(
+    public function toArray()
+    {
+        return [
             'accountOwner' => $this->getAccountOwner(),
             'iban' => $this->getIban(),
             'bic' => $this->getBic(),
             'bankName' => $this->getBankName(),
-            'country' => $this->getCountry()
-        );
+            'country' => $this->getCountry(),
+        ];
     }
 }

@@ -8,7 +8,6 @@ use App\Events\Document\DocumentCreating;
 use App\Interfaces\Job\HasOwner;
 use App\Interfaces\Job\HasSource;
 use App\Interfaces\Job\ShouldCreate;
-use App\Jobs\Document\CreateDocumentItemsAndTotals;
 use App\Models\Document\Document;
 use Illuminate\Support\Str;
 

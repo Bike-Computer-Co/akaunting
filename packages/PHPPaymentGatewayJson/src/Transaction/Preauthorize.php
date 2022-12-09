@@ -20,19 +20,9 @@ use PaymentGatewayJson\Client\Transaction\Base\ThreeDSecureTrait;
 
 /**
  * Preauthorize: Reserve a certain amount, which can be captured (=charging) or voided (=revert) later on.
- *
- * @package PaymentGatewayJson\Client\Transaction
  */
-class Preauthorize extends AbstractTransactionWithReference
-                   implements AddToCustomerProfileInterface,
-                              AmountableInterface,
-                              CustomerInterface,
-                              ItemsInterface,
-                              OffsiteInterface,
-                              ScheduleInterface,
-                              ThreeDSecureInterface
+class Preauthorize extends AbstractTransactionWithReference implements AddToCustomerProfileInterface, AmountableInterface, CustomerInterface, ItemsInterface, OffsiteInterface, ScheduleInterface, ThreeDSecureInterface
 {
-
     use AddToCustomerProfileTrait;
     use AmountableTrait;
     use CustomerTrait;
@@ -40,11 +30,15 @@ class Preauthorize extends AbstractTransactionWithReference
     use OffsiteTrait;
     use ScheduleTrait;
     use ThreeDSecureTrait;
-    
+
     const TRANSACTION_INDICATOR_SINGLE = 'SINGLE';
+
     const TRANSACTION_INDICATOR_INITIAL = 'INITIAL';
+
     const TRANSACTION_INDICATOR_RECURRING = 'RECURRING';
+
     const TRANSACTION_INDICATOR_CARDONFILE = 'CARDONFILE';
+
     const TRANSACTION_INDICATOR_CARDONFILE_MERCHANT = 'CARDONFILE_MERCHANT';
 
     /** @var string */
@@ -68,7 +62,7 @@ class Preauthorize extends AbstractTransactionWithReference
     }
 
     /**
-     * @param string $transactionToken
+     * @param  string  $transactionToken
      */
     public function setTransactionToken($transactionToken)
     {
@@ -76,38 +70,42 @@ class Preauthorize extends AbstractTransactionWithReference
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isWithRegister() {
+    public function isWithRegister()
+    {
         return $this->withRegister;
     }
 
     /**
      * set true if you want to register a user vault together with the debit
      *
-     * @param boolean $withRegister
-     *
+     * @param  bool  $withRegister
      * @return $this
      */
-    public function setWithRegister($withRegister) {
+    public function setWithRegister($withRegister)
+    {
         $this->withRegister = $withRegister;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getTransactionIndicator() {
+    public function getTransactionIndicator()
+    {
         return $this->transactionIndicator;
     }
 
     /**
-     * @param string $transactionIndicator
-     *
+     * @param  string  $transactionIndicator
      * @return $this
      */
-    public function setTransactionIndicator($transactionIndicator) {
+    public function setTransactionIndicator($transactionIndicator)
+    {
         $this->transactionIndicator = $transactionIndicator;
+
         return $this;
     }
 
@@ -120,7 +118,7 @@ class Preauthorize extends AbstractTransactionWithReference
     }
 
     /**
-     * @param string $language
+     * @param  string  $language
      */
     public function setLanguage($language)
     {

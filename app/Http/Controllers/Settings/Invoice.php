@@ -12,7 +12,7 @@ class Invoice extends SettingController
             'hide' => trans('settings.invoice.hide.item_name'),
             'settings.invoice.item' => trans('settings.invoice.item'),
             'settings.invoice.product' => trans('settings.invoice.product'),
-            'settings.invoice.service' =>  trans('settings.invoice.service'),
+            'settings.invoice.service' => trans('settings.invoice.service'),
             'custom' => trans('settings.invoice.custom'),
         ];
 

@@ -3,10 +3,10 @@
 namespace App\Imports\Sales;
 
 use App\Abstracts\ImportMultipleSheets;
-use App\Imports\Sales\Sheets\Invoices as Base;
+use App\Imports\Sales\Sheets\InvoiceHistories;
 use App\Imports\Sales\Sheets\InvoiceItems;
 use App\Imports\Sales\Sheets\InvoiceItemTaxes;
-use App\Imports\Sales\Sheets\InvoiceHistories;
+use App\Imports\Sales\Sheets\Invoices as Base;
 use App\Imports\Sales\Sheets\InvoiceTotals;
 use App\Imports\Sales\Sheets\InvoiceTransactions;
 

@@ -45,8 +45,8 @@ class Scripts extends Component
 
         $this->modules = $this->getFeaturedModules([
             'query' => [
-                'limit' => 5
-            ]
+                'limit' => 5,
+            ],
         ]);
 
         return view('components.layouts.wizard.scripts');
@@ -104,7 +104,7 @@ class Scripts extends Component
                 'code' => trans('currencies.code'),
                 'rate' => trans('currencies.rate'),
                 'enabled' => trans('general.enabled'),
-                'actions' =>  trans('general.actions') ,
+                'actions' => trans('general.actions'),
                 'yes' => trans('general.yes'),
                 'no' => trans('general.no'),
                 'edit' => trans('general.edit'),
@@ -123,7 +123,7 @@ class Scripts extends Component
 
             'taxes' => [
                 'title' => trans_choice('general.taxes', 2),
-                'add_new' =>  trans('general.add_new'),
+                'add_new' => trans('general.add_new'),
                 'no_taxes' => trans('taxes.no_taxes'),
                 'create_task' => trans('taxes.create_task'),
                 'new_tax' => trans('taxes.new_tax'),
@@ -147,16 +147,16 @@ class Scripts extends Component
             'finish' => [
                 'title' => trans('modules.ready'),
                 'recommended_apps' => trans('modules.recommended_apps'),
-                'no_apps' =>  trans('modules.no_apps'),
+                'no_apps' => trans('modules.no_apps'),
                 'developer' => trans('modules.developer'),
                 'from' => trans('general.from'),
-                'apps_managing' =>  trans('modules.apps_managing'),
+                'apps_managing' => trans('modules.apps_managing'),
                 'reviews' => trans('modules.tab.reviews'),
                 'previous' => trans('companies.skip_step'),
                 'go_to_dashboard' => trans('general.go_to_dashboard'),
                 'create_first_invoice' => trans('general.create_first_invoice'),
                 'error_message' => trans('errors.title.500'),
-            ]
+            ],
         ];
     }
 

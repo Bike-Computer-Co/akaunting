@@ -17,7 +17,7 @@ return [
     'reset' => 'A sua palavra-passe foi redefinida!',
     'sent' => 'Enviámos um e-mail com o link para redefinir a sua palavra-passe!',
     'token' => 'Token para recuperação da palavra-passe inválido.',
-    'user' => "Não encontramos nenhum utilizador com esse endereço de e-mail.",
+    'user' => 'Não encontramos nenhum utilizador com esse endereço de e-mail.',
     'throttle' => 'Por favor, aguarde antes de tentar novamente.',
 
 ];

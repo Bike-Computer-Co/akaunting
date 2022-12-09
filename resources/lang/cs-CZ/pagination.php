@@ -2,8 +2,8 @@
 
 return [
 
-    'previous'              => '&laquo; předchozí',
-    'next'                  => 'další &raquo;',
-    'showing'               => ':first-:last z :total záznamů.',
-    'page'                  => 'na stránku.',
+    'previous' => '&laquo; předchozí',
+    'next' => 'další &raquo;',
+    'showing' => ':first-:last z :total záznamů.',
+    'page' => 'na stránku.',
 ];

@@ -2,10 +2,10 @@
 
 namespace App\Exports\Purchases;
 
-use App\Exports\Purchases\Sheets\Bills as Base;
+use App\Exports\Purchases\Sheets\BillHistories;
 use App\Exports\Purchases\Sheets\BillItems;
 use App\Exports\Purchases\Sheets\BillItemTaxes;
-use App\Exports\Purchases\Sheets\BillHistories;
+use App\Exports\Purchases\Sheets\Bills as Base;
 use App\Exports\Purchases\Sheets\BillTotals;
 use App\Exports\Purchases\Sheets\BillTransactions;
 use Maatwebsite\Excel\Concerns\Exportable;

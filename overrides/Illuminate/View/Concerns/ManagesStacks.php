@@ -183,7 +183,7 @@ trait ManagesStacks
      * @return void
      */
     public function flushStack($key = null)
-    {   
+    {
         $properties = [
             'pushes',
             'prepends',
@@ -191,7 +191,7 @@ trait ManagesStacks
         ];
 
         foreach ($properties as $property) {
-            if (!array_key_exists($key, $this->$property)) {
+            if (! array_key_exists($key, $this->$property)) {
                 continue;
             }
 

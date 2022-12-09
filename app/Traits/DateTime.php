@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Traits\SearchString;
 use Carbon\CarbonPeriod;
 use Date;
 
@@ -26,7 +25,7 @@ trait DateTime
         }
 
         // Make user is logged in
-        if (!user()) {
+        if (! user()) {
             return $default;
         }
 
@@ -48,8 +47,8 @@ trait DateTime
 
         // Check if FS has been customized
         if ($now->startOfYear()->format('Y-m-d') === $financial_start->format('Y-m-d')) {
-            $start = Date::parse($year . '-01-01')->startOfDay()->format('Y-m-d H:i:s');
-            $end = Date::parse($year . '-12-31')->endOfDay()->format('Y-m-d H:i:s');
+            $start = Date::parse($year.'-01-01')->startOfDay()->format('Y-m-d H:i:s');
+            $end = Date::parse($year.'-12-31')->endOfDay()->format('Y-m-d H:i:s');
         } else {
             $start = $financial_start->startOfDay()->format('Y-m-d H:i:s');
             $end = $financial_start->addYear(1)->subDays(1)->endOfDay()->format('Y-m-d H:i:s');
@@ -63,7 +62,7 @@ trait DateTime
         $groups = [];
 
         // The list of available timezone groups to use.
-        $use_zones = array('Africa', 'America', 'Antarctica', 'Arctic', 'Asia', 'Atlantic', 'Australia', 'Europe', 'Indian', 'Pacific');
+        $use_zones = ['Africa', 'America', 'Antarctica', 'Arctic', 'Asia', 'Atlantic', 'Australia', 'Europe', 'Indian', 'Pacific'];
 
         // Get the list of time zones from the server.
         $zones = \DateTimeZone::listIdentifiers();
@@ -76,17 +75,17 @@ trait DateTime
             }
 
             // Get the group/locale from the timezone.
-            list ($group, $locale) = explode('/', $zone, 2);
+            [$group, $locale] = explode('/', $zone, 2);
 
             // Only use known groups.
             if (in_array($group, $use_zones)) {
                 // Initialize the group if necessary.
-                if (!isset($groups[$group])) {
+                if (! isset($groups[$group])) {
                     $groups[$group] = [];
                 }
 
                 // Only add options where a locale exists.
-                if (!empty($locale)) {
+                if (! empty($locale)) {
                     $groups[$group][$zone] = str_replace('_', ' ', $locale);
                 }
             }
@@ -105,8 +104,8 @@ trait DateTime
 
         $setting = explode('-', setting('localisation.financial_start'));
 
-        $day = !empty($setting[0]) ? $setting[0] : $start->day;
-        $month = !empty($setting[1]) ? $setting[1] : $start->month;
+        $day = ! empty($setting[0]) ? $setting[0] : $start->day;
+        $month = ! empty($setting[1]) ? $setting[1] : $start->month;
         $year = $year ?? $this->getSearchStringValue('year', $now->year);
 
         $financial_start = Date::create($year, $month, $day);
@@ -155,11 +154,11 @@ trait DateTime
             break;
         }
 
-        if (!isset($this_quarter)) {
+        if (! isset($this_quarter)) {
             $this_quarter = $financial_quarters[0];
         }
 
-        if (!isset($previous_quarter)) {
+        if (! isset($previous_quarter)) {
             $previous_quarter = $financial_quarters[0];
         }
 

@@ -17,10 +17,10 @@ class Validation extends Provider
     {
         $currency_code = null;
 
-        Validator::extend('currency', function ($attribute, $value, $parameters, $validator) use(&$currency_code) {
+        Validator::extend('currency', function ($attribute, $value, $parameters, $validator) use (&$currency_code) {
             $status = false;
 
-            if (!is_string($value)) {
+            if (! is_string($value)) {
                 return $status;
             }
 
@@ -50,7 +50,7 @@ class Validation extends Provider
                 $status = true;
             }
 
-            if (! preg_match("/^(?=.*?[0-9])[0-9.,]+$/", $value)) {
+            if (! preg_match('/^(?=.*?[0-9])[0-9.,]+$/', $value)) {
                 $status = false;
             }
 
@@ -64,7 +64,7 @@ class Validation extends Provider
         Validator::extend('extension', function ($attribute, $value, $parameters, $validator) {
             $extension = $value->getClientOriginalExtension();
 
-            return !empty($extension) && in_array($extension, $parameters);
+            return ! empty($extension) && in_array($extension, $parameters);
         },
             trans('validation.custom.invalid_extension')
         );

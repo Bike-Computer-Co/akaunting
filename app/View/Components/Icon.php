@@ -34,17 +34,17 @@ class Icon extends Component
      * @return void
      */
     public function __construct(
-        string $icon = '', string $class = '', 
-        bool $filled = false, bool $rounded = false, 
+        string $icon = '', string $class = '',
+        bool $filled = false, bool $rounded = false,
         bool $simpleIcons = false, bool $custom = false, string $alias = ''
     ) {
-        $this->icon         = $icon;
-        $this->class        = ($simpleIcons) ? 'w-8 h-8 ' . $class : $class;
-        $this->filled       = $filled;
-        $this->rounded      = $rounded;
-        $this->simpleIcons  = $simpleIcons;
-        $this->custom       = $custom;
-        $this->alias        = $alias;
+        $this->icon = $icon;
+        $this->class = ($simpleIcons) ? 'w-8 h-8 '.$class : $class;
+        $this->filled = $filled;
+        $this->rounded = $rounded;
+        $this->simpleIcons = $simpleIcons;
+        $this->custom = $custom;
+        $this->alias = $alias;
 
         if ($custom) {
             $this->icon = $this->getCustomIcon($icon, $alias);
@@ -68,10 +68,10 @@ class Icon extends Component
         $base_path = 'public/img/icons/';
 
         if (! empty($alias)) {
-            $base_path = 'modules/' . Str::studly($alias) . '/Resources/assets/img/icons/';
+            $base_path = 'modules/'.Str::studly($alias).'/Resources/assets/img/icons/';
         }
 
-        $path = base_path($base_path . $slug . '.svg');
+        $path = base_path($base_path.$slug.'.svg');
 
         if (! file_exists($path)) {
             $path = 'public/img/akaunting-logo-purple.svg';

@@ -26,7 +26,7 @@ abstract class Report
 
     public function skipThisClass($event)
     {
-        return (empty($event->class) || !in_array(get_class($event->class), $this->classes));
+        return empty($event->class) || ! in_array(get_class($event->class), $this->classes);
     }
 
     public function skipRowsShowing($event, $group)
@@ -132,11 +132,11 @@ abstract class Report
         $input = request('search');
 
         // Remove year as it's handled based on financial start
-        $search_year = 'year:' . $this->getSearchStringValue('year', '', $input);
+        $search_year = 'year:'.$this->getSearchStringValue('year', '', $input);
         $input = str_replace($search_year, '', $input);
 
         // Remove basis as it's handled based on report itself
-        $search_basis = 'basis:' . $this->getSearchStringValue('basis', 'accrual', $input);
+        $search_basis = 'basis:'.$this->getSearchStringValue('basis', 'accrual', $input);
         $input = str_replace($search_basis, '', $input);
 
         $event->model->usingSearchString($input);
@@ -153,7 +153,7 @@ abstract class Report
         $event->model->account_id = 0;
 
         foreach ($event->model->transactions as $transaction) {
-            if (!empty($filter) && !in_array($transaction->account_id, $filter)) {
+            if (! empty($filter) && ! in_array($transaction->account_id, $filter)) {
                 continue;
             }
 
@@ -166,7 +166,7 @@ abstract class Report
     public function applyCustomerGroup($event)
     {
         foreach ($this->getCustomerTypes() as $type) {
-            $id_field = $type . '_id';
+            $id_field = $type.'_id';
 
             $event->model->$id_field = $event->model->contact_id;
         }
@@ -175,7 +175,7 @@ abstract class Report
     public function applyVendorGroup($event)
     {
         foreach ($this->getVendorTypes() as $type) {
-            $id_field = $type . '_id';
+            $id_field = $type.'_id';
 
             $event->model->$id_field = $event->model->contact_id;
         }
@@ -215,7 +215,7 @@ abstract class Report
         foreach ($categories as $id => $name) {
             $category = Category::withSubCategory()->find($id);
 
-            if (!is_null($category->parent_id)) {
+            if (! is_null($category->parent_id)) {
                 unset($categories[$id]);
 
                 continue;
@@ -241,7 +241,7 @@ abstract class Report
             $sub_categories[$sub_category->id] = $this->getSubCategories($sub_category);
         }
 
-        if (!empty($sub_categories)) {
+        if (! empty($sub_categories)) {
             $sub_categories[$category->id] = null;
         }
 
@@ -276,7 +276,7 @@ abstract class Report
                     $start = $quarter->getStartDate()->format($this->getQuarterlyDateFormat($event->class->model->year));
                     $end = $quarter->getEndDate()->format($this->getQuarterlyDateFormat($event->class->model->year));
 
-                    $formatted_date = $start . '-' . $end;
+                    $formatted_date = $start.'-'.$end;
                 }
 
                 break;
@@ -299,15 +299,15 @@ abstract class Report
         $class = get_class($this);
 
         foreach ($this->events as $event) {
-            $method = 'handle' . (new \ReflectionClass($event))->getShortName();
+            $method = 'handle'.(new \ReflectionClass($event))->getShortName();
 
-            if (!method_exists($class, $method)) {
+            if (! method_exists($class, $method)) {
                 continue;
             }
 
             $events->listen(
                 $event,
-                $class . '@' . $method
+                $class.'@'.$method
             );
         }
     }

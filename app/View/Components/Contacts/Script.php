@@ -11,7 +11,9 @@ class Script extends Component
     use ViewComponents;
 
     public const OBJECT_TYPE = 'contact';
+
     public const DEFAULT_TYPE = 'customer';
+
     public const DEFAULT_PLURAL_TYPE = 'customers';
 
     /** @var string */
@@ -63,7 +65,7 @@ class Script extends Component
 
     protected function getCurrencies($currencies)
     {
-        if (!empty($currencies)) {
+        if (! empty($currencies)) {
             return $currencies;
         }
 

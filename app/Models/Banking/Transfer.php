@@ -62,12 +62,12 @@ class Transfer extends Model
     public function expense_account()
     {
         return $this->belongsToThrough(
-                            'App\Models\Banking\Account',
-                            'App\Models\Banking\Transaction',
-                            null,
-                            '',
-                            ['App\Models\Banking\Transaction' => 'expense_transaction_id']
-                        )
+            'App\Models\Banking\Account',
+            'App\Models\Banking\Transaction',
+            null,
+            '',
+            ['App\Models\Banking\Transaction' => 'expense_transaction_id']
+        )
                         ->withoutGlobalScope('App\Scopes\Transaction')
                         ->withDefault(['name' => trans('general.na')]);
     }
@@ -82,12 +82,12 @@ class Transfer extends Model
     public function income_account()
     {
         return $this->belongsToThrough(
-                            'App\Models\Banking\Account',
-                            'App\Models\Banking\Transaction',
-                            null,
-                            '',
-                            ['App\Models\Banking\Transaction' => 'income_transaction_id']
-                        )
+            'App\Models\Banking\Account',
+            'App\Models\Banking\Transaction',
+            null,
+            '',
+            ['App\Models\Banking\Transaction' => 'income_transaction_id']
+        )
                         ->withoutGlobalScope('App\Scopes\Transaction')
                         ->withDefault(['name' => trans('general.na')]);
     }
@@ -99,9 +99,9 @@ class Transfer extends Model
      */
     public function getAttachmentAttribute($value = null)
     {
-        if (!empty($value) && !$this->hasMedia('attachment')) {
+        if (! empty($value) && ! $this->hasMedia('attachment')) {
             return $value;
-        } elseif (!$this->hasMedia('attachment')) {
+        } elseif (! $this->hasMedia('attachment')) {
             return false;
         }
 
@@ -119,7 +119,7 @@ class Transfer extends Model
 
     public function getTemplatePathAttribute($value = null)
     {
-        return $value ?: 'banking.transfers.print_' . setting('transfer.template');
+        return $value ?: 'banking.transfers.print_'.setting('transfer.template');
     }
 
     /**

@@ -107,7 +107,7 @@ class Widgets
 
     public static function canShow($class)
     {
-        return (static::isModuleEnabled($class) && static::canRead($class));
+        return static::isModuleEnabled($class) && static::canRead($class);
     }
 
     public static function cannotShow($class)
@@ -133,14 +133,14 @@ class Widgets
 
         // Add module
         if ($alias = static::getModuleAlias($arr)) {
-            $prefix .= $alias . '-';
+            $prefix .= $alias.'-';
         }
 
         $prefix .= 'widgets-';
 
         $class_name = end($arr);
 
-        $permission = $prefix . Str::kebab($class_name);
+        $permission = $prefix.Str::kebab($class_name);
 
         return str_replace('--', '-', $permission);
     }
@@ -172,7 +172,7 @@ class Widgets
     {
         $arr = is_array($class) ? $class : explode('\\', $class);
 
-        return (strtolower($arr[0]) == 'modules');
+        return strtolower($arr[0]) == 'modules';
     }
 
     public static function isNotModule($class)

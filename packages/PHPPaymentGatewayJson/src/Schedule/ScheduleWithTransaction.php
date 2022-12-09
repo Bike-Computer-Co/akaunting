@@ -8,14 +8,15 @@ use PaymentGatewayJson\Client\Transaction\Base\AmountableInterface;
 /**
  * Class ScheduleWithTransaction
  * use to start a schedule with a transaction
- *
- * @package PaymentGatewayJson\Client\Data
  */
-class ScheduleWithTransaction implements AmountableInterface {
-
+class ScheduleWithTransaction implements AmountableInterface
+{
     const PERIOD_UNIT_DAY = 'DAY';
+
     const PERIOD_UNIT_WEEK = 'WEEK';
+
     const PERIOD_UNIT_MONTH = 'MONTH';
+
     const PERIOD_UNIT_YEAR = 'YEAR';
 
     /**
@@ -57,13 +58,13 @@ class ScheduleWithTransaction implements AmountableInterface {
     }
 
     /**
-     * @param float $amount
-     *
+     * @param  float  $amount
      * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -76,13 +77,13 @@ class ScheduleWithTransaction implements AmountableInterface {
     }
 
     /**
-     * @param string $currency
-     *
+     * @param  string  $currency
      * @return $this
      */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
+
         return $this;
     }
 
@@ -95,13 +96,13 @@ class ScheduleWithTransaction implements AmountableInterface {
     }
 
     /**
-     * @param int $periodLength
-     *
+     * @param  int  $periodLength
      * @return $this
      */
     public function setPeriodLength($periodLength)
     {
         $this->periodLength = $periodLength;
+
         return $this;
     }
 
@@ -114,15 +115,16 @@ class ScheduleWithTransaction implements AmountableInterface {
     }
 
     /**
-     * @param string $periodUnit
-     *
+     * @param  string  $periodUnit
      * @return $this
+     *
      * @throws TypeException
      */
     public function setPeriodUnit($periodUnit)
     {
-        if(in_array($periodUnit, self::getValidPeriodUnits())){
+        if (in_array($periodUnit, self::getValidPeriodUnits())) {
             $this->periodUnit = $periodUnit;
+
             return $this;
         }
 
@@ -146,47 +148,50 @@ class ScheduleWithTransaction implements AmountableInterface {
     }
 
     /**
-     * @param string|\DateTime $startDateTime
-     *
+     * @param  string|\DateTime  $startDateTime
      * @return $this
+     *
      * @throws \Exception
      */
     public function setStartDateTime($startDateTime)
     {
-        if (!empty($startDateTime) && is_string($startDateTime)) {
+        if (! empty($startDateTime) && is_string($startDateTime)) {
             $startDateTime = new \DateTime($startDateTime);
         }
         $this->startDateTime = $startDateTime;
+
         return $this;
     }
-
 
     /**
      * @return string
      */
-    public function getMerchantMetaData() {
+    public function getMerchantMetaData()
+    {
         return $this->merchantMetaData;
     }
 
     /**
-     * @param string $merchantMetaData
+     * @param  string  $merchantMetaData
      * @return $this
      */
-    public function setMerchantMetaData($merchantMetaData) {
+    public function setMerchantMetaData($merchantMetaData)
+    {
         $this->merchantMetaData = $merchantMetaData;
+
         return $this;
     }
 
     /**
      * @return string[]
      */
-    public static function getValidPeriodUnits() {
+    public static function getValidPeriodUnits()
+    {
         return [
             self::PERIOD_UNIT_DAY,
             self::PERIOD_UNIT_WEEK,
             self::PERIOD_UNIT_MONTH,
-            self::PERIOD_UNIT_YEAR
+            self::PERIOD_UNIT_YEAR,
         ];
     }
-
 }

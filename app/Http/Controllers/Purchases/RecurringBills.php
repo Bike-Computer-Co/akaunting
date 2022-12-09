@@ -47,8 +47,7 @@ class RecurringBills extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Document $recurring_bill
-     *
+     * @param  Document  $recurring_bill
      * @return Response
      */
     public function show(Document $recurring_bill)
@@ -72,7 +71,6 @@ class RecurringBills extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -99,8 +97,7 @@ class RecurringBills extends Controller
     /**
      * Duplicate the specified resource.
      *
-     * @param  Document $recurring_bill
-     *
+     * @param  Document  $recurring_bill
      * @return Response
      */
     public function duplicate(Document $recurring_bill)
@@ -117,8 +114,7 @@ class RecurringBills extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Document $recurring_bill
-     *
+     * @param  Document  $recurring_bill
      * @return Response
      */
     public function edit(Document $recurring_bill)
@@ -129,9 +125,8 @@ class RecurringBills extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Document $recurring_bill
+     * @param  Document  $recurring_bill
      * @param  Request  $request
-     *
      * @return Response
      */
     public function update(Document $recurring_bill, Request $request)

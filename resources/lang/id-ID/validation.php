@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'kustomisasi-pesan',
         ],
-        'invalid_currency'      => ':attribute kode tidak valid.',
-        'invalid_amount'        => 'Jumlah :attribute tidak valid.',
-        'invalid_extension'     => 'Ekstensi file tidak valid',
+        'invalid_currency' => ':attribute kode tidak valid.',
+        'invalid_amount' => 'Jumlah :attribute tidak valid.',
+        'invalid_extension' => 'Ekstensi file tidak valid',
     ],
 
     /*

@@ -46,8 +46,8 @@ class EmailTemplate extends Model
     /**
      * Scope to only include email templates of a given alias.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $alias
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $alias
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAlias($query, $alias)
@@ -58,14 +58,14 @@ class EmailTemplate extends Model
     /**
      * Scope to only include email templates of a given module alias (class).
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $alias
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $alias
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeModuleAlias($query, $alias)
     {
-        $class = ($alias == 'core') ? 'App\\\\' : 'Modules\\\\' . Str::studly($alias) . '\\\\';
+        $class = ($alias == 'core') ? 'App\\\\' : 'Modules\\\\'.Str::studly($alias).'\\\\';
 
-        return $query->where('class', 'like', $class . '%');
+        return $query->where('class', 'like', $class.'%');
     }
 }

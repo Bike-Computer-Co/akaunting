@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use App\Models\Module\Module;
-use App\Traits\SiteApi;
 use App\Utilities\Date;
 use App\Utilities\Info;
 use Illuminate\Support\Facades\Cache;
@@ -17,7 +16,7 @@ trait Modules
         $data = [
             'form_params' => [
                 'token' => $apiKey,
-            ]
+            ],
         ];
 
         if (! $response = static::getResponse('POST', 'token/check', $data)) {
@@ -32,7 +31,7 @@ trait Modules
     // Get All Modules
     public function getModules($data = [])
     {
-        $key = 'apps.app.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.app.'.$this->getDataKeyOfModules($data);
 
         $items = Cache::get($key);
 
@@ -50,14 +49,14 @@ trait Modules
     // Get Module
     public function getModule($alias)
     {
-        $item = static::getResponseData('GET', 'apps/' . $alias);
+        $item = static::getResponseData('GET', 'apps/'.$alias);
 
         return $item;
     }
 
     public function getModuleIsubscribe($alias)
     {
-        if (! $response = static::getResponse('GET', 'apps/' . $alias . '/isubscribe')) {
+        if (! $response = static::getResponse('GET', 'apps/'.$alias.'/isubscribe')) {
             return [];
         }
 
@@ -72,7 +71,7 @@ trait Modules
 
     public function getModuleDocumentation($alias, $data = [])
     {
-        $key = 'apps.' . $alias . '.docs.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.'.$alias.'.docs.'.$this->getDataKeyOfModules($data);
 
         $documentation = Cache::get($key);
 
@@ -80,7 +79,7 @@ trait Modules
             return $documentation;
         }
 
-        $documentation = static::getResponseData('GET', 'apps/docs/' . $alias);
+        $documentation = static::getResponseData('GET', 'apps/docs/'.$alias);
 
         Cache::put($key, $documentation, Date::now()->addHour());
 
@@ -89,7 +88,7 @@ trait Modules
 
     public function getModuleReleases($alias, $data = [])
     {
-        $key = 'apps.' . $alias . '.releases.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.'.$alias.'.releases.'.$this->getDataKeyOfModules($data);
 
         $releases = Cache::get($key);
 
@@ -97,7 +96,7 @@ trait Modules
             return $releases;
         }
 
-        $releases = static::getResponseData('GET', 'apps/' . $alias . '/releases', $data);
+        $releases = static::getResponseData('GET', 'apps/'.$alias.'/releases', $data);
 
         Cache::put($key, $releases, Date::now()->addHour());
 
@@ -106,7 +105,7 @@ trait Modules
 
     public function getModuleReviews($alias, $data = [])
     {
-        $key = 'apps.' . $alias . '.reviews.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.'.$alias.'.reviews.'.$this->getDataKeyOfModules($data);
 
         $reviews = Cache::get($key);
 
@@ -114,7 +113,7 @@ trait Modules
             return $reviews;
         }
 
-        $reviews = static::getResponseData('GET', 'apps/' . $alias . '/reviews', $data);
+        $reviews = static::getResponseData('GET', 'apps/'.$alias.'/reviews', $data);
 
         Cache::put($key, $reviews, Date::now()->addHour());
 
@@ -123,7 +122,7 @@ trait Modules
 
     public function getModuleTestimonials($alias, $data = [])
     {
-        $key = 'apps.' . $alias . '.testimonials.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.'.$alias.'.testimonials.'.$this->getDataKeyOfModules($data);
 
         $testimonials = Cache::get($key);
 
@@ -131,7 +130,7 @@ trait Modules
             return $testimonials;
         }
 
-        $testimonials = static::getResponseData('GET', 'apps/' . $alias . '/testimonials', $data);
+        $testimonials = static::getResponseData('GET', 'apps/'.$alias.'/testimonials', $data);
 
         Cache::put($key, $testimonials, Date::now()->addHour());
 
@@ -140,7 +139,7 @@ trait Modules
 
     public function getBannersOfModules($data = [])
     {
-        $key = 'apps.banners.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.banners.'.$this->getDataKeyOfModules($data);
 
         $banners = Cache::get($key);
 
@@ -157,7 +156,7 @@ trait Modules
 
     public function getCategoriesOfModules($data = [])
     {
-        $key = 'apps.categories.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.categories.'.$this->getDataKeyOfModules($data);
 
         $categories = Cache::get($key);
 
@@ -174,7 +173,7 @@ trait Modules
 
     public function getModulesByCategory($alias, $data = [])
     {
-        $key = 'apps.categories.' . $alias . '.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.categories.'.$alias.'.'.$this->getDataKeyOfModules($data);
 
         $category = Cache::get($key);
 
@@ -182,7 +181,7 @@ trait Modules
             return $category;
         }
 
-        $category = static::getResponseData('GET', 'apps/categories/' . $alias, $data);
+        $category = static::getResponseData('GET', 'apps/categories/'.$alias, $data);
 
         Cache::put($key, $category, Date::now()->addHour());
 
@@ -191,7 +190,7 @@ trait Modules
 
     public function getVendorsOfModules($data = [])
     {
-        $key = 'apps.vendors.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.vendors.'.$this->getDataKeyOfModules($data);
 
         $vendors = Cache::get($key);
 
@@ -208,7 +207,7 @@ trait Modules
 
     public function getModulesByVendor($alias, $data = [])
     {
-        $key = 'apps.vendors.' . $alias . '.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.vendors.'.$alias.'.'.$this->getDataKeyOfModules($data);
 
         $vendor = Cache::get($key);
 
@@ -216,7 +215,7 @@ trait Modules
             return $vendor;
         }
 
-        $vendor = static::getResponseData('GET', 'apps/vendors/' . $alias, $data);
+        $vendor = static::getResponseData('GET', 'apps/vendors/'.$alias, $data);
 
         Cache::put($key, $vendor, Date::now()->addHour());
 
@@ -230,7 +229,7 @@ trait Modules
 
     public function getInstalledModules()
     {
-        $key = 'apps.installed.' . company_id();
+        $key = 'apps.installed.'.company_id();
 
         if ($installed = Cache::get($key)) {
             return $installed;
@@ -238,7 +237,7 @@ trait Modules
 
         $installed = [];
 
-        Module::all()->each(function($module) use (&$installed) {
+        Module::all()->each(function ($module) use (&$installed) {
             if (! $this->moduleExists($module->alias)) {
                 return;
             }
@@ -257,7 +256,7 @@ trait Modules
 
     public function getPreSaleModules($data = [])
     {
-        $key = 'apps.pre_sale.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.pre_sale.'.$this->getDataKeyOfModules($data);
 
         $pre_sale = Cache::get($key);
 
@@ -274,7 +273,7 @@ trait Modules
 
     public function getPaidModules($data = [])
     {
-        $key = 'apps.paid.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.paid.'.$this->getDataKeyOfModules($data);
 
         $paid = Cache::get($key);
 
@@ -291,7 +290,7 @@ trait Modules
 
     public function getNewModules($data = [])
     {
-        $key = 'apps.new.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.new.'.$this->getDataKeyOfModules($data);
 
         $new = Cache::get($key);
 
@@ -308,7 +307,7 @@ trait Modules
 
     public function getFreeModules($data = [])
     {
-        $key = 'apps.free.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.free.'.$this->getDataKeyOfModules($data);
 
         $free = Cache::get($key);
 
@@ -325,7 +324,7 @@ trait Modules
 
     public function getFeaturedModules($data = [])
     {
-        $key = 'apps.featured.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.featured.'.$this->getDataKeyOfModules($data);
 
         $featured = Cache::get($key);
 
@@ -342,7 +341,7 @@ trait Modules
 
     public function getPopularModules($data = [])
     {
-        $key = 'apps.popular.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.popular.'.$this->getDataKeyOfModules($data);
 
         $popular = Cache::get($key);
 
@@ -364,7 +363,7 @@ trait Modules
 
     public function getTestimonialModules($data = [])
     {
-        $key = 'apps.testimonials.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.testimonials.'.$this->getDataKeyOfModules($data);
 
         $testimonials = Cache::get($key);
 
@@ -381,7 +380,7 @@ trait Modules
 
     public function getWidgetsOfModules($data = [])
     {
-        $key = 'apps.widgets.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.widgets.'.$this->getDataKeyOfModules($data);
 
         $widgets = Cache::get($key);
 
@@ -398,7 +397,7 @@ trait Modules
 
     public function getModulesByWidget($alias, $data = [])
     {
-        $key = 'apps.widgets.' . $alias . '.' . $this->getDataKeyOfModules($data);
+        $key = 'apps.widgets.'.$alias.'.'.$this->getDataKeyOfModules($data);
 
         $widget = Cache::get($key);
 
@@ -406,7 +405,7 @@ trait Modules
             return $widget;
         }
 
-        $widget = static::getResponseData('GET', 'apps/widgets/' . $alias, $data);
+        $widget = static::getResponseData('GET', 'apps/widgets/'.$alias, $data);
 
         Cache::put($key, $widget, Date::now()->addHour());
 
@@ -592,15 +591,15 @@ trait Modules
 
     public function getDataKeyOfModules($data = [])
     {
-        $result = 'language.' . language()->getShortCode() . '.page.' . $this->getPageNumberOfModules($data);
+        $result = 'language.'.language()->getShortCode().'.page.'.$this->getPageNumberOfModules($data);
 
         if (isset($data['query']['page'])) {
             unset($data['query']['page']);
         }
 
-        if (isset($data['query'])){
-            foreach($data['query'] as $key => $value) {
-                $result .= '.' . $key . '.' . $value;
+        if (isset($data['query'])) {
+            foreach ($data['query'] as $key => $value) {
+                $result .= '.'.$key.'.'.$value;
             }
         }
 

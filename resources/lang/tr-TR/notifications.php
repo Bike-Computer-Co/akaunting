@@ -2,18 +2,18 @@
 
 return [
 
-    'whoops'              => 'Hay aksi!',
-    'hello'               => 'Merhaba!',
-    'salutation'          => 'Saygılar,<br> :company_name',
-    'subcopy'             => '":text" butonuna tıklayamıyorsanız, aşağıdaki bağlantıyı kopyalayıp tarayıcıya yapıştırın: [:url](:url)',
-    'reads'               => 'Okunma|Okunma',
-    'read_all'            => 'Hepsini Oku',
-    'mark_read'           => 'Okundu İşaretle',
-    'mark_read_all'       => 'Hepsini Okundu İşaretle',
-    'new_apps'            => 'Yeni Uygulama|Yeni Uygulamalar',
-    'upcoming_bills'      => 'Yaklaşan Faturalar',
-    'recurring_invoices'  => 'Tekrarlanan Faturalar',
-    'recurring_bills'     => 'Tekrarlanan Faturalar',
+    'whoops' => 'Hay aksi!',
+    'hello' => 'Merhaba!',
+    'salutation' => 'Saygılar,<br> :company_name',
+    'subcopy' => '":text" butonuna tıklayamıyorsanız, aşağıdaki bağlantıyı kopyalayıp tarayıcıya yapıştırın: [:url](:url)',
+    'reads' => 'Okunma|Okunma',
+    'read_all' => 'Hepsini Oku',
+    'mark_read' => 'Okundu İşaretle',
+    'mark_read_all' => 'Hepsini Okundu İşaretle',
+    'new_apps' => 'Yeni Uygulama|Yeni Uygulamalar',
+    'upcoming_bills' => 'Yaklaşan Faturalar',
+    'recurring_invoices' => 'Tekrarlanan Faturalar',
+    'recurring_bills' => 'Tekrarlanan Faturalar',
 
     'update' => [
 
@@ -36,15 +36,15 @@ return [
 
         'completed' => [
 
-            'subject'           => 'İçeri aktarma tamamlandı',
-            'description'       => 'İçeri aktarma tamamlanmıştır ve kayıtlar panelinizde mevcuttur.',
+            'subject' => 'İçeri aktarma tamamlandı',
+            'description' => 'İçeri aktarma tamamlanmıştır ve kayıtlar panelinizde mevcuttur.',
 
         ],
 
         'failed' => [
 
-            'subject'           => 'İçeri aktarma başarısız oldu',
-            'description'       => 'Aşağıdaki sorunlar nedeniyle dosya içeri aktarılamıyor:',
+            'subject' => 'İçeri aktarma başarısız oldu',
+            'description' => 'Aşağıdaki sorunlar nedeniyle dosya içeri aktarılamıyor:',
 
         ],
     ],
@@ -53,15 +53,15 @@ return [
 
         'completed' => [
 
-            'subject'           => 'Dışarı aktarma hazır',
-            'description'       => 'Dışarı aktarma dosyası aşağıdaki bağlantıdan indirilmeye hazırdır:',
+            'subject' => 'Dışarı aktarma hazır',
+            'description' => 'Dışarı aktarma dosyası aşağıdaki bağlantıdan indirilmeye hazırdır:',
 
         ],
 
         'failed' => [
 
-            'subject'           => 'Dışarı aktarılamadı',
-            'description'       => 'Aşağıdaki sorun nedeniyle dışarı aktarma dosyası oluşturulamıyor:',
+            'subject' => 'Dışarı aktarılamadı',
+            'description' => 'Aşağıdaki sorun nedeniyle dışarı aktarma dosyası oluşturulamıyor:',
 
         ],
 
@@ -69,11 +69,11 @@ return [
 
     'messages' => [
 
-        'mark_read'             => ':type bu bildirimi okuyun!',
-        'mark_read_all'         => ':type tüm bildirimleri oku!',
-        'new_app'               => ':type uygulaması yayınlandı.',
-        'export'                => '<b>:type</b> dışa aktarma dosyanız <a href=":url" target="_blank"><b>indirilmeye</b></a> hazır.',
-        'import'                => '<b>:type</b> satırlı <b>:count</b> verileriniz başarıyla içe aktarıldı.',
+        'mark_read' => ':type bu bildirimi okuyun!',
+        'mark_read_all' => ':type tüm bildirimleri oku!',
+        'new_app' => ':type uygulaması yayınlandı.',
+        'export' => '<b>:type</b> dışa aktarma dosyanız <a href=":url" target="_blank"><b>indirilmeye</b></a> hazır.',
+        'import' => '<b>:type</b> satırlı <b>:count</b> verileriniz başarıyla içe aktarıldı.',
 
     ],
 ];

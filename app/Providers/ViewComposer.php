@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider as Provider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider as Provider;
 
 class ViewComposer extends Provider
 {

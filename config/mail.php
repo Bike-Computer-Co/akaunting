@@ -82,7 +82,6 @@ return [
             ],
         ],
 
-
         'mail' => [
             'transport' => 'mail',
         ],

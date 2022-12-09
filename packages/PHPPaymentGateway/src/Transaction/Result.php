@@ -7,29 +7,36 @@ use PaymentGateway\Client\Data\Result\ResultData;
 
 /**
  * Class Result
- *
- * @package PaymentGateway\Client\Transaction
  */
-class Result {
-
+class Result
+{
     /** transaction is finished, no further action required */
     const RETURN_TYPE_FINISHED = 'FINISHED';
+
     /** transaction needs a redirect to $redirectUrl */
     const RETURN_TYPE_REDIRECT = 'REDIRECT';
+
     /** transaction needs rendering of $htmlContent */
     const RETURN_TYPE_HTML = 'HTML';
+
     /** no result yet, wait for callback notification */
     const RETURN_TYPE_PENDING = 'PENDING';
+
     /** transaction failed (see $errors) */
     const RETURN_TYPE_ERROR = 'ERROR';
 
     const REDIRECT_TYPE_IFRAME = 'iframe';
+
     const REDIRECT_TYPE_FULLPAGE = 'fullpage';
 
     const SCHEDULE_STATUS_ACTIVE = 'ACTIVE';
+
     const SCHEDULE_STATUS_PAUSED = 'PAUSED';
+
     const SCHEDULE_STATUS_CANCELLED = 'CANCELLED';
+
     const SCHEDULE_STATUS_ERROR = 'ERROR';
+
     const SCHEDULE_STATUS_CREATE_PENDING = 'CREATE-PENDING'; // create process of a schedule not yet finished
 
     /**
@@ -124,101 +131,109 @@ class Result {
     /**
      * @var Error[]
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * @var array
      */
-    protected $extraData = array();
+    protected $extraData = [];
 
     /**
-     * @param string $referenceId
-     *
+     * @param  string  $referenceId
      * @return $this
      */
-    public function setReferenceId($referenceId) {
+    public function setReferenceId($referenceId)
+    {
         $this->referenceId = $referenceId;
+
         return $this;
     }
 
-
     /**
-     * @param string $redirectUrl
-     *
+     * @param  string  $redirectUrl
      * @return $this
      */
-    public function setRedirectUrl($redirectUrl) {
+    public function setRedirectUrl($redirectUrl)
+    {
         $this->redirectUrl = $redirectUrl;
+
         return $this;
     }
 
     /**
-     * @param string $htmlContent
-     *
+     * @param  string  $htmlContent
      * @return $this
      */
-    public function setHtmlContent($htmlContent) {
+    public function setHtmlContent($htmlContent)
+    {
         $this->htmlContent = $htmlContent;
+
         return $this;
     }
 
     /**
-     * @param Error[] $errors
-     *
+     * @param  Error[]  $errors
      * @return $this
      */
-    public function setErrors($errors) {
+    public function setErrors($errors)
+    {
         $this->errors = $errors;
+
         return $this;
     }
 
     /**
-     * @param Error $error
-     *
+     * @param  Error  $error
      * @return $this
      */
-    public function addError(Error $error) {
+    public function addError(Error $error)
+    {
         $this->errors[] = $error;
+
         return $this;
     }
 
     /**
-     * @param array $extraData
-     *
+     * @param  array  $extraData
      * @return $this
      */
-    public function setExtraData($extraData) {
+    public function setExtraData($extraData)
+    {
         $this->extraData = $extraData;
+
         return $this;
     }
 
     /**
-     * @param string $key
-     * @param mixed  $value
-     *
+     * @param  string  $key
+     * @param  mixed  $value
      * @return $this
      */
-    public function addExtraData($key, $value) {
+    public function addExtraData($key, $value)
+    {
         $this->extraData[$key] = $value;
+
         return $this;
     }
 
     /**
-     * @param boolean $success
-     *
+     * @param  bool  $success
      * @return $this
      */
-    public function setSuccess($success) {
+    public function setSuccess($success)
+    {
         $this->success = $success;
+
         return $this;
     }
 
     /**
      * returns whether the transaction was successful or not
      *
-     * @return boolean
+     * @return bool
      */
-    public function isSuccess() {
+    public function isSuccess()
+    {
         return $this->success;
     }
 
@@ -227,7 +242,8 @@ class Result {
      *
      * @return string
      */
-    public function getReferenceId() {
+    public function getReferenceId()
+    {
         return $this->referenceId;
     }
 
@@ -236,7 +252,8 @@ class Result {
      *
      * @return string
      */
-    public function getRedirectUrl() {
+    public function getRedirectUrl()
+    {
         return $this->redirectUrl;
     }
 
@@ -245,38 +262,44 @@ class Result {
      *
      * @return string
      */
-    public function getHtmlContent() {
+    public function getHtmlContent()
+    {
         return $this->htmlContent;
     }
 
     /**
      * @return Error[]
      */
-    public function getErrors() {
+    public function getErrors()
+    {
         return $this->errors;
     }
 
     /**
      * @return bool
      */
-    public function hasErrors() {
-        return !empty($this->errors);
+    public function hasErrors()
+    {
+        return ! empty($this->errors);
     }
 
     /**
      * @return Error|null
      */
-    public function getFirstError() {
-        if (!empty($this->errors)) {
+    public function getFirstError()
+    {
+        if (! empty($this->errors)) {
             return $this->errors[0];
         }
+
         return null;
     }
 
     /**
      * @return array
      */
-    public function getExtraData() {
+    public function getExtraData()
+    {
         return $this->extraData;
     }
 
@@ -285,45 +308,51 @@ class Result {
      *
      * @return int
      */
-    public function getReturnType() {
+    public function getReturnType()
+    {
         return $this->returnType;
     }
 
     /**
-     * @param int $returnType
-     *
+     * @param  int  $returnType
      * @return $this
      */
-    public function setReturnType($returnType) {
+    public function setReturnType($returnType)
+    {
         $this->returnType = $returnType;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getRedirectType() {
+    public function getRedirectType()
+    {
         return $this->redirectType;
     }
 
     /**
-     * @param string $redirectType
+     * @param  string  $redirectType
      */
-    public function setRedirectType($redirectType) {
+    public function setRedirectType($redirectType)
+    {
         $this->redirectType = $redirectType;
     }
 
     /**
      * @return string
      */
-    public function getPurchaseId() {
+    public function getPurchaseId()
+    {
         return $this->purchaseId;
     }
 
     /**
-     * @param string $purchaseId
+     * @param  string  $purchaseId
      */
-    public function setPurchaseId($purchaseId) {
+    public function setPurchaseId($purchaseId)
+    {
         $this->purchaseId = $purchaseId;
     }
 
@@ -332,17 +361,19 @@ class Result {
      *
      * @return string
      */
-    public function getRegistrationId() {
+    public function getRegistrationId()
+    {
         return $this->registrationId;
     }
 
     /**
-     * @param string $registrationId
-     *
+     * @param  string  $registrationId
      * @return $this
      */
-    public function setRegistrationId($registrationId) {
+    public function setRegistrationId($registrationId)
+    {
         $this->registrationId = $registrationId;
+
         return $this;
     }
 
@@ -351,69 +382,76 @@ class Result {
      *
      * @return string
      */
-    public function getPaymentDescriptor() {
+    public function getPaymentDescriptor()
+    {
         return $this->paymentDescriptor;
     }
 
     /**
-     * @param string $paymentDescriptor
-     *
+     * @param  string  $paymentDescriptor
      * @return $this
      */
-    public function setPaymentDescriptor($paymentDescriptor) {
+    public function setPaymentDescriptor($paymentDescriptor)
+    {
         $this->paymentDescriptor = $paymentDescriptor;
+
         return $this;
     }
 
     /**
      * @return null|string
      */
-    public function getPaymentMethod() {
+    public function getPaymentMethod()
+    {
         return $this->paymentMethod;
     }
 
     /**
-     * @param null|string $paymentMethod
+     * @param  null|string  $paymentMethod
      * @return Result
      */
-    public function setPaymentMethod($paymentMethod) {
+    public function setPaymentMethod($paymentMethod)
+    {
         $this->paymentMethod = $paymentMethod;
+
         return $this;
     }
-
 
     /**
      * contains additional data for your purpose (e.g. credit card information)
      *
      * @return \PaymentGateway\Client\Data\Result\ResultData
      */
-    public function getReturnData() {
+    public function getReturnData()
+    {
         return $this->returnData;
     }
 
     /**
-     * @param \PaymentGateway\Client\Data\Result\ResultData $returnData
-     *
+     * @param  \PaymentGateway\Client\Data\Result\ResultData  $returnData
      * @return $this
      */
-    public function setReturnData($returnData) {
+    public function setReturnData($returnData)
+    {
         $this->returnData = $returnData;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getScheduleId() {
+    public function getScheduleId()
+    {
         return $this->scheduleId;
     }
 
     /**
-     * @param string $scheduleId
-     *
+     * @param  string  $scheduleId
      * @return Result
      */
-    public function setScheduleId($scheduleId) {
+    public function setScheduleId($scheduleId)
+    {
         $this->scheduleId = $scheduleId;
 
         return $this;
@@ -422,52 +460,55 @@ class Result {
     /**
      * @return string
      */
-    public function getScheduleStatus() {
+    public function getScheduleStatus()
+    {
         return $this->scheduleStatus;
     }
 
     /**
-     * @param string $scheduleStatus
-     *
+     * @param  string  $scheduleStatus
      * @return Result
      */
-    public function setScheduleStatus($scheduleStatus) {
+    public function setScheduleStatus($scheduleStatus)
+    {
         $this->scheduleStatus = $scheduleStatus;
 
         return $this;
     }
 
     /**
-	 * @return array
-	 */
-    public function toArray() {
-    	$properties = get_object_vars($this);
-    	foreach(array_keys($properties) as $prop) {
-    		if (is_object($properties[$prop])) {
-    			if (method_exists($properties[$prop], 'toArray')) {
-					$properties[$prop] = $properties[$prop]->toArray();
-				} else {
-					unset($properties[$prop]);
-				}
-    		}
-    	}
-		return $properties;
+     * @return array
+     */
+    public function toArray()
+    {
+        $properties = get_object_vars($this);
+        foreach (array_keys($properties) as $prop) {
+            if (is_object($properties[$prop])) {
+                if (method_exists($properties[$prop], 'toArray')) {
+                    $properties[$prop] = $properties[$prop]->toArray();
+                } else {
+                    unset($properties[$prop]);
+                }
+            }
+        }
+
+        return $properties;
     }
 
     /**
      * @return string
      */
-    public function getScheduledAt() {
+    public function getScheduledAt()
+    {
         return $this->scheduledAt;
     }
 
     /**
-     * @param string|\DateTime|null $scheduledAt
-     *
+     * @param  string|\DateTime|null  $scheduledAt
      * @return Result
      */
-    public function setScheduledAt($scheduledAt) {
-
+    public function setScheduledAt($scheduledAt)
+    {
         if ($scheduledAt instanceof \DateTime) {
             $scheduledAt = $scheduledAt->format('Y-m-d H:i:s T');
         }
@@ -486,11 +527,10 @@ class Result {
     }
 
     /**
-     * @param Customer $customer
+     * @param  Customer  $customer
      */
     public function setCustomer($customer)
     {
         $this->customer = $customer;
     }
-
 }

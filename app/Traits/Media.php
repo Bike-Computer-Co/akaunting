@@ -19,6 +19,7 @@ trait Media
 
     /**
      * Relationship for all attached media.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function media()
@@ -37,7 +38,7 @@ trait Media
 
     public function attachMedia($media, $tags): void
     {
-        $tags = (array)$tags;
+        $tags = (array) $tags;
         $increments = $this->getOrderValueForTags($tags);
 
         $ids = $this->extractPrimaryIds($media);

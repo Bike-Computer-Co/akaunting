@@ -45,7 +45,7 @@ class Notifications extends Component
             $message = str_replace('#url#', route('dashboard'), $message);
             $message = str_replace('#company_id#', company_id(), $message);
 
-            if (! setting('notifications.' . $notification->path . '.' . $notification->id . '.status', 1)) {
+            if (! setting('notifications.'.$notification->path.'.'.$notification->id.'.status', 1)) {
                 continue;
             }
 

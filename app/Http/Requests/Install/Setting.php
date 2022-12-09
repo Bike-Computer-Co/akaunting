@@ -17,7 +17,7 @@ class Setting extends FormRequest
             'company_name' => 'required',
             'company_email' => 'required|email',
             'user_email' => 'required|email',
-            'user_password' => 'required'
+            'user_password' => 'required',
         ];
     }
 }

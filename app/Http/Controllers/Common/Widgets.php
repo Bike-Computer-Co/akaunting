@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Common;
 
 use App\Abstracts\Http\Controller;
 use App\Http\Requests\Common\Widget as Request;
-use App\Models\Common\Widget;
 use App\Jobs\Common\CreateWidget;
 use App\Jobs\Common\DeleteWidget;
 use App\Jobs\Common\UpdateWidget;
+use App\Models\Common\Widget;
 use App\Utilities\Widgets as Utility;
 
 class Widgets extends Controller
@@ -37,7 +37,7 @@ class Widgets extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return Response
      */
     public function store(Request $request)
@@ -56,10 +56,10 @@ class Widgets extends Controller
             $settings = $widget->settings;
 
             $response['data'] = [
-                'class'     => $widget->class,
-                'name'      => $widget->name,
-                'settings'  => $settings,
-                'sort'      => $widget->sort,
+                'class' => $widget->class,
+                'name' => $widget->name,
+                'settings' => $settings,
+                'sort' => $widget->sort,
             ];
 
             $message = trans('messages.success.added', ['type' => $widget->name]);
@@ -80,7 +80,6 @@ class Widgets extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Widget  $widget
-     *
      * @return Response
      */
     public function edit(Widget $widget)
@@ -99,7 +98,7 @@ class Widgets extends Controller
      * Update the specified resource in storage.
      *
      * @param  Widget  $widget
-     * @param  $request
+     * @param    $request
      * @return Response
      */
     public function update(Widget $widget, Request $request)
@@ -116,10 +115,10 @@ class Widgets extends Controller
             $settings = $response['data']->settings;
 
             $response['data'] = [
-                'class'     => $widget->class,
-                'name'      => $widget->name,
-                'settings'  => $settings,
-                'sort'      => $widget->sort,
+                'class' => $widget->class,
+                'name' => $widget->name,
+                'settings' => $settings,
+                'sort' => $widget->sort,
             ];
 
             $message = trans('messages.success.updated', ['type' => $widget->name]);
@@ -137,8 +136,7 @@ class Widgets extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Widget $widget
-     *
+     * @param  Widget  $widget
      * @return Response
      */
     public function destroy(Widget $widget)
@@ -166,9 +164,9 @@ class Widgets extends Controller
         $module = module($request->get('widget'));
 
         if ($module instanceof \Akaunting\Module\Module) {
-            $widget = app('Modules\\' . $module->getStudlyName() . '\Widgets\\' . ucfirst($request->get('widget')));
+            $widget = app('Modules\\'.$module->getStudlyName().'\Widgets\\'.ucfirst($request->get('widget')));
         } else {
-            $widget = app('App\Widgets\\' .  ucfirst($request->get('widget')));
+            $widget = app('App\Widgets\\'.ucfirst($request->get('widget')));
         }
 
         $response = $widget->{$request->get('method')}($request);

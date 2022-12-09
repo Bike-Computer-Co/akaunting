@@ -6,7 +6,6 @@ use App\Abstracts\Job;
 use App\Interfaces\Job\HasOwner;
 use App\Interfaces\Job\HasSource;
 use App\Interfaces\Job\ShouldCreate;
-use App\Jobs\Common\CreateWidget;
 use App\Models\Auth\User;
 use App\Models\Common\Company;
 use App\Models\Common\Dashboard;
@@ -30,7 +29,7 @@ class CreateDashboard extends Job implements HasOwner, HasSource, ShouldCreate
             }
 
             $this->model = Dashboard::create($this->request->only([
-                'company_id', 'name', 'enabled', 'created_from', 'created_by'
+                'company_id', 'name', 'enabled', 'created_from', 'created_by',
             ]));
 
             $this->model->users()->attach($users);
@@ -47,7 +46,7 @@ class CreateDashboard extends Job implements HasOwner, HasSource, ShouldCreate
 
         if ($this->request->has('all_users')) {
             Company::find($this->request->get('company_id'))->users()->each(function ($user) use (&$list) {
-                if (!$this->shouldCreateDashboardFor($user)) {
+                if (! $this->shouldCreateDashboardFor($user)) {
                     return;
                 }
 
@@ -56,10 +55,10 @@ class CreateDashboard extends Job implements HasOwner, HasSource, ShouldCreate
         } elseif ($this->request->has('users')) {
             $user_ids = Arr::wrap($this->request->get('users'));
 
-            foreach($user_ids as $user_id) {
+            foreach ($user_ids as $user_id) {
                 $user = User::find($user_id);
 
-                if (!$this->shouldCreateDashboardFor($user)) {
+                if (! $this->shouldCreateDashboardFor($user)) {
                     continue;
                 }
 

@@ -19,23 +19,23 @@ class Dashboards extends BulkAction
     ];
 
     public $actions = [
-        'enable'    => [
-            'icon'          => 'check_circle',
-            'name'          => 'general.enable',
-            'message'       => 'bulk_actions.message.enable',
-            'permission'    => 'update-common-dashboards',
+        'enable' => [
+            'icon' => 'check_circle',
+            'name' => 'general.enable',
+            'message' => 'bulk_actions.message.enable',
+            'permission' => 'update-common-dashboards',
         ],
-        'disable'   => [
-            'icon'          => 'hide_source',
-            'name'          => 'general.disable',
-            'message'       => 'bulk_actions.message.disable',
-            'permission'    => 'update-common-dashboards',
+        'disable' => [
+            'icon' => 'hide_source',
+            'name' => 'general.disable',
+            'message' => 'bulk_actions.message.disable',
+            'permission' => 'update-common-dashboards',
         ],
-        'delete'    => [
-            'icon'          => 'delete',
-            'name'          => 'general.delete',
-            'message'       => 'bulk_actions.message.delete',
-            'permission'    => 'delete-common-dashboards',
+        'delete' => [
+            'icon' => 'delete',
+            'name' => 'general.delete',
+            'message' => 'bulk_actions.message.delete',
+            'permission' => 'delete-common-dashboards',
         ],
     ];
 

@@ -2,7 +2,7 @@
 
 return [
 
-    'sale_price'           => 'Predajná cena',
-    'purchase_price'        => 'Nákúpna cena',
+    'sale_price' => 'Predajná cena',
+    'purchase_price' => 'Nákúpna cena',
 
 ];

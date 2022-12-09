@@ -35,7 +35,7 @@ abstract class Module extends Command
     {
         session()->forget('company_id');
 
-        if (!empty($this->old_company_id)) {
+        if (! empty($this->old_company_id)) {
             company($this->old_company_id)->makeCurrent();
         }
     }
@@ -57,17 +57,17 @@ abstract class Module extends Command
             'company_id' => $this->company_id,
             'module_id' => $this->model->id,
             'version' => $this->module->get('version'),
-            'description' => trans('modules.' . $action, ['module' => $this->alias]),
+            'description' => trans('modules.'.$action, ['module' => $this->alias]),
             'created_from' => source_name(),
             'created_by' => user_id(),
         ]);
     }
 
     /**
-    * Get the console command arguments.
-    *
-    * @return array
-    */
+     * Get the console command arguments.
+     *
+     * @return array
+     */
     protected function getArguments()
     {
         return [

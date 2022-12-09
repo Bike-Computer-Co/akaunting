@@ -4,8 +4,8 @@ namespace App\View\Components;
 
 use App\Abstracts\View\Component;
 use App\Traits\Modules;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 class Tips extends Component
 {
@@ -57,17 +57,17 @@ class Tips extends Component
 
     protected function setTips($tips)
     {
-        if (!empty($tips)) {
+        if (! empty($tips)) {
             $this->tips = $tips;
         }
 
-        if (!$path = Route::current()->uri()) {
+        if (! $path = Route::current()->uri()) {
             return;
         }
 
         $path = Str::replace('{company_id}/', '', $path);
 
-        if (!$tips = $this->getTips($path)) {
+        if (! $tips = $this->getTips($path)) {
             return;
         }
 
@@ -76,7 +76,7 @@ class Tips extends Component
                 continue;
             }
 
-            if (!empty($tip->alias) && $this->moduleIsEnabled($tip->alias)) {
+            if (! empty($tip->alias) && $this->moduleIsEnabled($tip->alias)) {
                 continue;
             }
 

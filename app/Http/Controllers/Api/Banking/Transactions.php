@@ -19,7 +19,7 @@ class Transactions extends ApiController
      */
     public function index()
     {
-        $transactions = Transaction::with('account', 'category', 'contact')->collect(['paid_at'=> 'desc']);
+        $transactions = Transaction::with('account', 'category', 'contact')->collect(['paid_at' => 'desc']);
 
         return Resource::collection($transactions);
     }
@@ -38,7 +38,7 @@ class Transactions extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -51,8 +51,8 @@ class Transactions extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $transaction
-     * @param  $request
+     * @param    $transaction
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Transaction $transaction, Request $request)

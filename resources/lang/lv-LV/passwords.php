@@ -17,6 +17,6 @@ return [
     'sent' => 'Mēs jums uz e-pastu nosūtījām paroles atjaunošanas saiti!',
     'throttled' => 'Lūdzu, uzgaidiet, pirms mēģināt vēlreiz.',
     'token' => 'Paroles atjaunošanas atslēga ir nederīga.',
-    'user' => "Mēs nevaram atrast lietotāju ar šadu e-pasta adresi.",
+    'user' => 'Mēs nevaram atrast lietotāju ar šadu e-pasta adresi.',
 
 ];

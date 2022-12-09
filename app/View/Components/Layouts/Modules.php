@@ -2,10 +2,8 @@
 
 namespace App\View\Components\Layouts;
 
-use App\Traits\Modules as RemoteModules;
-use App\Utilities\Date;
 use App\Abstracts\View\Component;
-use Illuminate\Support\Facades\Cache;
+use App\Traits\Modules as RemoteModules;
 
 class Modules extends Component
 {

@@ -2,13 +2,10 @@
 
 namespace Modules\NlbBank\Listeners;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 use App\Events\Module\PaymentMethodShowing as Event;
+
 class ShowAsPaymentMethod
 {
-
     /**
      * Handle the event.
      *

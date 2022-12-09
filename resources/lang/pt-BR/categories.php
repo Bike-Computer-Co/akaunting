@@ -2,10 +2,10 @@
 
 return [
 
-    'collapse'              => 'Recolher',
+    'collapse' => 'Recolher',
 
     'form_description' => [
-        'general'           => 'A categoria ajuda você a classificar seus itens, receitas, despesas e outros registros.',
+        'general' => 'A categoria ajuda você a classificar seus itens, receitas, despesas e outros registros.',
     ],
 
 ];

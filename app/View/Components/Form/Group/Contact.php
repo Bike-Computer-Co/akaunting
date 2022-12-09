@@ -33,7 +33,7 @@ class Contact extends Form
 
         $this->setRoutes();
 
-        $this->label = trans_choice('general.' . Str::plural($this->type), 1);
+        $this->label = trans_choice('general.'.Str::plural($this->type), 1);
 
         $this->contacts = Model::type($this->type)->enabled()->orderBy('name')->take(setting('default.select_limit'))->pluck('name', 'id');
 
@@ -54,8 +54,8 @@ class Contact extends Form
 
     public function setRoutes(): void
     {
-        $alias = config('type.contact.' . $this->type . '.alias');
-        $prefix = config('type.contact.' . $this->type . '.route.prefix');
+        $alias = config('type.contact.'.$this->type.'.alias');
+        $prefix = config('type.contact.'.$this->type.'.route.prefix');
 
         $parameters = ['search' => 'enabled:1'];
 

@@ -20,8 +20,8 @@ class CreateMediableForExport extends JobShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param  $user
-     * @param  $file_name
+     * @param    $user
+     * @param    $file_name
      */
     public function __construct($user, $file_name, $translation)
     {
@@ -57,12 +57,12 @@ class CreateMediableForExport extends JobShouldQueue
 
     public function getLocalQueuedMedia()
     {
-        $source = storage_path('app/temp/' . $this->file_name);
+        $source = storage_path('app/temp/'.$this->file_name);
 
         $destination = $this->getMediaFolder('exports');
 
         $media = MediaUploader::makePrivate()
-                        ->beforeSave(function(MediaModel $media) {
+                        ->beforeSave(function (MediaModel $media) {
                             $media->company_id = company_id();
                         })
                         ->fromSource($source)
@@ -86,7 +86,7 @@ class CreateMediableForExport extends JobShouldQueue
         $destination = $this->getMediaFolder('exports');
 
         $media = MediaUploader::makePrivate()
-                        ->beforeSave(function(MediaModel $media) {
+                        ->beforeSave(function (MediaModel $media) {
                             $media->company_id = company_id();
                         })
                         ->fromString($content)

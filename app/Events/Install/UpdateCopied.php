@@ -15,9 +15,9 @@ class UpdateCopied extends Event
     /**
      * Create a new event instance.
      *
-     * @param  $alias
-     * @param  $old
-     * @param  $new
+     * @param    $alias
+     * @param    $old
+     * @param    $new
      */
     public function __construct($alias, $old, $new)
     {

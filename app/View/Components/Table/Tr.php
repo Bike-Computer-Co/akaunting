@@ -3,7 +3,6 @@
 namespace App\View\Components\Table;
 
 use App\Abstracts\View\Component;
-use Illuminate\Support\Arr;
 use ReflectionProperty;
 
 class Tr extends Component
@@ -16,7 +15,8 @@ class Tr extends Component
      *
      * @return void
      */
-    public function __construct($class = '') {
+    public function __construct($class = '')
+    {
         $this->class = $this->getClass($class);
     }
 

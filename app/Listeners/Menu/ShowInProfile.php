@@ -12,7 +12,7 @@ class ShowInProfile
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -36,6 +36,6 @@ class ShowInProfile
         $is_portal = user()->isCustomer() ? 'portal.' : '';
 
         $title = trim(trans('auth.logout'));
-        $menu->route($is_portal . 'logout', $title, [], 90, ['icon' => 'power_settings_new', 'class' => 'mt-5']);
+        $menu->route($is_portal.'logout', $title, [], 90, ['icon' => 'power_settings_new', 'class' => 'mt-5']);
     }
 }

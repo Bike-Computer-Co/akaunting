@@ -18,25 +18,25 @@ trait Recurring
 
         $frequency = ($request['recurring_frequency'] != 'custom') ? $request['recurring_frequency'] : $request['recurring_custom_frequency'];
         $interval = (($request['recurring_frequency'] != 'custom') || ($request['recurring_interval'] < 1)) ? 1 : (int) $request['recurring_interval'];
-        $started_at = !empty($request['recurring_started_at']) ? $request['recurring_started_at'] : Date::now();
-        $status = !empty($request['recurring_status']) ? $request['recurring_status'] : Model::ACTIVE_STATUS;
-        $limit_by = !empty($request['recurring_limit']) ? $request['recurring_limit'] : 'count';
+        $started_at = ! empty($request['recurring_started_at']) ? $request['recurring_started_at'] : Date::now();
+        $status = ! empty($request['recurring_status']) ? $request['recurring_status'] : Model::ACTIVE_STATUS;
+        $limit_by = ! empty($request['recurring_limit']) ? $request['recurring_limit'] : 'count';
         $limit_count = isset($request['recurring_limit_count']) ? (int) $request['recurring_limit_count'] : 0;
-        $limit_date = !empty($request['recurring_limit_date']) ? $request['recurring_limit_date'] : null;
-        $source = !empty($request['created_from']) ? $request['created_from'] : source_name();
-        $owner = !empty($request['created_by']) ? $request['created_by'] : user_id();
+        $limit_date = ! empty($request['recurring_limit_date']) ? $request['recurring_limit_date'] : null;
+        $source = ! empty($request['created_from']) ? $request['created_from'] : source_name();
+        $owner = ! empty($request['created_by']) ? $request['created_by'] : user_id();
 
         $this->recurring()->create([
-            'company_id'    => $this->company_id,
-            'frequency'     => $frequency,
-            'interval'      => $interval,
-            'started_at'    => $started_at,
-            'status'        => $status,
-            'limit_by'      => $limit_by,
-            'limit_count'   => $limit_count,
-            'limit_date'    => $limit_date,
-            'created_from'  => $source,
-            'created_by'    => $owner,
+            'company_id' => $this->company_id,
+            'frequency' => $frequency,
+            'interval' => $interval,
+            'started_at' => $started_at,
+            'status' => $status,
+            'limit_by' => $limit_by,
+            'limit_count' => $limit_count,
+            'limit_date' => $limit_date,
+            'created_from' => $source,
+            'created_by' => $owner,
         ]);
     }
 
@@ -50,22 +50,22 @@ trait Recurring
 
         $frequency = ($request['recurring_frequency'] != 'custom') ? $request['recurring_frequency'] : $request['recurring_custom_frequency'];
         $interval = (($request['recurring_frequency'] != 'custom') || ($request['recurring_interval'] < 1)) ? 1 : (int) $request['recurring_interval'];
-        $started_at = !empty($request['recurring_started_at']) ? $request['recurring_started_at'] : Date::now();
-        $limit_by = !empty($request['recurring_limit']) ? $request['recurring_limit'] : 'count';
+        $started_at = ! empty($request['recurring_started_at']) ? $request['recurring_started_at'] : Date::now();
+        $limit_by = ! empty($request['recurring_limit']) ? $request['recurring_limit'] : 'count';
         $limit_count = isset($request['recurring_limit_count']) ? (int) $request['recurring_limit_count'] : 0;
-        $limit_date = !empty($request['recurring_limit_date']) ? $request['recurring_limit_date'] : null;
+        $limit_date = ! empty($request['recurring_limit_date']) ? $request['recurring_limit_date'] : null;
 
         $recurring = $this->recurring();
         $model_exists = $recurring->count();
 
         $data = [
-            'company_id'    => $this->company_id,
-            'frequency'     => $frequency,
-            'interval'      => $interval,
-            'started_at'    => $started_at,
-            'limit_by'      => $limit_by,
-            'limit_count'   => $limit_count,
-            'limit_date'    => $limit_date,
+            'company_id' => $this->company_id,
+            'frequency' => $frequency,
+            'interval' => $interval,
+            'started_at' => $started_at,
+            'limit_by' => $limit_by,
+            'limit_count' => $limit_count,
+            'limit_date' => $limit_date,
         ];
 
         if (! empty($request['recurring_status'])) {
@@ -75,13 +75,13 @@ trait Recurring
         if ($model_exists) {
             $recurring->update($data);
         } else {
-            $source = !empty($request['created_from']) ? $request['created_from'] : source_name();
-            $owner = !empty($request['created_by']) ? $request['created_by'] : user_id();
+            $source = ! empty($request['created_from']) ? $request['created_from'] : source_name();
+            $owner = ! empty($request['created_by']) ? $request['created_by'] : user_id();
 
             $recurring->create(array_merge($data, [
-                'status'        => Model::ACTIVE_STATUS,
-                'created_from'  => $source,
-                'created_by'    => $owner,
+                'status' => Model::ACTIVE_STATUS,
+                'created_from' => $source,
+                'created_by' => $owner,
             ]));
         }
     }
@@ -174,9 +174,9 @@ trait Recurring
                 $limit = '104';
                 break;
             case 'daily':
-            default;
-                $limit = '732';
-                break;
+            default:
+            $limit = '732';
+            break;
         }
 
         return $limit;

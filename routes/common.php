@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Route;
  *
  * @see \App\Providers\Route::mapCommonRoutes
  */
-
 Route::group(['middleware' => 'auth'], function () {
-
     Route::group(['as' => 'uploads.', 'prefix' => 'uploads'], function () {
         Route::get('{id}', 'Common\Uploads@get')->name('get');
         Route::get('{id}/show', 'Common\Uploads@show')->name('show');

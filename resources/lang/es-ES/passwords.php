@@ -17,6 +17,6 @@ return [
     'sent' => 'Hemos enviado un enlace para reiniciar su contraseña!',
     'throttled' => 'Por favor, espere antes de reintentar.',
     'token' => 'Ese token de contraseña ya no es válido.',
-    'user' => "No podemos encontrar un usuario con esa dirección de correo electrónico.",
+    'user' => 'No podemos encontrar un usuario con esa dirección de correo electrónico.',
 
 ];

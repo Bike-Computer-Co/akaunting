@@ -40,7 +40,7 @@ class Dashboards extends ApiController
             $dashboard = Dashboard::with('widgets')->find($id);
 
             if (! $dashboard instanceof Dashboard) {
-                return $this->errorInternal('No query results for model [' . Dashboard::class . '] ' . $id);
+                return $this->errorInternal('No query results for model ['.Dashboard::class.'] '.$id);
             }
 
             // Check if user can access dashboard
@@ -55,7 +55,7 @@ class Dashboards extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -68,8 +68,8 @@ class Dashboards extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $dashboard
-     * @param  $request
+     * @param    $dashboard
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Dashboard $dashboard, Request $request)
@@ -138,12 +138,11 @@ class Dashboards extends ApiController
      * Check user dashboard assignment
      *
      * @param  Dashboard  $dashboard
-     *
      * @return \Illuminate\Http\Response
      */
     public function canAccess($dashboard)
     {
-        if (!empty($dashboard) && $this->isUserDashboard($dashboard->id)) {
+        if (! empty($dashboard) && $this->isUserDashboard($dashboard->id)) {
             return new Response('');
         }
 

@@ -19,7 +19,7 @@ class Documents extends ApiController
      */
     public function index()
     {
-        $documents = Document::with('contact', 'histories', 'items', 'transactions')->collect(['issued_at'=> 'desc']);
+        $documents = Document::with('contact', 'histories', 'items', 'transactions')->collect(['issued_at' => 'desc']);
 
         return Resource::collection($documents);
     }
@@ -27,7 +27,7 @@ class Documents extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  $id
+     * @param    $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
@@ -40,7 +40,7 @@ class Documents extends ApiController
         }
 
         if (! $document instanceof Document) {
-            return $this->errorInternal('No query results for model [' . Document::class . '] ' . $id);
+            return $this->errorInternal('No query results for model ['.Document::class.'] '.$id);
         }
 
         return new Resource($document);
@@ -49,8 +49,7 @@ class Documents extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -63,9 +62,8 @@ class Documents extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $document
-     * @param  $request
-     *
+     * @param    $document
+     * @param    $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Document $document, Request $request)
@@ -78,8 +76,7 @@ class Documents extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Document $document
-     *
+     * @param  Document  $document
      * @return \Illuminate\Http\Response
      */
     public function destroy(Document $document)

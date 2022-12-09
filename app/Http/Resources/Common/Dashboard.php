@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Common;
 
-use App\Http\Resources\Common\Widget;
 use App\Utilities\Widgets;
 use Illuminate\Http\Resources\Json\JsonResource;
 

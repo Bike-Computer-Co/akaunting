@@ -68,7 +68,7 @@ trait Transactions
 
     public function getTransactionTypes(string $index, string $return = 'array'): string|array
     {
-        $types = (string) setting('transaction.type.' . $index);
+        $types = (string) setting('transaction.type.'.$index);
 
         return ($return == 'array') ? explode(',', $types) : $types;
     }
@@ -85,7 +85,7 @@ trait Transactions
 
     public function addTransactionType(string $new_type, string $index): void
     {
-        $types = explode(',', setting('transaction.type.' . $index));
+        $types = explode(',', setting('transaction.type.'.$index));
 
         if (in_array($new_type, $types)) {
             return;
@@ -94,13 +94,13 @@ trait Transactions
         $types[] = $new_type;
 
         setting([
-            'transaction.type.' . $index => implode(',', $types),
+            'transaction.type.'.$index => implode(',', $types),
         ])->save();
     }
 
     public function getTransactionFileName(Transaction $transaction, string $separator = '-', string $extension = 'pdf'): string
     {
-        return $this->getSafeTransactionNumber($transaction, $separator) . $separator . time() . '.' . $extension;
+        return $this->getSafeTransactionNumber($transaction, $separator).$separator.time().'.'.$extension;
     }
 
     public function getSafeTransactionNumber(Transaction $transaction, string $separator = '-'): string
@@ -111,15 +111,15 @@ trait Transactions
     protected function getSettingKey(string $type, string $setting_key): string
     {
         $key = '';
-        $alias = config('type.transaction.' . $type . '.alias');
+        $alias = config('type.transaction.'.$type.'.alias');
 
-        if (!empty($alias)) {
-            $key .= $alias . '.';
+        if (! empty($alias)) {
+            $key .= $alias.'.';
         }
 
-        $prefix = config('type.transaction.' . $type . '.setting.prefix');
+        $prefix = config('type.transaction.'.$type.'.setting.prefix');
 
-        $key .= $prefix . '.' . $setting_key;
+        $key .= $prefix.'.'.$setting_key;
 
         return $key;
     }
@@ -136,7 +136,7 @@ trait Transactions
 
         $file_name = $this->getTransactionFileName($transaction);
 
-        $pdf_path = storage_path('app/temp/' . $file_name);
+        $pdf_path = storage_path('app/temp/'.$file_name);
 
         // Save the PDF file into temp folder
         $pdf->save($pdf_path);
@@ -146,26 +146,26 @@ trait Transactions
 
     public function getTranslationsForConnect(string $type = Transaction::INCOME_TYPE): array
     {
-        $document_type = config('type.transaction.' . $type . '.document_type');
-        $contact_type = config('type.transaction.' . $type . '.contact_type');
+        $document_type = config('type.transaction.'.$type.'.document_type');
+        $contact_type = config('type.transaction.'.$type.'.contact_type');
 
         return [
-            'title' => trans('general.connect') . ' ' . trans_choice('general.' . Str::plural($document_type), 1),
+            'title' => trans('general.connect').' '.trans_choice('general.'.Str::plural($document_type), 1),
             'cancel' => trans('general.cancel'),
             'save' => trans('general.save'),
             'action' => trans('general.actions'),
-            'document' => trans_choice('general.' . Str::plural($document_type), 1),
+            'document' => trans_choice('general.'.Str::plural($document_type), 1),
             'total' => trans('invoices.total'),
             'category' => trans_choice('general.categories', 1),
             'account' => trans_choice('general.accounts', 1),
             'amount' => trans('general.amount'),
             'number' => trans_choice('general.numbers', 1),
             'notes' => trans_choice('general.notes', 2),
-            'contact' => trans_choice('general.' . Str::plural($contact_type), 1),
+            'contact' => trans_choice('general.'.Str::plural($contact_type), 1),
             'no_data' => trans('general.no_data'),
             'placeholder_search' => trans('general.placeholder.search'),
-            'add_an' => trans('general.form.add_an', ['field' => trans_choice('general.' . Str::plural($document_type), 1)]),
-            'transaction' => trans_choice('general.' . Str::plural($type), 1),
+            'add_an' => trans('general.form.add_an', ['field' => trans_choice('general.'.Str::plural($document_type), 1)]),
+            'transaction' => trans_choice('general.'.Str::plural($type), 1),
             'difference' => trans('general.difference'),
         ];
     }
@@ -173,10 +173,10 @@ trait Transactions
     public function getTransactionFormRoutesOfType(string $type): array
     {
         return [
-            'contact_index' => route(Str::plural(config('type.transaction.' . $type . '.contact_type')) . '.index'),
-            'contact_modal' => route('modals.' . Str::plural(config('type.transaction.' . $type . '.contact_type')) . '.create'),
+            'contact_index' => route(Str::plural(config('type.transaction.'.$type.'.contact_type')).'.index'),
+            'contact_modal' => route('modals.'.Str::plural(config('type.transaction.'.$type.'.contact_type')).'.create'),
             'category_index' => route('modals.categories.create', ['type' => $type]),
-            'category_modal' => route('categories.index', ['search' => 'type:' . $type]),
+            'category_modal' => route('categories.index', ['search' => 'type:'.$type]),
         ];
     }
 
@@ -192,18 +192,18 @@ trait Transactions
 
     public function getNextTransactionNumber($suffix = ''): string
     {
-        $prefix = setting('transaction' . $suffix . '.number_prefix');
-        $next   = setting('transaction' . $suffix . '.number_next');
-        $digit  = setting('transaction' . $suffix . '.number_digit');
+        $prefix = setting('transaction'.$suffix.'.number_prefix');
+        $next = setting('transaction'.$suffix.'.number_next');
+        $digit = setting('transaction'.$suffix.'.number_digit');
 
-        return $prefix . str_pad($next, $digit, '0', STR_PAD_LEFT);
+        return $prefix.str_pad($next, $digit, '0', STR_PAD_LEFT);
     }
 
     public function increaseNextTransactionNumber($suffix = ''): void
     {
-        $next = setting('transaction' . $suffix . '.number_next', 1) + 1;
+        $next = setting('transaction'.$suffix.'.number_next', 1) + 1;
 
-        setting(['transaction' . $suffix . '.number_next' => $next]);
+        setting(['transaction'.$suffix.'.number_next' => $next]);
         setting()->save();
     }
 }

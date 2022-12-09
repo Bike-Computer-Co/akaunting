@@ -30,7 +30,7 @@ class Currency extends Form
 
         $this->field = [
             'key' => 'code',
-            'value' => 'name'
+            'value' => 'name',
         ];
 
         $this->currencies = Model::enabled()->orderBy('name')->pluck('name', 'code');

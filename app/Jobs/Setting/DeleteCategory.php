@@ -26,7 +26,7 @@ class DeleteCategory extends Job implements ShouldDelete
     {
         // Can not delete the last category by type
         if (Category::where('type', $this->model->type)->count() == 1) {
-            $message = trans('messages.error.last_category', ['type' => strtolower(trans_choice('general.' . $this->model->type . 's', 1))]);
+            $message = trans('messages.error.last_category', ['type' => strtolower(trans_choice('general.'.$this->model->type.'s', 1))]);
 
             throw new \Exception($message);
         }

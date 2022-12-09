@@ -18,17 +18,9 @@ use PaymentGatewayJson\Client\Transaction\Base\ThreeDSecureTrait;
  * Register: Register the customer's payment data for recurring charges.
  *
  * The registered customer payment data will be available for recurring transaction without user interaction.
- *
- * @package PaymentGatewayJson\Client\Transaction
  */
-class Register extends AbstractTransaction
-               implements AddToCustomerProfileInterface,
-                          CustomerInterface,
-                          OffsiteInterface,
-                          ScheduleInterface,
-                          ThreeDSecureInterface
+class Register extends AbstractTransaction implements AddToCustomerProfileInterface, CustomerInterface, OffsiteInterface, ScheduleInterface, ThreeDSecureInterface
 {
-
     use AddToCustomerProfileTrait;
     use CustomerTrait;
     use OffsiteTrait;
@@ -55,7 +47,7 @@ class Register extends AbstractTransaction
     }
 
     /**
-     * @param string $transactionToken
+     * @param  string  $transactionToken
      */
     public function setTransactionToken($transactionToken)
     {
@@ -71,25 +63,26 @@ class Register extends AbstractTransaction
     }
 
     /**
-     * @param string $language
+     * @param  string  $language
      */
     public function setLanguage($language)
     {
         $this->language = $language;
     }
 
-    
     /**
      * @return string
      */
-    public function getTransactionIndicator() {
+    public function getTransactionIndicator()
+    {
         return $this->transactionIndicator;
     }
 
     /**
-     * @param string $transactionIndicator
+     * @param  string  $transactionIndicator
      */
-    public function setTransactionIndicator($transactionIndicator) {
+    public function setTransactionIndicator($transactionIndicator)
+    {
         $this->transactionIndicator = $transactionIndicator;
     }
 }

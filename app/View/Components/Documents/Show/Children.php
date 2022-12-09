@@ -5,7 +5,6 @@ namespace App\View\Components\Documents\Show;
 use App\Abstracts\View\Components\Documents\Show as Component;
 use App\Models\Common\Recurring;
 
-
 class Children extends Component
 {
     /**

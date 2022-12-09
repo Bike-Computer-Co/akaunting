@@ -2,24 +2,24 @@
 
 return [
 
-    'name'      =>  'Akaunting',
+    'name' => 'Akaunting',
 
-    'code'      =>  'Tailwind',
+    'code' => 'Tailwind',
 
-    'major'     =>  '3',
+    'major' => '3',
 
-    'minor'     =>  '0',
+    'minor' => '0',
 
-    'patch'     =>  '5',
+    'patch' => '5',
 
-    'build'     =>  '',
+    'build' => '',
 
-    'status'    =>  'Stable',
+    'status' => 'Stable',
 
-    'date'      =>  '15-July-2022',
+    'date' => '15-July-2022',
 
-    'time'      =>  '23:50',
+    'time' => '23:50',
 
-    'zone'      =>  'GMT +3',
+    'zone' => 'GMT +3',
 
 ];

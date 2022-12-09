@@ -2,11 +2,11 @@
 
 return [
 
-    'from_account'          => 'S računa',
-    'to_account'            => 'Na račun',
+    'from_account' => 'S računa',
+    'to_account' => 'Na račun',
 
     'messages' => [
-        'delete'            => ':from za :to (:amount)',
+        'delete' => ':from za :to (:amount)',
     ],
 
 ];

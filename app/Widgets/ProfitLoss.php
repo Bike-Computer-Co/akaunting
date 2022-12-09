@@ -2,14 +2,14 @@
 
 namespace App\Widgets;
 
-use App\Abstracts\Widget;
-use App\Utilities\Recurring;
-use App\Models\Document\Document;
-use App\Models\Banking\Transaction;
 use Akaunting\Apexcharts\Chart;
+use App\Abstracts\Widget;
+use App\Models\Banking\Transaction;
+use App\Models\Document\Document;
 use App\Traits\Currencies;
 use App\Traits\DateTime;
 use App\Utilities\Date;
+use App\Utilities\Recurring;
 
 class ProfitLoss extends Widget
 {
@@ -43,14 +43,14 @@ class ProfitLoss extends Widget
 
         $options = [
             'legend' => [
-                'position'      => 'top',
+                'position' => 'top',
                 'markers' => [
-                    'radius'    => '12',
+                    'radius' => '12',
                 ],
             ],
 
             'yaxis' => [
-                'labels'        => [
+                'labels' => [
                     'formatter' => $this->getFormatLabel(),
                 ],
             ],
@@ -95,10 +95,10 @@ class ProfitLoss extends Widget
         $s = clone $this->start_date;
 
         if ($range == 'last_12_months') {
-            $end_month   = 12;
+            $end_month = 12;
             $start_month = 0;
         } elseif ($range == 'custom') {
-            $end_month   = $this->end_date->diffInMonths($this->start_date);
+            $end_month = $this->end_date->diffInMonths($this->start_date);
             $start_month = 0;
         }
 
@@ -214,7 +214,7 @@ class ProfitLoss extends Widget
             $totals[$i] += $item->getAmountConvertedToDefault();
         }
 
-        $precision = config('money.' . setting('default.currency') . '.precision');
+        $precision = config('money.'.setting('default.currency').'.precision');
 
         foreach ($totals as $key => $value) {
             $totals[$key] = round($value, $precision);

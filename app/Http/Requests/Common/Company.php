@@ -17,26 +17,26 @@ class Company extends FormRequest
         $logo = 'nullable';
 
         if ($this->files->get('logo')) {
-            $logo = 'mimes:' . config('filesystems.mimes')
-                    . '|between:0,' . config('filesystems.max_size') * 1024
-                    . '|dimensions:max_width=' . config('filesystems.max_width') . ',max_height=' . config('filesystems.max_height');
+            $logo = 'mimes:'.config('filesystems.mimes')
+                    .'|between:0,'.config('filesystems.max_size') * 1024
+                    .'|dimensions:max_width='.config('filesystems.max_width').',max_height='.config('filesystems.max_height');
         }
 
         return [
-            'name'      => 'required|string',
-            'email'     => 'required|email:rfc,dns',
-            'currency'  => 'required|string',
-            'domain'    => 'nullable|string',
-            'logo'      => $logo,
+            'name' => 'required|string',
+            'email' => 'required|email:rfc,dns',
+            'currency' => 'required|string',
+            'domain' => 'nullable|string',
+            'logo' => $logo,
         ];
     }
 
     public function messages()
     {
         $logo_dimensions = trans('validation.custom.invalid_dimension', [
-            'attribute'     => Str::lower(trans('settings.company.logo')),
-            'width'         => config('filesystems.max_width'),
-            'height'        => config('filesystems.max_height'),
+            'attribute' => Str::lower(trans('settings.company.logo')),
+            'width' => config('filesystems.max_width'),
+            'height' => config('filesystems.max_height'),
         ]);
 
         return [

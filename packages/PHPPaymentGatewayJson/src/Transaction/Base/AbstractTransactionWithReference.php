@@ -4,11 +4,9 @@ namespace PaymentGatewayJson\Client\Transaction\Base;
 
 /**
  * Class AbstractReferenced
- *
- * @package PaymentGatewayJson\Client\Transaction
  */
-abstract class AbstractTransactionWithReference extends AbstractTransaction {
-
+abstract class AbstractTransactionWithReference extends AbstractTransaction
+{
     /**
      * @deprecated use $referenceUuid
      *
@@ -18,6 +16,7 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
 
     /**
      * provide a reference uuid if necessary (for void/capture/refund or recurring debits)
+     *
      * @var string
      */
     protected $referenceUuid;
@@ -55,7 +54,8 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
      *
      * @return string
      */
-    public function getReferenceTransactionId() {
+    public function getReferenceTransactionId()
+    {
         return $this->referenceUuid;
     }
 
@@ -65,12 +65,13 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
      * provide a reference transaction id (or registration id) here if necessary (i.e. for void/capture/refund or
      * recurring debits)
      *
-     * @param string $referenceTransactionId
-     *
+     * @param  string  $referenceTransactionId
      * @return $this
      */
-    public function setReferenceTransactionId($referenceTransactionId) {
+    public function setReferenceTransactionId($referenceTransactionId)
+    {
         $this->referenceUuid = $referenceTransactionId;
+
         return $this;
     }
 
@@ -83,13 +84,13 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
     }
 
     /**
-     * @param string $referenceUuid
-     *
+     * @param  string  $referenceUuid
      * @return AbstractTransactionWithReference
      */
     public function setReferenceUuid($referenceUuid)
     {
         $this->referenceUuid = $referenceUuid;
+
         return $this;
     }
 
@@ -98,7 +99,8 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
      *
      * @return string
      */
-    public function getReferenceCustomerId() {
+    public function getReferenceCustomerId()
+    {
         return $this->referenceCustomerId;
     }
 
@@ -107,11 +109,13 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
      *
      * @deprecated not in use anymore
      *
-     * @param string $referenceCustomerId
+     * @param  string  $referenceCustomerId
      * @return $this
      */
-    public function setReferenceCustomerId($referenceCustomerId) {
+    public function setReferenceCustomerId($referenceCustomerId)
+    {
         $this->referenceCustomerId = $referenceCustomerId;
+
         return $this;
     }
 
@@ -120,19 +124,21 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
      *
      * @return string
      */
-    public function getReferenceId2() {
+    public function getReferenceId2()
+    {
         return $this->referenceId2;
     }
 
     /**
      * @deprecated not in use anymore
      *
-     * @param string $referenceId2
-     *
+     * @param  string  $referenceId2
      * @return $this
      */
-    public function setReferenceId2($referenceId2) {
+    public function setReferenceId2($referenceId2)
+    {
         $this->referenceId2 = $referenceId2;
+
         return $this;
     }
 
@@ -141,19 +147,21 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
      *
      * @return string
      */
-    public function getReferenceId3() {
+    public function getReferenceId3()
+    {
         return $this->referenceId3;
     }
 
     /**
      * @deprecated not in use anymore
      *
-     * @param string $referenceId3
-     *
+     * @param  string  $referenceId3
      * @return $this
      */
-    public function setReferenceId3($referenceId3) {
+    public function setReferenceId3($referenceId3)
+    {
         $this->referenceId3 = $referenceId3;
+
         return $this;
     }
 
@@ -162,21 +170,21 @@ abstract class AbstractTransactionWithReference extends AbstractTransaction {
      *
      * @return string
      */
-    public function getReferenceId4() {
+    public function getReferenceId4()
+    {
         return $this->referenceId4;
     }
 
     /**
      * @deprecated not in use anymore
      *
-     * @param string $referenceId4
-     *
+     * @param  string  $referenceId4
      * @return $this
      */
-    public function setReferenceId4($referenceId4) {
+    public function setReferenceId4($referenceId4)
+    {
         $this->referenceId4 = $referenceId4;
+
         return $this;
     }
-
-
 }

@@ -12,7 +12,9 @@ class Script extends Component
     use ViewComponents;
 
     public const OBJECT_TYPE = 'document';
+
     public const DEFAULT_TYPE = 'invoice';
+
     public const DEFAULT_PLURAL_TYPE = 'invoices';
 
     /** @var string */
@@ -70,7 +72,7 @@ class Script extends Component
 
     protected function getCurrencies($currencies)
     {
-        if (!empty($currencies)) {
+        if (! empty($currencies)) {
             return $currencies;
         }
 
@@ -79,7 +81,7 @@ class Script extends Component
 
     protected function getTaxes($taxes)
     {
-        if (!empty($taxes)) {
+        if (! empty($taxes)) {
             return $taxes;
         }
 

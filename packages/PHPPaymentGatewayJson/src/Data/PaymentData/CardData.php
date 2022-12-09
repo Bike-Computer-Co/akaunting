@@ -4,21 +4,24 @@ namespace PaymentGatewayJson\Client\Data\PaymentData;
 
 /**
  * Class CardData
- *
- * @package PaymentGatewayJson\Client\CustomerProfile\PaymentData
  */
-class CardData extends PaymentData {
-
+class CardData extends PaymentData
+{
     /** @var string */
     protected $brand;
+
     /** @var string */
     protected $cardHolder;
+
     /** @var string */
     protected $firstSixDigits;
+
     /** @var string */
     protected $lastFourDigits;
+
     /** @var int */
     protected $expiryMonth;
+
     /** @var int */
     protected $expiryYear;
 
@@ -31,13 +34,13 @@ class CardData extends PaymentData {
     }
 
     /**
-     * @param string $brand
-     *
+     * @param  string  $brand
      * @return CardData
      */
     public function setBrand($brand)
     {
         $this->brand = $brand;
+
         return $this;
     }
 
@@ -50,13 +53,13 @@ class CardData extends PaymentData {
     }
 
     /**
-     * @param string $cardHolder
-     *
+     * @param  string  $cardHolder
      * @return CardData
      */
     public function setCardHolder($cardHolder)
     {
         $this->cardHolder = $cardHolder;
+
         return $this;
     }
 
@@ -69,13 +72,13 @@ class CardData extends PaymentData {
     }
 
     /**
-     * @param string $firstSixDigits
-     *
+     * @param  string  $firstSixDigits
      * @return CardData
      */
     public function setFirstSixDigits($firstSixDigits)
     {
         $this->firstSixDigits = $firstSixDigits;
+
         return $this;
     }
 
@@ -88,13 +91,13 @@ class CardData extends PaymentData {
     }
 
     /**
-     * @param string $lastFourDigits
-     *
+     * @param  string  $lastFourDigits
      * @return CardData
      */
     public function setLastFourDigits($lastFourDigits)
     {
         $this->lastFourDigits = $lastFourDigits;
+
         return $this;
     }
 
@@ -107,13 +110,13 @@ class CardData extends PaymentData {
     }
 
     /**
-     * @param int $expiryMonth
-     *
+     * @param  int  $expiryMonth
      * @return CardData
      */
     public function setExpiryMonth($expiryMonth)
     {
         $this->expiryMonth = $expiryMonth;
+
         return $this;
     }
 
@@ -126,14 +129,13 @@ class CardData extends PaymentData {
     }
 
     /**
-     * @param int $expiryYear
-     *
+     * @param  int  $expiryYear
      * @return CardData
      */
     public function setExpiryYear($expiryYear)
     {
         $this->expiryYear = $expiryYear;
+
         return $this;
     }
-
 }

@@ -2,49 +2,49 @@
 
 return [
 
-    'title'                 => 'אסימון API',
-    'api_token'             => 'אסימון',
-    'my_apps'               => 'My Apps',
-    'top_paid'              => 'תשלומים מובילים',
-    'new'                   => 'חדש',
-    'top_free'              => 'מובילים חינם',
-    'free'                  => 'חינם',
-    'search'                => 'חיפוש',
-    'install'               => 'התקנה',
-    'buy_now'               => 'קנה עכשיו',
-    'token_link'            => '<a href="https://akaunting.com/tokens" target="_blank">לחץ כאן</a> כדי לקבל את ה-API אסימון.',
-    'no_apps'               => 'אין  עדיין יישומים בקטגוריה זאת.',
-    'developer'             => 'האם אתה מפתח? <a href="https://akaunting.com/blog/akaunting-app-store" target="_blank">כאן</a> תלמד כיצד ליצור app ולהתחיל למכור היום!',
+    'title' => 'אסימון API',
+    'api_token' => 'אסימון',
+    'my_apps' => 'My Apps',
+    'top_paid' => 'תשלומים מובילים',
+    'new' => 'חדש',
+    'top_free' => 'מובילים חינם',
+    'free' => 'חינם',
+    'search' => 'חיפוש',
+    'install' => 'התקנה',
+    'buy_now' => 'קנה עכשיו',
+    'token_link' => '<a href="https://akaunting.com/tokens" target="_blank">לחץ כאן</a> כדי לקבל את ה-API אסימון.',
+    'no_apps' => 'אין  עדיין יישומים בקטגוריה זאת.',
+    'developer' => 'האם אתה מפתח? <a href="https://akaunting.com/blog/akaunting-app-store" target="_blank">כאן</a> תלמד כיצד ליצור app ולהתחיל למכור היום!',
 
-    'recommended_apps'      => 'Recommended Apps',
+    'recommended_apps' => 'Recommended Apps',
 
-    'about'                 => 'אודות',
+    'about' => 'אודות',
 
-    'added'                 => 'הוסף',
-    'updated'               => 'עודכן',
-    'compatibility'         => 'תאימות',
+    'added' => 'הוסף',
+    'updated' => 'עודכן',
+    'compatibility' => 'תאימות',
 
-    'installed'             => ':module הותקן',
-    'uninstalled'           => ':module הוסר',
+    'installed' => ':module הותקן',
+    'uninstalled' => ':module הוסר',
     //'updated'               => ':module updated',
-    'enabled'               => ':module פעיל',
-    'disabled'              => ':module כבוי',
+    'enabled' => ':module פעיל',
+    'disabled' => ':module כבוי',
 
     'tab' => [
-        'installation'      => 'התקנה',
-        'faq'               => 'שאלות ותשובות',
-        'changelog'         => 'יומן שינויים',
-        'reviews'            => 'Reviews',
+        'installation' => 'התקנה',
+        'faq' => 'שאלות ותשובות',
+        'changelog' => 'יומן שינויים',
+        'reviews' => 'Reviews',
     ],
 
     'installation' => [
-        'header'            => 'התקנת יישום',
-        'download'          => 'מוריד קובץ :module.',
-        'unzip'             => 'חילוץ קובץ :module.',
-        'file_copy'         => 'Copying :module files.',
-        'migrate'           => 'Applying :module updates.',
-        'finish'            => 'The update was successfully installed. You will be redirect Update Center.',
-        'install'           => 'מתקין קבצים :module.',
+        'header' => 'התקנת יישום',
+        'download' => 'מוריד קובץ :module.',
+        'unzip' => 'חילוץ קובץ :module.',
+        'file_copy' => 'Copying :module files.',
+        'migrate' => 'Applying :module updates.',
+        'finish' => 'The update was successfully installed. You will be redirect Update Center.',
+        'install' => 'מתקין קבצים :module.',
     ],
 
     'errors' => [
@@ -61,9 +61,9 @@ return [
     ],
 
     'button' => [
-        'uninstall'         => 'הסרה',
-        'disable'           => 'השבת',
-        'enable'            => 'אפשר',
+        'uninstall' => 'הסרה',
+        'disable' => 'השבת',
+        'enable' => 'אפשר',
     ],
 
     'my' => [
@@ -73,8 +73,8 @@ return [
 
     'reviews' => [
         'button' => [
-            'add' => 'Add a Review'
+            'add' => 'Add a Review',
         ],
-        'na' => 'There are no reviews.'
-    ]
+        'na' => 'There are no reviews.',
+    ],
 ];

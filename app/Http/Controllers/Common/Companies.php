@@ -51,7 +51,6 @@ class Companies extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(Request $request)
@@ -83,7 +82,6 @@ class Companies extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Company  $company
-     *
      * @return Response
      */
     public function edit(Company $company)
@@ -98,9 +96,8 @@ class Companies extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Company $company
-     * @param  Request $request
-     *
+     * @param  Company  $company
+     * @param  Request  $request
      * @return Response
      */
     public function update(Company $company, Request $request)
@@ -131,8 +128,7 @@ class Companies extends Controller
     /**
      * Enable the specified resource.
      *
-     * @param  Company $company
-     *
+     * @param  Company  $company
      * @return Response
      */
     public function enable(Company $company)
@@ -149,8 +145,7 @@ class Companies extends Controller
     /**
      * Disable the specified resource.
      *
-     * @param  Company $company
-     *
+     * @param  Company  $company
      * @return Response
      */
     public function disable(Company $company)
@@ -167,8 +162,7 @@ class Companies extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Company $company
-     *
+     * @param  Company  $company
      * @return Response
      */
     public function destroy(Company $company)
@@ -194,7 +188,6 @@ class Companies extends Controller
      * Change the active company.
      *
      * @param  Company  $company
-     *
      * @return Response
      */
     public function switch(Company $company)
@@ -222,7 +215,7 @@ class Companies extends Controller
         $query = request('query');
 
         $autocomplete = Company::autocomplete([
-            'name' => $query
+            'name' => $query,
         ]);
 
         $companies = $autocomplete->get()->sortBy('name')->pluck('name', 'id');

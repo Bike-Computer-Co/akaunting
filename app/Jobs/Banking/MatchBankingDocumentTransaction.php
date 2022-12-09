@@ -42,7 +42,7 @@ class MatchBankingDocumentTransaction extends Job
         $code = $this->transaction->currency_code;
         $rate = $this->transaction->currency_rate;
 
-        $precision = config('money.' . $code . '.precision');
+        $precision = config('money.'.$code.'.precision');
 
         $amount = $this->transaction->amount = round($this->transaction->amount, $precision);
 
@@ -83,7 +83,7 @@ class MatchBankingDocumentTransaction extends Job
 
     protected function createHistory(): void
     {
-        $history_desc = money((double) $this->transaction->amount, (string) $this->transaction->currency_code, true)->format() . ' ' . trans_choice('general.payments', 1);
+        $history_desc = money((float) $this->transaction->amount, (string) $this->transaction->currency_code, true)->format().' '.trans_choice('general.payments', 1);
 
         $this->dispatch(new CreateDocumentHistory($this->model, 0, $history_desc));
     }

@@ -2,13 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\Common\Contact;
-use App\Models\Document\Document;
 use App\Jobs\Document\CreateDocument;
 use App\Jobs\Setting\CreateCurrency;
+use App\Models\Common\Contact;
+use App\Models\Document\Document;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
-use Tests\Feature\FeatureTestCase;
 
 class PaymentTestCase extends FeatureTestCase
 {
@@ -74,23 +73,23 @@ class PaymentTestCase extends FeatureTestCase
             }
         } elseif ($this->invoice_currency != null) {
             $this->dispatch(new CreateCurrency([
-                'company_id'            => company_id(),
-                'name'                  => config('money.' . $this->invoice_currency . '.name'),
-                'code'                  => $this->invoice_currency,
-                'rate'                  => config(['money.' . $this->invoice_currency . '.rate' => 1]),
-                'enabled'               => 1,
-                'symbol_first'          => config('money.' . $this->invoice_currency . '.symbol_first'),
-                'decimal_mark'          => config('money.' . $this->invoice_currency . '.decimal_mark'),
-                'thousands_separator'   => config('money.' . $this->invoice_currency . '.thousands_separator'),
-                'default_currency'      => true,
+                'company_id' => company_id(),
+                'name' => config('money.'.$this->invoice_currency.'.name'),
+                'code' => $this->invoice_currency,
+                'rate' => config(['money.'.$this->invoice_currency.'.rate' => 1]),
+                'enabled' => 1,
+                'symbol_first' => config('money.'.$this->invoice_currency.'.symbol_first'),
+                'decimal_mark' => config('money.'.$this->invoice_currency.'.decimal_mark'),
+                'thousands_separator' => config('money.'.$this->invoice_currency.'.thousands_separator'),
+                'default_currency' => true,
             ]));
         }
 
         $module = module($this->alias);
 
-        if (File::exists(base_path('modules/' . $module->getStudlyName() . '/Routes/admin.php'))) {
+        if (File::exists(base_path('modules/'.$module->getStudlyName().'/Routes/admin.php'))) {
             $this->loginAs()
-                ->post(route($this->alias . '.settings.update'), $this->setting_request)
+                ->post(route($this->alias.'.settings.update'), $this->setting_request)
                 ->assertOk();
         } else {
             $this->loginAs()
@@ -111,8 +110,8 @@ class PaymentTestCase extends FeatureTestCase
     public function getConfirmUrl()
     {
         return $this->is_portal
-                ? route('portal.' . $this->alias . '.invoices.confirm', $this->invoice->id)
-                : URL::signedRoute('signed.' . $this->alias . '.invoices.confirm', [$this->invoice->id]);
+                ? route('portal.'.$this->alias.'.invoices.confirm', $this->invoice->id)
+                : URL::signedRoute('signed.'.$this->alias.'.invoices.confirm', [$this->invoice->id]);
     }
 
     public function assertPayment()
@@ -124,12 +123,12 @@ class PaymentTestCase extends FeatureTestCase
         $this->assertEquals('paid', $invoice->status);
 
         $this->assertDatabaseHas('transactions', [
-            'document_id'   => $invoice->id,
-            'contact_id'    => $invoice->contact_id,
-            'amount'        => $invoice->amount,
+            'document_id' => $invoice->id,
+            'contact_id' => $invoice->contact_id,
+            'amount' => $invoice->amount,
             'currency_code' => $invoice->currency_code,
             'currency_rate' => $invoice->currency_rate,
-            'type'          => 'income',
+            'type' => 'income',
         ]);
     }
 

@@ -27,7 +27,7 @@ class DateFormat
                 }
 
                 if (Date::parse($date)->format('H:i:s') == '00:00:00') {
-                    $new_date = Date::parse($date)->format('Y-m-d')  . ' ' . Date::now()->format('H:i:s');
+                    $new_date = Date::parse($date)->format('Y-m-d').' '.Date::now()->format('H:i:s');
                 } else {
                     $new_date = Date::parse($date)->toDateTimeString();
                 }

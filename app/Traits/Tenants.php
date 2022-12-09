@@ -25,6 +25,6 @@ trait Tenants
 
     public function isNotTenantable()
     {
-        return !$this->isTenantable();
+        return ! $this->isTenantable();
     }
 }

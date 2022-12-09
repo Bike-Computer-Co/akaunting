@@ -2,26 +2,27 @@
 
 namespace App\Models\Common;
 
-use App\Traits\Media;
 use App\Abstracts\Model;
+use App\Models\Document\Document;
+use App\Scopes\Contact as Scope;
 use App\Traits\Contacts;
 use App\Traits\Currencies;
+use App\Traits\Media;
 use App\Traits\Transactions;
-use App\Scopes\Contact as Scope;
-use App\Models\Document\Document;
 use App\Utilities\Date;
 use App\Utilities\Str;
 use Bkwld\Cloner\Cloneable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Notifications\Notifiable;
 
 class Contact extends Model
 {
     use Cloneable, Contacts, Currencies, HasFactory, Media, Notifiable, Transactions;
 
     public const CUSTOMER_TYPE = 'customer';
+
     public const VENDOR_TYPE = 'vendor';
+
     public const EMPLOYEE_TYPE = 'employee';
 
     protected $table = 'contacts';
@@ -130,8 +131,8 @@ class Contact extends Model
     /**
      * Scope to only include contacts of a given type.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $types
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $types
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeType($query, $types)
@@ -146,7 +147,7 @@ class Contact extends Model
     /**
      * Scope to include only vendors.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeVendor($query)
@@ -157,7 +158,7 @@ class Contact extends Model
     /**
      * Scope to include only customers.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCustomer($query)
@@ -188,9 +189,9 @@ class Contact extends Model
      */
     public function getLogoAttribute($value)
     {
-        if (!empty($value) && !$this->hasMedia('logo')) {
+        if (! empty($value) && ! $this->hasMedia('logo')) {
             return $value;
-        } elseif (!$this->hasMedia('logo')) {
+        } elseif (! $this->hasMedia('logo')) {
             return false;
         }
 
@@ -255,7 +256,7 @@ class Contact extends Model
         }
 
         if ($this->country) {
-            $location[] = trans('countries.' . $this->country);
+            $location[] = trans('countries.'.$this->country);
         }
 
         return implode(', ', $location);
@@ -270,10 +271,10 @@ class Contact extends Model
     {
         $actions = [];
 
-        $group = config('type.contact.' . $this->type . '.group');
-        $prefix = config('type.contact.' . $this->type . '.route.prefix');
-        $permission_prefix = config('type.contact.' . $this->type . '.permission.prefix');
-        $translation_prefix = config('type.contact.' . $this->type . '.translation.prefix');
+        $group = config('type.contact.'.$this->type.'.group');
+        $prefix = config('type.contact.'.$this->type.'.route.prefix');
+        $permission_prefix = config('type.contact.'.$this->type.'.permission.prefix');
+        $translation_prefix = config('type.contact.'.$this->type.'.translation.prefix');
 
         if (empty($prefix)) {
             if (in_array($this->type, (array) $this->getCustomerTypes())) {
@@ -289,39 +290,43 @@ class Contact extends Model
             $actions[] = [
                 'title' => trans('general.show'),
                 'icon' => 'visibility',
-                'url' => route($prefix . '.show', $this->id),
-                'permission' => 'read-' . $group . '-' . $permission_prefix,
+                'url' => route($prefix.'.show', $this->id),
+                'permission' => 'read-'.$group.'-'.$permission_prefix,
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             $actions[] = [
                 'title' => trans('general.edit'),
                 'icon' => 'edit',
-                'url' => route($prefix . '.edit', $this->id),
-                'permission' => 'update-' . $group . '-' . $permission_prefix,
+                'url' => route($prefix.'.edit', $this->id),
+                'permission' => 'update-'.$group.'-'.$permission_prefix,
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             $actions[] = [
                 'title' => trans('general.duplicate'),
                 'icon' => 'file_copy',
-                'url' => route($prefix . '.duplicate', $this->id),
-                'permission' => 'create-' . $group . '-' . $permission_prefix,
+                'url' => route($prefix.'.duplicate', $this->id),
+                'permission' => 'create-'.$group.'-'.$permission_prefix,
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             $actions[] = [
                 'type' => 'delete',
                 'icon' => 'delete',
                 'title' => $translation_prefix,
-                'route' => $prefix . '.destroy',
-                'permission' => 'delete-' . $group . '-' . $permission_prefix,
+                'route' => $prefix.'.destroy',
+                'permission' => 'delete-'.$group.'-'.$permission_prefix,
                 'model' => $this,
             ];
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         return $actions;
     }

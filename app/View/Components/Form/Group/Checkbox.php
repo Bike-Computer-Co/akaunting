@@ -12,7 +12,7 @@ class Checkbox extends Form
     public $formGroupClass = 'sm:col-span-6';
 
     public $except = [
-        
+
     ];
 
     /**

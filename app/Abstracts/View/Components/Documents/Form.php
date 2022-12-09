@@ -17,7 +17,9 @@ abstract class Form extends Component
     use Documents, ViewComponents;
 
     public const OBJECT_TYPE = 'document';
+
     public const DEFAULT_TYPE = 'invoice';
+
     public const DEFAULT_PLURAL_TYPE = 'invoices';
 
     /* -- Main Start -- */
@@ -391,16 +393,16 @@ abstract class Form extends Component
         $this->textSectionAdvancedDescription = $this->getTextSectionAdvancedDescription($type, $textSectionAdvancedDescription);
 
         $this->hideFooter = $hideFooter;
-        $this->classFooter = !empty($classFooter) ? $classFooter : 'sm:col-span-3';
+        $this->classFooter = ! empty($classFooter) ? $classFooter : 'sm:col-span-3';
         $this->footer = $this->getFooterValue($footer);
 
         $this->hideCategory = $hideCategory;
-        $this->classCategory = !empty($classCategory) ? $classCategory : 'sm:col-span-4 grid gap-x-8 gap-y-3';
+        $this->classCategory = ! empty($classCategory) ? $classCategory : 'sm:col-span-4 grid gap-x-8 gap-y-3';
         $this->typeCategory = $this->getTypeCategory($type, $typeCategory);
         $this->categoryId = $this->getCategoryId($type, $categoryId);
 
         $this->hideAttachment = $hideAttachment;
-        $this->classAttachment = !empty($classAttachment) ? $classAttachment : 'sm:col-span-4';
+        $this->classAttachment = ! empty($classAttachment) ? $classAttachment : 'sm:col-span-4';
         /** Advanced End */
 
         /** Buttons Start */
@@ -416,7 +418,7 @@ abstract class Form extends Component
 
     protected function getCurrencies($currencies)
     {
-        if (!empty($currencies)) {
+        if (! empty($currencies)) {
             return $currencies;
         }
 
@@ -425,15 +427,15 @@ abstract class Form extends Component
 
     protected function getCurrency($document, $currency, $currency_code)
     {
-        if (!empty($currency)) {
+        if (! empty($currency)) {
             return $currency;
         }
 
-        if (!empty($currency_code)) {
+        if (! empty($currency_code)) {
             $currency = Currency::where('code', $currency_code)->first();
         }
 
-        if (empty($currency) && !empty($document)) {
+        if (empty($currency) && ! empty($document)) {
             $currency = Currency::where('code', $document->currency_code)->first();
         }
 
@@ -486,7 +488,7 @@ abstract class Form extends Component
             return $typeContact;
         }
 
-        return config('type.' . static::OBJECT_TYPE . '.' . $type . '.contact_type', 'customer');
+        return config('type.'.static::OBJECT_TYPE.'.'.$type.'.contact_type', 'customer');
     }
 
     protected function getTextContact($type, $textContact)
@@ -495,13 +497,13 @@ abstract class Form extends Component
             return $textContact;
         }
 
-        $contact_type = config('type.' . static::OBJECT_TYPE . '.' . $type . '.contact_type');
+        $contact_type = config('type.'.static::OBJECT_TYPE.'.'.$type.'.contact_type');
 
-        $default_key = config('type.contact.' . $contact_type . '.translation.prefix');
+        $default_key = config('type.contact.'.$contact_type.'.translation.prefix');
 
         $translation = $this->getTextFromConfig($type, 'contact', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -510,13 +512,13 @@ abstract class Form extends Component
 
     protected function getContact($contact, $document)
     {
-        if (!empty($contact)) {
+        if (! empty($contact)) {
             return $contact;
         }
 
         $contact = new \stdClass();
 
-        if (!empty($document) && !empty($document->contact)) {
+        if (! empty($document) && ! empty($document->contact)) {
             $contact = $document->contact;
         }
 
@@ -529,7 +531,7 @@ abstract class Form extends Component
 
     protected function getContacts($type, $document, $contacts)
     {
-        if (!empty($contacts)) {
+        if (! empty($contacts)) {
             return $contacts;
         }
 
@@ -541,7 +543,7 @@ abstract class Form extends Component
             $contacts = Contact::enabled()->orderBy('name')->take(setting('default.select_limit'))->get();
         }
 
-        if (!empty($document) && ($document->contact && !$contacts->contains('id', $document->contact_id))) {
+        if (! empty($document) && ($document->contact && ! $contacts->contains('id', $document->contact_id))) {
             $contacts->push($document->contact);
         }
 
@@ -554,11 +556,11 @@ abstract class Form extends Component
             return $searchContactRoute;
         }
 
-        $contact_type = config('type.' . static::OBJECT_TYPE . '.' . $type . '.contact_type');
+        $contact_type = config('type.'.static::OBJECT_TYPE.'.'.$type.'.contact_type');
 
-        $default_key = config('type.contact.' . $contact_type . '.route.prefix');
+        $default_key = config('type.contact.'.$contact_type.'.route.prefix');
 
-        return route($default_key . '.index');
+        return route($default_key.'.index');
     }
 
     protected function getCreateContactRoute($type, $createContactRoute)
@@ -567,24 +569,24 @@ abstract class Form extends Component
             return $createContactRoute;
         }
 
-        $contact_type = config('type.' . static::OBJECT_TYPE . '.' . $type . '.contact_type');
+        $contact_type = config('type.'.static::OBJECT_TYPE.'.'.$type.'.contact_type');
 
-        $default_key = config('type.contact.' . $contact_type . '.route.prefix');
+        $default_key = config('type.contact.'.$contact_type.'.route.prefix');
 
-        return route('modals.' . $default_key . '.create');
+        return route('modals.'.$default_key.'.create');
     }
 
     protected function getTextAddContact($type, $textAddContact)
     {
-        if (!empty($textAddContact)) {
+        if (! empty($textAddContact)) {
             return $textAddContact;
         }
 
-        $default_key = Str::plural(config('type.document.' . $type . '.contact_type'), 2);
+        $default_key = Str::plural(config('type.document.'.$type.'.contact_type'), 2);
 
         $translation = $this->getTextFromConfig($type, 'add_contact', $default_key, 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return [
                 'general.form.add',
                 $translation,
@@ -599,15 +601,15 @@ abstract class Form extends Component
 
     protected function getTextCreateNewContact($type, $textCreateNewContact)
     {
-        if (!empty($textCreateNewContact)) {
+        if (! empty($textCreateNewContact)) {
             return $textCreateNewContact;
         }
 
-        $default_key = Str::plural(config('type.document.' . $type . '.contact_type'), 2);
+        $default_key = Str::plural(config('type.document.'.$type.'.contact_type'), 2);
 
         $translation = $this->getTextFromConfig($type, 'create_new_contact', $default_key, 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return [
                 'general.title.new',
                 $translation,
@@ -619,13 +621,13 @@ abstract class Form extends Component
 
     protected function getTextEditContact($type, $textEditContact)
     {
-        if (!empty($textEditContact)) {
+        if (! empty($textEditContact)) {
             return $textEditContact;
         }
 
         $translation = $this->getTextFromConfig($type, 'edit_contact', 'form.edit');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -634,7 +636,7 @@ abstract class Form extends Component
 
     protected function getTextContactInfo($type, $textContactInfo)
     {
-        if (!empty($textContactInfo)) {
+        if (! empty($textContactInfo)) {
             return $textContactInfo;
         }
 
@@ -651,7 +653,7 @@ abstract class Form extends Component
 
         $translation = $this->getTextFromConfig($type, 'contact_info', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -660,15 +662,15 @@ abstract class Form extends Component
 
     protected function getTextChooseDifferentContact($type, $textChooseDifferentContact)
     {
-        if (!empty($textChooseDifferentContact)) {
+        if (! empty($textChooseDifferentContact)) {
             return $textChooseDifferentContact;
         }
 
-        $default_key = Str::plural(config('type.document.' . $type . '.contact_type'), 2);
+        $default_key = Str::plural(config('type.document.'.$type.'.contact_type'), 2);
 
         $translation = $this->getTextFromConfig($type, 'choose_different_contact', $default_key, 'trans_choice');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return [
                 'general.form.choose_different',
                 $translation,
@@ -683,7 +685,7 @@ abstract class Form extends Component
 
     protected function getTextIssuedAt($type, $textIssuedAt)
     {
-        if (!empty($textIssuedAt)) {
+        if (! empty($textIssuedAt)) {
             return $textIssuedAt;
         }
 
@@ -700,7 +702,7 @@ abstract class Form extends Component
 
         $translation = $this->getTextFromConfig($type, 'issued_at', $default_key);
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -709,7 +711,7 @@ abstract class Form extends Component
 
     protected function getIssuedAt($type, $document, $issuedAt)
     {
-        if (!empty($issuedAt)) {
+        if (! empty($issuedAt)) {
             return $issuedAt;
         }
 
@@ -717,7 +719,7 @@ abstract class Form extends Component
             return $document->issued_at;
         }
 
-        $issued_at = $type . '_at';
+        $issued_at = $type.'_at';
 
         if (request()->has($issued_at)) {
             $issuedAt = request()->get($issued_at);
@@ -730,13 +732,13 @@ abstract class Form extends Component
 
     protected function getTextDueAt($type, $textDueAt)
     {
-        if (!empty($textDueAt)) {
+        if (! empty($textDueAt)) {
             return $textDueAt;
         }
 
         $translation = $this->getTextFromConfig($type, 'due_at', 'due_date');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -745,7 +747,7 @@ abstract class Form extends Component
 
     protected function getDueAt($type, $document, $dueAt)
     {
-        if (!empty($dueAt)) {
+        if (! empty($dueAt)) {
             return $dueAt;
         }
 
@@ -753,7 +755,7 @@ abstract class Form extends Component
             return $document->due_at;
         }
 
-        $issued_at = $type . '_at';
+        $issued_at = $type.'_at';
 
         if (request()->has($issued_at)) {
             $issuedAt = request()->get($issued_at);
@@ -774,7 +776,7 @@ abstract class Form extends Component
             return $periodDueAt;
         }
 
-        return setting($type. '.payment_terms', 0);
+        return setting($type.'.payment_terms', 0);
     }
 
     protected function getTextDocumentNumber($type, $textDocumentNumber)
@@ -862,7 +864,7 @@ abstract class Form extends Component
             return $hide;
         }
 
-        $hideItems = ($this->getHideItemName($type, $hideItemName) & $this->getHideItemDescription($type, $hideItemDescription)) ? true  : false;
+        $hideItems = ($this->getHideItemName($type, $hideItemName) & $this->getHideItemDescription($type, $hideItemDescription)) ? true : false;
 
         return $hideItems;
     }
@@ -1079,13 +1081,13 @@ abstract class Form extends Component
 
     protected function getTextItemAmount($type, $textItemAmount)
     {
-        if (!empty($textItemAmount)) {
+        if (! empty($textItemAmount)) {
             return $textItemAmount;
         }
 
         $translation = $this->getTextFromConfig($type, 'amount');
 
-        if (!empty($translation)) {
+        if (! empty($translation)) {
             return $translation;
         }
 
@@ -1139,7 +1141,7 @@ abstract class Form extends Component
         if (! empty($notes)) {
             return $notes;
         }
-        
+
         if (! empty($this->document)) {
             return $this->document->notes;
         }
@@ -1198,23 +1200,23 @@ abstract class Form extends Component
 
     protected function getTypeCategory($type, $typeCategory)
     {
-        if (!empty($typeCategory)) {
+        if (! empty($typeCategory)) {
             return $typeCategory;
         }
 
-        if ($category_type = config('type.' . static::OBJECT_TYPE . '.' . $type . '.category_type')) {
+        if ($category_type = config('type.'.static::OBJECT_TYPE.'.'.$type.'.category_type')) {
             return $category_type;
         }
 
         // set default type
         $type = Document::INVOICE_TYPE;
 
-        return config('type.' . static::OBJECT_TYPE .'.' . $type . '.category_type');
+        return config('type.'.static::OBJECT_TYPE.'.'.$type.'.category_type');
     }
 
     protected function getCategoryId($type, $categoryId)
     {
-        if (!empty($categoryId)) {
+        if (! empty($categoryId)) {
             return $categoryId;
         }
 
@@ -1222,6 +1224,6 @@ abstract class Form extends Component
             return $this->document->category_id;
         }
 
-        return setting('default.' . $this->typeCategory . '_category');
+        return setting('default.'.$this->typeCategory.'_category');
     }
 }

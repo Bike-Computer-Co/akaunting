@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Portal;
 
 use App\Abstracts\Http\Controller;
 use App\Events\Banking\TransactionPrinting;
+use App\Http\Requests\Portal\PaymentShow as Request;
 use App\Models\Banking\Transaction;
 use App\Models\Setting\Currency;
-use App\Http\Requests\Portal\PaymentShow as Request;
-use App\Utilities\Modules;
 use App\Traits\Transactions;
+use App\Utilities\Modules;
 use Illuminate\Support\Facades\URL;
 
 class Payments extends Controller
@@ -35,7 +35,6 @@ class Payments extends Controller
      * Show the form for viewing the specified resource.
      *
      * @param  Transaction  $payment
-     *
      * @return Response
      */
     public function show(Transaction $payment, Request $request)
@@ -60,8 +59,7 @@ class Payments extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Transaction $payment
-     *
+     * @param  Transaction  $payment
      * @return Response
      */
     public function printPayment(Transaction $payment, Request $request)
@@ -77,8 +75,7 @@ class Payments extends Controller
     /**
      * Show the form for viewing the specified resource.
      *
-     * @param  Transaction $payment
-     *
+     * @param  Transaction  $payment
      * @return Response
      */
     public function pdfPayment(Transaction $payment, Request $request)

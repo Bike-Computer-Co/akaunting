@@ -30,8 +30,8 @@ trait Charts
     {
         $label = money($amount, setting('default.currency'), true)->formatForHumans();
 
-        if (!empty($description)) {
-            $label .= ' - ' . $description;
+        if (! empty($description)) {
+            $label .= ' - '.$description;
         }
 
         $this->addToDonut($color, $label, $amount);
@@ -94,27 +94,27 @@ trait Charts
     public function getFormatLabel($type = 'money', $position = null)
     {
         $label = '';
-        $decimal_mark = str_replace("'", "\\'", config('money.' . setting('default.currency') . '.decimal_mark'));
-        $thousands_separator = str_replace("'", "\\'", config('money.' . setting('default.currency') . '.thousands_separator'));
-        $symbol = str_replace("'", "\\'", config('money.' . setting('default.currency') . '.symbol'));
-        $symbol_first = str_replace("'", "\\'", config('money.' . setting('default.currency') . '.symbol_first'));
-        $precision = str_replace("'", "\\'", config('money.' . setting('default.currency') . '.precision'));
+        $decimal_mark = str_replace("'", "\\'", config('money.'.setting('default.currency').'.decimal_mark'));
+        $thousands_separator = str_replace("'", "\\'", config('money.'.setting('default.currency').'.thousands_separator'));
+        $symbol = str_replace("'", "\\'", config('money.'.setting('default.currency').'.symbol'));
+        $symbol_first = str_replace("'", "\\'", config('money.'.setting('default.currency').'.symbol_first'));
+        $precision = str_replace("'", "\\'", config('money.'.setting('default.currency').'.precision'));
         $percent_position = $position ?: setting('localisation.percent_position');
 
         switch ($type) {
             case 'percent':
-                $label = new Raw("function(value) {
-                    " . ($percent_position == 'right' ? "return value + '%';" : "return '%' + value;") . "
-                }");
+                $label = new Raw('function(value) {
+                    '.($percent_position == 'right' ? "return value + '%';" : "return '%' + value;").'
+                }');
                 break;
             default:
                 $label = new Raw("function(value) {
                     const moneySettings = {
-                        decimal: '" . $decimal_mark . "',
-                        thousands: '". $thousands_separator . "',
-                        symbol: '" . $symbol . "',
-                        isPrefix: '" . $symbol_first . "',
-                        precision: '" . $precision . "',
+                        decimal: '".$decimal_mark."',
+                        thousands: '".$thousands_separator."',
+                        symbol: '".$symbol."',
+                        isPrefix: '".$symbol_first."',
+                        precision: '".$precision."',
                     };
 
                     const formattedCurrency = function (input, opt = moneySettings) {

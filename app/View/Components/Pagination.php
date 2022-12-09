@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use Illuminate\Support\Str;
 use App\Abstracts\View\Components\Form as BaseForm;
 
 class Pagination extends BaseForm
@@ -45,7 +44,7 @@ class Pagination extends BaseForm
             '10' => '10',
             '25' => '25',
             '50' => '50',
-            '100' => '100'
+            '100' => '100',
         ];
 
         return $limits;

@@ -10,10 +10,9 @@ use PaymentGatewayJson\Client\Transaction\Base\ItemsTrait;
 
 /**
  * Capture: Charge a previously preauthorized transaction.
- *
- * @package PaymentGatewayJson\Client\Transaction
  */
-class Capture extends AbstractTransactionWithReference implements AmountableInterface, ItemsInterface {
+class Capture extends AbstractTransactionWithReference implements AmountableInterface, ItemsInterface
+{
     use AmountableTrait;
     use ItemsTrait;
 }

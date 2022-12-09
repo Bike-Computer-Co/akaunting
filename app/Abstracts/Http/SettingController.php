@@ -2,7 +2,6 @@
 
 namespace App\Abstracts\Http;
 
-use App\Abstracts\Http\Controller;
 use App\Http\Requests\Setting\Setting as Request;
 use App\Models\Common\Company;
 use App\Models\Setting\Currency;
@@ -26,8 +25,7 @@ abstract class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function update(Request $request)
@@ -45,7 +43,7 @@ abstract class SettingController extends Controller
         $total_companies = Company::count();
 
         foreach ($fields as $key => $value) {
-            $real_key = $prefix . '.' . $key;
+            $real_key = $prefix.'.'.$key;
 
             // Don't process unwanted keys
             if (in_array($key, $this->skip_keys)) {
@@ -75,7 +73,7 @@ abstract class SettingController extends Controller
             }
 
             if ($real_key == 'default.locale') {
-                if (!in_array($value, config('language.allowed'))) {
+                if (! in_array($value, config('language.allowed'))) {
                     continue;
                 }
 
@@ -85,7 +83,7 @@ abstract class SettingController extends Controller
             if ($real_key == 'default.currency') {
                 $currencies = Currency::enabled()->pluck('code')->toArray();
 
-                if (!in_array($value, $currencies)) {
+                if (! in_array($value, $currencies)) {
                     continue;
                 }
 
@@ -107,7 +105,7 @@ abstract class SettingController extends Controller
 
         $message = trans('messages.success.updated', ['type' => trans_choice('general.settings', 2)]);
 
-        $redirect_url = !empty($this->redirect_route) ? route($this->redirect_route) : url()->previous();
+        $redirect_url = ! empty($this->redirect_route) ? route($this->redirect_route) : url()->previous();
 
         $response = [
             'status' => null,
@@ -127,34 +125,34 @@ abstract class SettingController extends Controller
     {
         switch ($real_key) {
             case 'company.name':
-                Installer::updateEnv(['MAIL_FROM_NAME' => '"' . $value . '"']);
+                Installer::updateEnv(['MAIL_FROM_NAME' => '"'.$value.'"']);
                 break;
             case 'company.email':
-                Installer::updateEnv(['MAIL_FROM_ADDRESS' => '"' . $value . '"']);
+                Installer::updateEnv(['MAIL_FROM_ADDRESS' => '"'.$value.'"']);
                 break;
             case 'default.locale':
-                Installer::updateEnv(['APP_LOCALE' => '"' . $value . '"']);
+                Installer::updateEnv(['APP_LOCALE' => '"'.$value.'"']);
                 break;
             case 'schedule.time':
-                Installer::updateEnv(['APP_SCHEDULE_TIME' => '"' . $value . '"']);
+                Installer::updateEnv(['APP_SCHEDULE_TIME' => '"'.$value.'"']);
                 break;
             case 'email.protocol':
-                Installer::updateEnv(['MAIL_MAILER' => '"' . $value . '"']);
+                Installer::updateEnv(['MAIL_MAILER' => '"'.$value.'"']);
                 break;
             case 'email.smtp_host':
-                Installer::updateEnv(['MAIL_HOST' => '"' . $value . '"']);
+                Installer::updateEnv(['MAIL_HOST' => '"'.$value.'"']);
                 break;
             case 'email.smtp_port':
-                Installer::updateEnv(['MAIL_PORT' => '"' . $value . '"']);
+                Installer::updateEnv(['MAIL_PORT' => '"'.$value.'"']);
                 break;
             case 'email.smtp_username':
-                Installer::updateEnv(['MAIL_USERNAME' => '"' . $value . '"']);
+                Installer::updateEnv(['MAIL_USERNAME' => '"'.$value.'"']);
                 break;
             case 'email.smtp_password':
-                Installer::updateEnv(['MAIL_PASSWORD' => '"' . $value . '"']);
+                Installer::updateEnv(['MAIL_PASSWORD' => '"'.$value.'"']);
                 break;
             case 'email.smtp_encryption':
-                Installer::updateEnv(['MAIL_ENCRYPTION' => '"' . $value . '"']);
+                Installer::updateEnv(['MAIL_ENCRYPTION' => '"'.$value.'"']);
                 break;
         }
     }

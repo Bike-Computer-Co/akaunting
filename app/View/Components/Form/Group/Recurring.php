@@ -10,16 +10,21 @@ class Recurring extends Component
     public $type;
 
     public $frequency;
+
     public $frequencies = [];
 
     public $customFrequency = '';
+
     public $customFrequencies = [];
 
     public $limit = '';
+
     public $limits = [];
 
     public $startedValue = '';
+
     public $limitCount = '';
+
     public $limitDateValue = '';
 
     /**

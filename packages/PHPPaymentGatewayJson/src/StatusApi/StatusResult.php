@@ -10,27 +10,36 @@ use PaymentGatewayJson\Client\Data\Result\ResultData;
 use PaymentGatewayJson\Client\Data\Result\ScheduleResultData;
 use PaymentGatewayJson\Client\Transaction\Error;
 
-/**
- *
- * @package PaymentGatewayJson\Client\StatusApi
- */
-class StatusResult {
-
+class StatusResult
+{
     const TRANSACTION_SUCCESS = 'SUCCESS';
+
     const TRANSACTION_PENDING = 'PENDING';
+
     const TRANSACTION_REDIRECT = 'REDIRECT';
+
     const TRANSACTION_CANCELLED = 'CANCELLED';
+
     const TRANSACTION_ERROR = 'ERROR';
 
     const TYPE_DEBIT = 'DEBIT';
+
     const TYPE_CAPTURE = 'CAPTURE';
+
     const TYPE_DEREGISTER = 'DEREGISTER';
+
     const TYPE_PREAUTHORIZE = 'PREAUTHORIZE';
+
     const TYPE_REFUND = 'REFUND';
+
     const TYPE_REGISTER = 'REGISTER';
+
     const TYPE_VOID = 'VOID';
+
     const TYPE_CHARGEBACK = 'CHARGEBACK';
+
     const TYPE_CHARGEBACK_REVERSAL = 'CHARGEBACK-REVERSAL';
+
     const TYPE_PAYOUT = 'PAYOUT';
 
     /**
@@ -91,7 +100,7 @@ class StatusResult {
     protected $paymentMethod;
 
     /**
-     * @var double
+     * @var float
      */
     protected $amount;
 
@@ -108,26 +117,26 @@ class StatusResult {
     /**
      * @var ScheduleResultData[]
      */
-    protected $schedules = array();
+    protected $schedules = [];
 
     /**
      * transaction errors
      *
      * @var Error[]
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * @var ChargebackData
      */
-    protected $chargebackData = array();
+    protected $chargebackData = [];
 
     /**
      * for your internal use
      *
      * @var array
      */
-    protected $extraData = array();
+    protected $extraData = [];
 
     /**
      * @var string
@@ -179,13 +188,13 @@ class StatusResult {
     }
 
     /**
-     * @param bool $success
-     *
+     * @param  bool  $success
      * @return $this
      */
     public function setSuccess($success)
     {
         $this->success = $success;
+
         return $this;
     }
 
@@ -194,18 +203,19 @@ class StatusResult {
      *
      * @return bool
      */
-    public function isOperationSuccess() {
+    public function isOperationSuccess()
+    {
         return $this->success;
     }
 
     /**
      * @deprecated use setSuccess()
      *
-     * @param bool $operationSuccess
-     *
+     * @param  bool  $operationSuccess
      * @return $this
      */
-    public function setOperationSuccess($operationSuccess) {
+    public function setOperationSuccess($operationSuccess)
+    {
         $this->success = $operationSuccess;
 
         return $this;
@@ -214,16 +224,17 @@ class StatusResult {
     /**
      * @return string
      */
-    public function getTransactionStatus() {
+    public function getTransactionStatus()
+    {
         return $this->transactionStatus;
     }
 
     /**
-     * @param string $transactionStatus
-     *
+     * @param  string  $transactionStatus
      * @return $this
      */
-    public function setTransactionStatus($transactionStatus) {
+    public function setTransactionStatus($transactionStatus)
+    {
         $this->transactionStatus = $transactionStatus;
 
         return $this;
@@ -231,19 +242,22 @@ class StatusResult {
 
     /**
      * @deprecated use getUuid
+     *
      * @return string
      */
-    public function getTransactionUuid() {
+    public function getTransactionUuid()
+    {
         return $this->uuid;
     }
 
     /**
      * @deprecated use setUuid
-     * @param string $transactionUuid
      *
+     * @param  string  $transactionUuid
      * @return $this
      */
-    public function setTransactionUuid($transactionUuid) {
+    public function setTransactionUuid($transactionUuid)
+    {
         $this->uuid = $transactionUuid;
 
         return $this;
@@ -258,29 +272,30 @@ class StatusResult {
     }
 
     /**
-     * @param string $uuid
-     *
+     * @param  string  $uuid
      * @return $this
      */
     public function setUuid($uuid)
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getMerchantTransactionId() {
+    public function getMerchantTransactionId()
+    {
         return $this->merchantTransactionId;
     }
 
     /**
-     * @param string $merchantTransactionId
-     *
+     * @param  string  $merchantTransactionId
      * @return $this
      */
-    public function setMerchantTransactionId($merchantTransactionId) {
+    public function setMerchantTransactionId($merchantTransactionId)
+    {
         $this->merchantTransactionId = $merchantTransactionId;
 
         return $this;
@@ -289,44 +304,49 @@ class StatusResult {
     /**
      * @return string
      */
-    public function getIncomingSettlementState(){
+    public function getIncomingSettlementState()
+    {
         return $this->incomingSettlementState;
     }
 
     /**
-     * @param string $incomingSettlementState
+     * @param  string  $incomingSettlementState
      * @return StatusResult
      */
-    public function setIncomingSettlementState($incomingSettlementState) {
+    public function setIncomingSettlementState($incomingSettlementState)
+    {
         $this->incomingSettlementState = $incomingSettlementState;
+
         return $this;
     }
-    
+
     /**
      * set transaction errors
      *
-     * @param Error[] $errors
-     *
+     * @param  Error[]  $errors
      * @return $this
      */
-    public function setErrors($errors) {
+    public function setErrors($errors)
+    {
         $this->errors = $errors;
+
         return $this;
     }
 
     /**
      * add transaction error
      *
-     * @param Error $error
-     *
+     * @param  Error  $error
      * @return $this
      */
-    public function addError(Error $error) {
+    public function addError(Error $error)
+    {
         $this->errors[] = $error;
+
         return $this;
     }
 
-     /**
+    /**
      * @return ScheduleResultData[]
      */
     public function getSchedules()
@@ -335,34 +355,36 @@ class StatusResult {
     }
 
     /**
-     * @param ScheduleResultData[] $schedules
-     *
+     * @param  ScheduleResultData[]  $schedules
      * @return $this
      */
     public function setSchedules($schedules)
     {
         $this->schedules = $schedules;
+
         return $this;
     }
 
     /**
-     * @param array $extraData
-     *
+     * @param  array  $extraData
      * @return $this
      */
-    public function setExtraData($extraData) {
+    public function setExtraData($extraData)
+    {
         $this->extraData = $extraData;
+
         return $this;
     }
 
     /**
-     * @param string $key
-     * @param mixed  $value
-     *
+     * @param  string  $key
+     * @param  mixed  $value
      * @return $this
      */
-    public function addExtraData($key, $value) {
+    public function addExtraData($key, $value)
+    {
         $this->extraData[$key] = $value;
+
         return $this;
     }
 
@@ -375,12 +397,13 @@ class StatusResult {
     }
 
     /**
-     * @param string $merchantMetaData
+     * @param  string  $merchantMetaData
      * @return $this
      */
     public function setMerchantMetaData($merchantMetaData)
     {
         $this->merchantMetaData = $merchantMetaData;
+
         return $this;
     }
 
@@ -389,7 +412,8 @@ class StatusResult {
      *
      * @return Error[]
      */
-    public function getErrors() {
+    public function getErrors()
+    {
         return $this->errors;
     }
 
@@ -398,8 +422,9 @@ class StatusResult {
      *
      * @return bool
      */
-    public function hasErrors() {
-        return !empty($this->errors);
+    public function hasErrors()
+    {
+        return ! empty($this->errors);
     }
 
     /**
@@ -407,145 +432,165 @@ class StatusResult {
      *
      * @return Error|null
      */
-    public function getFirstError() {
-        if (!empty($this->errors)) {
+    public function getFirstError()
+    {
+        if (! empty($this->errors)) {
             return $this->errors[0];
         }
+
         return null;
     }
 
     /**
      * @return array
      */
-    public function getExtraData() {
+    public function getExtraData()
+    {
         return $this->extraData;
     }
 
     /**
      * @return string
      */
-    public function getPurchaseId() {
+    public function getPurchaseId()
+    {
         return $this->purchaseId;
     }
 
     /**
-     * @param string $purchaseId
+     * @param  string  $purchaseId
      */
-    public function setPurchaseId($purchaseId) {
+    public function setPurchaseId($purchaseId)
+    {
         $this->purchaseId = $purchaseId;
     }
 
     /**
      * @return string
      */
-    public function getTransactionType() {
+    public function getTransactionType()
+    {
         return $this->transactionType;
     }
 
     /**
-     * @param string $transactionType
+     * @param  string  $transactionType
      */
-    public function setTransactionType($transactionType) {
+    public function setTransactionType($transactionType)
+    {
         $this->transactionType = $transactionType;
     }
 
     /**
      * @return string
      */
-    public function getPaymentMethod() {
+    public function getPaymentMethod()
+    {
         return $this->paymentMethod;
     }
 
     /**
-     * @param string $paymentMethod
+     * @param  string  $paymentMethod
      */
-    public function setPaymentMethod($paymentMethod) {
+    public function setPaymentMethod($paymentMethod)
+    {
         $this->paymentMethod = $paymentMethod;
     }
 
     /**
      * @return float
      */
-    public function getAmount() {
+    public function getAmount()
+    {
         return $this->amount;
     }
 
     /**
-     * @param float $amount
+     * @param  float  $amount
      */
-    public function setAmount($amount) {
+    public function setAmount($amount)
+    {
         $this->amount = $amount;
     }
 
     /**
      * @return string
      */
-    public function getCurrency() {
+    public function getCurrency()
+    {
         return $this->currency;
     }
 
     /**
-     * @param string $currency
+     * @param  string  $currency
      */
-    public function setCurrency($currency) {
+    public function setCurrency($currency)
+    {
         $this->currency = $currency;
     }
 
     /**
      * @return ChargebackData
      */
-    public function getChargebackData() {
+    public function getChargebackData()
+    {
         return $this->chargebackData;
     }
 
     /**
-     * @param ChargebackData $chargebackData
+     * @param  ChargebackData  $chargebackData
      */
-    public function setChargebackData(ChargebackData $chargebackData) {
+    public function setChargebackData(ChargebackData $chargebackData)
+    {
         $this->chargebackData = $chargebackData;
     }
 
     /**
      * @return ChargebackReversalData
      */
-    public function getChargebackReversalData() {
+    public function getChargebackReversalData()
+    {
         return $this->chargebackReversalData;
     }
 
     /**
-     * @param ChargebackReversalData $chargebackReversalData
+     * @param  ChargebackReversalData  $chargebackReversalData
      */
-    public function setChargebackReversalData($chargebackReversalData) {
+    public function setChargebackReversalData($chargebackReversalData)
+    {
         $this->chargebackReversalData = $chargebackReversalData;
     }
 
     /**
      * @return ResultData
      */
-    public function getReturnData() {
+    public function getReturnData()
+    {
         return $this->returnData;
     }
 
     /**
-     * @param ResultData $returnData
+     * @param  ResultData  $returnData
      */
-    public function setReturnData($returnData) {
+    public function setReturnData($returnData)
+    {
         $this->returnData = $returnData;
     }
 
     /**
      * @return Customer
      */
-    public function getCustomer() {
+    public function getCustomer()
+    {
         return $this->customer;
     }
 
     /**
-     * @param Customer $customer
-     *
+     * @param  Customer  $customer
      * @return $this
      */
-    public function setCustomer($customer) {
+    public function setCustomer($customer)
+    {
         $this->customer = $customer;
 
         return $this;
@@ -560,13 +605,13 @@ class StatusResult {
     }
 
     /**
-     * @param CustomerProfileData $customerProfileData
-     *
+     * @param  CustomerProfileData  $customerProfileData
      * @return StatusResult
      */
     public function setCustomerProfileData($customerProfileData)
     {
         $this->customerProfileData = $customerProfileData;
+
         return $this;
     }
 
@@ -582,13 +627,14 @@ class StatusResult {
 
     /**
      * set request error
-     * @param string $errorMessage
      *
+     * @param  string  $errorMessage
      * @return StatusResult
      */
     public function setErrorMessage($errorMessage)
     {
         $this->errorMessage = $errorMessage;
+
         return $this;
     }
 
@@ -605,22 +651,23 @@ class StatusResult {
     /**
      * set error code
      *
-     * @param int $errorCode
-     *
+     * @param  int  $errorCode
      * @return StatusResult
      */
     public function setErrorCode($errorCode)
     {
         $this->errorCode = $errorCode;
+
         return $this;
     }
 
     /**
      * @return array
      */
-    public function toArray() {
+    public function toArray()
+    {
         $properties = get_object_vars($this);
-        foreach(array_keys($properties) as $prop) {
+        foreach (array_keys($properties) as $prop) {
             if (is_object($properties[$prop])) {
                 if (method_exists($properties[$prop], 'toArray')) {
                     $properties[$prop] = $properties[$prop]->toArray();
@@ -629,7 +676,7 @@ class StatusResult {
                 }
             }
         }
+
         return $properties;
     }
-
 }

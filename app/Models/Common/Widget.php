@@ -32,15 +32,15 @@ class Widget extends Model
     /**
      * Scope to only include widgets of a given alias.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $alias
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $alias
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAlias($query, $alias)
     {
-        $class = ($alias == 'core') ? 'App\\\\' : 'Modules\\\\' . Str::studly($alias) . '\\\\';
+        $class = ($alias == 'core') ? 'App\\\\' : 'Modules\\\\'.Str::studly($alias).'\\\\';
 
-        return $query->where('class', 'like', $class . '%');
+        return $query->where('class', 'like', $class.'%');
     }
 
     public function dashboard()

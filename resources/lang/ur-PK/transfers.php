@@ -2,11 +2,11 @@
 
 return [
 
-    'from_account'          => 'اکاؤنٹ سے',
-    'to_account'            => 'اکاؤنٹ میں',
+    'from_account' => 'اکاؤنٹ سے',
+    'to_account' => 'اکاؤنٹ میں',
 
     'messages' => [
-        'delete'            => ': سے کرنا: کرنا (: رقم)',
+        'delete' => ': سے کرنا: کرنا (: رقم)',
     ],
 
 ];

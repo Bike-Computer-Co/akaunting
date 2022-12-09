@@ -17,8 +17,8 @@ class Restore extends Component
     {
         $last_history = $this->document->histories()->orderBy('id', 'desc')->first();
 
-        $this->description = trans('invoices.cancel_date') . ': ';
-        $this->description .= '<span class="font-medium">' . company_date($last_history->created_at) . '</span>';
+        $this->description = trans('invoices.cancel_date').': ';
+        $this->description .= '<span class="font-medium">'.company_date($last_history->created_at).'</span>';
 
         return view('components.documents.show.restore');
     }

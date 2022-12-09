@@ -9,13 +9,12 @@ use Illuminate\Support\Str;
 
 class BulkActions extends Controller
 {
-
     /**
      * Show the form for creating a new resource.
      *
-     * @param  $group
-     * @param  $type
-     * @param  Request $request
+     * @param    $group
+     * @param    $type
+     * @param  Request  $request
      * @return Response
      */
     public function action($group, $type, Request $request)
@@ -28,7 +27,7 @@ class BulkActions extends Controller
                 'redirect' => true,
                 'error' => true,
                 'data' => [],
-                'message' => ''
+                'message' => '',
             ]);
         }
 
@@ -38,16 +37,16 @@ class BulkActions extends Controller
 
         if ($module instanceof \Akaunting\Module\Module) {
             $tmp = explode('.', $type);
-            $file_name = !empty($tmp[1]) ? Str::studly($tmp[0]) . '\\' . Str::studly($tmp[1]) : Str::studly($tmp[0]);
+            $file_name = ! empty($tmp[1]) ? Str::studly($tmp[0]).'\\'.Str::studly($tmp[1]) : Str::studly($tmp[0]);
 
-            $bulk_actions = app('Modules\\' . $module->getStudlyName() . '\BulkActions\\' . $file_name);
+            $bulk_actions = app('Modules\\'.$module->getStudlyName().'\BulkActions\\'.$file_name);
 
             $page = ucfirst($file_name);
         } else {
-            $bulk_actions = app('App\BulkActions\\' .  ucfirst($group) . '\\' . ucfirst($type));
+            $bulk_actions = app('App\BulkActions\\'.ucfirst($group).'\\'.ucfirst($type));
         }
 
-        if (isset($bulk_actions->actions[$handle]['permission']) && !user()->can($bulk_actions->actions[$handle]['permission'])) {
+        if (isset($bulk_actions->actions[$handle]['permission']) && ! user()->can($bulk_actions->actions[$handle]['permission'])) {
             flash(trans('errors.message.403'))->error()->important();
 
             return response()->json([
@@ -55,7 +54,7 @@ class BulkActions extends Controller
                 'redirect' => true,
                 'error' => true,
                 'data' => [],
-                'message' => trans('errors.message.403')
+                'message' => trans('errors.message.403'),
             ]);
         }
 
@@ -79,7 +78,7 @@ class BulkActions extends Controller
                 'redirect' => $result->getTargetUrl(),
                 'error' => false,
                 'data' => [],
-                'message' => ''
+                'message' => '',
             ]);
         } else {
             flash($message)->success();
@@ -89,7 +88,7 @@ class BulkActions extends Controller
                 'redirect' => true,
                 'error' => false,
                 'data' => [],
-                'message' => ''
+                'message' => '',
             ]);
         }
     }

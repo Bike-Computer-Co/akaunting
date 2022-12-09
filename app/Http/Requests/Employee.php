@@ -34,8 +34,7 @@ class Employee extends FormRequest
             'email' => 'nullable|email',
             'phone' => 'nullable',
             'salary' => 'nullable|integer',
-            'enabled' => 'nullable|boolean'
+            'enabled' => 'nullable|boolean',
         ];
-
     }
 }

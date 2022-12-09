@@ -2,15 +2,12 @@
 
 namespace PaymentGatewayJson\Client\Data\Result;
 
-
 /**
  * Class ScheduleResultData
  * schedule data received from the gateway
- *
- * @package PaymentGatewayJson\Client\Data
  */
-class ScheduleResultData extends ResultData {
-
+class ScheduleResultData extends ResultData
+{
     /**
      * @var string
      */
@@ -40,13 +37,13 @@ class ScheduleResultData extends ResultData {
     }
 
     /**
-     * @param string $scheduleId
-     *
+     * @param  string  $scheduleId
      * @return ScheduleResultData
      */
     public function setScheduleId($scheduleId)
     {
         $this->scheduleId = $scheduleId;
+
         return $this;
     }
 
@@ -59,13 +56,13 @@ class ScheduleResultData extends ResultData {
     }
 
     /**
-     * @param string $scheduleStatus
-     *
+     * @param  string  $scheduleStatus
      * @return ScheduleResultData
      */
     public function setScheduleStatus($scheduleStatus)
     {
         $this->scheduleStatus = $scheduleStatus;
+
         return $this;
     }
 
@@ -78,45 +75,49 @@ class ScheduleResultData extends ResultData {
     }
 
     /**
-     * @param \DateTime|string $scheduledAt
-     *
+     * @param  \DateTime|string  $scheduledAt
      * @return ScheduleResultData
+     *
      * @throws \Exception
      */
     public function setScheduledAt($scheduledAt)
     {
-        if (!empty($scheduledAt) && is_string($scheduledAt)) {
+        if (! empty($scheduledAt) && is_string($scheduledAt)) {
             $scheduledAt = new \DateTime($scheduledAt);
         }
         $this->scheduledAt = $scheduledAt;
+
         return $this;
     }
-
 
     /**
      * @return string
      */
-    public function getMerchantMetaData() {
+    public function getMerchantMetaData()
+    {
         return $this->merchantMetaData;
     }
 
     /**
-     * @param string $merchantMetaData
+     * @param  string  $merchantMetaData
      * @return $this
      */
-    public function setMerchantMetaData($merchantMetaData) {
+    public function setMerchantMetaData($merchantMetaData)
+    {
         $this->merchantMetaData = $merchantMetaData;
+
         return $this;
     }
 
     /**
      * @return array
      */
-    public function toArray() {
-        return array(
+    public function toArray()
+    {
+        return [
             'scheduleId' => $this->getScheduleId(),
             'scheduleStatus' => $this->getScheduleStatus(),
             'scheduledAt' => $this->getScheduledAt(),
-        );
+        ];
     }
 }

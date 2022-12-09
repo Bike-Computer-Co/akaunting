@@ -17,6 +17,6 @@ return [
     'sent' => 'Lösenordspåminnelse skickad!',
     'throttled' => 'Vänta innan du försöker igen.',
     'token' => 'Koden för lösenordsåterställning är ogiltig.',
-    'user' => "Det finns ingen användare med den e-postadressen.",
+    'user' => 'Det finns ingen användare med den e-postadressen.',
 
 ];

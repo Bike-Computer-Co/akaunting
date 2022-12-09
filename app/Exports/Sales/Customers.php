@@ -14,7 +14,7 @@ class Customers extends Export
 
     public function map($model): array
     {
-        $model->country = ($model->country) ? trans('countries.' . $model->country) : null;
+        $model->country = ($model->country) ? trans('countries.'.$model->country) : null;
 
         return parent::map($model);
     }

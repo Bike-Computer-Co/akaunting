@@ -4,11 +4,9 @@ namespace PaymentGateway\Client\Data\Result;
 
 /**
  * Class PhoneData
- *
- * @package PaymentGateway\Client\Data\Result
  */
-class PhoneData extends ResultData {
-
+class PhoneData extends ResultData
+{
     /**
      * @var string
      */
@@ -27,55 +25,60 @@ class PhoneData extends ResultData {
     /**
      * @return string
      */
-    public function getPhoneNumber() {
+    public function getPhoneNumber()
+    {
         return $this->phoneNumber;
     }
 
     /**
-     * @param string $phoneNumber
+     * @param  string  $phoneNumber
      */
-    public function setPhoneNumber($phoneNumber) {
+    public function setPhoneNumber($phoneNumber)
+    {
         $this->phoneNumber = $phoneNumber;
     }
 
     /**
      * @return string
      */
-    public function getCountry() {
+    public function getCountry()
+    {
         return $this->country;
     }
 
     /**
-     * @param string $country
+     * @param  string  $country
      */
-    public function setCountry($country) {
+    public function setCountry($country)
+    {
         $this->country = $country;
     }
 
     /**
      * @return string
      */
-    public function getOperator() {
+    public function getOperator()
+    {
         return $this->operator;
     }
 
     /**
-     * @param string $operator
+     * @param  string  $operator
      */
-    public function setOperator($operator) {
+    public function setOperator($operator)
+    {
         $this->operator = $operator;
     }
 
     /**
      * @return array
      */
-    public function toArray() {
-        return array(
+    public function toArray()
+    {
+        return [
             'phoneNumber' => $this->phoneNumber,
             'operator' => $this->operator,
-            'country' => $this->country
-        );
+            'country' => $this->country,
+        ];
     }
-
-
 }

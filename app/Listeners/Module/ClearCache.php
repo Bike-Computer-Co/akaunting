@@ -9,7 +9,7 @@ class ClearCache
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle($event)
@@ -20,7 +20,7 @@ class ClearCache
 
         Cache::forget('apps.notifications');
         Cache::forget('apps.suggestions');
-        Cache::forget('apps.installed.' . $event->company_id);
+        Cache::forget('apps.installed.'.$event->company_id);
     }
 
     /**

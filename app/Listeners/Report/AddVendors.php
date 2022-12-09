@@ -18,7 +18,7 @@ class AddVendors extends Listener
     /**
      * Handle filter showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleFilterShowing(FilterShowing $event)
@@ -34,7 +34,7 @@ class AddVendors extends Listener
     /**
      * Handle group showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleGroupShowing(GroupShowing $event)
@@ -49,7 +49,7 @@ class AddVendors extends Listener
     /**
      * Handle group applying event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleGroupApplying(GroupApplying $event)
@@ -64,7 +64,7 @@ class AddVendors extends Listener
     /**
      * Handle rows showing event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handleRowsShowing(RowsShowing $event)

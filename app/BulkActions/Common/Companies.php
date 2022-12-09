@@ -19,17 +19,17 @@ class Companies extends BulkAction
     ];
 
     public $actions = [
-        'enable'    => [
-            'icon'          => 'check_circle',
-            'name'          => 'general.enable',
-            'message'       => 'bulk_actions.message.enable',
-            'permission'    => 'update-common-companies',
+        'enable' => [
+            'icon' => 'check_circle',
+            'name' => 'general.enable',
+            'message' => 'bulk_actions.message.enable',
+            'permission' => 'update-common-companies',
         ],
-        'disable'   => [
-            'icon'          => 'hide_source',
-            'name'          => 'general.disable',
-            'message'       => 'bulk_actions.message.disable',
-            'permission'    => 'update-common-companies',
+        'disable' => [
+            'icon' => 'hide_source',
+            'name' => 'general.disable',
+            'message' => 'bulk_actions.message.disable',
+            'permission' => 'update-common-companies',
         ],
     ];
 

@@ -19,8 +19,11 @@ class Category extends Model
     use Categories, HasFactory, Tailwind, Transactions;
 
     public const INCOME_TYPE = 'income';
+
     public const EXPENSE_TYPE = 'expense';
+
     public const ITEM_TYPE = 'item';
+
     public const OTHER_TYPE = 'other';
 
     protected $table = 'categories';
@@ -145,8 +148,8 @@ class Category extends Model
     /**
      * Scope to only include categories of a given type.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $types
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $types
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeType($query, $types)
@@ -161,7 +164,7 @@ class Category extends Model
     /**
      * Scope to include only income.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeIncome($query)
@@ -172,7 +175,7 @@ class Category extends Model
     /**
      * Scope to include only expense.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeExpense($query)
@@ -183,7 +186,7 @@ class Category extends Model
     /**
      * Scope to include only item.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeItem($query)
@@ -194,7 +197,7 @@ class Category extends Model
     /**
      * Scope to include only other.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeOther($query)
@@ -210,7 +213,7 @@ class Category extends Model
     /**
      * Scope gets only parent categories.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithSubCategory($query)

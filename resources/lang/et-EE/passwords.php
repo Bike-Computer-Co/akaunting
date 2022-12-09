@@ -17,7 +17,7 @@ return [
     'reset' => 'Sinu parool on lähtestatud!',
     'sent' => 'Oleme saatnud sulle e-postiga parooli lähtestamise lingi!',
     'token' => 'See parooli lähtestamise tunnus on vigane.',
-    'user' => "Ei suutnud leida sellise e-posti aadressiga kasutajat.",
+    'user' => 'Ei suutnud leida sellise e-posti aadressiga kasutajat.',
     'throttle' => 'Palun oodake enne uuesti proovimist.',
 
 ];

@@ -14,7 +14,7 @@ class MarkDocumentCancelled
     /**
      * Handle the event.
      *
-     * @param  $event
+     * @param    $event
      * @return void
      */
     public function handle(Event $event)
@@ -23,11 +23,11 @@ class MarkDocumentCancelled
 
         $type_text = '';
 
-        if ($alias = config('type.document.' . $event->document->type . '.alias', '')) {
-            $type_text .= $alias . '::';
+        if ($alias = config('type.document.'.$event->document->type.'.alias', '')) {
+            $type_text .= $alias.'::';
         }
 
-        $type_text .= 'general.' . config('type.document.' . $event->document->type .'.translation.prefix');
+        $type_text .= 'general.'.config('type.document.'.$event->document->type.'.translation.prefix');
 
         $type = trans_choice($type_text, 1);
 

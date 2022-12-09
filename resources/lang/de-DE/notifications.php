@@ -2,10 +2,10 @@
 
 return [
 
-    'whoops'              => 'Hoppala!',
-    'hello'               => 'Hallo!',
-    'salutation'          => 'Mit freundlichen Grüßen,<br> :company_name',
-    'subcopy'             => 'Wenn Sie Probleme damit haben den „:text“ Button zu drücken, kopieren Sie bitte die nachfolgende URL in Ihren Webbrowser. [:url](:url)',
+    'whoops' => 'Hoppala!',
+    'hello' => 'Hallo!',
+    'salutation' => 'Mit freundlichen Grüßen,<br> :company_name',
+    'subcopy' => 'Wenn Sie Probleme damit haben den „:text“ Button zu drücken, kopieren Sie bitte die nachfolgende URL in Ihren Webbrowser. [:url](:url)',
 
     'update' => [
 
@@ -27,26 +27,26 @@ return [
     'import' => [
 
         'completed' => [
-            'subject'           => 'Import abgeschlossen',
-            'description'       => 'Der Import wurde abgeschlossen und die Datensätze sind verfügbar.',
+            'subject' => 'Import abgeschlossen',
+            'description' => 'Der Import wurde abgeschlossen und die Datensätze sind verfügbar.',
         ],
 
         'failed' => [
-            'subject'           => 'Import fehlgeschlagen',
-            'description'       => 'Die Daten können aufgrund der folgenden Probleme nicht importiert werden:',
+            'subject' => 'Import fehlgeschlagen',
+            'description' => 'Die Daten können aufgrund der folgenden Probleme nicht importiert werden:',
         ],
     ],
 
     'export' => [
 
         'completed' => [
-            'subject'           => 'Export ist bereit',
-            'description'       => 'Die Exportdatei kann von folgendem Link heruntergeladen werden:',
+            'subject' => 'Export ist bereit',
+            'description' => 'Die Exportdatei kann von folgendem Link heruntergeladen werden:',
         ],
 
         'failed' => [
-            'subject'           => 'Export fehlgeschlagen',
-            'description'       => 'Der Export konnte aufgrund des folgenden Problems nicht erstellt werden:',
+            'subject' => 'Export fehlgeschlagen',
+            'description' => 'Der Export konnte aufgrund des folgenden Problems nicht erstellt werden:',
         ],
 
     ],

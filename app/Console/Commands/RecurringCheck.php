@@ -67,13 +67,13 @@ class RecurringCheck extends Command
                 continue;
             }
 
-            $this->info('Recurring ID: ' . $recur->id);
+            $this->info('Recurring ID: '.$recur->id);
 
-            $company_name = !empty($recur->company->name) ? $recur->company->name : 'Missing Company Name : ' . $recur->company->id;
+            $company_name = ! empty($recur->company->name) ? $recur->company->name : 'Missing Company Name : '.$recur->company->id;
 
             // Check if company is disabled
             if (! $recur->company->enabled) {
-                $this->info($company_name . ' company is disabled. Skipping...');
+                $this->info($company_name.' company is disabled. Skipping...');
 
                 if (Date::parse($recur->company->updated_at)->format('Y-m-d') > Date::now()->subMonth(3)->format('Y-m-d')) {
                     $recur->delete();
@@ -94,7 +94,7 @@ class RecurringCheck extends Command
             }
 
             if (! $has_active_users) {
-                $this->info('No active users for ' . $company_name . ' company. Skipping...');
+                $this->info('No active users for '.$company_name.' company. Skipping...');
 
                 $recur->delete();
 
@@ -111,7 +111,7 @@ class RecurringCheck extends Command
                 continue;
             }
 
-            $this->info('Template ID: ' . $template->id);
+            $this->info('Template ID: '.$template->id);
 
             // Get the remaining schedules, including the previously failed ones
             $schedules = $this->getRemainingSchedules($template, $recur);
@@ -137,7 +137,7 @@ class RecurringCheck extends Command
             foreach ($schedules as $schedule) {
                 $schedule_date = Date::parse($schedule->getStart()->format('Y-m-d'));
 
-                $this->info('Schedule date: ' . $schedule_date->format('Y-m-d'));
+                $this->info('Schedule date: '.$schedule_date->format('Y-m-d'));
 
                 $this->recur($template, $schedule_date);
             }
@@ -158,7 +158,7 @@ class RecurringCheck extends Command
                 return;
             }
 
-            $this->info('Model created: ' . $model->id);
+            $this->info('Model created: '.$model->id);
 
             switch ($template::class) {
                 case Document::class:

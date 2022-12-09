@@ -2,10 +2,10 @@
 
 namespace App\Abstracts\Http;
 
+use App\Exceptions\Http\Resource as ResourceException;
 use App\Traits\Jobs;
 use App\Traits\Permissions;
 use App\Traits\Relationships;
-use App\Exceptions\Http\Resource as ResourceException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
@@ -29,8 +29,8 @@ abstract class ApiController extends BaseController
     /**
      * Create the response for when a request fails validation.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  array $errors
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $errors
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function buildFailedValidationResponse(Request $request, array $errors)
@@ -45,9 +45,8 @@ abstract class ApiController extends BaseController
     /**
      * Respond with a location and a created resource.
      *
-     * @param string $location
-     * @param object $resource
-     *
+     * @param  string  $location
+     * @param  object  $resource
      * @return \Illuminate\Http\JsonResponse
      */
     public function created($location, $resource): JsonResponse
@@ -61,9 +60,8 @@ abstract class ApiController extends BaseController
     /**
      * Respond with a location and an accepted resource.
      *
-     * @param string $location
-     * @param object $resource
-     *
+     * @param  string  $location
+     * @param  object  $resource
      * @return \Illuminate\Http\JsonResponse
      */
     public function accepted($location, $resource): JsonResponse
@@ -88,12 +86,11 @@ abstract class ApiController extends BaseController
     /**
      * Return an error response.
      *
-     * @param string $message
-     * @param int    $statusCode
+     * @param  string  $message
+     * @param  int  $statusCode
+     * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
-     * @return void
      */
     public function error($message, $statusCode)
     {
@@ -103,11 +100,10 @@ abstract class ApiController extends BaseController
     /**
      * Return a 404 not found error.
      *
-     * @param string $message
+     * @param  string  $message
+     * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
-     * @return void
      */
     public function errorNotFound($message = 'Not Found')
     {
@@ -117,11 +113,10 @@ abstract class ApiController extends BaseController
     /**
      * Return a 400 bad request error.
      *
-     * @param string $message
+     * @param  string  $message
+     * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
-     * @return void
      */
     public function errorBadRequest($message = 'Bad Request')
     {
@@ -131,11 +126,10 @@ abstract class ApiController extends BaseController
     /**
      * Return a 403 forbidden error.
      *
-     * @param string $message
+     * @param  string  $message
+     * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
-     * @return void
      */
     public function errorForbidden($message = 'Forbidden')
     {
@@ -145,11 +139,10 @@ abstract class ApiController extends BaseController
     /**
      * Return a 500 internal server error.
      *
-     * @param string $message
+     * @param  string  $message
+     * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
-     * @return void
      */
     public function errorInternal($message = 'Internal Error')
     {
@@ -159,11 +152,10 @@ abstract class ApiController extends BaseController
     /**
      * Return a 401 unauthorized error.
      *
-     * @param string $message
+     * @param  string  $message
+     * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
-     * @return void
      */
     public function errorUnauthorized($message = 'Unauthorized')
     {
@@ -173,11 +165,10 @@ abstract class ApiController extends BaseController
     /**
      * Return a 405 method not allowed error.
      *
-     * @param string $message
+     * @param  string  $message
+     * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
-     * @return void
      */
     public function errorMethodNotAllowed($message = 'Method Not Allowed')
     {

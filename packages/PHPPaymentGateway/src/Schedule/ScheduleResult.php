@@ -4,15 +4,17 @@ namespace PaymentGateway\Client\Schedule;
 
 /**
  * Class Result
- *
- * @package PaymentGateway\Client\Data
  */
-class ScheduleResult {
-
+class ScheduleResult
+{
     const STATUS_ACTIVE = 'ACTIVE';
+
     const STATUS_PAUSED = 'PAUSED';
+
     const STATUS_CANCELLED = 'CANCELLED';
+
     const STATUS_ERROR = 'ERROR';
+
     const STATUS_CREATE_PENDING = 'CREATE-PENDING'; // create process of a schedule not yet finished
 
     /**
@@ -60,16 +62,17 @@ class ScheduleResult {
     /**
      * @return bool
      */
-    public function getOperationSuccess() {
+    public function getOperationSuccess()
+    {
         return $this->operationSuccess;
     }
 
     /**
-     * @param bool $operationSuccess
-     *
+     * @param  bool  $operationSuccess
      * @return ScheduleResult
      */
-    public function setOperationSuccess($operationSuccess) {
+    public function setOperationSuccess($operationSuccess)
+    {
         $this->operationSuccess = $operationSuccess;
 
         return $this;
@@ -78,16 +81,17 @@ class ScheduleResult {
     /**
      * @return string
      */
-    public function getScheduleId() {
+    public function getScheduleId()
+    {
         return $this->scheduleId;
     }
 
     /**
-     * @param string $scheduleId
-     *
+     * @param  string  $scheduleId
      * @return ScheduleResult
      */
-    public function setScheduleId($scheduleId) {
+    public function setScheduleId($scheduleId)
+    {
         $this->scheduleId = $scheduleId;
 
         return $this;
@@ -96,16 +100,17 @@ class ScheduleResult {
     /**
      * @return string
      */
-    public function getRegistrationId() {
+    public function getRegistrationId()
+    {
         return $this->registrationId;
     }
 
     /**
-     * @param string $registrationId
-     *
+     * @param  string  $registrationId
      * @return ScheduleResult
      */
-    public function setRegistrationId($registrationId) {
+    public function setRegistrationId($registrationId)
+    {
         $this->registrationId = $registrationId;
 
         return $this;
@@ -114,16 +119,17 @@ class ScheduleResult {
     /**
      * @return string
      */
-    public function getOldStatus() {
+    public function getOldStatus()
+    {
         return $this->oldStatus;
     }
 
     /**
-     * @param string $oldStatus
-     *
+     * @param  string  $oldStatus
      * @return ScheduleResult
      */
-    public function setOldStatus($oldStatus) {
+    public function setOldStatus($oldStatus)
+    {
         $this->oldStatus = $oldStatus;
 
         return $this;
@@ -132,16 +138,17 @@ class ScheduleResult {
     /**
      * @return string
      */
-    public function getNewStatus() {
+    public function getNewStatus()
+    {
         return $this->newStatus;
     }
 
     /**
-     * @param string $newStatus
-     *
+     * @param  string  $newStatus
      * @return ScheduleResult
      */
-    public function setNewStatus($newStatus) {
+    public function setNewStatus($newStatus)
+    {
         $this->newStatus = $newStatus;
 
         return $this;
@@ -150,61 +157,67 @@ class ScheduleResult {
     /**
      * @return ScheduleError[]
      */
-    public function getErrors() {
+    public function getErrors()
+    {
         return $this->errors;
     }
 
     /**
      * @return bool
      */
-    public function hasErrors() {
-        return !empty($this->errors);
+    public function hasErrors()
+    {
+        return ! empty($this->errors);
     }
 
     /**
      * @return ScheduleError|null
      */
-    public function getFirstError() {
-        if (!empty($this->errors)) {
+    public function getFirstError()
+    {
+        if (! empty($this->errors)) {
             return $this->errors[0];
         }
+
         return null;
     }
 
     /**
-     * @param ScheduleError[] $errors
-     *
+     * @param  ScheduleError[]  $errors
      * @return $this
      */
-    public function setErrors($errors) {
+    public function setErrors($errors)
+    {
         $this->errors = $errors;
+
         return $this;
     }
 
     /**
-     * @param ScheduleError $error
-     *
+     * @param  ScheduleError  $error
      * @return $this
      */
-    public function addError(ScheduleError $error) {
+    public function addError(ScheduleError $error)
+    {
         $this->errors[] = $error;
+
         return $this;
     }
 
     /**
      * @return string|null
      */
-    public function getScheduledAt() {
+    public function getScheduledAt()
+    {
         return $this->scheduledAt;
     }
 
     /**
-     * @param string|\DateTime|null $scheduledAt
-     *
+     * @param  string|\DateTime|null  $scheduledAt
      * @return $this
      */
-    public function setScheduledAt($scheduledAt) {
-
+    public function setScheduledAt($scheduledAt)
+    {
         if ($scheduledAt instanceof \DateTime) {
             $scheduledAt = $scheduledAt->format('Y-m-d H:i:s T');
         }
@@ -213,7 +226,6 @@ class ScheduleResult {
 
         return $this;
     }
-
 
     /**
      * @return string
@@ -224,12 +236,13 @@ class ScheduleResult {
     }
 
     /**
-     * @param string $merchantMetaData
+     * @param  string  $merchantMetaData
      * @return ScheduleResult
      */
     public function setMerchantMetaData($merchantMetaData)
     {
         $this->merchantMetaData = $merchantMetaData;
+
         return $this;
     }
 }

@@ -80,6 +80,7 @@
         "beyondcode/laravel-dump-server": "^1.5",
         "brianium/paratest": "^6.1",
         "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.2",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.3",

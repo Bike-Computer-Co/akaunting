@@ -30,14 +30,14 @@ trait SearchString
             if (empty($variable[0]) || ($variable[0] != $name) || empty($variable[1])) {
                 continue;
             }
-            
+
             if (strpos($column, ':')) {
                 $value = $variable[1];
 
                 break;
             }
 
-            if (!is_array($value)) {
+            if (! is_array($value)) {
                 $value = [];
             }
 

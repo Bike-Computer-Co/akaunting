@@ -5,7 +5,6 @@ namespace App\View\Components;
 use App\Abstracts\View\Component;
 use App\Traits\Modules;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 class Suggestions extends Component
 {
@@ -37,7 +36,7 @@ class Suggestions extends Component
     protected function setSuggestions()
     {
         // No need to add suggestions in console
-        if (app()->runningInConsole() || !config('app.installed')) {
+        if (app()->runningInConsole() || ! config('app.installed')) {
             return [];
         }
 
@@ -62,7 +61,7 @@ class Suggestions extends Component
                 continue;
             }
 
-            $s_module->action_url = company_id() . '/' . $s_module->action_url;
+            $s_module->action_url = company_id().'/'.$s_module->action_url;
 
             $modules[] = $s_module;
         }

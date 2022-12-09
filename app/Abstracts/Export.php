@@ -61,7 +61,7 @@ abstract class Export implements FromCollection, HasLocalePreference, ShouldAuto
 
             // Prevent CSV injection https://security.stackexchange.com/a/190848
             if (Str::startsWith($value, $evil_chars)) {
-                $value = "'" . $value;
+                $value = "'".$value;
             }
 
             $map[] = $value;

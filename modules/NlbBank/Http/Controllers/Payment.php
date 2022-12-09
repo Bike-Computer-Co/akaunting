@@ -5,7 +5,6 @@ namespace Modules\NlbBank\Http\Controllers;
 use App\Abstracts\Http\PaymentController;
 use App\Models\Document\Document;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
@@ -39,14 +38,14 @@ class Payment extends PaymentController
             ->setCancelUrl($this->getCancelUrl($invoice))
             ->setSuccessUrl($this->getModuleUrl($invoice, 'success'))
             ->setErrorUrl($this->getModuleUrl($invoice, 'error'))
-            ->setCallbackUrl(URL::signedRoute('signed.' . $this->alias . '.invoices.callback', [$invoice->id]));
+            ->setCallbackUrl(URL::signedRoute('signed.'.$this->alias.'.invoices.callback', [$invoice->id]));
         $customer = new Customer();
         $customer
             ->setFirstName($invoice->contact_name)
             ->setLastName('test')
-            ->setBillingAddress1($invoice->contact_address ?? "Partizanski odredi")
-            ->setBillingPostcode($invoice->contact_zip_code ?? "1000")
-            ->setBillingCity($invoice->contact_city ?? "Skopje")
+            ->setBillingAddress1($invoice->contact_address ?? 'Partizanski odredi')
+            ->setBillingPostcode($invoice->contact_zip_code ?? '1000')
+            ->setBillingCity($invoice->contact_city ?? 'Skopje')
             ->setIdentification($invoice->contact_id)
             ->setBillingCountry('MK')
             ->setEmail($invoice->contact_email)
@@ -56,7 +55,8 @@ class Payment extends PaymentController
         $result = $client->debit($debit);
         $returnType = $result->getReturnType();
         if ($returnType == Result::RETURN_TYPE_ERROR) {
-            Log::error("Payment Error\Invoice:\n" . json_encode($invoice) . "\nResponse:\n");
+            Log::error("Payment Error\Invoice:\n".json_encode($invoice)."\nResponse:\n");
+
             return response()->json([
                 'error' => $result->getFirstError(),
                 'redirect' => false,
@@ -64,24 +64,22 @@ class Payment extends PaymentController
                 'data' => false,
             ]);
         } elseif ($returnType == Result::RETURN_TYPE_REDIRECT) {
-
             $this->setReference($invoice, $result->getReferenceId());
+
             return response()->json([
                 'error' => false,
                 'redirect' => $result->getRedirectUrl(),
                 'success' => false,
                 'data' => $result->getReturnData(),
             ]);
-
         }
-
     }
 
     public function success(Document $invoice, Request $request)
     {
         $message = trans('messages.success.added', ['type' => trans_choice('general.payments', 1)]);
 
-        $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Success Message: ' . $message);
+        $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Success Message: '.$message);
 
         flash($message)->success();
 
@@ -101,11 +99,11 @@ class Payment extends PaymentController
 
     public function error(Document $invoice, Request $request)
     {
-        $message = "There was error processing your payment";
+        $message = 'There was error processing your payment';
         if (isset($data['error'])) {
-            $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Error Type: ' . $data['error']['type'] . ' - Error Message: ' . $message);
+            $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Error Type: '.$data['error']['type'].' - Error Message: '.$message);
         } else {
-            $this->logger->info($this->module->getName() . ':: Invoice: ' . $invoice->id . ' - Error Message: ' . $message);
+            $this->logger->info($this->module->getName().':: Invoice: '.$invoice->id.' - Error Message: '.$message);
         }
 
         $invoice_url = $this->getInvoiceUrl($invoice);
@@ -124,10 +122,9 @@ class Payment extends PaymentController
         ]);
     }
 
-
     public function callback(Document $invoice, Request $request)
     {
-        $this->logger->info('nlb called: ' . $invoice->id);
+        $this->logger->info('nlb called: '.$invoice->id);
         $client = new Client(
             $this->setting['api_username'],
             $this->setting['api_password'],
@@ -141,13 +138,12 @@ class Payment extends PaymentController
 //        $transactionId = $callbackResult->getTransactionId();
 //        $gatewayReferenceId = $callbackResult->getReferenceId();
 
-
         if ($callbackResult->getResult() == \PaymentGateway\Client\Callback\Result::RESULT_OK) {
-            $this->logger->info('nlb success:' . $invoice->id);
+            $this->logger->info('nlb success:'.$invoice->id);
             $this->dispatchPaidEvent($invoice, $request);
             $this->forgetReference($invoice);
         }
+
         return 'OK';
     }
-
 }

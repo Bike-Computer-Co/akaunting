@@ -13,14 +13,15 @@ use PaymentGatewayJson\Client\Transaction\Base\AmountableInterface;
  *  - StartSchedule (obj): used to start a schedule
  *  - ContinueSchedule (obj): used to continue schedule
  *  - string [scheduleId]: used to show, pause or cancel a schedule
- *
- * @package PaymentGatewayJson\Client\Data
  */
-class ScheduleData implements AmountableInterface {
-
+class ScheduleData implements AmountableInterface
+{
     const PERIOD_UNIT_DAY = 'DAY';
+
     const PERIOD_UNIT_WEEK = 'WEEK';
+
     const PERIOD_UNIT_MONTH = 'MONTH';
+
     const PERIOD_UNIT_YEAR = 'YEAR';
 
     /**
@@ -73,28 +74,30 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return string[]
      */
-    public static function getValidPeriodUnits() {
+    public static function getValidPeriodUnits()
+    {
         return [
             self::PERIOD_UNIT_DAY,
             self::PERIOD_UNIT_WEEK,
             self::PERIOD_UNIT_MONTH,
-            self::PERIOD_UNIT_YEAR
+            self::PERIOD_UNIT_YEAR,
         ];
     }
 
     /**
      * @return string
      */
-    public function getScheduleId() {
+    public function getScheduleId()
+    {
         return $this->scheduleId;
     }
 
     /**
-     * @param string $scheduleId
-     *
+     * @param  string  $scheduleId
      * @return ScheduleData
      */
-    public function setScheduleId($scheduleId) {
+    public function setScheduleId($scheduleId)
+    {
         $this->scheduleId = $scheduleId;
 
         return $this;
@@ -105,18 +108,19 @@ class ScheduleData implements AmountableInterface {
      *
      * @return string
      */
-    public function getRegistrationId() {
+    public function getRegistrationId()
+    {
         return $this->getRegistrationUuid();
     }
 
     /**
      * @deprecated use setRegistrationUuid()
      *
-     * @param string $registrationId
-     *
+     * @param  string  $registrationId
      * @return ScheduleData
      */
-    public function setRegistrationId($registrationId) {
+    public function setRegistrationId($registrationId)
+    {
         $this->setRegistrationUuid($registrationId);
 
         return $this;
@@ -125,16 +129,17 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return string
      */
-    public function getRegistrationUuid() {
+    public function getRegistrationUuid()
+    {
         return $this->registrationUuid;
     }
 
     /**
-     * @param string $registrationUuid
-     *
+     * @param  string  $registrationUuid
      * @return ScheduleData
      */
-    public function setRegistrationUuid($registrationUuid) {
+    public function setRegistrationUuid($registrationUuid)
+    {
         $this->registrationUuid = $registrationUuid;
 
         return $this;
@@ -143,16 +148,17 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return float
      */
-    public function getAmount() {
+    public function getAmount()
+    {
         return $this->amount;
     }
 
     /**
-     * @param float $amount
-     *
+     * @param  float  $amount
      * @return ScheduleData
      */
-    public function setAmount($amount) {
+    public function setAmount($amount)
+    {
         $this->amount = $amount;
 
         return $this;
@@ -161,16 +167,17 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return string
      */
-    public function getCurrency() {
+    public function getCurrency()
+    {
         return $this->currency;
     }
 
     /**
-     * @param string $currency
-     *
+     * @param  string  $currency
      * @return ScheduleData
      */
-    public function setCurrency($currency) {
+    public function setCurrency($currency)
+    {
         $this->currency = $currency;
 
         return $this;
@@ -179,26 +186,29 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return null|\DateTime
      */
-    public function getStartDateTime() {
+    public function getStartDateTime()
+    {
         return $this->startDateTime;
     }
 
     /**
-     * @param string|null $format
+     * @param  string|null  $format
      * @return string|null
      */
-    public function getStartDateTimeFormatted($format = null) {
+    public function getStartDateTimeFormatted($format = null)
+    {
         return $this->startDateTime ? $this->startDateTime->format($format ? $format : 'Y-m-d H:i:s T') : null;
     }
 
     /**
      * @param \DateTime|string
-     *
      * @return ScheduleData
+     *
      * @throws \Exception
      */
-    public function setStartDateTime($startDateTime) {
-        if (!empty($startDateTime) && is_string($startDateTime)) {
+    public function setStartDateTime($startDateTime)
+    {
+        if (! empty($startDateTime) && is_string($startDateTime)) {
             $startDateTime = new \DateTime($startDateTime);
         }
         $this->startDateTime = $startDateTime;
@@ -209,7 +219,8 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return null|\DateTime
      */
-    public function getContinueDateTime() {
+    public function getContinueDateTime()
+    {
         return $this->continueDateTime;
     }
 
@@ -217,16 +228,17 @@ class ScheduleData implements AmountableInterface {
      * @param string|null
      * @return string|null
      */
-    public function getContinueDateTimeFormatted($format = null) {
+    public function getContinueDateTimeFormatted($format = null)
+    {
         return $this->continueDateTime ? $this->continueDateTime->format($format ? $format : 'Y-m-d H:i:s T') : null;
     }
 
     /**
      * @param null|\DateTime
-     *
      * @return ScheduleData
      */
-    public function setContinueDateTime($continueDateTime) {
+    public function setContinueDateTime($continueDateTime)
+    {
         $this->continueDateTime = $continueDateTime;
 
         return $this;
@@ -235,16 +247,17 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return int
      */
-    public function getPeriodLength() {
+    public function getPeriodLength()
+    {
         return $this->periodLength;
     }
 
     /**
-     * @param int $periodLength
-     *
+     * @param  int  $periodLength
      * @return ScheduleData
      */
-    public function setPeriodLength($periodLength) {
+    public function setPeriodLength($periodLength)
+    {
         $this->periodLength = $periodLength;
 
         return $this;
@@ -253,16 +266,17 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return string
      */
-    public function getPeriodUnit() {
+    public function getPeriodUnit()
+    {
         return $this->periodUnit;
     }
 
     /**
-     * @param string $periodUnit
-     *
+     * @param  string  $periodUnit
      * @return ScheduleData
      */
-    public function setPeriodUnit($periodUnit) {
+    public function setPeriodUnit($periodUnit)
+    {
         $this->periodUnit = $periodUnit;
 
         return $this;
@@ -271,18 +285,19 @@ class ScheduleData implements AmountableInterface {
     /**
      * @return string
      */
-    public function getMerchantMetaData() {
+    public function getMerchantMetaData()
+    {
         return $this->merchantMetaData;
     }
 
     /**
-     * @param string $merchantMetaData
+     * @param  string  $merchantMetaData
      * @return ScheduleData
      */
-    public function setMerchantMetaData($merchantMetaData) {
+    public function setMerchantMetaData($merchantMetaData)
+    {
         $this->merchantMetaData = $merchantMetaData;
+
         return $this;
     }
-    
-    
 }

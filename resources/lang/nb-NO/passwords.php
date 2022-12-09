@@ -17,6 +17,6 @@ return [
     'sent' => 'Vi har sendt deg en lenke på e-post, som du kan klikke på for å endre passord!',
     'throttled' => 'Vennligst vent før du prøver igjen.',
     'token' => 'Nullstillingskode for passord er ugyldig.',
-    'user' => "Vi finner ingen bruker med denne e-postadressen.",
+    'user' => 'Vi finner ingen bruker med denne e-postadressen.',
 
 ];

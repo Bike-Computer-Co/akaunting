@@ -72,6 +72,8 @@ mix
     .js('resources/assets/js/views/employees.js', 'public/js/employees.min.js')
     .js('resources/assets/js/views/salaries.js', 'public/js/salaries.min.js')
 
+    .js('resources/assets/js/views/billing.js', 'public/js/billing.min.js')
+
     // Inertia
     .js('resources/inertia/app.js', 'public/inertia/js')
     .sass('resources/inertia/scss/app.scss', 'public/inertia/css')

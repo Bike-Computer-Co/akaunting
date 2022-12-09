@@ -11,7 +11,9 @@ abstract class Index extends Component
     use Documents, ViewComponents;
 
     public const OBJECT_TYPE = 'contact';
+
     public const DEFAULT_TYPE = 'customer';
+
     public const DEFAULT_PLURAL_TYPE = 'customers';
 
     /* -- Main Start -- */
@@ -176,7 +178,7 @@ abstract class Index extends Component
         bool $checkPermissionCreate = true,
         bool $hideCreate = false, bool $hideImport = false, bool $hideExport = false,
         string $createRoute = '', string $importRoute = '', array $importRouteParameters = [], string $exportRoute = '',
-        bool $hideEmptyPage = false, bool $hideSummary = false,  $summaryItems = [], bool $hideSearchString = false, bool $hideBulkAction = false,
+        bool $hideEmptyPage = false, bool $hideSummary = false, $summaryItems = [], bool $hideSearchString = false, bool $hideBulkAction = false,
         string $searchStringModel = '', string $bulkActionClass = '', array $bulkActions = [], array $bulkActionRouteParameters = [], string $searchRoute = '',
         string $classBulkAction = '',
         bool $showPicture = false, bool $hideName = false, bool $hideTaxNumber = false, string $classNameAndTaxNumber = '', string $textName = '', string $textTaxNumber = '',
@@ -273,7 +275,7 @@ abstract class Index extends Component
 
         $route = $this->getIndexRoute($type, null);
 
-        $document_type = config('type.contact.' . $type . '.document_type', 'invoice');
+        $document_type = config('type.contact.'.$type.'.document_type', 'invoice');
 
         $totals = $this->getTotalsForFutureDocuments($document_type);
 
@@ -281,8 +283,8 @@ abstract class Index extends Component
 
         foreach ($totals as $key => $total) {
             $items[] = [
-                'title'  => ($key == 'overdue') ? trans('general.overdue') : trans('documents.statuses.' . $key),
-                'href'   => route($route, ['search' => 'status:' . $key]),
+                'title' => ($key == 'overdue') ? trans('general.overdue') : trans('documents.statuses.'.$key),
+                'href' => route($route, ['search' => 'status:'.$key]),
                 'amount' => money($total, setting('default.currency'), true),
             ];
         }
@@ -473,7 +475,7 @@ abstract class Index extends Component
 
     protected function getRouteButtonShow($type, $routeButtonShow)
     {
-        if (!empty($routeButtonShow)) {
+        if (! empty($routeButtonShow)) {
             return $routeButtonShow;
         }
 
@@ -482,7 +484,7 @@ abstract class Index extends Component
 
         $route = $this->getRouteFromConfig($type, 'show', $parameter);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 

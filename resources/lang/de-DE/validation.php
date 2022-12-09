@@ -139,9 +139,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'eigene Nachricht',
         ],
-        'invalid_currency'      => 'Das :attribute Kürzel ist ungültig.',
-        'invalid_amount'        => 'Die Menge von :attribute ist ungültig.',
-        'invalid_extension'     => 'Die Dateiendung ist ungültig.',
+        'invalid_currency' => 'Das :attribute Kürzel ist ungültig.',
+        'invalid_amount' => 'Die Menge von :attribute ist ungültig.',
+        'invalid_extension' => 'Die Dateiendung ist ungültig.',
     ],
 
     /*

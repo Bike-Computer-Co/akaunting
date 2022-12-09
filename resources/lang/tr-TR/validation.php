@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'Özel Mesaj',
         ],
-        'invalid_currency'      => ':attribute geçersiz bir döviz kuru kodu.',
-        'invalid_amount'        => 'Tutar :attribute geçersiz.',
-        'invalid_extension'     => 'Dosyanın uzantısı geçersiz.',
+        'invalid_currency' => ':attribute geçersiz bir döviz kuru kodu.',
+        'invalid_amount' => 'Tutar :attribute geçersiz.',
+        'invalid_extension' => 'Dosyanın uzantısı geçersiz.',
     ],
 
     /*

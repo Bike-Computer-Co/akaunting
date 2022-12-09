@@ -2,14 +2,10 @@
 
 namespace PaymentGatewayJson\Client\Options;
 
-/**
- *
- * @package PaymentGatewayJson\Client\Options
- */
-class OptionsResult {
-
+class OptionsResult
+{
     /**
-     * @var boolean
+     * @var bool
      */
     protected $success;
 
@@ -32,13 +28,13 @@ class OptionsResult {
     }
 
     /**
-     * @param bool $success
-     *
+     * @param  bool  $success
      * @return OptionsResult
      */
     public function setSuccess($success)
     {
         $this->success = $success;
+
         return $this;
     }
 
@@ -51,13 +47,13 @@ class OptionsResult {
     }
 
     /**
-     * @param array $options
-     *
+     * @param  array  $options
      * @return OptionsResult
      */
     public function setOptions($options)
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -70,14 +66,13 @@ class OptionsResult {
     }
 
     /**
-     * @param string $errorMessage
-     *
+     * @param  string  $errorMessage
      * @return OptionsResult
      */
     public function setErrorMessage($errorMessage)
     {
         $this->errorMessage = $errorMessage;
+
         return $this;
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\ViewComposers;
 
-use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class DocumentRecurring
 {
@@ -31,7 +31,7 @@ class DocumentRecurring
         }
 
         $payment_terms = [
-            '0'  => trans('settings.invoice.due_receipt'),
+            '0' => trans('settings.invoice.due_receipt'),
             '15' => trans('settings.invoice.due_days', ['days' => 15]),
             '30' => trans('settings.invoice.due_days', ['days' => 30]),
             '45' => trans('settings.invoice.due_days', ['days' => 45]),

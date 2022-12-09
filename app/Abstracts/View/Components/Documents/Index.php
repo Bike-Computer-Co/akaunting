@@ -2,21 +2,20 @@
 
 namespace App\Abstracts\View\Components\Documents;
 
-use Akaunting\Module\Module;
 use App\Abstracts\View\Component;
-use App\Events\Common\BulkActionsAdding;
 use App\Traits\Documents;
 use App\Traits\Modules;
 use App\Traits\ViewComponents;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 
 abstract class Index extends Component
 {
     use Documents, Modules, ViewComponents;
 
     public const OBJECT_TYPE = 'document';
+
     public const DEFAULT_TYPE = 'invoice';
+
     public const DEFAULT_PLURAL_TYPE = 'invoices';
 
     /* -- Main Start -- */
@@ -347,7 +346,7 @@ abstract class Index extends Component
             return $emptyPageButtons;
         }
 
-        $prefix = config('type.' . static::OBJECT_TYPE . '.' . $type . '.route.prefix', 'invoices');
+        $prefix = config('type.'.static::OBJECT_TYPE.'.'.$type.'.route.prefix', 'invoices');
 
         $buttons = [];
 
@@ -355,11 +354,11 @@ abstract class Index extends Component
             $route = $this->getRouteFromConfig($type, 'create');
 
             $buttons[] = [
-                'permission'    => $this->permissionCreate,
-                'url'           => route($this->createRoute),
-                'text'          => trans('general.title.new', ['type' => trans_choice($this->textPage ?? 'general.' . $prefix, 1)]),
-                'description'   => trans('general.empty.actions.new', ['type' => strtolower(trans_choice($this->textPage ?? 'general.' . $prefix, 1))]),
-                'active_badge'  => true,
+                'permission' => $this->permissionCreate,
+                'url' => route($this->createRoute),
+                'text' => trans('general.title.new', ['type' => trans_choice($this->textPage ?? 'general.'.$prefix, 1)]),
+                'description' => trans('general.empty.actions.new', ['type' => strtolower(trans_choice($this->textPage ?? 'general.'.$prefix, 1))]),
+                'active_badge' => true,
             ];
         }
 
@@ -367,10 +366,10 @@ abstract class Index extends Component
             $route = $this->getRouteFromConfig($type, 'import');
 
             $buttons[] = [
-                'permission'    => $this->permissionCreate,
-                'url'           => route($this->importRoute, $this->importRouteParameters),
-                'text'          => trans('import.title', ['type' => trans_choice($this->textPage ?? 'general.' . $prefix, 1)]),
-                'description'   => trans('general.empty.actions.import', ['type' => strtolower(trans_choice($this->textPage ?? 'general.' . $prefix, 1))]),
+                'permission' => $this->permissionCreate,
+                'url' => route($this->importRoute, $this->importRouteParameters),
+                'text' => trans('import.title', ['type' => trans_choice($this->textPage ?? 'general.'.$prefix, 1)]),
+                'description' => trans('general.empty.actions.import', ['type' => strtolower(trans_choice($this->textPage ?? 'general.'.$prefix, 1))]),
             ];
         }
 
@@ -390,13 +389,13 @@ abstract class Index extends Component
         $items = [];
 
         foreach ($totals as $key => $total) {
-            $title = ($key == 'overdue') ? trans('general.overdue') : trans('documents.statuses.' . $key);
-            $href = route($route, ['search' => 'status:' . $key]);
+            $title = ($key == 'overdue') ? trans('general.overdue') : trans('documents.statuses.'.$key);
+            $href = route($route, ['search' => 'status:'.$key]);
             $amount = money($total, setting('default.currency'), true);
 
             $items[] = [
-                'title'  => $title,
-                'href'   => $href,
+                'title' => $title,
+                'href' => $href,
                 'amount' => $amount,
             ];
         }
@@ -410,7 +409,7 @@ abstract class Index extends Component
             return $textTabDocument;
         }
 
-        $default_key = config('type.' . static::OBJECT_TYPE . '.' . $type . '.translation.prefix');
+        $default_key = config('type.'.static::OBJECT_TYPE.'.'.$type.'.translation.prefix');
 
         $translation = $this->getTextFromConfig($type, 'tab_document', $default_key);
 
@@ -552,7 +551,7 @@ abstract class Index extends Component
             return $textContactName;
         }
 
-        $default_key = Str::plural(config('type.' . static::OBJECT_TYPE . '.' . $type . '.contact_type'), 2);
+        $default_key = Str::plural(config('type.'.static::OBJECT_TYPE.'.'.$type.'.contact_type'), 2);
 
         $translation = $this->getTextFromConfig($type, 'contact_name', $default_key, 'trans_choice');
 
@@ -569,20 +568,19 @@ abstract class Index extends Component
             return $showContactRoute;
         }
 
-
         if (! empty($showRoute)) {
             return $showRoute;
         }
 
         $route = $this->getRouteFromConfig($type, 'contact.show', 1);
 
-        if (!empty($route)) {
+        if (! empty($route)) {
             return $route;
         }
 
-        $default_key = Str::plural(config('type.' . static::OBJECT_TYPE . '.' . $type . '.contact_type'), 2);
+        $default_key = Str::plural(config('type.'.static::OBJECT_TYPE.'.'.$type.'.contact_type'), 2);
 
-        return $default_key . '.show';
+        return $default_key.'.show';
     }
 
     protected function getTextDocumentNumber($type, $textDocumentNumber)
@@ -627,13 +625,13 @@ abstract class Index extends Component
             return $translation;
         }
 
-        $alias = config('type.' . static::OBJECT_TYPE . '.' . $type . '.alias');
+        $alias = config('type.'.static::OBJECT_TYPE.'.'.$type.'.alias');
 
         if (! empty($alias)) {
-            $translation = $alias . '::' . config('type.' . static::OBJECT_TYPE . '.' . $type . '.translation.prefix') . '.statuses';
+            $translation = $alias.'::'.config('type.'.static::OBJECT_TYPE.'.'.$type.'.translation.prefix').'.statuses';
 
             if (is_array(trans($translation))) {
-                return $translation . '.';
+                return $translation.'.';
             }
         }
 

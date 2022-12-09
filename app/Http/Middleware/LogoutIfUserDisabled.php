@@ -17,7 +17,7 @@ class LogoutIfUserDisabled
     {
         $user = user();
 
-        if (!$user || $user->enabled) {
+        if (! $user || $user->enabled) {
             return $next($request);
         }
 

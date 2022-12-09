@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Modals;
 
 use App\Abstracts\Http\Controller;
+use App\Http\Requests\Common\CustomMail as Request;
+use App\Jobs\Document\SendDocumentAsCustomMail;
 use App\Models\Document\Document;
 use App\Notifications\Sale\Invoice as Notification;
-use App\Jobs\Document\SendDocumentAsCustomMail;
-use App\Http\Requests\Common\CustomMail as Request;
 
 class InvoiceEmails extends Controller
 {
@@ -26,7 +26,6 @@ class InvoiceEmails extends Controller
      * Show the form for creating a new resource.
      *
      * @param  Document  $invoice
-     *
      * @return Response
      */
     public function create(Document $invoice)
@@ -52,17 +51,16 @@ class InvoiceEmails extends Controller
                     'confirm' => [
                         'text' => trans('general.send'),
                         'class' => 'disabled:bg-blue-100',
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
@@ -72,13 +70,13 @@ class InvoiceEmails extends Controller
         if ($response['success']) {
             $invoice = Document::find($request->get('document_id'));
 
-            $route = config('type.document.' . $invoice->type . '.route.prefix');
+            $route = config('type.document.'.$invoice->type.'.route.prefix');
 
-            if ($alias = config('type.document.' . $invoice->type . '.alias')) {
-                $route = $alias . '.' . $route;
+            if ($alias = config('type.document.'.$invoice->type.'.alias')) {
+                $route = $alias.'.'.$route;
             }
 
-            $response['redirect'] = route($route . '.show', $invoice->id);
+            $response['redirect'] = route($route.'.show', $invoice->id);
 
             $message = trans('documents.messages.email_sent', ['type' => trans_choice('general.invoices', 1)]);
 

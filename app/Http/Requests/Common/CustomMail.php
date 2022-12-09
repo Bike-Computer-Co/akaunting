@@ -14,9 +14,9 @@ class CustomMail extends FormRequest
     public function rules()
     {
         return [
-            'to'        => 'required|email',
-            'subject'   => 'required|string',
-            'body'      => 'required|string',
+            'to' => 'required|email',
+            'subject' => 'required|string',
+            'body' => 'required|string',
         ];
     }
 }

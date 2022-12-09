@@ -1,13 +1,12 @@
 <?php
 
-
 namespace PaymentGatewayJson\Client\Transaction\Base;
 
 /**
  * Interface AmountableInterface
- * @package PaymentGatewayJson\Client\Transaction
  */
-interface AmountableInterface {
+interface AmountableInterface
+{
     /**
      * @return float
      */
@@ -16,7 +15,7 @@ interface AmountableInterface {
     /**
      * the amount you want to charge/refund etc.
      *
-     * @param float $amount
+     * @param  float  $amount
      */
     public function setAmount($amount);
 
@@ -26,8 +25,7 @@ interface AmountableInterface {
     public function getCurrency();
 
     /**
-     * @param string $currency
+     * @param  string  $currency
      */
     public function setCurrency($currency);
-
 }

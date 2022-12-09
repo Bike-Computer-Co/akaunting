@@ -22,8 +22,7 @@ class Settings extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
-     *
+     * @param    $request
      * @return Response
      */
     public function store(Request $request)

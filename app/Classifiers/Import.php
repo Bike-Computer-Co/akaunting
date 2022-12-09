@@ -2,8 +2,8 @@
 
 namespace App\Classifiers;
 
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class Import implements Classifier
 {

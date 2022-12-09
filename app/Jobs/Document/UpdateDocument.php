@@ -3,11 +3,10 @@
 namespace App\Jobs\Document;
 
 use App\Abstracts\Job;
-use App\Events\Document\PaidAmountCalculated;
 use App\Events\Document\DocumentUpdated;
 use App\Events\Document\DocumentUpdating;
+use App\Events\Document\PaidAmountCalculated;
 use App\Interfaces\Job\ShouldUpdate;
-use App\Jobs\Document\CreateDocumentItemsAndTotals;
 use App\Models\Document\Document;
 use App\Traits\Relationships;
 use Illuminate\Support\Str;
@@ -34,7 +33,7 @@ class UpdateDocument extends Job implements ShouldUpdate
 
                     $this->model->attachMedia($media, 'attachment');
                 }
-            } elseif (!$this->request->file('attachment') && $this->model->attachment) {
+            } elseif (! $this->request->file('attachment') && $this->model->attachment) {
                 $this->deleteMediaModel($this->model, 'attachment', $this->request);
             }
 

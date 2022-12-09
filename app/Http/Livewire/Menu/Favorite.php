@@ -19,9 +19,9 @@ class Favorite extends Component
 
     public function render(): View
     {
-        $favorites = setting('favorites.menu.' . user()->id, []);
+        $favorites = setting('favorites.menu.'.user()->id, []);
 
-        if (!empty($favorites)) {
+        if (! empty($favorites)) {
             $favorites = json_decode($favorites, true);
 
             foreach ($favorites as $favorite) {
@@ -43,13 +43,13 @@ class Favorite extends Component
         } else {
             $this->addFavorite();
         }
-    }   
+    }
 
     public function addFavorite()
     {
-        $favorites = setting('favorites.menu.' . user()->id, []);
+        $favorites = setting('favorites.menu.'.user()->id, []);
 
-        if (!empty($favorites)) {
+        if (! empty($favorites)) {
             $favorites = json_decode($favorites, true);
         }
 
@@ -68,16 +68,16 @@ class Favorite extends Component
 
         $this->favorited = true;
 
-        setting(['favorites.menu.' . user()->id => json_encode($favorites)])->save();
+        setting(['favorites.menu.'.user()->id => json_encode($favorites)])->save();
 
         $this->emit('addedFavorite');
     }
 
     public function removeFavorite()
     {
-        $favorites = setting('favorites.menu.' . user()->id, []);
+        $favorites = setting('favorites.menu.'.user()->id, []);
 
-        if (!empty($favorites)) {
+        if (! empty($favorites)) {
             $favorites = json_decode($favorites, true);
         }
 
@@ -92,7 +92,7 @@ class Favorite extends Component
             break;
         }
 
-        setting(['favorites.menu.' . user()->id => json_encode($favorites)])->save();
+        setting(['favorites.menu.'.user()->id => json_encode($favorites)])->save();
 
         $this->emit('removedFavorite');
     }

@@ -19,7 +19,7 @@ class Bills extends Export implements WithColumnFormatting
         $model->category_name = $model->category->name;
         $model->bill_number = $model->document_number;
         $model->billed_at = $model->issued_at;
-        $model->contact_country = ($model->contact_country) ? trans('countries.' . $model->contact_country) : null;
+        $model->contact_country = ($model->contact_country) ? trans('countries.'.$model->contact_country) : null;
 
         return parent::map($model);
     }
