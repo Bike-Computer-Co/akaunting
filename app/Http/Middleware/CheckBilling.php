@@ -28,7 +28,7 @@ class CheckBilling
             return $next($request);
         }
 
-        flash('Немате платена претплата. Платете ја вашата претплата <a href="'.route('billing.redirect').'">овде</a>')->error()->important();
+        flash('Немате платена претплата. Платете ја вашата претплата <a style="text-decoration: underline;" href="'.route('billing.redirect').'">овде.</a>')->error()->important();
         if ($request->expectsJson()) {
             return response()->json([
                 'redirect' => route('billing.subscription'),
