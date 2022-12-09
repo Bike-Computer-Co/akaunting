@@ -7,13 +7,6 @@ use Illuminate\Http\Request;
 
 class CheckBilling
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse) $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
     public function handle(Request $request, Closure $next)
     {
 //        //invite acountant
@@ -35,14 +28,13 @@ class CheckBilling
             return $next($request);
         }
 
-        flash('Немате платена претплата')->error()->important();
+        flash('Немате платена претплата. Платете ја вашата претплата <a href="'.route('billing.redirect').'">овде</a>')->error()->important();
         if ($request->expectsJson()) {
             return response()->json([
-                'redirect' => route('billing.subscription')
+                'redirect' => route('billing.subscription'),
             ]);
         } else {
             return redirect()->route('billing.subscription');
         }
-
     }
 }

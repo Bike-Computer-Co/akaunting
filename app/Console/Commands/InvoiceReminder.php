@@ -57,7 +57,6 @@ class InvoiceReminder extends Command
             // Set company
             $company->makeCurrent();
 
-
             // Don't send reminders if disabled
             if (! setting('schedule.send_invoice_reminder')) {
                 $this->info('Invoice reminders disabled by '.$company->name.'.');

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Abstracts\Http\Controller;
-use App\Models\StripePlan;
 use Illuminate\Http\Request;
 
 class BillingController extends Controller
@@ -19,28 +18,28 @@ class BillingController extends Controller
     public function subscription(Request $request)
     {
         $checkout = $request->get('checkout');
-        if ($checkout == 'success'){
+        if ($checkout == 'success') {
             flash('Успешно се претплативте')->success()->important();
         }
-        if($checkout == 'error'){
+        if ($checkout == 'error') {
             flash('Неуспешна претплата')->error();
         }
+
         return view('billing.subscription', [
             'stripeKey' => config('cashier.key'),
-            'checkout'=> $request->get('checkout')
+            'checkout' => $request->get('checkout'),
         ]);
     }
-
 
     public function subscribe(Request $request)
     {
         abort_if(company()->subscribed(), 400, 'Already subscribed');
-        abort_if(!company()->stripe_plan_id, 400, 'Doesnt have');
+        abort_if(! company()->stripe_plan_id, 400, 'Doesnt have');
         $plan = company()->stripe_plan;
         $checkout = company()->newSubscription('default', $plan->stripe_id)->checkout([
-                'success_url' => route('billing.subscription').'?checkout=success',
-                'cancel_url' => route('billing.subscription').'?checkout=cancelled',
-            ]);
+            'success_url' => route('billing.subscription').'?checkout=success',
+            'cancel_url' => route('billing.subscription').'?checkout=cancelled',
+        ]);
 
         return response()->json([
             'session_id' => $checkout->id,

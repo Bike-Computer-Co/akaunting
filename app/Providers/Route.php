@@ -267,7 +267,6 @@ class Route extends Provider
     }
 
     /**
-     *
      * @return void
      */
     protected function mapBillingRoutes()
@@ -277,6 +276,7 @@ class Route extends Provider
             ->namespace($this->namespace)
             ->group(base_path('routes/billing.php'));
     }
+
     /**
      * Define the "preview" routes for the application.
      *

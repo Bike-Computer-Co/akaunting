@@ -57,7 +57,6 @@ class BillReminder extends Command
             // Set company
             $company->makeCurrent();
 
-
             // Don't send reminders if disabled
             if (! setting('schedule.send_bill_reminder')) {
                 $this->info('Bill reminders disabled by '.$company->name.'.');

@@ -19,12 +19,10 @@ class CompanyController extends BaseController
             'stripe_plan_id' => ['required', 'exists:stripe_plans,id'],
         ]);
 
-
-        if ($company->stripe_id !== $validated['stripe_plan_id']){
+        if ($company->stripe_id !== $validated['stripe_plan_id']) {
             $stripePlan = StripePlan::find($validated['stripe_plan_id']);
-            if ($company->subscribed()){
+            if ($company->subscribed()) {
                 $company->subscription()->swap($stripePlan->stripe_id);
-
             }
         }
         $company->fill($validated);
