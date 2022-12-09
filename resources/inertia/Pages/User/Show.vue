@@ -61,7 +61,7 @@
                 <h5>Информации за компании на овој корисник</h5>
                 <div class="table-responsive mb-4">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="text-nowrap">
+                        <h6 v-if="company.settings.find(a => a.key === 'company.name')" class="text-nowrap">
                             Компанија: {{ company.settings.find(a => a.key === 'company.name').value }}
                         </h6>
                         <button data-bs-toggle="modal" data-bs-target="#editCompanyModal"
@@ -81,7 +81,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <tr v-if="company.settings.find(a => a.key === 'company.name')">
                             <th>
                                 Име на компанија:
                             </th>
@@ -89,7 +89,7 @@
                                 {{ company.settings.find(a => a.key === 'company.name').value }}
                             </td>
                         </tr>
-                        <tr>
+                        <tr v-if="company.settings.find(a => a.key === 'company.country')">
                             <th>
                                 Држава на компанија:
                             </th>
@@ -97,7 +97,7 @@
                                 {{ company.settings.find(a => a.key === 'company.country').value }}
                             </td>
                         </tr>
-                        <tr>
+                        <tr v-if="company.settings.find(a => a.key === 'company.email')">
                             <th>
                                 Е-пошта на компанија:
                             </th>
@@ -105,7 +105,7 @@
                                 {{ company.settings.find(a => a.key === 'company.email').value }}
                             </td>
                         </tr>
-                        <tr>
+                        <tr v-if="company.settings.find(a => a.key === 'default.currency')">
                             <th>
                                 Валута на компанија:
                             </th>
