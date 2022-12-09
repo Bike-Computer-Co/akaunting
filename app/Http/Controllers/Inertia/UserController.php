@@ -29,7 +29,7 @@ class UserController extends BaseController
     public function show(User $user): Response
     {
         $stripePlans = StripePlan::all();
-        $user->loadMissing('companies', 'companies.settings');
+        $user->loadMissing('companies', 'companies.settings', 'companies.stripe_plan');
 
         return Inertia::render('User/Show', compact('user', 'stripePlans'));
     }

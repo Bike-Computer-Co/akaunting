@@ -131,6 +131,15 @@
                         </tr>
                         <tr>
                             <th>
+                                Stripe план:
+                            </th>
+                            <td>
+                                <span v-if="company.stripe_plan">{{ company.stripe_plan.name }}</span>
+                                <span v-else>Сеуште нема пакет</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
                                 Коментар од администратор:
                             </th>
                             <td>
