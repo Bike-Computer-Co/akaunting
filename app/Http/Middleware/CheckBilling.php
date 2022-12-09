@@ -24,7 +24,7 @@ class CheckBilling
 //            }
 //        }
 
-        if (company() && company()->subscribed()) {
+        if (company() && company()->stripe_plan()->exists() && company()->subscribed()) {
             return $next($request);
         }
 
