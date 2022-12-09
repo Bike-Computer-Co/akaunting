@@ -23,8 +23,11 @@ class CheckBilling
 //                return redirect()->route('billing.subscription');
 //            }
 //        }
+        if (!company()->stripe_plan()->exists()) {
+            return $next($request);
+        }
 
-        if (company() && company()->stripe_plan()->exists() && company()->subscribed()) {
+        if (company() && company()->subscribed()) {
             return $next($request);
         }
 
