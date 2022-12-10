@@ -10,26 +10,29 @@
         <div class="grid mt-10">
             @if(!company()->stripe_plan_id)
                 Нема доделено план од администратор.
-            @elseif(company()->subscribed())
-                <div class="mb-2">Активна претплата</div>
-
-                <x-form method="PATCH" url="/{{company_id()}}/billing/cancel">
-                    <x-button
-                        type="submit"
-                        class=" mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700"
-                        override="class">
-                        Откажи
-                    </x-button>
-                </x-form>
             @elseif(company()->subscription() && company()->subscription()->onGracePeriod())
                 <div class="mb-2">Активирај претплата повторно</div>
 
-                <x-form method="PATCH" url="/{{company_id()}}/billing/resume">
+                <x-form id="resume" method="PATCH" url="/{{company_id()}}/billing/resume">
                     <x-button
                         type="submit"
                         class=" mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700"
-                        override="class">
+                        override="class"
+                        @submit="onResume"
+                    >
                         Претплати се
+                    </x-button>
+                </x-form>
+            @elseif(company()->subscribed())
+                <div class="mb-2">Активна претплата</div>
+                <x-form id="cancel" method="PATCH" url="/{{company_id()}}/billing/cancel">
+                    <x-button
+                        type="submit"
+                        class=" mb-2 px-3 py-1.5 rounded-xl text-sm text-white font-medium leading-6 bg-blue hover:bg-blue-700"
+                        override="class"
+                        @submit="onCancel"
+                    >
+                        Откажи
                     </x-button>
                 </x-form>
             @else
