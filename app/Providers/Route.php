@@ -203,6 +203,7 @@ class Route extends Provider
     public function mapInertiaRoutes()
     {
         Facade::prefix('super')
+            ->name('super.')
             ->middleware('inertia')
             ->group(base_path('routes/inertia.php'));
     }

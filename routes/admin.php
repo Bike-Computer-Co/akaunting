@@ -50,7 +50,8 @@ Route::group(['prefix' => 'common'], function () {
 });
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::get('logout', 'Auth\Login@destroy')->name('logout');
+    Route::withoutMiddleware('check_billing')
+    ->get('logout', 'Auth\Login@destroy')->name('logout');
 
     Route::get('users/autocomplete', 'Auth\Users@autocomplete')->name('users.autocomplete');
     Route::get('users/{user}/read-bills', 'Auth\Users@readUpcomingBills')->name('users.read.bills');
