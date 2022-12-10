@@ -21,7 +21,7 @@
                         Откажи
                     </x-button>
                 </x-form>
-            @elseif(company()->subscription()->onGracePeriod())
+            @elseif(company()->subscription() && company()->subscription()->onGracePeriod())
                 <div class="mb-2">Активирај претплата повторно</div>
 
                 <x-form method="PATCH" url="/{{company_id()}}/billing/resume">
