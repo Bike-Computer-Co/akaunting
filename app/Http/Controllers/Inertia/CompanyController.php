@@ -21,6 +21,7 @@ class CompanyController extends BaseController
 
         if ($validated['stripe_plan_id'] == null) {
             $company->stripe_plan_id = null;
+            $company->subscription()->cancel();
         }
 
         if ($company->stripe_id !== $validated['stripe_plan_id']) {
