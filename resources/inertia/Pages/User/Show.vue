@@ -135,7 +135,7 @@
                             </th>
                             <td>
                                 <span v-if="company.stripe_plan">{{ company.stripe_plan.name }}</span>
-                                <span v-else>Сеуште нема пакет</span>
+                                <span v-else>Бесплатно</span>
                             </td>
                         </tr>
                         <tr>

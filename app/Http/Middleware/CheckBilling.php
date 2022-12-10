@@ -24,7 +24,7 @@ class CheckBilling
 //            }
 //        }
         //
-        if (!company() || !company()->stripe_plan_id) {
+        if (! company() || ! company()->stripe_plan_id) {
             return $next($request);
         }
 

@@ -7,4 +7,4 @@ use App\Http\Controllers\Inertia\UserController;
 Route::redirect('/', '/users');
 Route::resource('users', UserController::class)->only('index', 'create', 'store', 'show');
 Route::resource('companies', CompanyController::class)->only('update');
-Route::resource('stripe-plans', StripePlanController::class)->only('index', 'store');
+Route::resource('stripe-plans', StripePlanController::class)->only('index', 'store', 'destroy');

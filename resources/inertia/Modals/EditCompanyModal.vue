@@ -26,7 +26,7 @@
                         Внесете цени
                     </div>
                     <select v-model="form.stripe_plan_id" class="form-select form-select-lg mb-3">
-                        <option selected :value="null">Изберете Stripe пакет</option>
+                        <option selected :value="null">Бесплатно</option>
                         <option v-for="plan in stripePlans" :key="plan.id" :value="plan.id">
                             {{ plan.name }}
                         </option>

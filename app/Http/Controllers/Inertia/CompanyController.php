@@ -16,8 +16,12 @@ class CompanyController extends BaseController
             'accountant_price' => ['required', 'min:0', 'integer'],
             'lawyer_price' => ['required', 'min:0', 'integer'],
             'comment' => ['nullable'],
-            'stripe_plan_id' => ['required', 'exists:stripe_plans,id'],
+            'stripe_plan_id' => ['nullable', 'exists:stripe_plans,id'],
         ]);
+
+        if ($validated['stripe_plan_id'] == null) {
+            $company->stripe_plan_id = null;
+        }
 
         if ($company->stripe_id !== $validated['stripe_plan_id']) {
             $stripePlan = StripePlan::find($validated['stripe_plan_id']);

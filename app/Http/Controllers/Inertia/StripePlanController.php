@@ -29,4 +29,15 @@ class StripePlanController extends BaseController
 
         return back()->with('success', 'Успешно креиравте Stripe пакет');
     }
+
+    public function destroy(StripePlan $stripePlan): RedirectResponse
+    {
+        if ($stripePlan->companies()->exists()) {
+            return back()->with('error', 'Постојат компании претплатени на овој пакет');
+        }
+
+        $stripePlan->delete();
+
+        return back()->with('sucess', 'Успешно го избришавте овој пакет');
+    }
 }
