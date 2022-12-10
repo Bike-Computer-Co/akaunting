@@ -19,19 +19,25 @@ class CompanyController extends BaseController
             'stripe_plan_id' => ['nullable', 'exists:stripe_plans,id'],
         ]);
 
+        //detaching
         if ($validated['stripe_plan_id'] == null) {
             $company->stripe_plan_id = null;
-            $company->subscription()->cancel();
-        }
-
-        if ($company->stripe_id !== $validated['stripe_plan_id']) {
+            //We have attached plan, But maybe the client never Subscribed.
+            if ($company->subscribed()) {
+                $company->subscription()->cancel();
+            }
+        } //changing
+        else if ($company->stripe_id !== $validated['stripe_plan_id']) {
             $stripePlan = StripePlan::find($validated['stripe_plan_id']);
+            $company->stripe_plan()->associate($stripePlan);
+            //swapping only if client have Subscribed
             if ($company->subscribed()) {
                 $company->subscription()->swap($stripePlan->stripe_id);
             }
-        }
+        }//if its same nothing happens
+
+
         $company->fill($validated);
-        $company->stripe_plan()->associate($validated['stripe_plan_id']);
         $company->save();
 
         return back()->with('success', 'Успешно додадовте цени за сметководител и адвокат');
