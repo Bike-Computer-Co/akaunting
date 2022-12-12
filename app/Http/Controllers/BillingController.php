@@ -17,7 +17,7 @@ class BillingController extends Controller
 
     public function subscription(Request $request)
     {
-        abort_if(!company() || !company()->stripe_plan_id, 400, 'free package');
+        abort_if(! company() || ! company()->stripe_plan_id, 400, 'free package');
         $checkout = $request->get('checkout');
         if ($checkout == 'success') {
             flash('Успешно се претплативте')->success()->important();

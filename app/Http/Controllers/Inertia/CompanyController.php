@@ -7,6 +7,8 @@ use App\Models\StripePlan;
 use Barryvdh\Debugbar\Controllers\BaseController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class CompanyController extends BaseController
 {
@@ -27,7 +29,7 @@ class CompanyController extends BaseController
                 $company->subscription()->cancel();
             }
         } //changing
-        else if ($company->stripe_id !== $validated['stripe_plan_id']) {
+        elseif ($company->stripe_id !== $validated['stripe_plan_id']) {
             $stripePlan = StripePlan::find($validated['stripe_plan_id']);
             $company->stripe_plan()->associate($stripePlan);
             //swapping only if client have Subscribed
@@ -36,10 +38,18 @@ class CompanyController extends BaseController
             }
         }//if its same nothing happens
 
-
         $company->fill($validated);
         $company->save();
 
         return back()->with('success', 'Успешно додадовте цени за сметководител и адвокат');
+    }
+
+    public function index(): Response
+    {
+        $companies = Company::query()
+            ->with('settings', 'stripe_plan')
+            ->paginate(20);
+
+        return Inertia::render('Company/Index', compact('companies'));
     }
 }

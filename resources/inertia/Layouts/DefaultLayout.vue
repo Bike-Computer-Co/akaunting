@@ -135,6 +135,11 @@ export default {
                     link: 'super.users.index',
                 },
                 {
+                    name: 'Компании',
+                    icon: 'fa-building',
+                    link: 'super.companies.index',
+                },
+                {
                     name: 'Stripe планови',
                     icon: 'fa-money',
                     link: 'super.stripe-plans.index',
