@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Inertia;
 
 use App\Models\Common\Company;
 use App\Models\StripePlan;
-use Barryvdh\Debugbar\Controllers\BaseController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Inertia\Inertia;
 use Inertia\Response;
 

@@ -124,6 +124,8 @@ class Route extends Provider
 
         $this->mapInstallRoutes();
 
+        $this->mapInertiaRoutes();
+
         $this->mapApiRoutes();
 
         $this->mapApiPublicRoutes();
@@ -142,8 +144,6 @@ class Route extends Provider
         $this->mapPortalRoutes();
 
         $this->mapSignedRoutes();
-
-        $this->mapInertiaRoutes();
     }
 
     /**

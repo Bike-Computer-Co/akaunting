@@ -143,6 +143,11 @@ export default {
                     name: 'Stripe планови',
                     icon: 'fa-money',
                     link: 'super.stripe-plans.index',
+                },
+                {
+                    name: 'Вработени',
+                    icon: 'fa-users',
+                    link: 'super.employees.index',
                 }
             ],
         };
