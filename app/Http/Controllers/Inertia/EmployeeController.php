@@ -13,7 +13,7 @@ class EmployeeController extends BaseController
     {
         $employees = Employee::query()
             ->with('company')
-            ->latest('updated_at')
+            ->latest()
             ->paginate(20);
 
         return Inertia::render('Employee/Index', compact('employees'));
