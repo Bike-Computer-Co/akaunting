@@ -17,7 +17,7 @@ class BillingController extends Controller
 
     public function subscription(Request $request)
     {
-        abort_if(! company() || ! company()->stripe_plan_id, 400, 'free package');
+        abort_if(!company() || !company()->stripe_plan_id, 400, 'free package');
         $checkout = $request->get('checkout');
         if ($checkout == 'success') {
             flash('Успешно се претплативте')->success()->important();
@@ -26,20 +26,45 @@ class BillingController extends Controller
             flash('Неуспешна претплата')->error();
         }
 
+        $planPrice = company()->stripe_plan->name;
+
+        $features = [
+            [
+                "Персонализирани фактури",
+                "Трошоци",
+                "Обврски",
+                "Трансакции",
+                "iOS и Android пристап",
+                "Финансиски извештаи",
+                "Потсетници за плаќање",
+            ],
+            [
+                "Повторливи Фактури",
+                "Поканете Сметководител",
+                "Управување со платен список",
+                "Team Flex Payments (Наскоро)",
+                "Уплата со кредитна картичка",
+                "Дигитално потпишување",
+                "Консултации со адвокат",
+            ],
+        ];
+
         return view('billing.subscription', [
             'stripeKey' => config('cashier.key'),
             'checkout' => $request->get('checkout'),
+            'features' => $features,
+            'planPrice' => $planPrice
         ]);
     }
 
     public function subscribe(Request $request)
     {
         abort_if(company()->subscribed(), 400, 'Already subscribed');
-        abort_if(! company()->stripe_plan_id, 400, 'Doesnt have');
+        abort_if(!company()->stripe_plan_id, 400, 'Doesnt have');
         $plan = company()->stripe_plan;
         $checkout = company()->newSubscription('default', $plan->stripe_id)->checkout([
-            'success_url' => route('billing.subscription').'?checkout=success',
-            'cancel_url' => route('billing.subscription').'?checkout=cancelled',
+            'success_url' => route('billing.subscription') . '?checkout=success',
+            'cancel_url' => route('billing.subscription') . '?checkout=cancelled',
         ]);
 
         return response()->json([
@@ -60,7 +85,7 @@ class BillingController extends Controller
 
     public function cancel(Request $request)
     {
-        abort_if(! company()->subscribed(), 400);
+        abort_if(!company()->subscribed(), 400);
         company()->subscription()->cancel();
 
         return back();
@@ -68,7 +93,7 @@ class BillingController extends Controller
 
     public function resume(Request $request)
     {
-        abort_if(! company()->subscription()->onGracePeriod(), 400);
+        abort_if(!company()->subscription()->onGracePeriod(), 400);
         company()->subscription()->resume();
 
         return back();
