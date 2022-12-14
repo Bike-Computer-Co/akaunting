@@ -61,6 +61,30 @@
 
                         <x-form.group.number name="salary" label="{{ trans('general.salary') }}" not-required />
 
+                        @if($type->value == \App\Enums\EmploymentHistoryType::SIGN_UP->value)
+                            <x-form.group.date
+                                name="sign_out_employment_history"
+                                label="{{ trans('general.sign_out_employment_history') }}"
+                                icon="calendar_today"
+                                show-date-format="{{ company_date_format() }}"
+                                date-format="Y-m-d"
+                                autocomplete="off"
+                                change="setSignOutEmploymentHistory"
+                                not-required
+                            />
+                        @else
+                            <x-form.group.date
+                                name="sign_up_employment_history"
+                                label="{{ trans('general.sign_up_employment_history') }}"
+                                icon="calendar_today"
+                                show-date-format="{{ company_date_format() }}"
+                                date-format="Y-m-d"
+                                autocomplete="off"
+                                change="setSignUpEmploymentHistory"
+                                not-required
+                            />
+                        @endif
+
                     </x-slot>
                 </x-form.section>
 

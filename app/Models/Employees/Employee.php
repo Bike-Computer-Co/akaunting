@@ -3,8 +3,10 @@
 namespace App\Models\Employees;
 
 use App\Abstracts\Model;
+use App\Models\EmploymentHistory;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Employee extends Model
 {
@@ -13,9 +15,14 @@ class Employee extends Model
 
     protected $fillable = ['company_id', 'first_name', 'last_name', 'personal_number', 'birth_date', 'bank_account', 'occupation', 'address', 'email', 'phone', 'salary', 'enabled'];
 
-    public function salaries(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function salaries(): HasMany
     {
         return $this->hasMany(Salary::class);
+    }
+
+    public function employmentHistories(): HasMany
+    {
+        return $this->hasMany(EmploymentHistory::class);
     }
 
     /**
