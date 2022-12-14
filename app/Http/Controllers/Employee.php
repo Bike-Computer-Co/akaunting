@@ -10,6 +10,7 @@ use App\Jobs\Employees\DeleteEmployee;
 use App\Jobs\Employees\UpdateEmployee;
 use App\Models\Employees\Employee as Model;
 use App\Models\EmploymentHistory;
+use Carbon\Carbon;
 
 class Employee extends Controller
 {
@@ -31,6 +32,9 @@ class Employee extends Controller
 
         if ($response['success']) {
             if ($request->get('sign_up_employment_history')) {
+                $request->validate([
+                    'sign_up_employment_history' => 'after:'.Carbon::now()->addDays(2)->format('Y-m-d'),
+                ]);
                 EmploymentHistory::query()->create([
                     'employment_history_date' => $request->get('sign_up_employment_history'),
                     'type' => EmploymentHistoryType::SIGN_UP->value,
@@ -57,8 +61,9 @@ class Employee extends Controller
     public function edit(Model $employee)
     {
         $type = null;
-        if ($employee->employmentHistories()->exists())
+        if ($employee->employmentHistories()->exists()) {
             $type = $employee->employmentHistories()->latest()->first()->type;
+        }
 
         return view('employees.edit', compact('employee', 'type'));
     }
@@ -69,6 +74,9 @@ class Employee extends Controller
 
         if ($response['success']) {
             if ($request->get('sign_out_employment_history')) {
+                $request->validate([
+                    'sign_out_employment_history' => 'after:'.Carbon::now()->subDays(6)->format('Y-m-d'),
+                ]);
                 EmploymentHistory::query()->create([
                     'employment_history_date' => $request->get('sign_out_employment_history'),
                     'type' => EmploymentHistoryType::SIGN_OUT->value,
@@ -76,6 +84,9 @@ class Employee extends Controller
                 ]);
             }
             if ($request->get('sign_up_employment_history')) {
+                $request->validate([
+                    'sign_up_employment_history' => 'after:'.Carbon::now()->addDays(2)->format('Y-m-d'),
+                ]);
                 EmploymentHistory::query()->create([
                     'employment_history_date' => $request->get('sign_up_employment_history'),
                     'type' => EmploymentHistoryType::SIGN_UP->value,
@@ -114,7 +125,7 @@ class Employee extends Controller
         $response['redirect'] = route('employees.index');
 
         if ($response['success']) {
-            $message = trans('messages.success.deleted', ['type' => $employee->first_name . ' ' . $employee->last_name]);
+            $message = trans('messages.success.deleted', ['type' => $employee->first_name.' '.$employee->last_name]);
 
             flash($message)->success();
         } else {
