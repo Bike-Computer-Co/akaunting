@@ -18,6 +18,8 @@
                             <x-form.group.text name="phone" label="{{ trans('settings.company.phone') }}" value="{{ setting('company.phone') }}" not-required />
 
                             <x-form.group.text name="tax_number" label="{{ trans('general.tax_number') }}" value="{{ setting('company.tax_number') }}" not-required />
+
+                            <x-form.group.number name="date_of_payment_salary" label="{{ trans('settings.company.date_of_payment_salary') }}" value="{{ setting('company.date_of_payment_salary') }}" not-required />
                         </div>
 
                         <div class="sm:col-span-3">

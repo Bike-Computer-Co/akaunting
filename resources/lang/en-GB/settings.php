@@ -11,6 +11,8 @@ return [
         'address' => 'Address',
         'edit_your_business_address' => 'Edit your business address',
         'logo' => 'Logo',
+        'stamp' => 'Stamp',
+        'date_of_payment_salary' => 'Date of the month for payment of salaries',
 
         'form_description' => [
             'general' => 'This information is visible in the records you create.',
