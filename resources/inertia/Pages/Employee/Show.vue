@@ -81,7 +81,7 @@
             </tr>
             <tr>
                 <th>
-                    Плата:
+                    Нето Плата:
                 </th>
                 <td>
                     {{ employee.salary }} ден.
