@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Employees;
 
 use App\Abstracts\Model;
 use App\Enums\EmploymentHistoryType;
-use App\Models\Employees\Employee;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

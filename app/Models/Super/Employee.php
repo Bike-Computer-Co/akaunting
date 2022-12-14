@@ -3,10 +3,12 @@
 namespace App\Models\Super;
 
 use App\Models\Common\Company;
+use App\Models\Employees\EmploymentHistory;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Employee extends Model
 {
@@ -20,5 +22,10 @@ class Employee extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function employmentHistories(): HasMany
+    {
+        return $this->hasMany(EmploymentHistory::class);
     }
 }

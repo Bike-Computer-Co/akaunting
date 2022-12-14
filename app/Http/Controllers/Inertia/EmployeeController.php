@@ -21,7 +21,7 @@ class EmployeeController extends BaseController
 
     public function show(Employee $employee): Response
     {
-        $employee->loadMissing('company');
+        $employee->loadMissing('company', 'employmentHistories');
 
         return Inertia::render('Employee/Show', compact('employee'));
     }
