@@ -59,6 +59,17 @@
 
                         <x-form.group.number name="salary" label="{{ trans('general.salary') }}" not-required />
 
+                        <x-form.group.date
+                            name="sign_up_employment_history"
+                            label="{{ trans('general.sign_up_employment_history') }}"
+                            icon="calendar_today"
+                            show-date-format="{{ company_date_format() }}"
+                            date-format="Y-m-d"
+                            autocomplete="off"
+                            change="setSignUpEmploymentHistoryDate"
+                            not-required
+                        />
+
                     </x-slot>
                 </x-form.section>
 

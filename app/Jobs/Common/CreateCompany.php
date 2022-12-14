@@ -81,6 +81,7 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
             'company.email' => $this->request->get('email'),
             'company.tax_number' => $this->request->get('tax_number'),
             'company.phone' => $this->request->get('phone'),
+            'company.date_of_payment_salary' => $this->request->get('date_of_payment_salary', 1),
             'company.address' => $this->request->get('address'),
             'company.city' => $this->request->get('city'),
             'company.zip_code' => $this->request->get('zip_code'),

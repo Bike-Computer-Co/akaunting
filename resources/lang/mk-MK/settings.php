@@ -12,6 +12,7 @@ return [
         'logo' => 'Лого',
         'signature' => 'Потпис',
         'stamp' => 'Печат',
+        'date_of_payment_salary' => 'Датум од месецот за пуштање на плата',
     ],
     'localisation' => [
         'tab' => 'Локализација',

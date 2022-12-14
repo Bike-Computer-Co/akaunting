@@ -37,7 +37,7 @@
 
                     <div class="flex flex-col text-sm mb-5">
                         <div class="font-medium">{{ trans('general.personal_number') }}</div>
-                        <span>{{ $employee->personal_number }} {{ $employee->personal_number }}</span>
+                        <span>{{ $employee->personal_number }}</span>
                     </div>
 
                     <div class="flex flex-col text-sm mb-5">
@@ -134,7 +134,7 @@
                             @empty
                                 <x-table.tr>
                                     <x-table.td class="w-3/12 hidden sm:table-cell">
-                                       No records found
+                                        Немате записи
                                     </x-table.td>
                                 </x-table.tr>
                             @endforelse
@@ -142,6 +142,47 @@
                     </x-table>
 
                     <x-pagination :items="$salaries"/>
+
+
+                    <x-table>
+                        <x-table.thead>
+                            <x-table.tr class="flex items-center px-1">
+
+                                <x-table.th class="w-3/12 hidden sm:table-cell">
+                                    <x-sortablelink column="type"
+                                                    title="{{ trans_choice('general.employment_history_type', 1) }}"/>
+                                </x-table.th>
+
+                                <x-table.th class="w-4/12 lg:w-3/12" kind="amount">
+                                    <x-sortablelink column="employment_history_date"
+                                                    title="{{ trans('general.employment_history_date') }}"/>
+                                </x-table.th>
+                            </x-table.tr>
+                        </x-table.thead>
+
+                        <x-table.tbody>
+                            @forelse($employmentHistories as $item)
+                                <x-table.tr>
+
+                                    <x-table.td class="w-3/12 hidden sm:table-cell">
+                                        {{$item->type->value == \App\Enums\EmploymentHistoryType::SIGN_UP->value ? 'Пријавување' : 'Одјавување'}}
+                                    </x-table.td>
+
+                                    <x-table.td class="w-4/12 lg:w-3/12" kind="amount">
+                                        <x-date date="{{ $item->employment_history_date }}"/>
+                                    </x-table.td>
+                                </x-table.tr>
+                            @empty
+                                <x-table.tr>
+                                    <x-table.td class="w-3/12 hidden sm:table-cell">
+                                        Немате записи
+                                    </x-table.td>
+                                </x-table.tr>
+                            @endforelse
+                        </x-table.tbody>
+                    </x-table>
+
+                    <x-pagination :items="$employmentHistories"/>
 
                 </x-show.content.right>
             </x-show.content>
