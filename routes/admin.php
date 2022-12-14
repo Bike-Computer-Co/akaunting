@@ -12,11 +12,6 @@ Route::group(['as' => 'uploads.', 'prefix' => 'uploads'], function () {
     Route::delete('{id}', 'Common\Uploads@destroy')->name('destroy');
 });
 
-Route::get('/invoice', function () {
-    $invoice = company()->invoices()->latest();
-    return company()->downloadInvoice($invoice->id);
-});
-
 Route::group(['prefix' => 'common'], function () {
     Route::get('companies/autocomplete', 'Common\Companies@autocomplete')->name('companies.autocomplete');
     Route::get('companies/{company}/switch', 'Common\Companies@switch')->name('companies.switch');
