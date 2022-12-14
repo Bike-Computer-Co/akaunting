@@ -9,7 +9,7 @@ use App\Jobs\Employees\CreateEmployee;
 use App\Jobs\Employees\DeleteEmployee;
 use App\Jobs\Employees\UpdateEmployee;
 use App\Models\Employees\Employee as Model;
-use App\Models\EmploymentHistory;
+use App\Models\Employees\EmploymentHistory;
 use Carbon\Carbon;
 
 class Employee extends Controller

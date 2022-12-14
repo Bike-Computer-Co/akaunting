@@ -3,7 +3,6 @@
 namespace App\Models\Employees;
 
 use App\Abstracts\Model;
-use App\Models\EmploymentHistory;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
