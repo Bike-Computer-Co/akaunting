@@ -56,7 +56,9 @@ class Employee extends Controller
 
     public function edit(Model $employee)
     {
-        $type = $employee->employmentHistories()->latest()->first()->type;
+        $type = null;
+        if ($employee->employmentHistories()->exists())
+            $type = $employee->employmentHistories()->latest()->first()->type;
 
         return view('employees.edit', compact('employee', 'type'));
     }
@@ -112,7 +114,7 @@ class Employee extends Controller
         $response['redirect'] = route('employees.index');
 
         if ($response['success']) {
-            $message = trans('messages.success.deleted', ['type' => $employee->first_name.' '.$employee->last_name]);
+            $message = trans('messages.success.deleted', ['type' => $employee->first_name . ' ' . $employee->last_name]);
 
             flash($message)->success();
         } else {
