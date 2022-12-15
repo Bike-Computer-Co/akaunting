@@ -13,9 +13,11 @@ Route::group(['as' => 'uploads.', 'prefix' => 'uploads'], function () {
 });
 
 Route::get('/text', function () {
-    if (company()->stripe_plan->id)
-        dd(company()->stripeInvoices());
-    return "TEST";
+    if (company()->stripe_plan->id) {
+        $invoice = company()->stripeInvoices()->first();
+        return company()->downloadInvoice($invoice->id);
+    }
+    return "No invoices yet";
 });
 
 Route::group(['prefix' => 'common'], function () {
