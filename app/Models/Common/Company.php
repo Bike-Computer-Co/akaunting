@@ -26,7 +26,10 @@ use Lorisleiva\LaravelSearchString\Concerns\SearchString;
 
 class Company extends Eloquent implements Ownable
 {
-    use Contacts, HasFactory, Media, Owners, SearchString, SoftDeletes, Sortable, Sources, Tenants, Transactions, Billable;
+    use Contacts, HasFactory, Media, Owners, SearchString, SoftDeletes, Sortable, Sources, Tenants, Transactions;
+    use Billable {
+        invoices as stripeInvoices;
+    }
 
     protected $table = 'companies';
 
