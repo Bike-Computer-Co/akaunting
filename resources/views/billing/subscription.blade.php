@@ -141,6 +141,53 @@
             @endif
         </div>
 
+        @if(sizeof($invoices))
+            <h1 class="text-3xl mt-5">
+                Фактури од вашата претплата
+            </h1>
+            <x-table>
+                <x-table.thead>
+                    <x-table.tr class="flex items-center px-1">
+                        <x-table.th class="w-3/12 sm:w-6/12">
+                            <x-slot name="first">
+                                <x-sortablelink column="date" title="{{ trans('general.date') }}"/>
+                            </x-slot>
+                        </x-table.th>
+
+                        <x-table.th class="w-3/12 sm:w-6/12">
+                            <x-slot name="first">
+                                <x-sortablelink column="total" title="{{ trans('general.total') }}"/>
+                            </x-slot>
+                        </x-table.th>
+
+                        <x-table.th class="w-3/12 sm:w-6/12">
+                            <x-slot name="first">
+                                Download
+                            </x-slot>
+                        </x-table.th>
+                    </x-table.tr>
+
+                </x-table.thead>
+
+                <x-table.tbody>
+                    @foreach($invoices as $item)
+                        <x-table.tr>
+                            <x-table.td class="w-3/12 sm:w-6/12 truncate">
+                                {{ $invoice->date()->toFormattedDateString() }}
+                            </x-table.td>
+                            <x-table.td class="w-3/12 sm:w-6/12 truncate">
+                                {{ $invoice->total() }}
+                            </x-table.td>
+                            <x-table.td class="w-3/12 sm:w-6/12 truncate">
+                                <a>
+                                    Download
+                                </a>
+                            </x-table.td>
+                        </x-table.tr>
+                    @endforeach
+                </x-table.tbody>
+            </x-table>
+        @endif
     </x-slot>
     {{--    <x-contacts.script type="customer"/>--}}
     <x-script file="billing"/>

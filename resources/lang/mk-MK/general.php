@@ -79,6 +79,7 @@ return [
     'general' => 'Општо',
     'no_records' => 'Бр. на записи',
     'date' => 'Дата',
+    'total' => 'Износ',
     'amount' => 'Износ',
     'enabled' => 'Вклучено',
     'disabled' => 'Исклучено',

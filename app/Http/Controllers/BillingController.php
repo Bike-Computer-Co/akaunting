@@ -49,11 +49,14 @@ class BillingController extends Controller
             ],
         ];
 
+        $invoices = company()->stripeInvoices();
+
         return view('billing.subscription', [
             'stripeKey' => config('cashier.key'),
             'checkout' => $request->get('checkout'),
             'features' => $features,
             'planPrice' => $planPrice,
+            'invoices' => $invoices
         ]);
     }
 
