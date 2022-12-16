@@ -153,7 +153,7 @@ return [
     'end' => 'Крај',
     'clear' => 'Исчисти',
     'difference' => 'Разлика',
-    'billing' => 'Наплата',
+    'billing' => 'Претплата',
     'localisations' => 'Локализирање|Локализирање',
     'financial_year' => 'Финансиска година',
     'widgets' => 'Виџет|Виџети',

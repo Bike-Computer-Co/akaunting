@@ -179,7 +179,7 @@
                                 {{ $invoice->total() }}
                             </x-table.td>
                             <x-table.td class="w-3/12 sm:w-6/12 truncate">
-                                <a>
+                                <a href="{{ route('billing.download_invoice', ['invoiceId' => $invoice->id]) }}" >
                                     Download
                                 </a>
                             </x-table.td>

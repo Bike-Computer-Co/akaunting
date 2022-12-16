@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Abstracts\Http\Controller;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class BillingController extends Controller
 {
@@ -58,6 +59,11 @@ class BillingController extends Controller
             'planPrice' => $planPrice,
             'invoices' => $invoices
         ]);
+    }
+
+    public function download_invoice($invoiceId): Response
+    {
+        return company()->downloadInvoice($invoiceId);
     }
 
     public function subscribe(Request $request)

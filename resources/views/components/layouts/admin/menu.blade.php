@@ -119,17 +119,17 @@
                     <span id="menu-support-icon" class="material-icons-outlined text-purple text-2xl">support</span>
                 </a>
             </x-tooltip>
-
-                <!-- TODO: DISABLED VIEW FOR SUBSCRIPTIONS-->
-{{--            @can('read-settings-defaults')--}}
-{{--                <x-tooltip id="tooltip-billing" placement="right" message="{{ trans('general.billing') }}">--}}
-{{--                    <a href="{{route('billing.subscription')}}"--}}
-{{--                       class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles">--}}
-{{--                        <span id="menu-support-icon"--}}
-{{--                              class="material-icons-outlined text-purple text-2xl">credit_card</span>--}}
-{{--                    </a>--}}
-{{--                </x-tooltip>--}}
-{{--            @endcan--}}
+            @can('read-settings-defaults')
+                @if(company() && company()->stripe_plan_id)
+                    <x-tooltip id="tooltip-billing" placement="right" message="{{ trans('general.billing') }}">
+                        <a href="{{route('billing.subscription')}}"
+                           class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles">
+                        <span id="menu-support-icon"
+                              class="material-icons-outlined text-purple text-2xl">credit_card</span>
+                        </a>
+                    </x-tooltip>
+                @endif
+            @endcan
         </div>
 
         <livewire:menu.favorites/>
