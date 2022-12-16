@@ -170,7 +170,7 @@
                 </x-table.thead>
 
                 <x-table.tbody>
-                    @foreach($invoices as $item)
+                    @foreach($invoices as $invoice)
                         <x-table.tr>
                             <x-table.td class="w-3/12 sm:w-6/12 truncate">
                                 {{ $invoice->date()->toFormattedDateString() }}
