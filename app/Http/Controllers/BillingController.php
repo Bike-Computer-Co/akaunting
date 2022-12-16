@@ -63,7 +63,7 @@ class BillingController extends Controller
 
     public function download_invoice($invoiceId): Response
     {
-        return company()->downloadInvoice($invoiceId);
+        return company()->downloadInvoice($invoiceId, [], 'digitalhub-invoice'.$invoiceId);
     }
 
     public function subscribe(Request $request)
