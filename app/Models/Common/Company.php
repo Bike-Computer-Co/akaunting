@@ -556,7 +556,7 @@ class Company extends Eloquent implements Ownable
 
     public function getIsSubscribedAttribute(): bool
     {
-        return $this->stripe_plan()->exists() && $this->subscription($this->stripe_plan->name) && $this->subscription($this->stripe_plan->name)->recurring();
+        return $this->subscription() && $this->subscription()->recurring();
     }
 
     /**
