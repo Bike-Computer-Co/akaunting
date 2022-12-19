@@ -38,7 +38,7 @@ class Company extends Eloquent implements Ownable
      *
      * @var array
      */
-    protected $appends = ['location'];
+    protected $appends = ['location', 'is_subscribed'];
 
     protected $dates = ['deleted_at'];
 
@@ -552,6 +552,11 @@ class Company extends Eloquent implements Ownable
         }
 
         return implode(', ', $location);
+    }
+
+    public function getIsSubscribedAttribute(): bool
+    {
+        return $this->stripe_plan()->exists() && $this->subscription($this->stripe_plan->name) && $this->subscription($this->stripe_plan->name)->recurring();
     }
 
     /**

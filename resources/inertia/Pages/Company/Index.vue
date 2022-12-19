@@ -12,6 +12,7 @@
                     <th scope="col">Цена за сметководител</th>
                     <th scope="col">Цена за адвокат</th>
                     <th scope="col">Stripe план</th>
+                    <th scope="col">Активна претплата</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,14 @@
                     <td>{{ company.lawyer_price }} &euro;</td>
                     <td v-if="company.stripe_plan">{{ company.stripe_plan.name }}</td>
                     <td v-else>Нема моментално</td>
+                    <td>
+                        <span v-if="company.is_subscribed">
+                            ДА
+                        </span>
+                        <span v-else>
+                            НЕ
+                        </span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
