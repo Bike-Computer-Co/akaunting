@@ -175,8 +175,8 @@ trait Recurring
                 break;
             case 'daily':
             default:
-            $limit = '732';
-            break;
+                $limit = '732';
+                break;
         }
 
         return $limit;

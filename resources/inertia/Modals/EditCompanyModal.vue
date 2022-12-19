@@ -34,13 +34,13 @@
                     <div class="form-floating mb-3">
                         <input v-model="form.accountant_price" type="number" class="form-control" id="accountant_price"
                                placeholder="Accountant Price" :class="{'is-invalid' : form.errors.accountant_price}">
-                        <label for="accountant_price">Цена за сметководител</label>
+                        <label for="accountant_price">Цена за сметководител (во евра)</label>
                         <div class="invalid-feedback">{{ form.errors.accountant_price }}</div>
                     </div>
                     <div class="form-floating mb-3">
                         <input v-model="form.lawyer_price" type="number" class="form-control" id="lawyer_price"
                                placeholder="Lawyer Price" :class="{'is-invalid' : form.errors.lawyer_price}">
-                        <label for="lawyer_price">Цена за адвокат</label>
+                        <label for="lawyer_price">Цена за адвокат (во евра)</label>
                         <div class="invalid-feedback">{{ form.errors.lawyer_price }}</div>
                     </div>
                     <div class="form-floating mb-3">

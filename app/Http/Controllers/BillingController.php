@@ -57,7 +57,7 @@ class BillingController extends Controller
             'checkout' => $request->get('checkout'),
             'features' => $features,
             'planPrice' => $planPrice,
-            'invoices' => $invoices
+            'invoices' => $invoices,
         ]);
     }
 

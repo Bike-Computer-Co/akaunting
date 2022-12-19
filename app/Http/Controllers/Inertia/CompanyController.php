@@ -48,6 +48,7 @@ class CompanyController extends BaseController
     {
         $companies = Company::query()
             ->with('settings', 'stripe_plan')
+            ->latest()
             ->paginate(20);
 
         return Inertia::render('Company/Index', compact('companies'));
