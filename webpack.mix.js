@@ -77,6 +77,8 @@ mix
     // Inertia
     .js('resources/inertia/app.js', 'public/inertia/js')
     .sass('resources/inertia/scss/app.scss', 'public/inertia/css')
+    .sourceMaps(false)
+    .copyDirectory('node_modules/font-awesome/fonts', 'public/inertia/fonts')
 
     .vue()
 
