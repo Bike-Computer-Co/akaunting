@@ -148,6 +148,11 @@ export default {
                     name: 'Вработени',
                     icon: 'fa-users',
                     link: 'super.employees.index',
+                },
+                {
+                    name: 'Регистрации на фирми',
+                    icon: 'fa-building',
+                    link: 'super.firm-registrations.index',
                 }
             ],
         };
