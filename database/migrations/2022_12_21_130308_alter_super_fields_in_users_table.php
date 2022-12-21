@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('media_files', function (Blueprint $table) {
-            $table->id();
-            $table->morphs('belongs');
-            $table->string('source');
-            $table->unsignedTinyInteger('usage')->index();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('is_super');
+            $table->unsignedTinyInteger('super_type')->nullable();
         });
     }
 
@@ -29,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media_files');
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_super')->default(false);
+            $table->dropColumn('super_type');
+        });
     }
 };

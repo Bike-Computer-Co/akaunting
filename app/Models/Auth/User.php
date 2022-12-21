@@ -3,6 +3,7 @@
 namespace App\Models\Auth;
 
 use Akaunting\Sortable\Traits\Sortable;
+use App\Enums\SuperType;
 use App\Notifications\Auth\Reset;
 use App\Traits\Media;
 use App\Traits\Owners;
@@ -38,10 +39,10 @@ class User extends Authenticatable implements HasLocalePreference
      */
     protected $casts = [
         'enabled' => 'boolean',
-        'is_super' => 'boolean',
+        'super_type' => SuperType::class,
     ];
 
-    protected $guarded = ['is_super'];
+    protected $guarded = ['super_type'];
 
     /**
      * The attributes that should be hidden for arrays.

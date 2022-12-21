@@ -8,17 +8,17 @@ use App\Models\Auth\User;
 use App\Models\StripePlan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class UserController extends BaseController
+class UserController extends Controller
 {
     public function index(): Response
     {
+        $this->authorize('hasAllPermissions', User::class);
         $users = User::query()
             ->latest()
             ->paginate(20);
@@ -28,6 +28,7 @@ class UserController extends BaseController
 
     public function show(User $user): Response
     {
+        $this->authorize('hasAllPermissions', User::class);
         $stripePlans = StripePlan::all();
         $user->loadMissing('companies', 'companies.settings', 'companies.stripe_plan');
 
@@ -36,6 +37,7 @@ class UserController extends BaseController
 
     public function create(): Response
     {
+        $this->authorize('hasAllPermissions', User::class);
         $countries = collect(trans('countries'))->map(fn ($item, $key) => ['id' => $key, 'name' => $item])->values();
 
         return Inertia::render('User/Create', compact('countries'));
@@ -43,6 +45,7 @@ class UserController extends BaseController
 
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize('hasAllPermissions', User::class);
         $locales = collect(config('language.all'))->map(fn ($item) => $item['long']);
         $currencies = collect(config('money'))->map(fn ($item, $key) => $key);
         $countries = collect(trans('countries'))->map(fn ($item, $key) => $key);

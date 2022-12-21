@@ -24,22 +24,24 @@
                 </Link>
                 <hr />
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li
-                        v-for="item in menuOptions"
-                        :key="item.name"
-                        class="nav-item line-height-normal"
-                        :class="{ 'd-none': item.hide }"
-                    >
-                        <Link
-                            :href="$route(item.link)"
-                            class="nav-link text-white"
-                            :class="{ 'bg-primary' : $route().current(item.link) }"
-                            aria-current="page"
+                    <div v-for="item in menuOptions"
+                         :key="item.name">
+                        <li
+                            v-if="item.can"
+                            class="nav-item line-height-normal"
+                            :class="{ 'd-none': item.hide }"
                         >
-                            <i class="fa" :class="item.icon"></i>
-                            {{ item.name }}
-                        </Link>
-                    </li>
+                            <Link
+                                :href="$route(item.link)"
+                                class="nav-link text-white"
+                                :class="{ 'bg-primary' : $route().current(item.link) }"
+                                aria-current="page"
+                            >
+                                <i class="fa" :class="item.icon"></i>
+                                {{ item.name }}
+                            </Link>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -123,6 +125,7 @@ export default {
     name: "DefaultLayout",
     props: {
         menu: Object,
+        can: Object
     },
     data() {
         return {
@@ -130,29 +133,40 @@ export default {
             removeEvent: null,
             menuOptions: [
                 {
+                    name: 'Почетна',
+                    icon: 'fa-home',
+                    link: 'super.dashboard',
+                    can: true
+                },
+                {
                     name: 'Корисници',
                     icon: 'fa-users',
                     link: 'super.users.index',
+                    can: this.can.seeUsers
                 },
                 {
                     name: 'Компании',
                     icon: 'fa-building',
                     link: 'super.companies.index',
+                    can: this.can.seeCompanies
                 },
                 {
                     name: 'Stripe планови',
                     icon: 'fa-money',
                     link: 'super.stripe-plans.index',
+                    can: this.can.seeStripePlans
                 },
                 {
                     name: 'Вработени',
                     icon: 'fa-users',
                     link: 'super.employees.index',
+                    can: this.can.seeEmployees
                 },
                 {
                     name: 'Регистрации на фирми',
                     icon: 'fa-building',
                     link: 'super.firm-registrations.index',
+                    can: this.can.seeFirmRegistrations
                 }
             ],
         };

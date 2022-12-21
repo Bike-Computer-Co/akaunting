@@ -2,6 +2,11 @@
 
 namespace App\Http\Middleware\Inertia;
 
+use App\Models\Auth\User;
+use App\Models\Common\Company;
+use App\Models\Employees\Employee;
+use App\Models\FirmRegistration;
+use App\Models\StripePlan;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -39,9 +44,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $user = auth()->user();
         return array_merge(parent::share($request), [
             'error' => fn () => $request->session()->get('error'),
             'success' => fn () => $request->session()->get('success'),
+            'can' => [
+                'seeEmployees' => $user?->can('hasAllPermissions', Employee::class),
+                'seeCompanies' => $user?->can('hasAllPermissions', Company::class),
+                'seeStripePlans' => $user?->can('hasAllPermissions', StripePlan::class),
+                'seeUsers' => $user?->can('hasAllPermissions', User::class),
+                'seeFirmRegistrations' => $user?->can('hasAllPermissions', FirmRegistration::class),
+            ]
         ]);
     }
 }

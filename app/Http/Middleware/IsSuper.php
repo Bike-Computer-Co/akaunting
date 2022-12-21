@@ -16,7 +16,7 @@ class IsSuper
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && $request->user()->is_super) {
+        if ($request->user() && $request->user()->super_type !== null) {
             return $next($request);
         }
 

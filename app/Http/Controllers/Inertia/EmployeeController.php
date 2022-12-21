@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Inertia;
 
 use App\Models\Super\Employee;
-use Illuminate\Routing\Controller as BaseController;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class EmployeeController extends BaseController
+class EmployeeController extends Controller
 {
     public function index(): Response
     {
+        $this->authorize('hasAllPermissions', Employee::class);
         $employees = Employee::query()
             ->with('company')
             ->latest()
@@ -21,6 +21,7 @@ class EmployeeController extends BaseController
 
     public function show(Employee $employee): Response
     {
+        $this->authorize('hasAllPermissions', Employee::class);
         $employee->loadMissing('company', 'employmentHistories');
 
         return Inertia::render('Employee/Show', compact('employee'));

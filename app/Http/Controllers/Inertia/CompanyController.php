@@ -4,16 +4,24 @@ namespace App\Http\Controllers\Inertia;
 
 use App\Models\Common\Company;
 use App\Models\StripePlan;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
 use Inertia\Inertia;
 use Inertia\Response;
+use Laravel\Cashier\Exceptions\IncompletePayment;
+use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
 
-class CompanyController extends BaseController
+class CompanyController extends Controller
 {
+    /**
+     * @throws AuthorizationException
+     * @throws SubscriptionUpdateFailure
+     * @throws IncompletePayment
+     */
     public function update(Company $company, Request $request): RedirectResponse
     {
+        $this->authorize('hasAllPermissions', Company::class);
         $validated = $request->validate([
             'accountant_price' => ['required', 'min:0', 'integer'],
             'lawyer_price' => ['required', 'min:0', 'integer'],
@@ -46,6 +54,7 @@ class CompanyController extends BaseController
 
     public function index(): Response
     {
+        $this->authorize('hasAllPermissions', Company::class);
         $companies = Company::query()
             ->with('settings', 'stripe_plan')
             ->latest()

@@ -6,9 +6,8 @@ use App\Models\FirmRegistration;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller as BaseController;
 
-class PdfController extends BaseController
+class PdfController extends Controller
 {
     private function recuringArray($firmRegistration): array
     {
@@ -28,6 +27,7 @@ class PdfController extends BaseController
 
     public function certifiedSignaturePdf(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $name = $firmRegistration->founder_name;
         $splited_name = explode(' ', $name);
         if(sizeof($splited_name) != 0){
@@ -50,6 +50,7 @@ class PdfController extends BaseController
 
     public function statment1(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $recuring_array = $this->recuringArray($firmRegistration);
 
         $recuring_array['firm_address'] = $firmRegistration->headquarters_address;
@@ -63,6 +64,7 @@ class PdfController extends BaseController
 
     public function statment2(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $pdf = PDF::loadView('auto-generated-files/statement-2', $this->recuringArray($firmRegistration));
 
         return $pdf->stream();
@@ -70,6 +72,7 @@ class PdfController extends BaseController
 
     public function statment3(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $pdf = PDF::loadView('auto-generated-files/statement-3', $this->recuringArray($firmRegistration));
 
         return $pdf->stream();
@@ -77,6 +80,7 @@ class PdfController extends BaseController
 
     public function statment4(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $pdf = PDF::loadView('auto-generated-files/statement-4', $this->recuringArray($firmRegistration));
 
         return $pdf->stream();
@@ -84,6 +88,7 @@ class PdfController extends BaseController
 
     public function powerOfAttorney(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $recuring_array = $this->recuringArray($firmRegistration);
         $recuring_array['id_number'] = $firmRegistration->founder_id_number;
 
@@ -94,6 +99,7 @@ class PdfController extends BaseController
 
     public function decision(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $pdf = PDF::loadView('auto-generated-files/decision', $this->recuringArray($firmRegistration));
 
         return $pdf->stream();

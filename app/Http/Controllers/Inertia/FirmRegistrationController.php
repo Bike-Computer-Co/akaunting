@@ -15,12 +15,12 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Notification;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Routing\Controller as BaseController;
 
-class FirmRegistrationController extends BaseController
+class FirmRegistrationController extends Controller
 {
     public function index(): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $firmRegistrations = FirmRegistration::query()
             ->paginate(10);
 
@@ -29,6 +29,7 @@ class FirmRegistrationController extends BaseController
 
     public function show(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $firmRegistration
             ->loadMissing('headquartersMunicipality', 'headquartersSettlement', 'bank', 'subsidiaryMunicipality', 'subsidiarySettlement', 'enrollmentDecision');
 
@@ -37,6 +38,7 @@ class FirmRegistrationController extends BaseController
 
     public function create(): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $banks = Bank::all();
         $municipalities = Municipality::query()
             ->with('settlements')
@@ -47,6 +49,7 @@ class FirmRegistrationController extends BaseController
 
     public function store(FirmRegistrationRequest $request): Redirector|Application|RedirectResponse
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         FirmRegistration::createFirmRegistration($request);
 
         return redirect(route('super.firm-registrations.index'))
@@ -55,6 +58,7 @@ class FirmRegistrationController extends BaseController
 
     public function edit(FirmRegistration $firmRegistration): Response
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $banks = Bank::all();
         $municipalities = Municipality::query()
             ->with('settlements')
@@ -65,6 +69,7 @@ class FirmRegistrationController extends BaseController
 
     public function update(FirmRegistration $firmRegistration, FirmRegistrationRequest $request): Redirector|Application|RedirectResponse
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $firmRegistration->fill($request->validated());
         $firmRegistration->bank()->associate($request->input('bank_id'));
         $firmRegistration->headquartersMunicipality()->associate($request->input('headquarters_municipality_id'));
@@ -79,6 +84,7 @@ class FirmRegistrationController extends BaseController
 
     public function uploadFirmEnrollmentDecision(FirmRegistration $firmRegistration, UploadFileRequest $request): RedirectResponse
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $firmRegistration->uploadAndCreateMedia($request->file('file'), MediaUsage::FILE, 'firm_enrollment_decisions');
 
         $mails = ['jordancho@venikom.com', 'ivan@venikom.com', 'martin.bojmaliev@venikom.com', 'dushancimbalevic@gmail.com'];
@@ -89,6 +95,7 @@ class FirmRegistrationController extends BaseController
 
     public function destroy(FirmRegistration $firmRegistration): RedirectResponse
     {
+        $this->authorize('hasAllPermissions', FirmRegistration::class);
         $firmRegistration->delete();
 
         return back()->with('success', 'Успешно ја избришавте оваа регистрација на фирма');
