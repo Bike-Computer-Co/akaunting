@@ -9,20 +9,9 @@
         font-size: 12px;
     }
 
-    #naslov {
-        margin-bottom: 50px;
-        font-size: 18px;
-    }
-
     th {
         border: 1px solid black;
         padding: 13px 10px 13px 10px;
-    }
-
-    .flex-EMBS {
-        gap: 50px;
-        border: 1px solid gray;
-        padding: 0 10px 100px 10px;
     }
 
     h3 {
@@ -39,29 +28,10 @@
         padding: 10px 20px 10px 20px;
     }
 
-    .ime-prezime {
-        padding: 10px 100px 10px 100px;
-    }
-
-    .embg {
-        padding: 10px 70px 10px 70px;
-    }
-
-    .potpis {
-        padding: 10px 65px 10px 65px;
-    }
-
-    #top-margin {
-        margin-top: 20px;
-    }
-
     .postiton-table tr td {
         border: none;
     }
 
-    .padding-left {
-        padding-left: 100px;
-    }
 </style>
 
 <body>
@@ -93,7 +63,8 @@
         <tr>
             <td></td>
             <td></td>
-            <td class="padding-left"><h3>Друштво за производство, трговија и услуги <span style="text-transform: uppercase;">{{$firm_name}}</span> ДООЕЛ {{$municipality}}</h3></td>
+            <td class="padding-left"><h3>Друштво за производство, трговија и услуги <span
+                        style="text-transform: uppercase;">{{$firm_name}}</span> ДООЕЛ {{$municipality}}</h3></td>
         </tr>
     </table>
 
