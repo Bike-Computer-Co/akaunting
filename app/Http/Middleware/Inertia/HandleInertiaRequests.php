@@ -6,6 +6,7 @@ use App\Models\Auth\User;
 use App\Models\Common\Company;
 use App\Models\Employees\Employee;
 use App\Models\FirmRegistration;
+use App\Models\FirmRegistrationAttempt;
 use App\Models\StripePlan;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -54,6 +55,7 @@ class HandleInertiaRequests extends Middleware
                 'seeStripePlans' => $user?->can('hasAllPermissions', StripePlan::class),
                 'seeUsers' => $user?->can('hasAllPermissions', User::class),
                 'seeFirmRegistrations' => $user?->can('hasAllPermissions', FirmRegistration::class),
+                'seeFirmRegistrationAttempts' => $user?->can('hasAllPermissions', FirmRegistrationAttempt::class),
             ]
         ]);
     }

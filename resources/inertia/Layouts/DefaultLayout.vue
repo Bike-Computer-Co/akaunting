@@ -167,6 +167,12 @@ export default {
                     icon: 'fa-building',
                     link: 'super.firm-registrations.index',
                     can: this.can.seeFirmRegistrations
+                },
+                {
+                    name: 'Обиди за регистрација на фирма',
+                    icon: 'fa-building',
+                    link: 'super.firm-registration-attempts.index',
+                    can: this.can.seeFirmRegistrationAttempts
                 }
             ],
         };
