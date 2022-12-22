@@ -3,7 +3,7 @@
 return [
 
     'code' => 'Код',
-    'rate' => 'Оцени',
+    'rate' => 'Курс',
     'default' => 'Стандардна валута',
     'decimal_mark' => 'Децимално место',
     'thousands_separator' => 'Илјадници сепаратори',
