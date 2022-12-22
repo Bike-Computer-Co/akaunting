@@ -3,6 +3,6 @@
         <a href="{{ $url }}">
             {{ $slot }}
         </a>
-        <img src="images/logo-blue.png" alt="DigitalHub">
+        <img src="https://drive.google.com/uc?export=view&id=1Y4KUew7XJloShjOlB_TJ9UuCLjQEZvzU" alt="DigitalHub">
     </td>
 </tr>
