@@ -6,7 +6,6 @@ use App\Http\Requests\FirmRegistrationAttemptRequest;
 use App\Models\FirmRegistrationAttempt;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Http\Request;
 
 class FirmRegistrationAttemptApiController extends BaseController
 {

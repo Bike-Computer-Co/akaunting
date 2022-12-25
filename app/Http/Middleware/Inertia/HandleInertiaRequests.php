@@ -46,6 +46,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $user = auth()->user();
+
         return array_merge(parent::share($request), [
             'error' => fn () => $request->session()->get('error'),
             'success' => fn () => $request->session()->get('success'),
@@ -56,7 +57,7 @@ class HandleInertiaRequests extends Middleware
                 'seeUsers' => $user?->can('hasAllPermissions', User::class),
                 'seeFirmRegistrations' => $user?->can('hasAllPermissions', FirmRegistration::class),
                 'seeFirmRegistrationAttempts' => $user?->can('hasAllPermissions', FirmRegistrationAttempt::class),
-            ]
+            ],
         ]);
     }
 }

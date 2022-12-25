@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\ApiPublic;
 
-use Illuminate\Routing\Controller as BaseController;
 use App\Http\Requests\GiftCodeRequest;
 use App\Models\GiftCodeApplicant;
 use App\Notifications\GiftCardNotification;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Notification;
 
 class GiftCodeApplicantApiController extends BaseController

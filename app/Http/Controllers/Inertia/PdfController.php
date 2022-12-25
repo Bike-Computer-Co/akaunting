@@ -30,9 +30,9 @@ class PdfController extends Controller
         $this->authorize('hasAllPermissions', FirmRegistration::class);
         $name = $firmRegistration->founder_name;
         $splited_name = explode(' ', $name);
-        if(sizeof($splited_name) != 0){
+        if (count($splited_name) != 0) {
             $name_fliped = array_reverse($splited_name);
-            $name = implode(' ',$name_fliped);
+            $name = implode(' ', $name_fliped);
         }
 
         $embg = $firmRegistration->founder_embg;

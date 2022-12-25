@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Controllers\Inertia\CompanyController;
 use App\Http\Controllers\Inertia\DashboardController;
+use App\Http\Controllers\Inertia\EmployeeController;
 use App\Http\Controllers\Inertia\FirmRegistrationAttemptController;
 use App\Http\Controllers\Inertia\FirmRegistrationController;
-use App\Http\Controllers\Inertia\CompanyController;
-use App\Http\Controllers\Inertia\EmployeeController;
+use App\Http\Controllers\Inertia\PdfController;
 use App\Http\Controllers\Inertia\StripePlanController;
 use App\Http\Controllers\Inertia\UserController;
-use App\Http\Controllers\Inertia\PdfController;
 
 Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::resource('users', UserController::class)->only('index', 'create', 'store', 'show');
