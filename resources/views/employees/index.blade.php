@@ -88,7 +88,7 @@
                                 {{ $item->occupation }}
                             </x-table.td>
                             <x-table.td class="w-3/12 sm:w-6/12 truncate">
-                                @if($item->active)
+                                @if($item->enabled)
                                     Активен
                                 @else
                                     Неактивен
