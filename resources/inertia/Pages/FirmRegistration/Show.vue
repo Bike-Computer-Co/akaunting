@@ -302,13 +302,13 @@ export default {
         }
     },
     methods: {
-        uploadFile() {
+        uploadFile(e) {
             if (e.target.files[0]) {
                 this.form.file = e.target.files[0];
                 this.form.post(
                     this.$route(
                         "super.firm-registrations.upload-enrollment-decision",
-                        props.firmRegistration.id
+                        this.firmRegistration.id
                     )
                 );
             }

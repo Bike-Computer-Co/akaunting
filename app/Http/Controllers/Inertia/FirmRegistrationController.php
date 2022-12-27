@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inertia;
 use App\Enums\MediaUsage;
 use App\Http\Requests\FirmRegistrationRequest;
 use App\Http\Requests\UploadFileRequest;
+use App\Models\Auth\User;
 use App\Models\Bank;
 use App\Models\FirmRegistration;
 use App\Models\Municipality;
@@ -12,6 +13,7 @@ use App\Notifications\FirmEnrollmentUploadedNotification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -22,6 +24,7 @@ class FirmRegistrationController extends Controller
     {
         $this->authorize('hasAllPermissions', FirmRegistration::class);
         $firmRegistrations = FirmRegistration::query()
+            ->with('user')
             ->paginate(10);
 
         return Inertia::render('FirmRegistration/Index', compact('firmRegistrations'));
@@ -85,9 +88,24 @@ class FirmRegistrationController extends Controller
     public function uploadFirmEnrollmentDecision(FirmRegistration $firmRegistration, UploadFileRequest $request): RedirectResponse
     {
         $this->authorize('hasAllPermissions', FirmRegistration::class);
-        $firmRegistration->uploadAndCreateMedia($request->file('file'), MediaUsage::FILE, 'firm_enrollment_decisions');
+        $firmRegistration->uploadAndCreateMedia($request->file('file'), MediaUsage::FILE, 'firm-enrollment-decisions');
 
         $mails = ['jordancho@venikom.com', 'ivan@venikom.com', 'martin.bojmaliev@venikom.com', 'dushancimbalevic@gmail.com'];
+
+        $data = [
+            "name" => $firmRegistration->founder_name,
+            "email" => $firmRegistration->email,
+            "password" => '1234',
+            "company_name" => $firmRegistration->firm_name,
+            "locale" => 'mk-MK',
+            "currency" => "MKD",
+            "country" => "MK",
+        ];
+        $user = User::createNewUser($data);
+
+        $firmRegistration->user_id = $user->id;
+        $firmRegistration->save();
+
         Notification::route('mail', $mails)->notify(new FirmEnrollmentUploadedNotification($firmRegistration));
 
         return back()->with('success', 'Успешно го прикачивте решението за упис');
