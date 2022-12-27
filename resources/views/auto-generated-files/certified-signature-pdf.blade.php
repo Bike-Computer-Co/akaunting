@@ -18,6 +18,32 @@
         margin: 0;
     }
 
+    .flex-EMBS {
+        gap: 50px;
+        border: 1px solid gray;
+        padding: 0 10px 100px 10px;
+    }
+
+    .ime-prezime {
+        padding: 10px 100px 10px 100px;
+    }
+
+    .embg {
+        padding: 10px 70px 10px 70px;
+    }
+
+    .potpis {
+        padding: 10px 65px 10px 65px;
+    }
+
+    #top-margin {
+        margin-top: 20px;
+    }
+
+    .padding-left {
+        padding-left: 100px;
+    }
+
     table tr td {
         border: 1px solid gray;
         border-collapse: collapse;
@@ -74,7 +100,7 @@
         Заверени потписи на лицата овластени за застапување
     </h3>
 
-    <table cellspacing="0">
+    <table style="width: 100%" cellspacing="0">
         <tr>
             <td>
                 <b>
