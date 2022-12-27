@@ -110,7 +110,7 @@ class FirmRegistration extends Model
         self::created(function (FirmRegistration $firmRegistration) {
             Notification::route('mail', $firmRegistration->email)->notify(new SuccessfullySentRegistrationNotification($firmRegistration));
             $mails = ['jordancho@venikom.com', 'ivan@venikom.com', 'martin.bojmaliev@venikom.com', 'advokatlefkov@gmail.com'];
-            Notification::route('mail', $mails)->notify(new RegistrationSubmittedNotification($firmRegistration));
+//            Notification::route('mail', $mails)->notify(new RegistrationSubmittedNotification($firmRegistration));
             DiscordNotificationJob::dispatch($firmRegistration);
         });
     }
