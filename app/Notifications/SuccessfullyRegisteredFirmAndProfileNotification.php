@@ -13,17 +13,17 @@ class SuccessfullyRegisteredFirmAndProfileNotification extends Notification
     use Queueable;
 
     private User $user;
-    private $password;
+    private $resetPasswordUrl;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user, $password)
+    public function __construct(User $user, $resetPasswordUrl)
     {
         $this->user = $user;
-        $this->password = $password;
+        $this->resetPasswordUrl = $resetPasswordUrl;
     }
 
     /**
@@ -51,10 +51,8 @@ class SuccessfullyRegisteredFirmAndProfileNotification extends Notification
             ->line('Успешно е регистрирана вашата фирма и е креиран Вашиот профил на Digitalhub.mk.')
             ->line('Вашите параметри за најава се:')
             ->line('Е-пошта: ' . $this->user->email)
-            ->line('Лозинка: ' . $this->password)
-            ->line('За да се најавите на Вашиот профил посетете го нашиот сајт со кликање на копчето подолу.')
-            ->action('Отвори Digitalhub.mk', 'https://digitalhub.mk/login')
-            ->line('Ви препорачуваме да ја смените Вашата лозинка во моментот кога ќе ја направите Вашата прва најава.')
+            ->line('За да се најавите на Вашиот профил ресетирајте ја вашата лозинка со клик на копчето подолу.')
+            ->action('Ресетирај лозинка', $this->resetPasswordUrl)
             ->line('За дополнителни информации околу регистрацијата на Вашата фирма и профилот на Digitalhub.mk, контактирајте не')
             ->salutation('Со почит, Digitalhub.mk');
     }

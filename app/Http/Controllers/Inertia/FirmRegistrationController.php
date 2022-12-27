@@ -109,7 +109,14 @@ class FirmRegistrationController extends Controller
         $firmRegistration->user_id = $user->id;
         $firmRegistration->save();
 
-        Notification::route('mail', $user->email)->notify(new SuccessfullyRegisteredFirmAndProfileNotification($user, $password));
+        $token = app('auth.password.broker')->createToken($user);
+
+        $resetPasswordUrl = route('reset', [
+            'token' => $token,
+            'email' => $firmRegistration->email,
+        ]);
+
+        Notification::route('mail', $user->email)->notify(new SuccessfullyRegisteredFirmAndProfileNotification($user, $resetPasswordUrl));
 
         Notification::route('mail', $mails)->notify(new FirmEnrollmentUploadedNotification($firmRegistration));
 
