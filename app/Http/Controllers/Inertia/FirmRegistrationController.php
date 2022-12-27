@@ -15,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -92,10 +93,11 @@ class FirmRegistrationController extends Controller
 
         $mails = ['jordancho@venikom.com', 'ivan@venikom.com', 'martin.bojmaliev@venikom.com', 'dushancimbalevic@gmail.com'];
 
+        $password = Str::random(); // generate random password with 16 characters
         $data = [
             "name" => $firmRegistration->founder_name,
             "email" => $firmRegistration->email,
-            "password" => '1234',
+            "password" => bcrypt($password),
             "company_name" => $firmRegistration->firm_name,
             "locale" => 'mk-MK',
             "currency" => "MKD",
