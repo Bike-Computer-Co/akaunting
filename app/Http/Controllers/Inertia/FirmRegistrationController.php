@@ -10,6 +10,7 @@ use App\Models\Bank;
 use App\Models\FirmRegistration;
 use App\Models\Municipality;
 use App\Notifications\FirmEnrollmentUploadedNotification;
+use App\Notifications\SuccessfullyRegisteredFirmAndProfileNotification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
@@ -107,6 +108,8 @@ class FirmRegistrationController extends Controller
 
         $firmRegistration->user_id = $user->id;
         $firmRegistration->save();
+
+        Notification::route('mail', $user->email)->notify(new SuccessfullyRegisteredFirmAndProfileNotification($user, $password));
 
         Notification::route('mail', $mails)->notify(new FirmEnrollmentUploadedNotification($firmRegistration));
 
