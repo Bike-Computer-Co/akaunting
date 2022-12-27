@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Abstracts\Http\Controller;
-use App\Jobs\Auth\CreateUser;
-use App\Jobs\Common\CreateCompany;
 use App\Models\Auth\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 
 class FullRegister extends Controller
@@ -33,9 +29,9 @@ class FullRegister extends Controller
 
     public function store(Request $request)
     {
-        $locales = collect(config('language.all'))->map(fn($item) => $item['long']);
-        $currencies = collect(config('money'))->map(fn($item, $key) => $key);
-        $countries = collect(trans('countries'))->map(fn($item, $key) => $key);
+        $locales = collect(config('language.all'))->map(fn ($item) => $item['long']);
+        $currencies = collect(config('money'))->map(fn ($item, $key) => $key);
+        $countries = collect(trans('countries'))->map(fn ($item, $key) => $key);
 
         $validated = $request->validate([
             'name' => 'required',

@@ -14,7 +14,6 @@ use App\Notifications\SuccessfullyRegisteredFirmAndProfileNotification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -96,13 +95,13 @@ class FirmRegistrationController extends Controller
 
         $password = Str::random(); // generate random password with 16 characters
         $data = [
-            "name" => $firmRegistration->founder_name,
-            "email" => $firmRegistration->email,
-            "password" => bcrypt($password),
-            "company_name" => $firmRegistration->firm_name,
-            "locale" => 'mk-MK',
-            "currency" => "MKD",
-            "country" => "MK",
+            'name' => $firmRegistration->founder_name,
+            'email' => $firmRegistration->email,
+            'password' => bcrypt($password),
+            'company_name' => $firmRegistration->firm_name,
+            'locale' => 'mk-MK',
+            'currency' => 'MKD',
+            'country' => 'MK',
         ];
         $user = User::createNewUser($data);
 

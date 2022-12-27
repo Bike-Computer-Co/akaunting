@@ -19,11 +19,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Validation\Rule;
 use Laratrust\Traits\LaratrustUserTrait;
 use Lorisleiva\LaravelSearchString\Concerns\SearchString;
 
@@ -137,7 +135,7 @@ class User extends Authenticatable implements HasLocalePreference
         if (setting('default.use_gravatar', '0') == '1') {
             try {
                 // Check for gravatar
-                $url = 'https://www.gravatar.com/avatar/' . md5(strtolower($this->getAttribute('email'))) . '?size=90&d=404';
+                $url = 'https://www.gravatar.com/avatar/'.md5(strtolower($this->getAttribute('email'))).'?size=90&d=404';
 
                 $client = new \GuzzleHttp\Client(['verify' => false]);
 
@@ -149,9 +147,9 @@ class User extends Authenticatable implements HasLocalePreference
             }
         }
 
-        if (!empty($value)) {
+        if (! empty($value)) {
             return $value;
-        } elseif (!$this->hasMedia('picture')) {
+        } elseif (! $this->hasMedia('picture')) {
             return false;
         }
 
@@ -165,7 +163,7 @@ class User extends Authenticatable implements HasLocalePreference
     {
         // Date::setLocale('tr');
 
-        if (!empty($value)) {
+        if (! empty($value)) {
             return Date::parse($value)->diffForHumans();
         } else {
             return trans('auth.never');
@@ -199,7 +197,7 @@ class User extends Authenticatable implements HasLocalePreference
     /**
      * Scope to get all rows filtered, sorted and paginated.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param $sort
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -208,7 +206,7 @@ class User extends Authenticatable implements HasLocalePreference
         $request = request();
 
         $search = $request->get('search');
-        $limit = (int)$request->get('limit', setting('default.list_limit', '25'));
+        $limit = (int) $request->get('limit', setting('default.list_limit', '25'));
 
         return $query->usingSearchString($search)->sortable($sort)->paginate($limit);
     }
@@ -216,7 +214,7 @@ class User extends Authenticatable implements HasLocalePreference
     /**
      * Scope to only include active users.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeEnabled($query)
@@ -227,7 +225,7 @@ class User extends Authenticatable implements HasLocalePreference
     /**
      * Scope to only customers.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeIsCustomer($query)
@@ -238,7 +236,7 @@ class User extends Authenticatable implements HasLocalePreference
     /**
      * Scope to only users.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeIsNotCustomer($query)
@@ -277,7 +275,7 @@ class User extends Authenticatable implements HasLocalePreference
      */
     public function isCustomer()
     {
-        return (bool)$this->can('read-client-portal');
+        return (bool) $this->can('read-client-portal');
     }
 
     /**
@@ -287,7 +285,7 @@ class User extends Authenticatable implements HasLocalePreference
      */
     public function isNotCustomer()
     {
-        return (bool)$this->can('read-admin-panel');
+        return (bool) $this->can('read-admin-panel');
     }
 
     public function scopeSource($query, $source)
@@ -346,7 +344,7 @@ class User extends Authenticatable implements HasLocalePreference
 
         if ($this->hasPendingInvitation()) {
             $actions[] = [
-                'title' => trans('general.resend') . ' ' . trans_choice('general.invitations', 1),
+                'title' => trans('general.resend').' '.trans_choice('general.invitations', 1),
                 'icon' => 'replay',
                 'url' => route('users.invite', $this->id),
                 'permission' => 'update-auth-users',
@@ -388,7 +386,7 @@ class User extends Authenticatable implements HasLocalePreference
                 'register' => true,
             ]));
         });
-        if (app()->isProduction())
+        if (app()->isProduction()) {
             Http::post('https://discord.com/api/webhooks/1015030296640499712/FnXmKnh7J_yrpFj3rYQCeh4H_Gj5xvOmu0SodV6K-gBRtaP9dt01egpbaZplsaQNGHa3', [
                 'content' => 'New user is registered on DigitalHub',
                 'embeds' => [
@@ -399,6 +397,7 @@ class User extends Authenticatable implements HasLocalePreference
                     ],
                 ],
             ]);
+        }
 
         return $user;
     }

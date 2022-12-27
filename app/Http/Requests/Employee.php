@@ -35,7 +35,7 @@ class Employee extends FormRequest
             'phone' => 'nullable',
             'salary' => 'nullable|integer',
             'enabled' => 'nullable|boolean',
-            'sign_up_employment_history' => 'required'
+            'sign_up_employment_history' => 'required',
         ];
     }
 }
