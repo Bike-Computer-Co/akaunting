@@ -25,6 +25,18 @@
 
                         <x-form.group.text name="personal_number" label="{{ trans('general.personal_number') }}" form-group-class="sm:col-span-6" />
 
+                        <x-form.group.date
+                            form-group-class="sm:col-span-6"
+                            name="sign_up_employment_history"
+                            label="{{ trans('general.sign_up_employment_history') }}"
+                            icon="calendar_today"
+                            show-date-format="{{ company_date_format() }}"
+                            date-format="Y-m-d"
+                            autocomplete="off"
+                            change="setSignUpEmploymentHistoryDate"
+                            not-required
+                        />
+
 {{--                        <x-form.group.money name="opening_balance" label="{{ trans('accounts.opening_balance') }}" value="0" :currency="$currency" dynamicCurrency="currency" />--}}
 
                     </x-slot>
@@ -58,17 +70,6 @@
                         <x-form.group.text name="phone" label="{{ trans('general.phone') }}" not-required />
 
                         <x-form.group.number name="salary" label="{{ trans('general.salary') }}" not-required />
-
-                        <x-form.group.date
-                            name="sign_up_employment_history"
-                            label="{{ trans('general.sign_up_employment_history') }}"
-                            icon="calendar_today"
-                            show-date-format="{{ company_date_format() }}"
-                            date-format="Y-m-d"
-                            autocomplete="off"
-                            change="setSignUpEmploymentHistoryDate"
-                            not-required
-                        />
 
                     </x-slot>
                 </x-form.section>
