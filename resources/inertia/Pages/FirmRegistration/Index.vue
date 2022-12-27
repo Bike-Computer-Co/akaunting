@@ -16,6 +16,7 @@
                     <th>Име на основач</th>
                     <th>Име на фирма</th>
                     <th>Датум на апликација</th>
+                    <th>Профил на Digitalhub</th>
                     <th>Акции</th>
                 </tr>
                 </thead>
@@ -32,6 +33,16 @@
                     </td>
                     <td>
                         {{ firm.created_at }}
+                    </td>
+                    <td>
+                        <span v-if="!firm.user">
+                            Сеуште нема
+                        </span>
+                        <span v-else>
+                            <Link :href="$route('super.users.show', firm.user)">
+                                {{ firm.user.name }}
+                            </Link>
+                        </span>
                     </td>
                     <td>
                         <Link
@@ -51,7 +62,7 @@
                 </tbody>
             </table>
         </div>
-        <Pagination :links="firmRegistrations.links" />
+        <Pagination :links="firmRegistrations.links"/>
     </div>
 </template>
 

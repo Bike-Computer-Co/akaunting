@@ -7,6 +7,7 @@ use App\Enums\StakeDuration;
 use App\Enums\StakeType;
 use App\Enums\StampType;
 use App\Jobs\DiscordNotificationJob;
+use App\Models\Auth\User;
 use App\Notifications\RegistrationSubmittedNotification;
 use App\Notifications\SuccessfullySentRegistrationNotification;
 use App\Traits\HasMedia;
@@ -83,6 +84,11 @@ class FirmRegistration extends Model
     public function enrollmentDecision(): MorphOne
     {
         return $this->morphOneFile();
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public static function createFirmRegistration($request): FirmRegistration

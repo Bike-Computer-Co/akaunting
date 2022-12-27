@@ -46,9 +46,9 @@ class UserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->authorize('hasAllPermissions', User::class);
-        $locales = collect(config('language.all'))->map(fn ($item) => $item['long']);
-        $currencies = collect(config('money'))->map(fn ($item, $key) => $key);
-        $countries = collect(trans('countries'))->map(fn ($item, $key) => $key);
+        $locales = collect(config('language.all'))->map(fn($item) => $item['long']);
+        $currencies = collect(config('money'))->map(fn($item, $key) => $key);
+        $countries = collect(trans('countries'))->map(fn($item, $key) => $key);
 
         $validated = $request->validate([
             'name' => 'required',
@@ -60,39 +60,7 @@ class UserController extends Controller
             'currency' => ['required', Rule::in($currencies)],
             'country' => ['required', Rule::in($countries)],
         ]);
-
-        DB::transaction(function () use ($validated) {
-            dispatch_sync(new CreateCompany([
-                'name' => $validated['company_name'],
-                'domain' => '',
-                'email' => $validated['email'],
-                'currency' => $validated['currency'],
-                'country' => $validated['country'],
-                'locale' => $validated['locale'],
-                'enabled' => '1',
-            ]));
-
-            return dispatch_sync(new CreateUser([
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'password' => $validated['password'],
-                'locale' => $validated['locale'],
-                'companies' => [company_id()],
-                'roles' => ['1'],
-                'enabled' => '1',
-                'register' => true,
-            ]));
-        });
-        Http::post('https://discord.com/api/webhooks/1015030296640499712/FnXmKnh7J_yrpFj3rYQCeh4H_Gj5xvOmu0SodV6K-gBRtaP9dt01egpbaZplsaQNGHa3', [
-            'content' => 'New user is registered on DigitalHub',
-            'embeds' => [
-                [
-                    'title' => "$validated[name] from $validated[company_name] registered",
-                    'description' => "With email: $validated[email]",
-                    'color' => '7506394',
-                ],
-            ],
-        ]);
+        User::createNewUser($validated);
 
         return redirect()->route('super.users.index');
     }

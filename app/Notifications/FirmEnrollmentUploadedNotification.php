@@ -46,7 +46,7 @@ class FirmEnrollmentUploadedNotification extends Notification
             ->subject('Прикачено решение за упис | Digitalhub.mk')
             ->greeting('Иван, Јоцка, Душан, Мартин')
             ->line('Успешно е прикачено решение за упис на фирма..')
-            ->line('Истата може да биде регистрирана на app.digitalhub.mk.')
+            ->line('Истата е успешно регистрирана на app.digitalhub.mk.')
             ->action('Погледни решение', $this->firmRegistration->enrollmentDecision->full_source)
             ->salutation('Со почит, Јоцка');
     }
