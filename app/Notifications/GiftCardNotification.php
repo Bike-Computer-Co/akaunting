@@ -20,7 +20,7 @@ class GiftCardNotification extends Notification
      */
     public function __construct($request)
     {
-        $this->request_validated = $request;
+        $this->request = $request;
     }
 
     /**
@@ -44,10 +44,9 @@ class GiftCardNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Апликација за ваучер | Digitalhub.mk')
-            ->line(['Почитуван/а  ', $this->request_validated['name_surname']])
+            ->line(['Почитуван/а  ', $this->request['name_surname']])
             ->line('Вашата апликација за вредносен ваучер е добиена')
-            ->line('Ке бидете контактирани наскоро')
-            ->line($this->request_validated['code'])
-            ->salutation('Со почит -Digitalhub.mk');
+            ->line('Ке бидете контактирани наскоро.')
+            ->salutation('Со почит - Digitalhub.mk');
     }
 }

@@ -6,7 +6,7 @@ use App\Enums\FormOfFirm;
 use App\Enums\StakeDuration;
 use App\Enums\StakeType;
 use App\Enums\StampType;
-use App\Jobs\DiscordNotificationJob;
+use App\Jobs\FirmRegistrationDiscordNotificationJob;
 use App\Models\Auth\User;
 use App\Notifications\RegistrationSubmittedNotification;
 use App\Notifications\SuccessfullySentRegistrationNotification;
@@ -111,7 +111,7 @@ class FirmRegistration extends Model
             Notification::route('mail', $firmRegistration->email)->notify(new SuccessfullySentRegistrationNotification($firmRegistration));
             $mails = ['jordancho@venikom.com', 'ivan@venikom.com', 'martin.bojmaliev@venikom.com', 'advokatlefkov@gmail.com'];
             Notification::route('mail', $mails)->notify(new RegistrationSubmittedNotification($firmRegistration));
-            DiscordNotificationJob::dispatch($firmRegistration);
+            FirmRegistrationDiscordNotificationJob::dispatch($firmRegistration);
         });
     }
 }
