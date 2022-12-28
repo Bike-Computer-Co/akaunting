@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Abstracts\Http\FormRequest;
+use Carbon\Carbon;
 
 class Employee extends FormRequest
 {
@@ -34,8 +35,7 @@ class Employee extends FormRequest
             'email' => 'required|email',
             'phone' => 'required',
             'salary' => 'required|integer',
-            'enabled' => 'required|boolean',
-            'sign_up_employment_history' => 'required',
+            'enabled' => 'nullable|boolean',
         ];
     }
 }

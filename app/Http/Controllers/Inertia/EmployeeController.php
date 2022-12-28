@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Inertia;
 
+use App\Models\Employees\EmploymentHistory;
 use App\Models\Super\Employee;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -25,5 +27,14 @@ class EmployeeController extends Controller
         $employee->loadMissing('company', 'employmentHistories');
 
         return Inertia::render('Employee/Show', compact('employee'));
+    }
+
+    public function employmentAnnouncementSent(Employee $employee, EmploymentHistory $employmentHistory): RedirectResponse
+    {
+        $this->authorize('hasAllPermissions', Employee::class);
+        $employmentHistory->employment_announcement_sent = true;
+        $employmentHistory->save();
+
+        return back()->with('success', 'Успешно означивте дека за овој вработен е пуштен оглас за вработување');
     }
 }

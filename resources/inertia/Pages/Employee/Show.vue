@@ -100,6 +100,8 @@
                 <tr>
                     <th>Тип</th>
                     <th>Датум на пријавување/одјавување</th>
+                    <th>Испратен оглас за вработување</th>
+                    <th>M1M2 образец</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -110,18 +112,34 @@
                     <td>
                         {{ history.employment_history_date }}
                     </td>
+                    <td>
+                        <button data-bs-toggle="modal" data-bs-target="#employmentAnnouncementSentModal"
+                                :data-bs-employment-history="JSON.stringify(history)"
+                                v-if="!history.employment_announcement_sent && history.type === SIGN_UP"
+                                class="btn btn-sm btn-primary">
+                            Испратен оглас за вработување
+                        </button>
+                        <span v-else-if="history.type === SIGN_UP">ДА</span>
+                        <span v-else>Овој запис е за одјавување</span>
+                    </td>
+                    <td>
+
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+        <EmploymentAnnouncementSentModal :employee="employee"/>
     </div>
 </template>
 
 <script>
 import DefaultLayout from "../../Layouts/DefaultLayout";
+import EmploymentAnnouncementSentModal from "../../Modals/EmploymentAnnouncementSentModal";
 
 export default {
     name: "Show",
+    components: {EmploymentAnnouncementSentModal},
     layout: DefaultLayout,
     props: {
         employee: {
