@@ -123,7 +123,21 @@
                         <span v-else>Овој запис е за одјавување</span>
                     </td>
                     <td>
-
+                        <input
+                            v-if="history.employment_announcement_sent && !history.m1m2 || history.type === SIGN_OUT"
+                            ref="filePicker"
+                            type="file"
+                            @change="uploadFile($event, history)"
+                        />
+                        <div v-else-if="history.m1m2">
+                            <a
+                                class="btn btn-primary btn-sm"
+                                :href="history.m1m2.full_source"
+                                target="_blank"
+                            >
+                                <i class="fa fa-eye"></i> Види M1M2
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -150,7 +164,19 @@ export default {
     data() {
         return {
             SIGN_UP: 0,
-            SIGN_OUT: 1
+            SIGN_OUT: 1,
+            form: this.$inertia.form({
+                file: null,
+                _method: "PUT"
+            }),
+        }
+    },
+    methods: {
+        uploadFile(e, employmentHistory) {
+            if (e.target.files[0]) {
+                this.form.file = e.target.files[0];
+                this.form.post(this.$route('super.employees.attach_m1m2', [this.employee, employmentHistory]));
+            }
         }
     }
 }

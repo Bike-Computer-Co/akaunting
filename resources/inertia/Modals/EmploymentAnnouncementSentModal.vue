@@ -74,7 +74,7 @@ export default {
     },
     methods: {
         submit() {
-            this.$inertia.post(this.$route('super.employees.sent_employment_announcement', [this.employee, this.employmentHistory]), {}, {
+            this.$inertia.put(this.$route('super.employees.sent_employment_announcement', [this.employee, this.employmentHistory]), {}, {
                 onSuccess: () => {
                     this.modal.hide();
                 }

@@ -15,7 +15,8 @@ Route::resource('firm-registration-attempts', FirmRegistrationAttemptController:
 Route::resource('companies', CompanyController::class)->only('update', 'index');
 Route::resource('stripe-plans', StripePlanController::class)->only('index', 'store', 'destroy');
 Route::resource('employees', EmployeeController::class)->only('index', 'show');
-Route::post('/employees/{employee}/employment-histories/{employmentHistory}/sent-employment_announcement', [EmployeeController::class, 'employmentAnnouncementSent'])->name('employees.sent_employment_announcement');
+Route::put('/employees/{employee}/employment-histories/{employmentHistory}/sent-employment_announcement', [EmployeeController::class, 'employmentAnnouncementSent'])->name('employees.sent_employment_announcement');
+Route::put('/employees/{employee}/employment-histories/{employmentHistory}/attach-m1m2', [EmployeeController::class, 'attachM1M2'])->name('employees.attach_m1m2');
 Route::resource('firm-registrations', FirmRegistrationController::class);
 Route::get('/firm-registrations/{firmRegistration}/certified-signature-pdf', [PdfController::class, 'certifiedSignaturePdf'])->name('firm-registrations.certified-signature-pdf');
 Route::get('/firm-registrations/{firmRegistration}/statement-1', [PdfController::class, 'statment1'])->name('firm-registrations.statment-1');

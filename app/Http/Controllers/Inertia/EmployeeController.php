@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Inertia;
 
+use App\Enums\MediaUsage;
+use App\Http\Requests\UploadFileRequest;
 use App\Models\Employees\EmploymentHistory;
 use App\Models\Super\Employee;
 use Illuminate\Http\RedirectResponse;
@@ -24,7 +26,7 @@ class EmployeeController extends Controller
     public function show(Employee $employee): Response
     {
         $this->authorize('hasAllPermissions', Employee::class);
-        $employee->loadMissing('company', 'employmentHistories');
+        $employee->loadMissing('company', 'employmentHistories', 'employmentHistories.m1m2');
 
         return Inertia::render('Employee/Show', compact('employee'));
     }
@@ -36,5 +38,13 @@ class EmployeeController extends Controller
         $employmentHistory->save();
 
         return back()->with('success', 'Успешно означивте дека за овој вработен е пуштен оглас за вработување');
+    }
+
+    public function attachM1M2(Employee $employee, EmploymentHistory $employmentHistory, UploadFileRequest $request): RedirectResponse
+    {
+        $this->authorize('hasAllPermissions', Employee::class);
+        $employmentHistory->uploadAndCreateMedia($request->file('file'), MediaUsage::FILE, 'm1m2-files');
+
+        return back()->with('success', 'Успешно го прикачивте овој M1M2 образец');
     }
 }
