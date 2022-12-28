@@ -33,11 +33,11 @@ class MediaFile extends Model
 
     public function fullSource(): Attribute
     {
-        $value = Str::of($this->source)->startsWith('http')
-            ? $this->source
-            : Storage::url($this->source);
+        // $value = Str::of($this->source)->startsWith('http')
+        //     ? $this->source
+        //     : Storage::url($this->source);
 
-        return Attribute::get(fn () => $value);
+        return Attribute::get(fn () => '');
     }
 
     public static function make($belongs, $filename, $usage = MediaUsage::DEFAULT)
