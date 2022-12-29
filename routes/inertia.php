@@ -5,6 +5,7 @@ use App\Http\Controllers\Inertia\DashboardController;
 use App\Http\Controllers\Inertia\EmployeeController;
 use App\Http\Controllers\Inertia\FirmRegistrationAttemptController;
 use App\Http\Controllers\Inertia\FirmRegistrationController;
+use App\Http\Controllers\Inertia\MediaFileController;
 use App\Http\Controllers\Inertia\PdfController;
 use App\Http\Controllers\Inertia\StripePlanController;
 use App\Http\Controllers\Inertia\UserController;
@@ -26,3 +27,4 @@ Route::get('/firm-registrations/{firmRegistration}/statement-4', [PdfController:
 Route::get('/firm-registrations/{firmRegistration}/power-of-attorney', [PdfController::class, 'powerOfAttorney'])->name('firm-registrations.power-of-attorney');
 Route::get('/firm-registrations/{firmRegistration}/decision', [PdfController::class, 'decision'])->name('firm-registrations.decision');
 Route::put('/firm-registrations/{firmRegistration}/enrollment-decision', [FirmRegistrationController::class, 'uploadFirmEnrollmentDecision'])->name('firm-registrations.upload-enrollment-decision');
+Route::get('/media-files/{mediaFile}', MediaFileController::class)->name('media_files.show');

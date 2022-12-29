@@ -124,7 +124,7 @@
                     </td>
                     <td>
                         <input
-                            v-if="history.employment_announcement_sent && !history.m1m2 || history.type === SIGN_OUT"
+                            v-if="(history.employment_announcement_sent  || history.type === SIGN_OUT) && !history.m1m2"
                             ref="filePicker"
                             type="file"
                             @change="uploadFile($event, history)"

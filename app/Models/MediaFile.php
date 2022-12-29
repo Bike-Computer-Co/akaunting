@@ -37,7 +37,7 @@ class MediaFile extends Model
         //     ? $this->source
         //     : Storage::url($this->source);
 
-        return Attribute::get(fn () => '');
+        return Attribute::get(fn () => route('super.media_files.show', $this->id));
     }
 
     public static function make($belongs, $filename, $usage = MediaUsage::DEFAULT)
