@@ -74,7 +74,7 @@ class Employee extends Controller
         if ($response['success']) {
             if ($request->get('sign_out_employment_history')) {
                 $request->validate([
-                    'sign_out_employment_history' => 'after:' . Carbon::now()->subDays(6)->format('Y-m-d'),
+                    'sign_out_employment_history' => 'after:'.Carbon::now()->subDays(6)->format('Y-m-d'),
                 ]);
                 EmploymentHistory::query()->create([
                     'employment_history_date' => $request->get('sign_out_employment_history'),
@@ -84,7 +84,7 @@ class Employee extends Controller
             }
             if ($request->get('sign_up_employment_history')) {
                 $request->validate([
-                    'sign_up_employment_history' => 'after:' . Carbon::now()->addDays(2)->format('Y-m-d'),
+                    'sign_up_employment_history' => 'after:'.Carbon::now()->addDays(2)->format('Y-m-d'),
                 ]);
                 EmploymentHistory::query()->create([
                     'employment_history_date' => $request->get('sign_up_employment_history'),
@@ -124,7 +124,7 @@ class Employee extends Controller
         $response['redirect'] = route('employees.index');
 
         if ($response['success']) {
-            $message = trans('messages.success.deleted', ['type' => $employee->first_name . ' ' . $employee->last_name]);
+            $message = trans('messages.success.deleted', ['type' => $employee->first_name.' '.$employee->last_name]);
 
             flash($message)->success();
         } else {

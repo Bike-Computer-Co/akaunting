@@ -17,7 +17,7 @@ class EmploymentHistory extends Model
 
     protected $casts = [
         'type' => EmploymentHistoryType::class,
-        'employment_announcement_sent' => 'boolean'
+        'employment_announcement_sent' => 'boolean',
     ];
 
     public function employee(): BelongsTo

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Abstracts\Http\FormRequest;
-use Carbon\Carbon;
 
 class Employee extends FormRequest
 {
