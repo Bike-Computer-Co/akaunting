@@ -88,6 +88,14 @@
                         {{ employee.salary }} ден.
                     </td>
                 </tr>
+                <tr>
+                    <th>
+                        Вработен во
+                    </th>
+                    <td>
+                        {{ employee.company.settings.find(a => a.key === 'company.name').value }}
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
