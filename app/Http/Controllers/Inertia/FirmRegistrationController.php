@@ -15,6 +15,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -108,11 +109,10 @@ class FirmRegistrationController extends Controller
         $firmRegistration->user_id = $user->id;
         $firmRegistration->save();
 
-        $token = app('auth.password.broker')->createToken($user);
+        $token = Password::broker()->createToken($user);
 
         $resetPasswordUrl = route('reset', [
             'token' => $token,
-            'email' => $firmRegistration->email,
         ]);
 
         Notification::route('mail', $user->email)->notify(new SuccessfullyRegisteredFirmAndProfileNotification($user, $resetPasswordUrl));

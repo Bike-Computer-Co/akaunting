@@ -173,6 +173,12 @@ export default {
                     icon: 'fa-building',
                     link: 'super.firm-registration-attempts.index',
                     can: this.can.seeFirmRegistrationAttempts
+                },
+                {
+                    name: 'Апликации за ваучер',
+                    icon: 'fa-money',
+                    link: 'super.gift-code-applicants.index',
+                    can: this.can.seeFirmRegistrationAttempts
                 }
             ],
         };
