@@ -6,6 +6,7 @@ use App\Http\Controllers\Inertia\EmployeeController;
 use App\Http\Controllers\Inertia\FirmRegistrationAttemptController;
 use App\Http\Controllers\Inertia\FirmRegistrationController;
 use App\Http\Controllers\Inertia\GiftCodeApplicantController;
+use App\Http\Controllers\Inertia\MediaFileController;
 use App\Http\Controllers\Inertia\PdfController;
 use App\Http\Controllers\Inertia\StripePlanController;
 use App\Http\Controllers\Inertia\UserController;
@@ -16,6 +17,8 @@ Route::resource('firm-registration-attempts', FirmRegistrationAttemptController:
 Route::resource('companies', CompanyController::class)->only('update', 'index');
 Route::resource('stripe-plans', StripePlanController::class)->only('index', 'store', 'destroy');
 Route::resource('employees', EmployeeController::class)->only('index', 'show');
+Route::put('/employees/{employee}/employment-histories/{employmentHistory}/sent-employment_announcement', [EmployeeController::class, 'employmentAnnouncementSent'])->name('employees.sent_employment_announcement');
+Route::put('/employees/{employee}/employment-histories/{employmentHistory}/attach-m1m2', [EmployeeController::class, 'attachM1M2'])->name('employees.attach_m1m2');
 Route::resource('firm-registrations', FirmRegistrationController::class);
 Route::resource('gift-code-applicants', GiftCodeApplicantController::class)->only('index');
 Route::get('/firm-registrations/{firmRegistration}/certified-signature-pdf', [PdfController::class, 'certifiedSignaturePdf'])->name('firm-registrations.certified-signature-pdf');
@@ -26,3 +29,4 @@ Route::get('/firm-registrations/{firmRegistration}/statement-4', [PdfController:
 Route::get('/firm-registrations/{firmRegistration}/power-of-attorney', [PdfController::class, 'powerOfAttorney'])->name('firm-registrations.power-of-attorney');
 Route::get('/firm-registrations/{firmRegistration}/decision', [PdfController::class, 'decision'])->name('firm-registrations.decision');
 Route::put('/firm-registrations/{firmRegistration}/enrollment-decision', [FirmRegistrationController::class, 'uploadFirmEnrollmentDecision'])->name('firm-registrations.upload-enrollment-decision');
+Route::get('/media-files/{mediaFile}', MediaFileController::class)->name('media_files.show');

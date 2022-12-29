@@ -34,8 +34,7 @@ class Employee extends FormRequest
             'email' => 'required|email',
             'phone' => 'required',
             'salary' => 'required|integer',
-            'enabled' => 'required|boolean',
-            'sign_up_employment_history' => 'required',
+            'enabled' => 'nullable|boolean',
         ];
     }
 }

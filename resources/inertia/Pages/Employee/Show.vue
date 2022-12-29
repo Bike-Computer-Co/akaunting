@@ -108,6 +108,8 @@
                 <tr>
                     <th>Тип</th>
                     <th>Датум на пријавување/одјавување</th>
+                    <th>Испратен оглас за вработување</th>
+                    <th>M1M2 образец</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -118,18 +120,48 @@
                     <td>
                         {{ history.employment_history_date }}
                     </td>
+                    <td>
+                        <button data-bs-toggle="modal" data-bs-target="#employmentAnnouncementSentModal"
+                                :data-bs-employment-history="JSON.stringify(history)"
+                                v-if="!history.employment_announcement_sent && history.type === SIGN_UP"
+                                class="btn btn-sm btn-primary">
+                            Испратен оглас за вработување
+                        </button>
+                        <span v-else-if="history.type === SIGN_UP">ДА</span>
+                        <span v-else>Овој запис е за одјавување</span>
+                    </td>
+                    <td>
+                        <input
+                            v-if="(history.employment_announcement_sent  || history.type === SIGN_OUT) && !history.m1m2"
+                            ref="filePicker"
+                            type="file"
+                            @change="uploadFile($event, history)"
+                        />
+                        <div v-else-if="history.m1m2">
+                            <a
+                                class="btn btn-primary btn-sm"
+                                :href="history.m1m2.full_source"
+                                target="_blank"
+                            >
+                                <i class="fa fa-eye"></i> Види M1M2
+                            </a>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+        <EmploymentAnnouncementSentModal :employee="employee"/>
     </div>
 </template>
 
 <script>
 import DefaultLayout from "../../Layouts/DefaultLayout";
+import EmploymentAnnouncementSentModal from "../../Modals/EmploymentAnnouncementSentModal";
 
 export default {
     name: "Show",
+    components: {EmploymentAnnouncementSentModal},
     layout: DefaultLayout,
     props: {
         employee: {
@@ -140,7 +172,19 @@ export default {
     data() {
         return {
             SIGN_UP: 0,
-            SIGN_OUT: 1
+            SIGN_OUT: 1,
+            form: this.$inertia.form({
+                file: null,
+                _method: "PUT"
+            }),
+        }
+    },
+    methods: {
+        uploadFile(e, employmentHistory) {
+            if (e.target.files[0]) {
+                this.form.file = e.target.files[0];
+                this.form.post(this.$route('super.employees.attach_m1m2', [this.employee, employmentHistory]));
+            }
         }
     }
 }

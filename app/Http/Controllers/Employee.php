@@ -28,19 +28,18 @@ class Employee extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'sign_up_employment_history' => ['required', 'after:'.Carbon::now()->addDays(2)->format('Y-m-d')],
+        ]);
+
         $response = $this->ajaxDispatch(new CreateEmployee($request));
 
         if ($response['success']) {
-            if ($request->get('sign_up_employment_history')) {
-                $request->validate([
-                    'sign_up_employment_history' => 'after:'.Carbon::now()->addDays(2)->format('Y-m-d'),
-                ]);
-                EmploymentHistory::query()->create([
-                    'employment_history_date' => $request->get('sign_up_employment_history'),
-                    'type' => EmploymentHistoryType::SIGN_UP->value,
-                    'employee_id' => $response['data']->id,
-                ]);
-            }
+            EmploymentHistory::query()->create([
+                'employment_history_date' => $request->get('sign_up_employment_history'),
+                'type' => EmploymentHistoryType::SIGN_UP->value,
+                'employee_id' => $response['data']->id,
+            ]);
 
             $response['redirect'] = route('employees.show', $response['data']->id);
 
