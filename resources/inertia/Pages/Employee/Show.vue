@@ -96,6 +96,14 @@
                         {{ employee.company.settings.find(a => a.key === 'company.name').value }}
                     </td>
                 </tr>
+                <tr>
+                    <th>
+                        Работна позиција
+                    </th>
+                    <td>
+                        {{ employee.occupation }}
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
