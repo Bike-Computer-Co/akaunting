@@ -61,7 +61,7 @@
 
                         <x-form.group.number name="salary" label="{{ trans('general.salary') }}" not-required />
 
-                        @if($type && $type->value == \App\Enums\EmploymentHistoryType::SIGN_OUT->value)
+                        @if(!$type || $type->value == \App\Enums\EmploymentHistoryType::SIGN_OUT->value)
                             <x-form.group.date
                                 name="sign_up_employment_history"
                                 label="{{ trans('general.sign_up_employment_history') }}"
