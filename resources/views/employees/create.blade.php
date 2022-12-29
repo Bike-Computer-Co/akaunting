@@ -33,7 +33,7 @@
                             show-date-format="{{ company_date_format() }}"
                             date-format="Y-m-d"
                             autocomplete="off"
-                            change="setSignUpEmploymentHistoryDate"
+                            change="setSignUpEmploymentHistory"
                             not-required
                         />
 

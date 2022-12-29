@@ -37,7 +37,7 @@ const app = new Vue({
         setBirthDate(date) {
             this.birth_date = date
         },
-        setSignUpEmploymentHistoryDate(date) {
+        setSignUpEmploymentHistory(date) {
             this.sign_up_employment_history_date = date
         },
         setSignOutEmploymentHistory(date) {
