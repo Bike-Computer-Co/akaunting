@@ -51,7 +51,7 @@
 <img src="images/logo-attorney-levkov.png" alt="Attorney Logo" width="700">
 <h1>ПОЛНОМОШНО</h1>
 <h2>Долупотпишаниот ,</h2>
-<p>{{$name}} {{$address}} {{$embg}} {{$id_number}}</p>
+<p>{{$name}} од {{$municipality}}, {{$address}} со ЕМБГ {{$embg}} и број на лична карта {{$id_number}}</p>
 <br>
 <p><b>ГО ОВЛАСТУВА</b> Адвокат Иван Лефков од Кочани со седиште на ул. Никола Карев бб со електронско сандаче за достава
     на:
