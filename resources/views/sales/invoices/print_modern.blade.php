@@ -8,7 +8,7 @@
             type="invoice"
             :document="$invoice"
         />
-        <img src="https://api.qrserver.com/v1/create-qr-code/?data={{$invoice->short_url}}&size=80x80&margin=0" alt="">
+{{--        <img src="https://api.qrserver.com/v1/create-qr-code/?data={{$invoice->short_url}}&size=80x80&margin=0" alt="">--}}
         <br>
 {{--        <p style="font-size: 12px; color: #424242;">--}}
 {{--            Pay online:--}}
