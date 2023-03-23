@@ -112,7 +112,7 @@
             </div>
             @if(!company()->stripe_plan_id)
                 Нема доделено план од администратор.
-            @elseif(company()->subscription() && company()->subscription()->onGracePeriod())
+            @elseif(company()->subscription() && (company()->subscription()->ended() || company()->subscription()->canceled()))
                 <div class="mb-2">Активирај претплата повторно</div>
 
                 <x-form id="resume" method="PATCH" url="/{{company_id()}}/billing/resume">
