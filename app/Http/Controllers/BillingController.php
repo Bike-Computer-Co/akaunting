@@ -102,7 +102,8 @@ class BillingController extends Controller
 
     public function resume(Request $request)
     {
-        abort_if(! company()->subscription()->onGracePeriod(), 400);
+        $check = company()->subscription() && (company()->subscription()->ended() || company()->subscription()->canceled());
+        abort_if(! $check, 400);
         company()->subscription()->resume();
 
         return back();
