@@ -130,6 +130,8 @@ class Route extends Provider
 
         $this->mapApiPublicRoutes();
 
+        $this->mapMobileAppRoutes();
+
         $this->mapCommonRoutes();
 
         $this->mapGuestRoutes();
@@ -191,6 +193,22 @@ class Route extends Provider
             ->middleware('api_public')
             ->namespace($this->namespace.'\ApiPublic')
             ->group(base_path('routes/api_public.php'));
+    }
+
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapMobileAppRoutes()
+    {
+        Facade::prefix('mobile-app')
+            ->domain(config('api.domain'))
+            ->namespace($this->namespace.'\MobileApp')
+            ->group(base_path('routes/mobile_app.php'));
     }
 
     /**
