@@ -23,11 +23,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Laratrust\Traits\LaratrustUserTrait;
+use Laravel\Sanctum\HasApiTokens;
 use Lorisleiva\LaravelSearchString\Concerns\SearchString;
 
 class User extends Authenticatable implements HasLocalePreference
 {
-    use HasFactory, LaratrustUserTrait, Media, Notifiable, Owners, SearchString, SoftDeletes, Sortable, Sources, Tenants, Users;
+    use HasApiTokens, HasFactory, LaratrustUserTrait, Media, Notifiable, Owners, SearchString, SoftDeletes, Sortable, Sources, Tenants, Users;
 
     protected $table = 'users';
 

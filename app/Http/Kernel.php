@@ -75,6 +75,7 @@ class Kernel extends HttpKernel
             'firewall.all',
         ],
 
+
         'api_public' => [
             'web',
             'throttle:api',
