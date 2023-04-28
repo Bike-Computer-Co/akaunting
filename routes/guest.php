@@ -23,8 +23,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('register', 'Auth\Register@store')->name('register.store');
 
     // disabled register routes for public
-//    Route::get("full-register", 'Auth\FullRegister@create')->name("full_register.create");
-//    Route::post("full-register", 'Auth\FullRegister@store')->name("full_register.store");
+    Route::get("full-register", 'Auth\FullRegister@create')->name("full_register.create");
+    Route::post("full-register", 'Auth\FullRegister@store')->name("full_register.store");
 });
 
 Route::get('/', function () {

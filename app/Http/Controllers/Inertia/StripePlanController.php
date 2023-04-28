@@ -26,6 +26,7 @@ class StripePlanController extends Controller
         StripePlan::query()->create($request->validate([
             'name' => 'required',
             'stripe_id' => 'required',
+            'accountant' => 'boolean'
         ]));
 
         return back()->with('success', 'Успешно креиравте Stripe пакет');

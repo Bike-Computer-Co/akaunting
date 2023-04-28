@@ -303,6 +303,10 @@ class Company extends Eloquent implements Ownable
         return $this->belongsTo('App\Models\StripePlan');
     }
 
+    public function scopeOurAccountant($query){
+        return $query->whereHas('stripe_plan', fn($query)=> $query->where('accountant', true));
+    }
+
     public function setCommonSettingsAsAttributes()
     {
         try { // TODO will optimize..

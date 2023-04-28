@@ -17,6 +17,7 @@ class EmployeeController extends Controller
         $this->authorize('hasAllPermissions', Employee::class);
         $employees = Employee::query()
             ->with('company')
+            ->whereHas('company', fn($query)=> $query->ourAccountant())
             ->latest()
             ->paginate(20);
 

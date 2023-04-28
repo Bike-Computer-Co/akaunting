@@ -9,7 +9,7 @@ class StripePlan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'stripe_id'];
+    protected $fillable = ['name', 'stripe_id', 'accountant'];
 
     public function companies()
     {

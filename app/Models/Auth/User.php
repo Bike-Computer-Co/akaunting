@@ -7,6 +7,7 @@ use App\Enums\SuperType;
 use App\Jobs\Auth\CreateUser;
 use App\Jobs\Common\CreateCompany;
 use App\Models\FirmRegistration;
+use App\Models\StripePlan;
 use App\Notifications\Auth\Reset;
 use App\Traits\Media;
 use App\Traits\Owners;
@@ -366,7 +367,7 @@ class User extends Authenticatable implements HasLocalePreference
     public static function createNewUser($validated)
     {
         $user = DB::transaction(function () use ($validated) {
-            dispatch_sync(new CreateCompany([
+            $company = dispatch_sync(new CreateCompany([
                 'name' => $validated['company_name'],
                 'domain' => '',
                 'email' => $validated['email'],
@@ -375,6 +376,14 @@ class User extends Authenticatable implements HasLocalePreference
                 'locale' => $validated['locale'],
                 'enabled' => '1',
             ]));
+
+            $plan = StripePlan::firstWhere('accountant', false);
+
+            if ($plan){
+                $company->stripe_plan()->associate($plan);
+                $company->save();
+            }
+
 
             return dispatch_sync(new CreateUser([
                 'name' => $validated['name'],
@@ -387,18 +396,18 @@ class User extends Authenticatable implements HasLocalePreference
                 'register' => true,
             ]));
         });
-        if (app()->isProduction()) {
-            Http::post('https://discord.com/api/webhooks/1015030296640499712/FnXmKnh7J_yrpFj3rYQCeh4H_Gj5xvOmu0SodV6K-gBRtaP9dt01egpbaZplsaQNGHa3', [
-                'content' => 'New user is registered on DigitalHub',
-                'embeds' => [
-                    [
-                        'title' => "$validated[name] from $validated[company_name] registered",
-                        'description' => "With email: $validated[email]",
-                        'color' => '7506394',
-                    ],
-                ],
-            ]);
-        }
+//        if (app()->isProduction()) {
+//            Http::post('https://discord.com/api/webhooks/1015030296640499712/FnXmKnh7J_yrpFj3rYQCeh4H_Gj5xvOmu0SodV6K-gBRtaP9dt01egpbaZplsaQNGHa3', [
+//                'content' => 'New user is registered on DigitalHub',
+//                'embeds' => [
+//                    [
+//                        'title' => "$validated[name] from $validated[company_name] registered",
+//                        'description' => "With email: $validated[email]",
+//                        'color' => '7506394',
+//                    ],
+//                ],
+//            ]);
+//        }
 
         return $user;
     }
