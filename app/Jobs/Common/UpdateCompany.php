@@ -39,6 +39,10 @@ class UpdateCompany extends Job implements ShouldUpdate
                 setting()->set('company.email', $this->request->get('email'));
             }
 
+            if ($this->request->has('accountant_email')) {
+                setting()->set('company.accountant_email', $this->request->get('accountant_email'));
+            }
+
             if ($this->request->has('tax_number')) {
                 setting()->set('company.tax_number', $this->request->get('tax_number'));
             }

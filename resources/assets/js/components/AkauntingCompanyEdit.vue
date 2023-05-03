@@ -33,6 +33,11 @@
                             {{ company.email }}
                         </th>
                     </tr>
+                    <tr>
+                        <th class="font-normal text-sm text-left p-0">
+                            {{ company.accountant_email }}
+                        </th>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -209,6 +214,7 @@ export default {
 
                     this.company.name = data.name;
                     this.company.email = data.email;
+                    this.company.accountant_email = data.accountant_email;
                     this.company.tax_number = data.tax_number;
                     this.company.phone = data.phone;
                     this.company.address = data.address;

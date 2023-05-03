@@ -4,6 +4,7 @@ return [
     'company' => [
         'name' => 'Име',
         'email' => 'Е-пошта',
+        'accountant_email' => 'Е-пошта на сметководител',
         'phone' => 'Телефон',
         'address' => 'Адреса',
         'logo' => 'Лого',
