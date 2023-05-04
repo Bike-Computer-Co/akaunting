@@ -306,6 +306,9 @@ class Company extends Eloquent implements Ownable
     public function scopeOurAccountant($query){
         return $query->whereHas('stripe_plan', fn($query)=> $query->where('accountant', true));
     }
+    public function scopeNotOurAccountant($query){
+        return $query->whereHas('stripe_plan', fn($query)=> $query->where('accountant', false));
+    }
 
     public function setCommonSettingsAsAttributes()
     {

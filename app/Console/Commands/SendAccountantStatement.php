@@ -2,8 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendAccountantStatementJob;
 use App\Models\Common\Company;
+use App\Models\Setting\Setting;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class SendAccountantStatement extends Command
 {
@@ -28,13 +31,12 @@ class SendAccountantStatement extends Command
      */
     public function handle()
     {
-
-        $company = Company::query()
-            ->ourAccountant()
-            ->whereHas('settings', fn($q)=> $q->whereNotNull('company.accountant_email'))
+        Company::query()
+            ->notOurAccountant()
+            ->whereIn('id', DB::table('settings')->select('company_id')->where('key', 'company.accountant_email')->whereNotNull('value'))
             ->get()
             ->each(function ($company){
-
+                SendAccountantStatementJob::dispatch($company);
             });
         return Command::SUCCESS;
     }

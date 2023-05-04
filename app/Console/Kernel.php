@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('recurring:check')->dailyAt($schedule_time)->runInBackground();
         $schedule->command('storage-temp:clear')->dailyAt('17:00');
         $schedule->command('digitalhub:generate-monthly-salary')->monthlyOn();
-        $schedule->command('digitalhub:send-accountant-statement')->monthlyOn();
+        $schedule->command('digitalhub:send-accountant-statement')->weeklyOn(1);
     }
 
     /**
