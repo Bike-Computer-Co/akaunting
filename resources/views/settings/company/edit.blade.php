@@ -15,6 +15,8 @@
 
                             <x-form.group.text name="email" label="{{ trans('settings.company.email') }}" value="{{ setting('company.email') }}" />
 
+                            <x-form.group.text name="accountant_email" label="{{ trans('settings.company.accountant_email') }}" value="{{ setting('company.accountant_email') }}" />
+
                             <x-form.group.text name="phone" label="{{ trans('settings.company.phone') }}" value="{{ setting('company.phone') }}" not-required />
 
                             <x-form.group.text name="tax_number" label="{{ trans('general.tax_number') }}" value="{{ setting('company.tax_number') }}" not-required />

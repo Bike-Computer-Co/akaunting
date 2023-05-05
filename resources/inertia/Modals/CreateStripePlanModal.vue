@@ -5,7 +5,7 @@
         class="modal fade"
         tabindex="-1"
         aria-hidden="true"
-        @click.prevent
+
     >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -36,6 +36,12 @@
                                placeholder="Stripe ID" :class="{'is-invalid' : form.errors.stripe_id}">
                         <label for="stripe_id">Stripe ID</label>
                         <div class="invalid-feedback">{{ form.errors.stripe_id }}</div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" v-model="form.accountant" id="accountant">
+                        <label class="form-check-label" for="accountant">
+                            Сметководител
+                        </label>
                     </div>
                     <div
                         class="d-flex flex-row gap-3 align-items-center justify-content-center"
@@ -72,6 +78,7 @@ export default {
             form: this.$inertia.form({
                 name: "",
                 stripe_id: "",
+                accountant: false
             })
         };
     },

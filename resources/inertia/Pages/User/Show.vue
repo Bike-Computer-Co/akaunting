@@ -105,6 +105,14 @@
                                 {{ company.settings.find(a => a.key === 'company.email').value }}
                             </td>
                         </tr>
+                        <tr v-if="company.settings.find(a => a.key === 'company.accountant_email')">
+                            <th>
+                                Е-пошта на сметководител:
+                            </th>
+                            <td>
+                                {{ company.settings.find(a => a.key === 'company.accountant_email').value }}
+                            </td>
+                        </tr>
                         <tr v-if="company.settings.find(a => a.key === 'default.currency')">
                             <th>
                                 Валута на компанија:

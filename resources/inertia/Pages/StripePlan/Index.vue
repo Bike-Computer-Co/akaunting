@@ -23,6 +23,8 @@
                     <th scope="col">Име</th>
                     <th scope="col">Број на компании</th>
                     <th scope="col">Креиран на</th>
+                    <th scope="col">Сметководител</th>
+
                     <th>Акции</th>
                 </tr>
                 </thead>
@@ -32,6 +34,7 @@
                     <td>{{ plan.name }}</td>
                     <td>{{ plan.companies_count }}</td>
                     <td>{{ plan.created_at | moment('ll') }}</td>
+                    <td>{{ plan.accountant }}</td>
                     <td>
                         <button data-bs-toggle="modal" data-bs-target="#deleteStripePlanModal"
                                 :data-bs-stripe-plan="JSON.stringify(plan)"
