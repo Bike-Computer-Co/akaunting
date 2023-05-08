@@ -14,7 +14,7 @@ class Menu extends Presenter
     {
         return PHP_EOL.'<div class="navbar-inner">
             <!-- Collapse -->
-            <div class="collapse" id="sidenav-collapse-main">
+            <div class="collapse" id="sidenav-collapse-main" style="visibility:visible">
                 <!-- Nav items -->
                 <ul class="flex flex-col justify-center">'.PHP_EOL;
     }
