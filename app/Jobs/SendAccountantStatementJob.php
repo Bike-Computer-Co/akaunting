@@ -59,6 +59,10 @@ class SendAccountantStatementJob implements ShouldQueue
         $this->makeStorageDirectory($folderPrefix, 'bills');
         $this->makeStorageDirectory($folderPrefix, 'expenses');
 
+        $this->makeStorageDirectory($folderPrefix, 'edited_invoices');
+        $this->makeStorageDirectory($folderPrefix, 'edited_bills');
+        $this->makeStorageDirectory($folderPrefix, 'edited_expenses');
+
 
         $this->saveInvoices($startWeek, $endWeek, $folderPrefix);
         $this->saveBills($startWeek, $endWeek, $folderPrefix);
@@ -82,25 +86,41 @@ class SendAccountantStatementJob implements ShouldQueue
         $this->company->transactions()
             ->where('type', Transaction::EXPENSE_TYPE )
             ->whereBetween('created_at', [$startWeek, $endWeek])
-            ->orWhereBetween('updated_at', [$startWeek, $endWeek])
             ->get()
             ->each(function (Transaction $transaction) use ($folderPrefix) {
                 $currency_style = true;
                 $file_name = $this->getTransactionFileName($transaction);
                 $this->savePdf($folderPrefix, "banking.transactions.print_default", compact('transaction', 'currency_style'), $file_name, 'expenses');
             });
+        $this->company->transactions()
+            ->where('type', Transaction::EXPENSE_TYPE )
+            ->whereBetween('updated_at', [$startWeek, $endWeek])
+            ->get()
+            ->each(function (Transaction $transaction) use ($folderPrefix) {
+                $currency_style = true;
+                $file_name = $this->getTransactionFileName($transaction);
+                $this->savePdf($folderPrefix, "banking.transactions.print_default", compact('transaction', 'currency_style'), $file_name, 'edited_expenses');
+            });
     }
 
     private function saveBills($startWeek, $endWeek, $folderPrefix){
         $this->company->bills()
             ->whereBetween('created_at', [$startWeek, $endWeek])
-            ->orWhereBetween('updated_at', [$startWeek, $endWeek])
             ->get()
             ->each(function (Document $bill) use ($folderPrefix) {
                 $bill = $this->prepareBill($bill);
                 $currency_style = true;
                 $file_name = $this->getDocumentFileName($bill);
                 $this->savePdf($folderPrefix, "purchases.bills.print", compact('bill', 'currency_style'), $file_name, 'bills');
+            });
+        $this->company->bills()
+            ->whereBetween('updated_at', [$startWeek, $endWeek])
+            ->get()
+            ->each(function (Document $bill) use ($folderPrefix) {
+                $bill = $this->prepareBill($bill);
+                $currency_style = true;
+                $file_name = $this->getDocumentFileName($bill);
+                $this->savePdf($folderPrefix, "purchases.bills.print", compact('bill', 'currency_style'), $file_name, 'edited_bills');
             });
     }
 
@@ -109,12 +129,19 @@ class SendAccountantStatementJob implements ShouldQueue
 
         $this->company->invoices()
             ->whereBetween('created_at', [$startWeek, $endWeek])
-            ->orWhereBetween('updated_at', [$startWeek, $endWeek])
             ->get()
             ->each(function (Document $invoice) use ($documentTemplatePath, $folderPrefix) {
                 $currency_style = true;
                 $file_name = $this->getDocumentFileName($invoice);
                 $this->savePdf($folderPrefix, "sales.invoices.print_$documentTemplatePath", compact('invoice', 'currency_style'), $file_name, 'invoices');
+            });
+        $this->company->invoices()
+            ->whereBetween('updated_at', [$startWeek, $endWeek])
+            ->get()
+            ->each(function (Document $invoice) use ($documentTemplatePath, $folderPrefix) {
+                $currency_style = true;
+                $file_name = $this->getDocumentFileName($invoice);
+                $this->savePdf($folderPrefix, "sales.invoices.print_$documentTemplatePath", compact('invoice', 'currency_style'), $file_name, 'edited_invoices');
             });
     }
 
