@@ -82,6 +82,7 @@ class SendAccountantStatementJob implements ShouldQueue
         $this->company->transactions()
             ->where('type', Transaction::EXPENSE_TYPE )
             ->whereBetween('created_at', [$startWeek, $endWeek])
+            ->orWhereBetween('updated_at', [$startWeek, $endWeek])
             ->get()
             ->each(function (Transaction $transaction) use ($folderPrefix) {
                 $currency_style = true;
@@ -93,6 +94,7 @@ class SendAccountantStatementJob implements ShouldQueue
     private function saveBills($startWeek, $endWeek, $folderPrefix){
         $this->company->bills()
             ->whereBetween('created_at', [$startWeek, $endWeek])
+            ->orWhereBetween('updated_at', [$startWeek, $endWeek])
             ->get()
             ->each(function (Document $bill) use ($folderPrefix) {
                 $bill = $this->prepareBill($bill);
@@ -107,6 +109,7 @@ class SendAccountantStatementJob implements ShouldQueue
 
         $this->company->invoices()
             ->whereBetween('created_at', [$startWeek, $endWeek])
+            ->orWhereBetween('updated_at', [$startWeek, $endWeek])
             ->get()
             ->each(function (Document $invoice) use ($documentTemplatePath, $folderPrefix) {
                 $currency_style = true;

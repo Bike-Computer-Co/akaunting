@@ -356,7 +356,7 @@ abstract class Index extends Component
             $buttons[] = [
                 'permission' => $this->permissionCreate,
                 'url' => route($this->createRoute),
-                'text' => trans('general.title.new', ['type' => trans_choice($this->textPage ?? 'general.'.$prefix, 1)]),
+                'text' => trans('general.title.new_femine', ['type' => trans_choice($this->textPage ?? 'general.'.$prefix, 1)]),
                 'description' => trans('general.empty.actions.new', ['type' => strtolower(trans_choice($this->textPage ?? 'general.'.$prefix, 1))]),
                 'active_badge' => true,
             ];

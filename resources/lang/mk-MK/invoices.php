@@ -42,7 +42,7 @@ return [
     'payment_received' => 'Примена уплата',
 
     'form_description' => [
-        'billing' => '(превод) Billing details appear in your invoice. Invoice Date is used in the dashboard and reports. Select the date you expect to get paid as the Due Date.',
+        'billing' => '(превод) Деталите за наплата се појавуваат во вашата фактура. Датумот на фактурата се користи во контролната табла и извештаите. Изберете го датумот на кој очекувате да добиете плата како датум на доспевање.',
     ],
     'messages' => [
         'email_required' => 'Нема адреса на е-пошта за овој клиент!',
