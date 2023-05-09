@@ -48,7 +48,7 @@ class CreateContact extends Job implements HasOwner, HasSource, ShouldCreate
         })->pluck('id')->first();
 
         $this->request->merge([
-            'locale' => setting('default.locale', 'en-GB'),
+            'locale' => setting('default.locale', 'mk-MK'),
             'roles' => $customer_role_id,
             'companies' => [$this->request->get('company_id')],
         ]);

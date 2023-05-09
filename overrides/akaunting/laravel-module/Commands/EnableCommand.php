@@ -12,7 +12,7 @@ class EnableCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'module:enable {alias} {company} {locale=en-GB}';
+    protected $signature = 'module:enable {alias} {company} {locale=mk-MK}';
 
     /**
      * The console command description.

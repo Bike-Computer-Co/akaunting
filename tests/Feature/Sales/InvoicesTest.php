@@ -38,7 +38,7 @@ class InvoicesTest extends FeatureTestCase
         $this->loginAs()
             ->get(route('invoices.create'))
             ->assertStatus(200)
-            ->assertSeeText(trans('general.title.new', ['type' => trans_choice('general.invoices', 1)]));
+            ->assertSeeText(trans('general.title.new_femine', ['type' => trans_choice('general.invoices', 1)]));
     }
 
     public function testItShouldCreateInvoice()

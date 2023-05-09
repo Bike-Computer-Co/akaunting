@@ -34,6 +34,7 @@ abstract class Widget
 
     public function getDefaultName()
     {
+        echo app()->getLocale();
         return trans($this->default_name);
     }
 

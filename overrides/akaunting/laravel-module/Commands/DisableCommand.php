@@ -12,7 +12,7 @@ class DisableCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'module:disable {alias} {company} {locale=en-GB}';
+    protected $signature = 'module:disable {alias} {company} {locale=mk-MK}';
 
     /**
      * The console command description.

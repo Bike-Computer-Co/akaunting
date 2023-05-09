@@ -1,8 +1,8 @@
 <x-layouts.admin>
-    <x-slot name="title">{{ trans('general.title.new', ['type' => trans_choice('general.items', 1)]) }}</x-slot>
+    <x-slot name="title">{{ trans('general.title.new_femine', ['type' => trans_choice('general.items', 1)]) }}</x-slot>
 
     <x-slot name="favorite"
-        title="{{ trans('general.title.new', ['type' => trans_choice('general.items', 1)]) }}"
+        title="{{ trans('general.title.new_femine', ['type' => trans_choice('general.items', 1)]) }}"
         icon="inventory_2"
         route="items.create"
     ></x-slot>

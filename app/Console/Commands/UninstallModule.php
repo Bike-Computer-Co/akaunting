@@ -12,7 +12,7 @@ class UninstallModule extends Command
      *
      * @var string
      */
-    protected $signature = 'module:uninstall {alias} {company} {locale=en-GB}';
+    protected $signature = 'module:uninstall {alias} {company} {locale=mk-MK}';
 
     /**
      * The console command description.

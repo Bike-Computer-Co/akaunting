@@ -13,7 +13,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'module:install {alias} {company} {locale=en-GB}';
+    protected $signature = 'module:install {alias} {company} {locale=mk-MK}';
 
     /**
      * The console command description.

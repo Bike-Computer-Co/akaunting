@@ -1,7 +1,7 @@
 <div class="w-full lg:max-w-6xl m-auto">
     <x-layouts.signed>
         <x-slot name="title">
-            {{ setting('invoice.title', trans_choice('general.invoices', 1)) . ': ' . $invoice->document_number }}
+            {{  trans_choice('general.invoices', 1) . ': ' . $invoice->document_number }}
         </x-slot>
 
         <x-slot name="buttons">

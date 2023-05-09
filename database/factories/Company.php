@@ -63,7 +63,7 @@ class Company extends Factory
         return $this->afterCreating(function (Model $company) {
             $company->makeCurrent();
 
-            app()->setLocale('en-GB');
+            app()->setLocale('mk-MK');
 
             // Company seeds
             Artisan::call('company:seed', [
@@ -86,7 +86,7 @@ class Company extends Factory
                 'company.city' => 'London',
                 'company.country' => $this->faker->countryCode,
                 'default.currency' => 'USD',
-                'default.locale' => 'en-GB',
+                'default.locale' => 'mk-MK',
             ]);
 
             setting()->save();

@@ -30,7 +30,7 @@ class User extends Factory
             'password' => $password,
             'password_confirmation' => $password,
             'remember_token' => Str::random(10),
-            'locale' => 'en-GB',
+            'locale' => 'mk-MK',
             'companies' => ['1'],
             'roles' => '1',
             'enabled' => $this->faker->boolean ? 1 : 0,

@@ -242,6 +242,7 @@ return [
     'title' => [
         'show' => 'Show :type',
         'new' => 'New :type',
+        'new_femine' => 'New :type',
         'edit' => 'Edit :type',
         'delete' => 'Delete :type',
         'create' => 'Create :type',

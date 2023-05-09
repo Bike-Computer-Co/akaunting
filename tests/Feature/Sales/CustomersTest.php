@@ -212,7 +212,7 @@ class CustomersTest extends FeatureTestCase
 
         return $this->getRequest() + [
             'create_user' => 'true',
-            'locale' => 'en-GB',
+            'locale' => 'mk-MK',
             'password' => $password,
             'password_confirmation' => $password,
         ];

@@ -1,11 +1,11 @@
 
 <x-layouts.admin>
     <x-slot name="title">
-        {{ trans('general.title.new', ['type' => setting('bill.title', trans_choice('general.bills', 1))]) }}
+        {{ trans('general.title.new_femine', ['type' => trans_choice('general.bills', 1)]) }}
     </x-slot>
 
     <x-slot name="favorite"
-        title="{{ trans('general.title.new', ['type' => setting('bill.title', trans_choice('general.bills', 1))]) }}"
+        title="{{ trans('general.title.new_femine', ['type' => trans_choice('general.bills', 1)]) }}"
         icon="file_open"
         route="bills.create"
     ></x-slot>

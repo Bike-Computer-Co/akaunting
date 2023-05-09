@@ -18,7 +18,7 @@ class Locale extends Form
     public function render()
     {
         if (empty($this->selected)) {
-            $this->selected = setting('default.locale', config('app.locale', 'en-GB'));
+            $this->selected = setting('default.locale', config('app.locale', 'mk-MK'));
         }
 
         return view('components.form.group.locale');

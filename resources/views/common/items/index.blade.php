@@ -10,7 +10,7 @@
     <x-slot name="buttons">
         @can('create-common-items')
             <x-link href="{{ route('items.create') }}" kind="primary">
-                {{ trans('general.title.new', ['type' => trans_choice('general.items', 1)]) }}
+                {{ trans('general.title.new_femine', ['type' => trans_choice('general.items', 1)]) }}
             </x-link>
         @endcan
     </x-slot>

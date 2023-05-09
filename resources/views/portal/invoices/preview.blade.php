@@ -1,6 +1,6 @@
 <x-layouts.preview>
     <x-slot name="title">
-        {{ setting('invoice.title', trans_choice('general.invoices', 1)) . ': ' . $invoice->document_number }}
+        {{  trans_choice('general.invoices', 1) . ': ' . $invoice->document_number }}
     </x-slot>
 
     <x-slot name="sticky" url="{{ route('invoices.show', $invoice->id) }}"></x-slot>

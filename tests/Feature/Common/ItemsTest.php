@@ -24,7 +24,7 @@ class ItemsTest extends FeatureTestCase
         $this->loginAs()
             ->get(route('items.create'))
             ->assertStatus(200)
-            ->assertSeeText(trans('general.title.new', ['type' => trans_choice('general.items', 1)]));
+            ->assertSeeText(trans('general.title.new_femine', ['type' => trans_choice('general.items', 1)]));
     }
 
     public function testItShouldCreateItem()

@@ -11,7 +11,7 @@ class DeleteCommand extends UninstallModule
      *
      * @var string
      */
-    protected $signature = 'module:delete {alias} {company} {locale=en-GB}';
+    protected $signature = 'module:delete {alias} {company} {locale=mk-MK}';
 
     /**
      * The console command description.

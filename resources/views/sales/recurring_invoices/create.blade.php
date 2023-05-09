@@ -1,10 +1,10 @@
 <x-layouts.admin>
     <x-slot name="title">
-        {{ trans('general.title.new', ['type' => trans_choice('general.recurring_invoices', 1)]) }}
+        {{ trans('general.title.new_femine', ['type' => trans_choice('general.recurring_invoices', 1)]) }}
     </x-slot>
 
     <x-slot name="favorite"
-        title="{{ trans('general.title.new', ['type' => trans_choice('general.recurring_invoices', 1)]) }}"
+        title="{{ trans('general.title.new_femine', ['type' => trans_choice('general.recurring_invoices', 1)]) }}"
         icon="request_quote"
         url="{{ route('recurring-invoices.create') }}"
     ></x-slot>

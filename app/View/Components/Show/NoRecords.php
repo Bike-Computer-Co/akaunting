@@ -133,7 +133,6 @@ class NoRecords extends Component
         if (! empty($textAction)) {
             return $textAction;
         }
-
         $textAction = match ($this->type) {
             'account', 'customer', 'vendor' => trans('general.title.new', ['type' => trans_choice('general.'.$this->page, 1)]),
             default => trans('modules.learn_more'),

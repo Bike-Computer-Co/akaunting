@@ -272,7 +272,6 @@ class EmptyPage extends Component
         }
 
         $title = $this->getTitle(null, 1);
-
         return [
             'url' => $route,
             'permission' => $this->permissionCreate,

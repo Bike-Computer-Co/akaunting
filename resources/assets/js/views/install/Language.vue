@@ -45,7 +45,7 @@
                 .get(base_path + "/install/language/getLanguages")
                 .then((response) => {
                     this.languages = response.data.languages;
-                    this.form.lang = "en-GB";
+                    this.form.lang = "mk-MK";
                 })
                 .catch((error) => {});
         },
