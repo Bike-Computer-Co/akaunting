@@ -32,7 +32,6 @@ class SendAccountantStatement extends Command
     public function handle()
     {
         Company::query()
-            ->notOurAccountant()
             ->whereIn('id', DB::table('settings')->select('company_id')->where('key', 'company.accountant_email')->whereNotNull('value'))
             ->get()
             ->each(function ($company){

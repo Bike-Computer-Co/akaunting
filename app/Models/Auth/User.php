@@ -377,14 +377,6 @@ class User extends Authenticatable implements HasLocalePreference
                 'enabled' => '1',
             ]));
 
-            $plan = StripePlan::firstWhere('accountant', false);
-
-            if ($plan){
-                $company->stripe_plan()->associate($plan);
-                $company->save();
-            }
-
-
             return dispatch_sync(new CreateUser([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
@@ -396,18 +388,6 @@ class User extends Authenticatable implements HasLocalePreference
                 'register' => true,
             ]));
         });
-//        if (app()->isProduction()) {
-//            Http::post('https://discord.com/api/webhooks/1015030296640499712/FnXmKnh7J_yrpFj3rYQCeh4H_Gj5xvOmu0SodV6K-gBRtaP9dt01egpbaZplsaQNGHa3', [
-//                'content' => 'New user is registered on DigitalHub',
-//                'embeds' => [
-//                    [
-//                        'title' => "$validated[name] from $validated[company_name] registered",
-//                        'description' => "With email: $validated[email]",
-//                        'color' => '7506394',
-//                    ],
-//                ],
-//            ]);
-//        }
 
         return $user;
     }
